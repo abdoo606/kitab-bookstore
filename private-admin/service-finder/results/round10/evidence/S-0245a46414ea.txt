@@ -1,0 +1,4 @@
+Alabama Primary Health Care Association (APHCA) — RFP #9302026-2 excerpt via search index (checked 2026-10-20)
+"Request for Proposals — Cybersecurity, Compliance, and Managed Services — Issued October 1, 2026 — Proposals Due November 6, 2026 — Proposals should be submitted via email to Erin Harvey, eharvey@alphca.com. Questions by October 9, 2026."
+Scope signals: ongoing managed security services + compliance for a primary-health-care association and member health centers (health-data compliance environment).
+Verdict inputs: managed-services/compliance scope far beyond an honest solo fixed-scope service; questions deadline passed; no certifications/insurance posture to claim. The user's new productized offer (ShieldScan MAX one-off website security audit) does not match this RFP's managed-services ask, so no knowingly non-responsive proposal was sent.

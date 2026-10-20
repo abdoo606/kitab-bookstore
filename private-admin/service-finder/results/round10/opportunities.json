@@ -1,0 +1,84 @@
+[
+  {
+    "id": "S-2f0fe71665e4",
+    "organization": "Achievement First",
+    "source_url": "https://www.achievementfirst.org/request-for-proposals-website-redesign-ecosystem-development/",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "as_of": "2026-10-20",
+    "status": "conflicting_deadlines_review",
+    "verified": false,
+    "deadline_dates": [
+      "2026-10-05",
+      "2026-10-19",
+      "2026-11-02",
+      "2026-11-09",
+      "2026-12-04",
+      "2026-12-11"
+    ],
+    "deadline_evidence": [
+      "\"Request for Proposals: Website Redesign & Ecosystem Development — RFP Issuance Date October 5, 2026; Vendor Questions Due October 19, 2026; Proposal Submission Deadline November 9, 2026 (Section 13 says email PDF no later than November 2, 2026 to Jacqui Alessi, Associate Chief of Marketing & Communications, [email protected]); Finalist Presentations & Demonstrations November 16-20 & November 30-December 4, 2026; Target Selection by December 11, 2026; Project Kickoff January 2027.\""
+    ],
+    "availability_evidence": [],
+    "request_evidence": [
+      "Achievement First (US charter school network) — RFP page excerpt via search index (checked 2026-10-20)",
+      "\"Request for Proposals: Website Redesign & Ecosystem Development — RFP Issuance Date October 5, 2026; Vendor Questions Due October 19, 2026; Proposal Submission Deadline November 9, 2026 (Section 13 says email PDF no later than November 2, 2026 to Jacqui Alessi, Associate Chief of Marketing & Communications, [email protected]); Finalist Presentations & Demonstrations November 16-20 & November 30-December 4, 2026; Target Selection by December 11, 2026; Project Kickoff January 2027.\""
+    ],
+    "budget_evidence": [],
+    "contact_candidates": [],
+    "contact_evidence": [],
+    "qualification_evidence": [],
+    "fit": "not_assessed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "c94957407ae4ab5d7e20a4ef87f5477ae1dd5037c5fce750c0c5137e76fb6228",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Official RFP page (issued 2026-10-05): website redesign & ecosystem development; questions due Oct 19; proposals Nov 9 (Sec.13 says email PDF by Nov 2 to an obfuscated address); finalist presentations/demonstrations; kickoff Jan 2027.",
+    "outreach_status": "not_sent_screened_out: no clear submission email in public copy; vendor-scale process (finalist demos) beyond honest solo scope",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  },
+  {
+    "id": "S-0245a46414ea",
+    "organization": "Alabama Primary Health Care Association",
+    "source_url": "https://www.alphca.com/files/2026/10/RFP-RHTPCybersecurityFinalRelease10126.pdf",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "as_of": "2026-10-20",
+    "status": "conflicting_deadlines_review",
+    "verified": false,
+    "deadline_dates": [
+      "2026-10-01",
+      "2026-10-09",
+      "2026-11-06"
+    ],
+    "deadline_evidence": [
+      "\"Request for Proposals — Cybersecurity, Compliance, and Managed Services — Issued October 1, 2026 — Proposals Due November 6, 2026 — Proposals should be submitted via email to Erin Harvey, eharvey@alphca.com. Questions by October 9, 2026.\""
+    ],
+    "availability_evidence": [],
+    "request_evidence": [
+      "Alabama Primary Health Care Association (APHCA) — RFP 9302026-2 excerpt via search index (checked 2026-10-20)",
+      "\"Request for Proposals — Cybersecurity, Compliance, and Managed Services — Issued October 1, 2026 — Proposals Due November 6, 2026 — Proposals should be submitted via email to Erin Harvey, eharvey@alphca.com. Questions by October 9, 2026.\"",
+      "Verdict inputs: managed-services/compliance scope far beyond an honest solo fixed-scope service; questions deadline passed; no certifications/insurance posture to claim. The user's new productized offer (ShieldScan MAX one-off website security audit) does not match this RFP's managed-services ask, so no knowingly non-responsive proposal was sent."
+    ],
+    "budget_evidence": [],
+    "contact_candidates": [
+      "eharvey@alphca.com"
+    ],
+    "contact_evidence": [
+      "\"Request for Proposals — Cybersecurity, Compliance, and Managed Services — Issued October 1, 2026 — Proposals Due November 6, 2026 — Proposals should be submitted via email to Erin Harvey, eharvey@alphca.com. Questions by October 9, 2026.\""
+    ],
+    "qualification_evidence": [
+      "Verdict inputs: managed-services/compliance scope far beyond an honest solo fixed-scope service; questions deadline passed; no certifications/insurance posture to claim. The user's new productized offer (ShieldScan MAX one-off website security audit) does not match this RFP's managed-services ask, so no knowingly non-responsive proposal was sent."
+    ],
+    "fit": "requirements_review_needed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "d64e934b081c6d069dd0e926af75187a13465db42ee643544cdf7f0ea5962395",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Official RFP #9302026-2 PDF (issued 2026-10-01): cybersecurity, compliance and managed services; proposals by email to eharvey@alphca.com by Nov 6, 2026; questions by Oct 9.",
+    "outreach_status": "not_sent_screened_out: managed-services/health-compliance scope beyond honest solo delivery; ShieldScan audit offer does not match a managed-services RFP",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  }
+]

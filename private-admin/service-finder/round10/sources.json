@@ -1,0 +1,20 @@
+[
+  {
+    "url": "https://www.achievementfirst.org/request-for-proposals-website-redesign-ecosystem-development/",
+    "organization": "Achievement First",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "snapshot": "achievement-first.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Official RFP page (issued 2026-10-05): website redesign & ecosystem development; questions due Oct 19; proposals Nov 9 (Sec.13 says email PDF by Nov 2 to an obfuscated address); finalist presentations/demonstrations; kickoff Jan 2027.",
+    "outreach_status": "not_sent_screened_out: no clear submission email in public copy; vendor-scale process (finalist demos) beyond honest solo scope"
+  },
+  {
+    "url": "https://www.alphca.com/files/2026/10/RFP-RHTPCybersecurityFinalRelease10126.pdf",
+    "organization": "Alabama Primary Health Care Association",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "snapshot": "alphca-cyber.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Official RFP #9302026-2 PDF (issued 2026-10-01): cybersecurity, compliance and managed services; proposals by email to eharvey@alphca.com by Nov 6, 2026; questions by Oct 9.",
+    "outreach_status": "not_sent_screened_out: managed-services/health-compliance scope beyond honest solo delivery; ShieldScan audit offer does not match a managed-services RFP"
+  }
+]
