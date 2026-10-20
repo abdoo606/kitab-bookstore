@@ -1,0 +1,35 @@
+[
+  {
+    "id": "S-56ddcd9ea60c",
+    "organization": "Ely Area Tourism Bureau & Ely Chamber of Commerce (Ely, MN, USA)",
+    "source_url": "https://www.ely.org/rfp/",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "as_of": "2026-10-20",
+    "status": "expired",
+    "verified": false,
+    "deadline_dates": [
+      "2026-05-11"
+    ],
+    "deadline_evidence": [
+      "Verdict inputs: right size for a solo offer, but the proposal deadline (May 11, 2026) passed five months before this check — a now-submission would be non-responsive. Not contacted."
+    ],
+    "availability_evidence": [],
+    "request_evidence": [
+      "Ely Area Tourism Bureau & Ely Chamber of Commerce (Ely, Minnesota, USA) — Website redesign RFP page excerpt via search index (checked 2026-10-20)"
+    ],
+    "budget_evidence": [],
+    "contact_candidates": [],
+    "contact_evidence": [],
+    "qualification_evidence": [],
+    "fit": "not_assessed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "15c3040f45a2f395f6794fc3e34c7c0a48fa18569004314fb627a50903bf513b",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Seeking proposals from qualified web designers/developers for a website redesign; proposals due 5/11/26 (May 11, 2026).",
+    "outreach_status": "not_sent_screened_out: deadline passed (May 11, 2026) — a now-submission would be non-responsive",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  }
+]
