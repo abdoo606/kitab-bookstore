@@ -1,0 +1,10 @@
+Request for Proposals (RFP) Website Redesign
+RFP released: September 1, 2026
+Questions due: September 18, 2026
+Proposals due: October 12, 2026, at 4:30 p.m.
+Anticipate project to begin: January 2027
+Desired site launch: Third or fourth quarter 2027
+Mandatory accessibility compliance: WCAG 2.1 Level AA by April 2028
+The Centerville-Washington Park District (CWPD) is issuing this Request for Proposals (RFP) for the redesign and redevelopment of cwpd.org. CWPD seeks a website that improves customer experience, makes it easier for residents to discover parks, programs and events and provides a flexible, intuitive content management system that can be maintained by non-technical staff.
+CWPD is seeking a partner that can provide strategy, information architecture, user experience design, visual design, development, accessibility testing, training, launch support and ongoing maintenance.
+Description of previous experience with comparable projects, preferably with other park districts or municipal agencies. Include sample websites to review.

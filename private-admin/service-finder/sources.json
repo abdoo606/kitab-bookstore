@@ -1,0 +1,27 @@
+[
+  {
+    "url": "https://www.iditarod100.org/",
+    "organization": "Iditarod Historic Trail Alliance",
+    "source_kind": "official_issuer_manually_checked",
+    "snapshot": "snapshots/iditarod.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "selected verbatim excerpts from fetch_page, homepage chunk 0; NOT full RFP",
+    "outreach_status": "scoped_offer_already_sent_2026-10-20; Gmail 1a1594a810aba7f3; no acceptance"
+  },
+  {
+    "url": "https://www.achievementfirst.org/request-for-proposals-website-redesign-ecosystem-development/",
+    "organization": "Achievement First",
+    "source_kind": "official_issuer_manually_checked",
+    "snapshot": "snapshots/achievementfirst.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "selected verbatim excerpts from fetch_page chunks 0 and 2; NOT full document"
+  },
+  {
+    "url": "https://cwpd.org/wp-content/uploads/2026/08/rfp-proposal-web-redesign-2027.pdf",
+    "organization": "Centerville-Washington Park District",
+    "source_kind": "official_issuer_manually_checked",
+    "snapshot": "snapshots/cwpd.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "selected verbatim excerpts from fetch_page PDF chunk 0; NOT full PDF"
+  }
+]

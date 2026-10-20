@@ -1,0 +1,35 @@
+test_buyer_open (test_marketplace.MarketplaceTests.test_buyer_open) ... ok
+test_stale_snapshot (test_marketplace.MarketplaceTests.test_stale_snapshot) ... ok
+test_unscoped_page_not_promoted (test_marketplace.MarketplaceTests.test_unscoped_page_not_promoted) ... ok
+test_freelancer_awarded_is_closed (test_mostaql.MostaqlTests.test_freelancer_awarded_is_closed) ... ok
+test_mostaql_closed_with_diacritic (test_mostaql.MostaqlTests.test_mostaql_closed_with_diacritic) ... ok
+test_mostaql_open_arabic (test_mostaql.MostaqlTests.test_mostaql_open_arabic) ... ok
+test_mostaql_samples_are_qualification_evidence (test_mostaql.MostaqlTests.test_mostaql_samples_are_qualification_evidence) ... ok
+test_mostaql_unscoped_not_promoted (test_mostaql.MostaqlTests.test_mostaql_unscoped_not_promoted) ... ok
+test_arabic_request_no_english_date (test_scrape_clients.ClassificationTests.test_arabic_request_no_english_date) ... ok
+test_budget_is_evidence (test_scrape_clients.ClassificationTests.test_budget_is_evidence) ... ok
+test_cancelled (test_scrape_clients.ClassificationTests.test_cancelled) ... ok
+test_canonical (test_scrape_clients.ClassificationTests.test_canonical) ... ok
+test_conflict (test_scrape_clients.ClassificationTests.test_conflict) ... ok
+test_csv_injection (test_scrape_clients.ClassificationTests.test_csv_injection) ... ok
+test_employment (test_scrape_clients.ClassificationTests.test_employment) ... ok
+test_expired_not_launch (test_scrape_clients.ClassificationTests.test_expired_not_launch) ... ok
+test_future (test_scrape_clients.ClassificationTests.test_future) ... ok
+test_missing_deadline (test_scrape_clients.ClassificationTests.test_missing_deadline) ... ok
+test_network_allowlist (test_scrape_clients.ClassificationTests.test_network_allowlist) ... ok
+test_no_auth_urls (test_scrape_clients.ClassificationTests.test_no_auth_urls) ... ok
+test_no_budget_invention (test_scrape_clients.ClassificationTests.test_no_budget_invention) ... ok
+test_private_address (test_scrape_clients.ClassificationTests.test_private_address) ... ok
+test_qualifications (test_scrape_clients.ClassificationTests.test_qualifications) ... ok
+test_questions_not_deadline (test_scrape_clients.ClassificationTests.test_questions_not_deadline) ... ok
+test_same_day (test_scrape_clients.ClassificationTests.test_same_day) ... ok
+test_seller (test_scrape_clients.ClassificationTests.test_seller) ... ok
+test_split_deadline (test_scrape_clients.ClassificationTests.test_split_deadline) ... ok
+test_html_and_link_scope (test_scrape_clients.FetchTests.test_html_and_link_scope) ... ok
+test_robots_denial (test_scrape_clients.FetchTests.test_robots_denial) ... ok
+test_unsupported_type (test_scrape_clients.FetchTests.test_unsupported_type) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.011s
+
+OK

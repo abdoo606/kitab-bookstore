@@ -1,0 +1,20 @@
+[
+  {
+    "url": "https://www.br.freelancer.com/projects/web-design/Framer-Free-template-Page-Service",
+    "organization": "",
+    "source_kind": "marketplace_client_post",
+    "snapshot": "framer.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Selected buyer-section excerpts from fetch_page chunk 2; bidder proposals excluded; client identity unknown",
+    "buyer_section_only": true
+  },
+  {
+    "url": "https://www.freelancer.com/projects/web-design/Seven-Page-Static-HTML-Site",
+    "organization": "",
+    "source_kind": "marketplace_client_post",
+    "snapshot": "static.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Selected buyer-section excerpts from fetch_page chunk 2; bidder proposals excluded; client identity unknown",
+    "buyer_section_only": true
+  }
+]

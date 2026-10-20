@@ -1,0 +1,16 @@
+Request for Proposals: Website Redesign & Ecosystem Development
+Achievement First is seeking an experienced digital agency to architect and build a unified, scalable digital ecosystem. The solution will comprise a main network website, regional hubs, and 41 distinct school-specific websites under a central governance model.
+Proposal Submission Deadline | November 9, 2026
+Eligible agencies must demonstrate extensive experience in executing complex digital projects.
+Three relevant case studies demonstrating multi-site, federated, or enterprise CMS implementations.
+In-house expertise across digital strategy, UX/UI, accessibility compliance, and engineering.
+Adequate insurance coverage (General Liability, Cyber Liability, Errors & Omissions).
+AF anticipates an implementation budget covering discovery, strategy, UX/UI design, front- and back-end development, migration, initial content entry, QA, training, and launch. Ongoing hosting, SLA support, maintenance, software licenses, and third-party tools should be itemized separately.
+Vendor Questions Submission Deadline | October 19, 2026
+AF Responses to Vendor Questions | October 23, 2026
+Proposal Submission Deadline | November 9, 2026
+Proposals must be submitted in PDF format via email no later than November 9, 2026 to:
+Jacqui Alessi
+Associate Chief of Marketing & Communications
+jacquialessi@achievementfirst.org
+Please direct all inquiries regarding this RFP to the contact above by October 19, 2026. Written responses to all vendor queries will be distributed by October 23, 2026. Proposals must remain valid for at least 90 days following submission.

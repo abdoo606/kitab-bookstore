@@ -1,0 +1,26 @@
+{
+  "mode": "live",
+  "as_of": "2026-10-20",
+  "attempted": 3,
+  "records": 0,
+  "errors": [
+    {
+      "url": "https://www.iditarod100.org/",
+      "error_type": "ValueError",
+      "error": "Host outside configured network allowlist: www.iditarod100.org"
+    },
+    {
+      "url": "https://www.achievementfirst.org/request-for-proposals-website-redesign-ecosystem-development/",
+      "error_type": "ValueError",
+      "error": "Host outside configured network allowlist: www.achievementfirst.org"
+    },
+    {
+      "url": "https://cwpd.org/wp-content/uploads/2026/08/rfp-proposal-web-redesign-2027.pdf",
+      "error_type": "ValueError",
+      "error": "Host outside configured network allowlist: cwpd.org"
+    }
+  ],
+  "remaining_queue": 0,
+  "statuses": {},
+  "warning": "Triage only: not verified clients, not guaranteed paid work. Imported excerpts may omit requirements."
+}

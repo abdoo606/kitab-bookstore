@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Brightpath Consulting</title>
+<meta name="description" content="Tell us about your business and book a free intro call with Brightpath Consulting.">
+<meta property="og:title" content="Contact — Brightpath Consulting">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<p class="demo-badge">Independent demo — fictional business, built as a work sample</p>
+<header class="site-header">
+  <div class="container header-row">
+    <a class="logo" href="index.html" data-content="businessName">Brightpath Consulting</a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="section">
+  <div class="container narrow">
+    <h1>Contact</h1>
+    <p class="lead">Tell us a little about your business. We reply within one working day.</p>
+
+    <form id="contact-form" novalidate>
+      <label for="name">Your name *</label>
+      <input id="name" name="name" type="text" autocomplete="name" required>
+
+      <label for="email">Email *</label>
+      <input id="email" name="email" type="email" autocomplete="email" required>
+
+      <label for="topic">I'm interested in</label>
+      <select id="topic" name="topic">
+        <option>Business planning</option>
+        <option>Pricing review</option>
+        <option>Operations tune-up</option>
+        <option>Something else</option>
+      </select>
+
+      <label for="message">How can we help? *</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+
+      <!-- Honeypot: humans never see or fill this field; bots usually do. -->
+      <div class="hp" aria-hidden="true">
+        <label for="company_website">Company website</label>
+        <input id="company_website" name="company_website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <button class="button" type="submit">Send enquiry</button>
+      <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      <p class="hint">Demo mode: until a form endpoint is configured in <code>assets/content.js</code>, submissions show a confirmation but no email is sent. See README.md.</p>
+    </form>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-row">
+    <p>© <span id="year">2026</span> <span data-content="businessName">Brightpath Consulting</span>. Demo content — replace with your own.</p>
+    <p><a href="index.html">Home</a> · <a href="services.html">Services</a></p>
+  </div>
+</footer>
+<script src="assets/content.js"></script>
+<script src="assets/main.js"></script>
+</body>
+</html>

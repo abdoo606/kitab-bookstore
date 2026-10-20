@@ -1,0 +1,115 @@
+[
+  {
+    "id": "S-c993839e4a8e",
+    "organization": "Iditarod Historic Trail Alliance",
+    "source_url": "https://www.iditarod100.org/",
+    "source_kind": "official_issuer_manually_checked",
+    "as_of": "2026-10-20",
+    "status": "future_deadline_needs_review",
+    "verified": false,
+    "deadline_dates": [
+      "2026-11-02"
+    ],
+    "deadline_evidence": [
+      "Proposals are due by close of business on November 2, 2026."
+    ],
+    "request_evidence": [
+      "The Iditarod Historic Trail Alliance is inviting qualified vendors to submit proposals for the redesign of our current website. The Request for Proposals (RFP) is available here:"
+    ],
+    "budget_evidence": [],
+    "contact_candidates": [],
+    "contact_evidence": [],
+    "qualification_evidence": [],
+    "fit": "not_assessed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "da4eef4a335de8c1b3044af721cd518f4a72483c9333d436238098e5afafb6f1",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "selected verbatim excerpts from fetch_page, homepage chunk 0; NOT full RFP",
+    "outreach_status": "scoped_offer_already_sent_2026-10-20; Gmail 1a1594a810aba7f3; no acceptance",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  },
+  {
+    "id": "S-2f0fe71665e4",
+    "organization": "Achievement First",
+    "source_url": "https://www.achievementfirst.org/request-for-proposals-website-redesign-ecosystem-development/",
+    "source_kind": "official_issuer_manually_checked",
+    "as_of": "2026-10-20",
+    "status": "future_deadline_needs_review",
+    "verified": false,
+    "deadline_dates": [
+      "2026-11-09"
+    ],
+    "deadline_evidence": [
+      "Proposal Submission Deadline | November 9, 2026",
+      "Proposal Submission Deadline | November 9, 2026",
+      "Proposals must be submitted in PDF format via email no later than November 9, 2026 to:"
+    ],
+    "request_evidence": [
+      "Request for Proposals: Website Redesign & Ecosystem Development",
+      "Achievement First is seeking an experienced digital agency to architect and build a unified, scalable digital ecosystem. The solution will comprise a main network website, regional hubs, and 41 distinct school-specific websites under a central governance model.",
+      "Please direct all inquiries regarding this RFP to the contact above by October 19, 2026. Written responses to all vendor queries will be distributed by October 23, 2026. Proposals must remain valid for at least 90 days following submission."
+    ],
+    "budget_evidence": [],
+    "contact_candidates": [
+      "jacquialessi@achievementfirst.org"
+    ],
+    "contact_evidence": [
+      "jacquialessi@achievementfirst.org"
+    ],
+    "qualification_evidence": [
+      "Three relevant case studies demonstrating multi-site, federated, or enterprise CMS implementations.",
+      "In-house expertise across digital strategy, UX/UI, accessibility compliance, and engineering.",
+      "Adequate insurance coverage (General Liability, Cyber Liability, Errors & Omissions)."
+    ],
+    "fit": "requirements_review_needed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "35015d51100e1cc83ce677ad0be9d95d3da8d018b1d1b008a0780f08bc30d32d",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "selected verbatim excerpts from fetch_page chunks 0 and 2; NOT full document",
+    "outreach_status": "not_sent",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  },
+  {
+    "id": "S-4d8d2c770f9d",
+    "organization": "Centerville-Washington Park District",
+    "source_url": "https://cwpd.org/wp-content/uploads/2026/08/rfp-proposal-web-redesign-2027.pdf",
+    "source_kind": "official_issuer_manually_checked",
+    "as_of": "2026-10-20",
+    "status": "expired",
+    "verified": false,
+    "deadline_dates": [
+      "2026-10-12"
+    ],
+    "deadline_evidence": [
+      "Proposals due: October 12, 2026, at 4:30 p.m."
+    ],
+    "request_evidence": [
+      "Request for Proposals (RFP) Website Redesign",
+      "RFP released: September 1, 2026",
+      "The Centerville-Washington Park District (CWPD) is issuing this Request for Proposals (RFP) for the redesign and redevelopment of cwpd.org. CWPD seeks a website that improves customer experience, makes it easier for residents to discover parks, programs and events and provides a flexible, intuitive content management system that can be maintained by non-technical staff.",
+      "CWPD is seeking a partner that can provide strategy, information architecture, user experience design, visual design, development, accessibility testing, training, launch support and ongoing maintenance."
+    ],
+    "budget_evidence": [],
+    "contact_candidates": [],
+    "contact_evidence": [],
+    "qualification_evidence": [
+      "Mandatory accessibility compliance: WCAG 2.1 Level AA by April 2028"
+    ],
+    "fit": "requirements_review_needed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "e57546f43c700b57721276c7527cac0ca621359f7d1fe63c634e7994f42f687b",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "selected verbatim excerpts from fetch_page PDF chunk 0; NOT full PDF",
+    "outreach_status": "not_sent",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  }
+]
