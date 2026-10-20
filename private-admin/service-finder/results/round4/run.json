@@ -1,0 +1,14 @@
+{
+  "mode": "snapshot",
+  "as_of": "2026-10-20",
+  "attempted": 4,
+  "records": 4,
+  "errors": [],
+  "remaining_queue": 0,
+  "statuses": {
+    "closed_or_cancelled": 1,
+    "needs_deadline_review": 1,
+    "not_service_request": 2
+  },
+  "warning": "Triage only: not verified clients, not guaranteed paid work. Imported excerpts may omit requirements."
+}

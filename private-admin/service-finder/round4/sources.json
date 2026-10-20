@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://www.charityvillage.com/job/request-quotations-website-redesign-project-341361",
+    "organization": "Five Counties Children's Centre",
+    "source_kind": "official_rfq_text_via_charityvillage_manually_checked",
+    "snapshot": "five-counties.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from RFQ# WRP-2026 as embedded in the CharityVillage posting (fetched 2026-10-20): email submission to beekhof@fivecounties.on.ca, closing Oct 20, 2026 4pm EDT (same day as capture); §2.3 mandatory package = signed Appendices A-D + insurance certificate minimum $1,000,000 liability + proof of AODA compliance/training + references from three comparable website redesign projects. NOT the full RFQ.",
+    "outreach_status": "not_sent_screened_out: mandatory insurance certificate ($1M), three comparable client references, AODA proof and signed appendix forms not available honestly; incomplete packages are not considered"
+  },
+  {
+    "url": "https://www.merx.com/futuregenerationsfoundation/solicitations/Website-Redesign-and-Development/0000295185",
+    "organization": "Future Generations Foundation",
+    "source_kind": "tender_portal_manually_checked",
+    "snapshot": "fg-foundation.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from MERX solicitation 0000295185 (fetched 2026-10-20): solicitation CLOSED; proposal deadline was June 24, 2025; email contact jmorgan@fgfoundation.ca was part of the closed process.",
+    "outreach_status": "not_sent: closed in 2025 (search snippets omitted the year/status)"
+  },
+  {
+    "url": "https://www.developmentaid.org/tenders/view/1692853/rfp-forewarn-ibf-portal-development",
+    "organization": "Eco-Social Development Organization (ESDO)",
+    "source_kind": "aggregator_listing_manually_checked",
+    "snapshot": "esdo-forewarn.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from DevelopmentAid tender page (fetched 2026-10-20): Status Closed; posted Jul 30, 2026; FOREWARN IBF Portal website RFP, Bangladesh.",
+    "outreach_status": "not_sent: tender closed before capture; contact details paywalled and no submission email published in the visible notice"
+  },
+  {
+    "url": "https://upscalemethod.com/breakthrough_t1d_canada_wordpresss_audit_ux_seo_digital-strategy_28kto32kcad/",
+    "organization": "Breakthrough T1D Canada",
+    "source_kind": "aggregator_summary_manually_checked",
+    "snapshot": "breakthrough-t1d.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from Upscale Method summary of the RFP (fetched 2026-10-20): proposal deadline October 9, 2026 (expired); agencies must provide at least five comparable projects; estimated budget $28,000-$32,000 CAD for discovery/strategy only.",
+    "outreach_status": "not_sent: deadline expired Oct 9, 2026 and five-comparable-projects evidence gate not met"
+  }
+]
