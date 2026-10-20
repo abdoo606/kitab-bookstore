@@ -1,0 +1,141 @@
+[
+  {
+    "id": "S-3b30507625e8",
+    "organization": "Canadian Club of Ottawa",
+    "source_url": "https://canadianclubottawa.ca/blogs/news/request-for-proposals-website-redesign-for-the-canadian-club-of-ottawa",
+    "source_kind": "official_issuer_manually_checked",
+    "as_of": "2026-10-20",
+    "status": "future_deadline_needs_review",
+    "verified": false,
+    "deadline_dates": [
+      "2026-10-21"
+    ],
+    "deadline_evidence": [
+      "Proposals must be submitted electronically by 11:59 PM on Wednesday, October 21, 2026, to:"
+    ],
+    "availability_evidence": [],
+    "request_evidence": [
+      "Request for Proposals Website Redesign for the Canadian Club of Ottawa"
+    ],
+    "budget_evidence": [],
+    "contact_candidates": [
+      "admin@canadianclubottawa.ca"
+    ],
+    "contact_evidence": [
+      "Bryan Detchou, VP, Operations and Communications: admin@canadianclubottawa.ca"
+    ],
+    "qualification_evidence": [],
+    "fit": "not_assessed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "885677e5d110fa36dd40403ef08a596dfd75c807610c89db779c572532842801",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from the Club's official RFP page (fetched 2026-10-20): proposals by email to admin@canadianclubottawa.ca by 11:59 PM Wed Oct 21, 2026; 7 core pages; proposal contents include two relevant references and an itemized fixed price; no insurance/license/Canadian-only clauses in the text; nonprofit discounts/phased payments welcomed.",
+    "outreach_status": "SENT 2026-10-20 (Gmail message 1a159dd9e20a565c) before the Oct 21 deadline: scoped partial response with working concept built first (builds/canadian-club-ottawa, commit 9703c39, public GitHub link verified), Phase A fixed price USD 600 for 7 templates, explicit disclosure that two client references are unavailable and public samples are independent builds; not a full compliant bid",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  },
+  {
+    "id": "S-fc8522bf8d7c",
+    "organization": "International Seabed Authority",
+    "source_url": "https://thebiddaily.com/digital-rfp-free/international-seabed-authority-website-redesign-rfp-2026/",
+    "source_kind": "aggregator_summary_manually_checked",
+    "as_of": "2026-10-20",
+    "status": "due_today_time_review",
+    "verified": false,
+    "deadline_dates": [
+      "2026-10-20"
+    ],
+    "deadline_evidence": [
+      "- Proposal Deadline: October 20, 2026"
+    ],
+    "availability_evidence": [],
+    "request_evidence": [
+      "The International Seabed Authority (ISA), an international organization established under the United Nations Convention on the Law of the Sea, is seeking an experienced digital agency or consortium to redesign and implement its corporate website and content management system (CMS).",
+      "No project budget is specified in the RFP"
+    ],
+    "budget_evidence": [],
+    "contact_candidates": [],
+    "contact_evidence": [],
+    "qualification_evidence": [
+      "Mandatory bidder qualifications"
+    ],
+    "fit": "requirements_review_needed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "a4309ca82a541bc31178e3a4c479b58995aef886413867992e1e91cc6c15f1cb",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from The Bid Daily summary (fetched 2026-10-20): mandatory legally registered organization with 7+ years operation, 3 comparable projects, multidisciplinary team; proposal deadline October 20, 2026 (same day).",
+    "outreach_status": "not_sent_screened_out: mandatory 7-year registered-organization + comparable-projects gates; deadline was capture day",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  },
+  {
+    "id": "S-07d7fe5583d5",
+    "organization": "Nashwaak Rural Community",
+    "source_url": "https://thebiddaily.com/digital-rfp-free/nashwaak-rural-community-rfp-website-redesign-hosting-managed-it-services/",
+    "source_kind": "aggregator_summary_manually_checked",
+    "as_of": "2026-10-20",
+    "status": "future_deadline_needs_review",
+    "verified": false,
+    "deadline_dates": [
+      "2026-10-28"
+    ],
+    "deadline_evidence": [
+      "- Proposal Deadline: October 28, 2026"
+    ],
+    "availability_evidence": [],
+    "request_evidence": [
+      "No fixed budget is stated in the RFP"
+    ],
+    "budget_evidence": [],
+    "contact_candidates": [],
+    "contact_evidence": [],
+    "qualification_evidence": [],
+    "fit": "not_assessed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "e7f44b18470ae14801dbd8b86a75004e0b4090958fee84c75b8256bdacfadd3d",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from The Bid Daily summary (fetched 2026-10-20): single contractor for website + hosting + managed IT/help desk for ~17 users + cybersecurity with 24/7 incident reporting; 3-year initial contract; deadline October 28, 2026.",
+    "outreach_status": "not_sent_screened_out: scope is a multi-year municipal MSP engagement (help desk, device fleet, 24/7 incident response) beyond an honest solo web-services offer",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  },
+  {
+    "id": "S-b90f49e65ec2",
+    "organization": "KNCV Nigeria",
+    "source_url": "https://kncvnigeria.org/procurement-adverts/",
+    "source_kind": "official_issuer_manually_checked",
+    "as_of": "2026-10-20",
+    "status": "not_service_request",
+    "verified": false,
+    "deadline_dates": [],
+    "deadline_evidence": [],
+    "availability_evidence": [],
+    "request_evidence": [],
+    "budget_evidence": [],
+    "contact_candidates": [
+      "procurement@kncvnigeria.org"
+    ],
+    "contact_evidence": [
+      "Then email your attachment to procurement@kncvnigeria.org"
+    ],
+    "qualification_evidence": [
+      "11. At least three (3) client references with contact details."
+    ],
+    "fit": "requirements_review_needed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "8e80a1c7b1ecb277fe6c754785450a55d0c8fa9a60958353d08eb6ce6a635112",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts: website-redesign quotation line from search-indexed page content plus the page's own vendor eligibility regime (CAC incorporation, 3-year tax clearance, TIN, audited financials, 3 client references); page captured 2026-10-20 shows July-2026 closings and 10-day advert windows.",
+    "outreach_status": "not_sent_screened_out: Nigerian corporate/tax/audit documentation and 3-reference gates not available; advert window stale (July 2026 cycle)",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  }
+]
