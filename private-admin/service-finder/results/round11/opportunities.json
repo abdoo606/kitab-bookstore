@@ -1,0 +1,81 @@
+[
+  {
+    "id": "S-ca37e964dd3b",
+    "organization": "City of Buellton, California (municipal website RFP, Sep 2026)",
+    "source_url": "https://www.cityofbuellton.com/",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "as_of": "2026-10-20",
+    "status": "needs_deadline_review",
+    "verified": false,
+    "deadline_dates": [],
+    "deadline_evidence": [],
+    "availability_evidence": [],
+    "request_evidence": [
+      "City of Buellton, California — Website RFP excerpt via search index (checked 2026-10-20)",
+      "\"REQUEST FOR PROPOSAL — CITY OF BUELLTON, CALIFORNIA — September 2026 — RFP SUMMARY: MUNICIPAL WEBSITE MODERNIZATION AND REDESIGN PROJECT. The City of Buellton seeks proposals from qualified Vendors to modernize, redesign, and update its website...\"",
+      "\"RFP ISSUE DATE September 3, 2026. The deadline for questions is September 18, 2026, at 4 PM (PDT)... Interviews and Demonstrations with Selection Committee... Completed by November 25, 2026... Contract approval at December City Council meeting (12/14/2026).\""
+    ],
+    "budget_evidence": [],
+    "contact_candidates": [
+      "lauri@cityofbuellton.com"
+    ],
+    "contact_evidence": [
+      "Submission signals include marked-envelope proposal delivery (\"MARK ENVELOPE: PROPOSAL – WEBSITE PROJECT\") and questions to lauri@cityofbuellton.com."
+    ],
+    "qualification_evidence": [
+      "Verdict inputs: formal municipal procurement with interviews/demonstrations and council contracting; questions window closed (Sep 18); vendor qualification apparatus (licensing/insurance/references typical) beyond honest solo posture. Not contacted."
+    ],
+    "fit": "requirements_review_needed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "be7145e0804913808e77b4453a83bdc971e30f74e896a6f1f89df26a4dad81f3",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Municipal Website Modernization and Redesign RFP issued Sep 3, 2026; questions closed Sep 18; marked-envelope proposals; interviews/demonstrations by Nov 25; council contract Dec 14, 2026; contact lauri@cityofbuellton.com.",
+    "outreach_status": "not_sent_screened_out: formal municipal vendor apparatus (interviews/demos, licensing/insurance/references typical) beyond honest solo posture",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  },
+  {
+    "id": "S-4914ccc1ef65",
+    "organization": "Ferncliff Camp and Conference Center (Little Rock, AR)",
+    "source_url": "https://ferncliff.org/",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "as_of": "2026-10-20",
+    "status": "conflicting_deadlines_review",
+    "verified": false,
+    "deadline_dates": [
+      "2026-05-04",
+      "2026-05-25",
+      "2026-06-10"
+    ],
+    "deadline_evidence": [
+      "\"Request for Proposals (RFP) Website Redesign & Development — RFP Released: May 4, 2026 — Proposal Deadline: May 25, 2026 — Vendor Selection: June 10, 2026 — Target Launch: Between October and December 2026 — anticipated budget $12,000-$20,000.\""
+    ],
+    "availability_evidence": [],
+    "request_evidence": [
+      "Ferncliff Camp and Conference Center (Little Rock, AR) — RFP PDF excerpt via search index (checked 2026-10-20)",
+      "\"Request for Proposals (RFP) Website Redesign & Development — RFP Released: May 4, 2026 — Proposal Deadline: May 25, 2026 — Vendor Selection: June 10, 2026 — Target Launch: Between October and December 2026 — anticipated budget $12,000-$20,000.\""
+    ],
+    "budget_evidence": [
+      "\"Request for Proposals (RFP) Website Redesign & Development — RFP Released: May 4, 2026 — Proposal Deadline: May 25, 2026 — Vendor Selection: June 10, 2026 — Target Launch: Between October and December 2026 — anticipated budget $12,000-$20,000.\""
+    ],
+    "contact_candidates": [
+      "kimberly@ferncliff.org"
+    ],
+    "contact_evidence": [
+      "Proposal requirements include: company overview, examples of similar nonprofit projects, team description, and \"References (2-3)\". Contact: Kimberly Graves, kimberly@ferncliff.org."
+    ],
+    "qualification_evidence": [],
+    "fit": "not_assessed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "be15098d64d04a8cfe08936f2678291549c4688324e61f9adb2c21cd956c6ebb",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Website Redesign & Development RFP released May 4, 2026; budget $12,000-$20,000; proposal deadline May 25, 2026; requires 2-3 references; contact kimberly@ferncliff.org.",
+    "outreach_status": "not_sent_screened_out: deadline passed (May 25, 2026) and 2-3 references required (user has none — never fabricated)",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  }
+]
