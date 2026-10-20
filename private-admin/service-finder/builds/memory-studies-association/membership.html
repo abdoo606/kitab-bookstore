@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Membership &amp; Members Area (Concept) — Memory Studies Association Sample</title>
+<meta name="description" content="Working concept for dues, donations, newsletter and a members-only area demo. No real payment, login or data collection.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="concept-banner" role="note">Unofficial concept sample — prices, tiers and the members-area preview are placeholders. No payment, login or mailing is performed.</div>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="index.html" aria-label="Memory Studies Association — concept home">
+      <span class="brand-mark" aria-hidden="true">MSA</span>
+      <span class="brand-text">Memory Studies Association<small>International non-profit association (concept)</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="events.html">Events &amp; announcements</a></li>
+        <li><a href="membership.html" aria-current="page">Membership</a></li>
+        <li><a href="membership.html#members">Members area</a></li>
+        <li><a href="membership.html#conference">Conference</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="page-head">
+    <div class="wrap">
+      <h1>Membership, dues &amp; donations</h1>
+      <p class="lead">The call's core transactions in one staff-manageable flow: join/renew with annual dues, give a donation, then sign in for member-only content and event registration. Tier names and prices below are placeholders for MSA to set.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="tiers-h">
+    <div class="wrap">
+      <h2 id="tiers-h">Membership tiers (placeholder)</h2>
+      <div class="cards">
+        <article class="card"><h3>Student / early-career</h3><p class="price">€— / year</p><ul class="ticks"><li>Members-only resources &amp; recordings</li><li>Seminar registration</li><li>Newsletter by interest</li></ul><p><button class="btn" type="button" onclick="return false">Join (placeholder)</button></p><p class="note">Production: EU payment methods incl. iDEAL/cards via an EU-friendly processor; receipts and renewal reminders automated.</p></article>
+        <article class="card"><h3>Regular</h3><p class="price">€— / year</p><ul class="ticks"><li>Everything in early-career</li><li>Working-group participation</li><li>Conference member routes</li></ul><p><button class="btn" type="button" onclick="return false">Join / renew (placeholder)</button></p><p class="note">Income/country-based dues bands — common for international associations — are a settings table in the membership plugin, not custom code.</p></article>
+        <article class="card"><h3>Supporting / institutional</h3><p class="price">€— / year</p><ul class="ticks"><li>Sustains bursaries &amp; access funds <span class="note">(if MSA wishes)</span></li><li>Optional public acknowledgement (consent-based)</li></ul><p><button class="btn btn-secondary" type="button" onclick="return false">Donate (placeholder)</button></p><p class="note">One-off donations use the same checkout with separate bookkeeping labels for the treasurer.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="members" aria-labelledby="members-h">
+    <div class="wrap cols">
+      <div>
+        <h2 id="members-h">Members-only area (demo)</h2>
+        <p>This preview simply reveals a panel — there is no real login in a concept. In production, the same pages sit behind member authentication with content rules per membership level, managed by staff without touching code.</p>
+        <p><button class="btn" type="button" aria-expanded="false" aria-controls="member-panel" data-member-demo>Preview members-only area (demo)</button></p>
+        <div class="panel" id="member-panel" hidden>
+          <h3>Welcome back (sample member view)</h3>
+          <ul class="ticks">
+            <li>Your membership: <strong>Regular — renews [sample date]</strong> · <a href="#" onclick="return false">Download invoice (sample)</a></li>
+            <li>Seminar recordings &amp; slides (sample links)</li>
+            <li>Register for the next members-only seminar (sample)</li>
+            <li>Update profile, interests and mailing consent (GDPR self-service)</li>
+            <li>Export or erase your personal data (GDPR rights, self-service + admin)</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h2>Newsletter (concept)</h2>
+        <form class="panel" data-concept-form aria-label="Concept newsletter form">
+          <div class="field"><label for="nl-email">Email address</label><input id="nl-email" type="email" autocomplete="email" placeholder="you@example.org"></div>
+          <div class="field"><label for="nl-interest">Main interest</label><select id="nl-interest"><option>General announcements</option><option>Conference</option><option>Early-career community</option><option>Working groups</option></select></div>
+          <p><button class="btn" type="submit">Subscribe (concept — does not send)</button></p>
+          <p class="form-status" data-form-status role="status"></p>
+          <p class="note">Production: double opt-in, consent timestamps, one-click unsubscribe, EU-based mail provider under a data-processing agreement. Member mailings reuse the same consented lists — no spreadsheet exports.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="conference" aria-labelledby="conf-h">
+    <div class="wrap">
+      <h2 id="conf-h">Annual conference — keep the specialist tool</h2>
+      <p>Recommendation in one line: <strong>do not rebuild conference management inside the website.</strong> Keep submissions, peer review, registration, payments and programme-building in dedicated software (your current route such as Dryfta, or an evaluated alternative), and make the website the clean front door: key dates, fees, programme highlights and deep links. Single sign-on can be discussed in a later phase only if the conference platform supports it cleanly — it should not block the 1 July 2027 website launch. Full reasoning and costs are in the README sent with this sample.</p>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>Memory Studies Association</strong> — concept footer. Privacy notice (GDPR), terms and cookie preferences would appear here.</p>
+    <p class="note">Concept sample for the public website-development call (deadline 1 November 2026). No data collected. © <span data-year>2026</span></p>
+  </div>
+</footer>
+<script src="assets/main.js"></script>
+</body>
+</html>
