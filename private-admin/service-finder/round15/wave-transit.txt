@@ -1,0 +1,17 @@
+Source checked 2026-10-21 (originals, not aggregator snippets):
+1) Wave Transit / Cape Fear Public Transportation Authority (Wilmington, NC, USA)
+   Procurement page: https://www.wavetransit.com/procurement/
+   RFP PDF: https://www.wavetransit.com/wp-content/uploads/2026/10/Wave_Transit_Website_RFPPub10.1.26.pdf
+   Website Redesign, Development, Hosting, Integration, Training, Maintenance, Support.
+   Published Oct 1, 2026. Email submission: jdodson@wavetransit.com. Proposals due Nov 10, 2026 4:00pm (page says EST, PDF cover says EDT).
+   Gates found in the PDF: Sec. 11.19 insurance (NC workers compensation, commercial general liability,
+   professional/E&O, cyber/network security liability); Sec. 11.18 NC E-Verify affidavit (Attachment G);
+   Attachment E Legal Status and Evidence of Authority; Attachment F Financial Capacity;
+   federal (FTA) funding clauses, 12-month hosting/support + up to 4 one-year renewals, Attachments A-I.
+   VERDICT: screened_out - statutory insurance/E-Verify/legal-status/financial-capacity gates a solo
+   unregistered freelancer cannot meet honestly. Not contacted; no non-responsive proposal sent.
+2) Future Generations Foundation (Canada) - MERX 0000295185: solicitation CLOSED; proposal deadline was
+   June 24, 2025. VERDICT: screened_out (expired/closed). Email in template text was jmorgan@fgfoundation.ca.
+3) Basalt Chamber of Commerce website redesign RFP: deadline September 18, 2026 passed. screened_out.
+All other wave results: previously hunted (Ely, Achievement First, SSSeVA, CWPD), expired, agency-only,
+or paid-portal listings without public submission emails. Round 15 hunt total: 0 qualified, 0 emailed.

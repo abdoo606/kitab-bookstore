@@ -1,0 +1,29 @@
+[
+  {
+    "url": "https://www.wavetransit.com/procurement/",
+    "organization": "Wave Transit / Cape Fear Public Transportation Authority (Wilmington, NC, USA) - Website Redesign RFP, due Nov 10, 2026, jdodson@wavetransit.com",
+    "source_kind": "official_issuer_page_and_pdf",
+    "snapshot": "wave-transit.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "Website redesign/development/hosting/integration/training/maintenance; FTA-funded; Sec 11.19 insurance (NC workers comp, CGL, E&O, cyber), NC E-Verify affidavit, Legal Status + Financial Capacity attachments, 12mo + 4 renewal years managed hosting.",
+    "outreach_status": "not_sent_screened_out: statutory insurance, E-Verify, legal-status and financial-capacity gates cannot be met honestly; sending a knowingly non-responsive proposal to a federal procurement is out of policy"
+  },
+  {
+    "url": "https://www.merx.com/futuregenerationsfoundation/solicitations/Website-Redesign-and-Development/0000295185",
+    "organization": "Future Generations Foundation (Canada) - Website Redesign and Development (MERX 003)",
+    "source_kind": "official_portal_listing",
+    "snapshot": "wave-transit.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "Solicitation CLOSED; proposal deadline was June 24, 2025; formal MERX process.",
+    "outreach_status": "not_sent_screened_out: closed/expired (June 24, 2025)"
+  },
+  {
+    "url": "https://basaltchamber.org/belong/about/rfps/",
+    "organization": "Basalt Chamber of Commerce (CO, USA) - Website Redesign RFP",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "snapshot": "wave-transit.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "Website redesign RFP, deadline September 18, 2026.",
+    "outreach_status": "not_sent_screened_out: deadline passed (Sep 18, 2026)"
+  }
+]
