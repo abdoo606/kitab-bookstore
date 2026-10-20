@@ -1,0 +1,132 @@
+[
+  {
+    "id": "S-90bc5bd7f91b",
+    "organization": "Alliance4Europe",
+    "source_url": "https://alliance4europe.eu/web-developer-part-time-remote-europe",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "as_of": "2026-10-20",
+    "status": "not_service_request",
+    "verified": false,
+    "deadline_dates": [],
+    "deadline_evidence": [],
+    "availability_evidence": [],
+    "request_evidence": [],
+    "budget_evidence": [],
+    "contact_candidates": [
+      "application@alliance4europe.eu"
+    ],
+    "contact_evidence": [
+      "\"To apply for the Web Developer position, please submit your CV and portfolio to application@alliance4europe.eu by Sunday, 21st June 2026, 23:59 CEST.\""
+    ],
+    "qualification_evidence": [],
+    "fit": "not_assessed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "cbdb826c930ce82ec945626f1643aa46e44f6ec98d0973394c5b66026190926b",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Issuer vacancy page is itself titled 'Closed: Web Developer (Part-time/Remote/Europe)'; applications (CV+portfolio) to application@alliance4europe.eu were due 21 June 2026.",
+    "outreach_status": "not_sent_screened_out: closed/expired (Jun 2026) and employment-style part-time role, not a scoped service purchase",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  },
+  {
+    "id": "S-cd1b2f8a26d4",
+    "organization": "FIND (Geneva)",
+    "source_url": "https://www.finddx.org/wp-content/uploads/2026/06/20260601_RFP-for-website-development-agency-1.pdf",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "as_of": "2026-10-20",
+    "status": "needs_deadline_review",
+    "verified": false,
+    "deadline_dates": [],
+    "deadline_evidence": [],
+    "availability_evidence": [],
+    "request_evidence": [
+      "FIND (Foundation for Innovative New Diagnostics, Geneva) — RFP PDF excerpt via search index (checked 2026-10-20)",
+      "\"RP26-0001 RFP for a website development agency — REQUEST FOR PROPOSAL (RFP) WEBSITE DEVELOPMENT AGENCY — PUBLICATION REFERENCE: RP26-0001 — 01/06/2026\"",
+      "Verdict inputs: deadline 12 Jun 2026 passed months ago; agency RFP. Not contacted."
+    ],
+    "budget_evidence": [],
+    "contact_candidates": [
+      "procurement@finddx.org"
+    ],
+    "contact_evidence": [
+      "\"Please direct your submissions and any questions to the following email: procurement@finddx.org. The deadline for proposal submission is 12 June 2026 at 23:59 CEST.\""
+    ],
+    "qualification_evidence": [],
+    "fit": "not_assessed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "e664c0f72213f00b77db9235dd4edac7168087a0d7126e6f6430ec7af8014ae9",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Official RFP PDF RP26-0001 (01/06/2026) for a website development agency; submissions to procurement@finddx.org by 12 June 2026 23:59 CEST.",
+    "outreach_status": "not_sent_screened_out: deadline passed (12 Jun 2026); agency RFP",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  },
+  {
+    "id": "S-c0d7bd70f84b",
+    "organization": "KCDF (Kosovo)",
+    "source_url": "https://shpalljepune.com/view/13707",
+    "source_kind": "indexed_excerpt",
+    "as_of": "2026-10-20",
+    "status": "not_service_request",
+    "verified": false,
+    "deadline_dates": [],
+    "deadline_evidence": [],
+    "availability_evidence": [],
+    "request_evidence": [],
+    "budget_evidence": [],
+    "contact_candidates": [
+      "procurement.hiv.tb@kcdf.org"
+    ],
+    "contact_evidence": [
+      "\"Proposals must be submitted electronically to email address: procurement.hiv.tb@kcdf.org by 23.03.2026 at 16:00 hrs. Late submissions will not be accepted.\""
+    ],
+    "qualification_evidence": [],
+    "fit": "not_assessed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "17a4de45fbd490ead974cb8a95bc0ade1a771f247054063ac76eeac96918fd84",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "ToR HIV/TB/008/2026 for web development + portfolio development; service providers must be legally registered entities with valid registration certificate; proposals to procurement.hiv.tb@kcdf.org by 23.03.2026 16:00.",
+    "outreach_status": "not_sent_screened_out: deadline passed (23 Mar 2026); registered-entity gate",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  },
+  {
+    "id": "S-e2cd3ea7c6f8",
+    "organization": "International Seabed Authority",
+    "source_url": "https://isa.org.jm/wp-content/uploads/2026/09/EOSG001_WEBSITE-REDESIGN_RFP.pdf",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "as_of": "2026-10-20",
+    "status": "needs_deadline_review",
+    "verified": false,
+    "deadline_dates": [],
+    "deadline_evidence": [],
+    "availability_evidence": [],
+    "request_evidence": [
+      "\"Consultancy for design and implementation of the Authority's website — DEADLINE FOR SUBMISSION: 20 October 2026 via email to rfp@isa.org.jm\""
+    ],
+    "budget_evidence": [],
+    "contact_candidates": [
+      "rfp@isa.org.jm"
+    ],
+    "contact_evidence": [
+      "\"Consultancy for design and implementation of the Authority's website — DEADLINE FOR SUBMISSION: 20 October 2026 via email to rfp@isa.org.jm\""
+    ],
+    "qualification_evidence": [],
+    "fit": "not_assessed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "477fd5d2f1612f136a14ff1329b13aee7cb208c7baed99f048393c9630990e6a",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Re-check of the round-5 lead: proposals to rfp@isa.org.jm by 20 October 2026; round-5 verification already recorded registered-organisation (7+ years) + 3 comparable projects requirements.",
+    "outreach_status": "not_sent_screened_out: unchanged from round 5 (organisation/experience gates); same-day deadline; outside Europe+Asia targeting",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  }
+]
