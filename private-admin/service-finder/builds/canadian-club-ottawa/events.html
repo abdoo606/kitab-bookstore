@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Events (Concept) — Canadian Club of Ottawa Website Redesign Sample</title>
+<meta name="description" content="Unofficial concept: upcoming events listing and past-events archive with year filter, prepared for the Canadian Club of Ottawa website redesign RFP. Sample data only.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="concept-banner" role="note">Unofficial concept sample — every event below is invented sample data marked as placeholder. Not the Club's live website.</div>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="index.html" aria-label="Canadian Club of Ottawa — concept home">
+      <span class="brand-mark" aria-hidden="true">CC</span>
+      <span class="brand-text">Canadian Club of Ottawa<small>Est. 1903</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About / History</a></li>
+        <li><a href="events.html" aria-current="page">Upcoming Events</a></li>
+        <li><a href="#archive">Past Events</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="membership.html#sponsorship">Sponsorship</a></li>
+        <li><a href="membership.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="page-head">
+    <div class="wrap">
+      <h1>Upcoming events</h1>
+      <p class="lead">In production, staff manage events once in the CMS: upcoming events list automatically, and each event moves to the archive after its date — no page editing by hand.</p>
+    </div>
+  </section>
+  <section class="section" aria-label="Upcoming events list">
+    <div class="wrap">
+      <div class="event-list" data-upcoming></div>
+      <noscript><p>Sample events are rendered with JavaScript in this concept. The production CMS version renders the same listing server-side, so it works without JavaScript.</p></noscript>
+    </div>
+  </section>
+  <section class="section alt" id="archive" aria-labelledby="archive-h">
+    <div class="wrap">
+      <h2 id="archive-h">Past events / archive</h2>
+      <form class="filters" data-filter-form>
+        <div class="field">
+          <label for="year">Filter by year</label>
+          <select id="year" name="year" data-year-filter>
+            <option value="">All years</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="q">Search titles &amp; speakers</label>
+          <input id="q" name="q" type="search" placeholder="e.g. trade, health…" data-search>
+        </div>
+      </form>
+      <p class="note" data-count aria-live="polite"></p>
+      <div class="event-list" data-archive-list></div>
+      <p class="note">Recordings/summaries: each archive entry can link to video, photos or a written summary where the Club has them (placeholder behaviour in this concept).</p>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <p><strong>Canadian Club of Ottawa</strong> — concept footer.</p>
+    <p class="note">Concept sample for the Club's public website redesign RFP. All event data invented for demonstration. © <span data-year>2026</span></p>
+  </div>
+</footer>
+<script src="assets/events-data.js"></script>
+<script src="assets/main.js"></script>
+</body>
+</html>

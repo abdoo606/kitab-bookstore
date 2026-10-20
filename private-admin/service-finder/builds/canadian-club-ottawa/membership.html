@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Membership &amp; Sponsorship (Concept) — Canadian Club of Ottawa Website Redesign Sample</title>
+<meta name="description" content="Unofficial concept: membership, sponsorship and contact templates prepared for the Canadian Club of Ottawa website redesign RFP. Placeholder content; form sends nothing.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="concept-banner" role="note">Unofficial concept sample — placeholder tiers and prices to be replaced with the Club's real ones. The form below collects nothing.</div>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="index.html" aria-label="Canadian Club of Ottawa — concept home">
+      <span class="brand-mark" aria-hidden="true">CC</span>
+      <span class="brand-text">Canadian Club of Ottawa<small>Est. 1903</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About / History</a></li>
+        <li><a href="events.html">Upcoming Events</a></li>
+        <li><a href="events.html#archive">Past Events</a></li>
+        <li><a href="membership.html" aria-current="page">Membership</a></li>
+        <li><a href="#sponsorship">Sponsorship</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="page-head">
+    <div class="wrap">
+      <h1>Membership</h1>
+      <p class="lead">Placeholder introduction: who joins, what a season looks like, and how to join in under three clicks. In production, “Join” links to the Club's chosen membership/ticketing platform.</p>
+    </div>
+  </section>
+  <section class="section" aria-label="Membership options (placeholder)">
+    <div class="wrap cards">
+      <article class="card price-card"><h2>Individual</h2><p class="price">$— / season <span class="note">(placeholder)</span></p><ul class="ticks"><li>Member pricing at events</li><li>Season announcements first</li><li>Guest privileges per Club policy</li></ul><p><a class="btn" href="#contact">Join — placeholder link</a></p></article>
+      <article class="card price-card"><h2>Corporate / Table</h2><p class="price">$— / season <span class="note">(placeholder)</span></p><ul class="ticks"><li>Reserved tables at flagship luncheons</li><li>Recognition in season materials</li><li>Transferable seats for colleagues/clients</li></ul><p><a class="btn" href="#contact">Join — placeholder link</a></p></article>
+      <article class="card price-card"><h2>Young professional / Student</h2><p class="price">$— / season <span class="note">(placeholder)</span></p><ul class="ticks"><li>Accessible entry pricing</li><li>Networking across sectors</li><li>Mentorship-season events where offered</li></ul><p><a class="btn" href="#contact">Join — placeholder link</a></p></article>
+    </div>
+  </section>
+  <section class="section alt" id="sponsorship" aria-labelledby="spon-h">
+    <div class="wrap">
+      <h2 id="spon-h">Sponsorship</h2>
+      <p>Placeholder copy: sponsorship places an organization in the room where national conversations happen — event-series sponsorship, single-event sponsorship, and 125th-anniversary partnerships (2028) would each get a short block here with a direct contact path.</p>
+      <p><a class="btn btn-secondary" href="#contact">Talk to the Club about sponsorship</a></p>
+    </div>
+  </section>
+  <section class="section" id="contact" aria-labelledby="contact-h">
+    <div class="wrap cols">
+      <div>
+        <h2 id="contact-h">Contact</h2>
+        <p>Concept form only — it sends nothing. In production this connects to the Club's inbox via a spam-protected form service, with delivery tested before launch.</p>
+        <p class="note">Prefer email? Placeholder: admin@canadianclubottawa.ca would be shown here as the Club directs.</p>
+      </div>
+      <form class="contact-form" data-concept-form novalidate>
+        <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="topic">Topic</label>
+          <select id="topic" name="topic"><option>Membership</option><option>Sponsorship</option><option>Event question</option><option>Speaking at the Club</option><option>Other</option></select></div>
+        <div class="field"><label for="msg">Message</label><textarea id="msg" name="message" rows="5" required></textarea></div>
+        <div class="field hp" aria-hidden="true"><label for="company">Company (leave blank)</label><input id="company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+        <button class="btn" type="submit">Send (concept — disabled delivery)</button>
+        <p class="form-status" data-form-status role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <p><strong>Canadian Club of Ottawa</strong> — concept footer.</p>
+    <p class="note">Concept sample for the Club's public website redesign RFP. Placeholder content; no data collected. © <span data-year>2026</span></p>
+  </div>
+</footer>
+<script src="assets/main.js"></script>
+</body>
+</html>
