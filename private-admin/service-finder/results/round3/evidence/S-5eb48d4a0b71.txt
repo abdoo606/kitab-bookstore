@@ -1,0 +1,13 @@
+Client: C&D Municipal Sales Inc.
+Industry: Industrial Water and Wastewater Equipment
+Location: Baltimore, Maryland, USA
+Deadline: Not specified. Recommended to respond within 24 hours of receiving this opportunity, as it was recently posted.
+C&D Municipal Sales Inc., a Baltimore, Maryland company specializing in municipal and industrial water and wastewater equipment, is seeking a WordPress developer or web agency to redesign and rebuild its existing website.
+A major part of this project involves developing a dynamic manufacturer and equipment directory using WordPress Custom Post Types, Advanced Custom Fields (ACF), and taxonomies.
+Client Budget: $5,000 USD, as stated in the original opportunity brief.
+Date Posted: October 19, 2026 (As reported in the supplied opportunity brief)
+Original Project Listing:
+https://www.upwork.com/jobs/~022112241146256063555
+Email: sales@c-dmunicipal.com
+Email: cmitchell@c-dmunicipal.com
+Email: pdorsey@c-dmunicipal.com

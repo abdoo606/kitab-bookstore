@@ -1,0 +1,121 @@
+[
+  {
+    "id": "S-2067ca99e102",
+    "organization": "Si View Metropolitan Park District",
+    "source_url": "https://www.siviewpark.org/contracting-process.phtml",
+    "source_kind": "official_issuer_manually_checked",
+    "as_of": "2026-10-20",
+    "status": "needs_deadline_review",
+    "verified": false,
+    "deadline_dates": [],
+    "deadline_evidence": [],
+    "availability_evidence": [],
+    "request_evidence": [
+      "WEBSITE SERVICES REQUEST FOR PROPOSALS 2026-01",
+      "Proposals should be submitted in PDF format by email only to info@siviewpark.org. The subject line for the email shall read \"RFP Website Services\"."
+    ],
+    "budget_evidence": [],
+    "contact_candidates": [
+      "info@siviewpark.org",
+      "kbraun@siviewpark.org"
+    ],
+    "contact_evidence": [
+      "E-Mail Address: kbraun@siviewpark.org",
+      "Proposals accepted until October 23, 2026, 12:00PM by email only to info@siviewpark.org",
+      "Proposals should be submitted in PDF format by email only to info@siviewpark.org. The subject line for the email shall read \"RFP Website Services\"."
+    ],
+    "qualification_evidence": [
+      "INSURANCE REQUIREMENTS: The firm shall maintain insurance that is sufficient to protect the firm's business against all applicable risks (see Attachment C)."
+    ],
+    "fit": "requirements_review_needed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "f17403f9f872ac4bc810184303eb95824b8462ba4992d8eef1de7e614352d975",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from official RFP 2026-01 (email-only submission to info@siviewpark.org until Oct 23, 2026 12:00PM PT; Attachment A requires minimum three customer references; Attachment C insurance; business licenses/UBI in consultant profile). Official contracting page confirms the RFP. NOT the full RFP.",
+    "outreach_status": "not_sent_screened_out: three-references + insurance + license/UBI gates not met by a solo independent with no proven client references; incomplete submittals are not considered per RFP",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  },
+  {
+    "id": "S-cca987a0c24c",
+    "organization": "Cambria County Transit Authority (CamTran)",
+    "source_url": "https://www.camtranbus.com/wp-content/uploads/RFP-26-05-Website-Redesign-Development-Hosting-and-Support-Service.pdf",
+    "source_kind": "official_issuer_manually_checked",
+    "as_of": "2026-10-20",
+    "status": "future_deadline_needs_review",
+    "verified": false,
+    "deadline_dates": [
+      "2026-11-06"
+    ],
+    "deadline_evidence": [
+      "Friday November 6th, 2026 | Proposal due by 1:00 pm, prevailing time"
+    ],
+    "availability_evidence": [],
+    "request_evidence": [
+      "RFP 26-05 Website Redesign, Development, Hosting, and Support Service",
+      "Sealed bids shall be submitted on unaltered bid forms in a sealed envelope, clearly marked on the outside of the envelope RFP 26-05 Website Redesign, Development, Hosting, and Support Service"
+    ],
+    "budget_evidence": [],
+    "contact_candidates": [
+      "aweir@camtranbus.com"
+    ],
+    "contact_evidence": [
+      "E-mail: aweir@camtranbus.com",
+      "Bid documents are available by contacting – Adam Weir @ aweir@camtranbus.com"
+    ],
+    "qualification_evidence": [
+      "1.29 Insurance Coverage"
+    ],
+    "fit": "requirements_review_needed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "1c30e739ebb562db7756e7bd8ee76af1f864020b96d75ffadf824550935cf2d1",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from official RFP #26-05 PDF chunk 0: contact email is for bid documents/questions; proposals are SEALED bids delivered to the office by Nov 6, 2026 1pm; federal forms, bonds, insurance, Davis-Bacon wages apply. NOT the full 100+ page PDF.",
+    "outreach_status": "not_sent_screened_out: sealed-bid federal procurement; email marketing outside the process is inappropriate; bonds/insurance/wage gates not met",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  },
+  {
+    "id": "S-5eb48d4a0b71",
+    "organization": "C&D Municipal Sales Inc.",
+    "source_url": "https://upscalemethod.com/cd_maryland_wordpressredesign_development_5k/",
+    "source_kind": "aggregator_summary_of_upwork_post",
+    "as_of": "2026-10-20",
+    "status": "needs_deadline_review",
+    "verified": false,
+    "deadline_dates": [],
+    "deadline_evidence": [],
+    "availability_evidence": [],
+    "request_evidence": [
+      "C&D Municipal Sales Inc., a Baltimore, Maryland company specializing in municipal and industrial water and wastewater equipment, is seeking a WordPress developer or web agency to redesign and rebuild its existing website."
+    ],
+    "budget_evidence": [
+      "Client Budget: $5,000 USD, as stated in the original opportunity brief."
+    ],
+    "contact_candidates": [
+      "cmitchell@c-dmunicipal.com",
+      "pdorsey@c-dmunicipal.com",
+      "sales@c-dmunicipal.com"
+    ],
+    "contact_evidence": [
+      "Email: sales@c-dmunicipal.com",
+      "Email: cmitchell@c-dmunicipal.com",
+      "Email: pdorsey@c-dmunicipal.com"
+    ],
+    "qualification_evidence": [],
+    "fit": "not_assessed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "79b10dd3acee053beedd54efa8d4302e1aa05908a3dbee48c6f5cf98f175965d",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from Upscale Method summary (fetched 2026-10-20) of an Upwork post dated Oct 19, 2026, client budget $5,000. Emails shown are directory/company contacts from the aggregator, NOT emails published in the original Upwork request; involvement in this project unconfirmed.",
+    "outreach_status": "not_emailed: request channel is Upwork; off-platform email would circumvent the platform. Working directory demo built (builds/cd-municipal-directory) + Upwork draft prepared for the user to submit from his own account",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  }
+]

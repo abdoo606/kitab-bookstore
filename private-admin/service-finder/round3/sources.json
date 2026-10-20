@@ -1,0 +1,29 @@
+[
+  {
+    "url": "https://www.siviewpark.org/contracting-process.phtml",
+    "organization": "Si View Metropolitan Park District",
+    "source_kind": "official_issuer_manually_checked",
+    "snapshot": "siview.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from official RFP 2026-01 (email-only submission to info@siviewpark.org until Oct 23, 2026 12:00PM PT; Attachment A requires minimum three customer references; Attachment C insurance; business licenses/UBI in consultant profile). Official contracting page confirms the RFP. NOT the full RFP.",
+    "outreach_status": "not_sent_screened_out: three-references + insurance + license/UBI gates not met by a solo independent with no proven client references; incomplete submittals are not considered per RFP"
+  },
+  {
+    "url": "https://www.camtranbus.com/wp-content/uploads/RFP-26-05-Website-Redesign-Development-Hosting-and-Support-Service.pdf",
+    "organization": "Cambria County Transit Authority (CamTran)",
+    "source_kind": "official_issuer_manually_checked",
+    "snapshot": "camtran.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from official RFP #26-05 PDF chunk 0: contact email is for bid documents/questions; proposals are SEALED bids delivered to the office by Nov 6, 2026 1pm; federal forms, bonds, insurance, Davis-Bacon wages apply. NOT the full 100+ page PDF.",
+    "outreach_status": "not_sent_screened_out: sealed-bid federal procurement; email marketing outside the process is inappropriate; bonds/insurance/wage gates not met"
+  },
+  {
+    "url": "https://upscalemethod.com/cd_maryland_wordpressredesign_development_5k/",
+    "organization": "C&D Municipal Sales Inc.",
+    "source_kind": "aggregator_summary_of_upwork_post",
+    "snapshot": "cd-municipal.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from Upscale Method summary (fetched 2026-10-20) of an Upwork post dated Oct 19, 2026, client budget $5,000. Emails shown are directory/company contacts from the aggregator, NOT emails published in the original Upwork request; involvement in this project unconfirmed.",
+    "outreach_status": "not_emailed: request channel is Upwork; off-platform email would circumvent the platform. Working directory demo built (builds/cd-municipal-directory) + Upwork draft prepared for the user to submit from his own account"
+  }
+]
