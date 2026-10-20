@@ -1,0 +1,29 @@
+Round 18 hunt excerpts — captured 2026-10-21 (search-index excerpts of originals; verdicts in sources.json)
+
+--- 1) Kitsap Community Foundation (WA, USA) — Website Development RFP
+URL: https://www.kitsapfoundation.org/post/kcf-website-development-rfp
+Excerpt: "Kitsap Community Foundation is seeking a web development partner to build a new
+WordPress website. Proposals are due April 15, 2026. ... Proposals should be sent in PDF
+format to: Gretchen Ritter-Lopatowski, Kitsap Community Foundation, Gretchen@kitsapfoundation.org.
+Questions may also be directed to the email above."
+Verdict: public email YES, but deadline April 15, 2026 has passed → screened out, not contacted.
+
+--- 2) Breakthrough T1D Canada — Website Discovery & Digital Strategy RFP
+URL: https://breakthrought1d.ca/request-for-proposals-website-discovery-digital-strategy/
+Excerpt: "Proposal deadline: October 9, 2026 ... RFP issued: September 14, 2026; Preferred
+proponent selected: October 19, 2026; Proposals must be received by 5:00 p.m. ET on October 9, 2026."
+Verdict: deadline October 9, 2026 passed 12 days before this round → screened out, not contacted.
+
+--- 3) 1000 Friends of Oregon (USA) — Website Redesign RFP ($15,000)
+URL: https://friends.org/sites/default/files/2026-07/2026%20RFP%201KF%20website.pdf
+Excerpt: "Budget: $15,000. Application deadline: Monday, August 10, 2026 (reviewed on a rolling
+basis thereafter). The new website will be built during summer and fall 2026, launching, at the
+latest, October 30, 2026. Evaluation includes portfolio of similar nonprofit projects."
+Verdict: deadline August 10, 2026 passed and launch is already due Oct 30, 2026 → screened out, not contacted.
+
+--- Also seen and rejected without individual records:
+rfpmart "GLOBAL" website listings with Nov 2026 deadlines (paywalled aggregator, no public
+submission email — fails the public-email rule); Achievement First (screened round 10: enterprise
+41-site firm RFP); Esplanade Association (erainville@esplanade.org, proposals due June 1, 2026 —
+passed); UK Find-a-Tender portal frameworks (NHS/Charities Regulator — portal/registration gates,
+no plain public email submission); Studios of Key West (soft launch already Sep 2026).
