@@ -1,0 +1,20 @@
+[
+  {
+    "url": "https://www.ssseva.org/wp-content/uploads/2026/06/RFP-SSSeVA_Website-Redesign_2026.pdf",
+    "organization": "Senior Services of Southeastern Virginia (SSSEVA)",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "snapshot": "ssseva-recheck.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Official RFP#2026-06 PDF: proposals by email to jconstantineau@ssseva.org until 12 August 2026; web design/development firms sought.",
+    "outreach_status": "not_sent_screened_out: deadline passed (12 Aug 2026); outside Europe+Asia targeting; previously seen expired in round 5"
+  },
+  {
+    "url": "https://www.freelancer.in/jobs/website-design",
+    "organization": "Sahaay Foundation (India) via Freelancer marketplace",
+    "source_kind": "marketplace_listing_indexed_excerpt",
+    "snapshot": "sahaay-freelancer.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Marketplace post: enhance existing WordPress/Elementor charity site (design polish, no rebuild); bidding open on Freelancer.in; no email address in the public post.",
+    "outreach_status": "not_sent_screened_out (by channel, not fit): marketplace bids stay on-platform under the user's own account per standing rule; no off-platform email possible; bid economics conflict with the user's no-fees rule"
+  }
+]

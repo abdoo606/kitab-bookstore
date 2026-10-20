@@ -1,0 +1,60 @@
+[
+  {
+    "id": "S-efd36a33bdd4",
+    "organization": "Senior Services of Southeastern Virginia (SSSEVA)",
+    "source_url": "https://www.ssseva.org/wp-content/uploads/2026/06/RFP-SSSeVA_Website-Redesign_2026.pdf",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "as_of": "2026-10-20",
+    "status": "not_service_request",
+    "verified": false,
+    "deadline_dates": [],
+    "deadline_evidence": [],
+    "availability_evidence": [],
+    "request_evidence": [],
+    "budget_evidence": [],
+    "contact_candidates": [
+      "jconstantineau@ssseva.org"
+    ],
+    "contact_evidence": [
+      "\"Website Redesign — Issue Date: Tuesday, June 30, 2026 — Submission Deadline: Proposals will be accepted until 4:30 p.m. (EST) on Wednesday, August 12, 2026. One (1) copy in PDF format must be submitted by email to jconstantineau@ssseva.org.\""
+    ],
+    "qualification_evidence": [],
+    "fit": "not_assessed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "2a34099861deef3a53bbe1facce1c05686b97f21324bfcaad692039717be1b4c",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Official RFP#2026-06 PDF: proposals by email to jconstantineau@ssseva.org until 12 August 2026; web design/development firms sought.",
+    "outreach_status": "not_sent_screened_out: deadline passed (12 Aug 2026); outside Europe+Asia targeting; previously seen expired in round 5",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  },
+  {
+    "id": "S-732a604edfad",
+    "organization": "Sahaay Foundation (India) via Freelancer marketplace",
+    "source_url": "https://www.freelancer.in/jobs/website-design",
+    "source_kind": "marketplace_listing_indexed_excerpt",
+    "as_of": "2026-10-20",
+    "status": "not_service_request",
+    "verified": false,
+    "deadline_dates": [],
+    "deadline_evidence": [],
+    "availability_evidence": [],
+    "request_evidence": [],
+    "budget_evidence": [],
+    "contact_candidates": [],
+    "contact_evidence": [],
+    "qualification_evidence": [],
+    "fit": "not_assessed",
+    "payment_currency_confirmed": "",
+    "country": "",
+    "estimated_value": "",
+    "source_sha256": "7857b0bd53e1fd9cb5f95fa80a300acc995ccd8ef22d449514b3525a8f7aad76",
+    "retrieval_mode": "snapshot",
+    "captured_on": "2026-10-20",
+    "content_scope": "Marketplace post: enhance existing WordPress/Elementor charity site (design polish, no rebuild); bidding open on Freelancer.in; no email address in the public post.",
+    "outreach_status": "not_sent_screened_out (by channel, not fit): marketplace bids stay on-platform under the user's own account per standing rule; no off-platform email possible; bid economics conflict with the user's no-fees rule",
+    "next_action": "Review full source, amendments, eligibility, contact role and timezone before proposing. No automatic outreach."
+  }
+]

@@ -3,7 +3,7 @@ For Invoice No.: INV-________  |  Date: ____________  |  Amount: USDT __________
 
 Please send Tether USD (USDT) on the TRON network (TRC20) ONLY to this receiving address:
 
->>> [USER TO PROVIDE — TRC20 RECEIVING ADDRESS, FULL TEXT] <<<
+>>> TVDjBzZuHu3drJ1H4jbanLyNb9Ss3uMBNy <<<
 
 Important checks before sending:
 1. Network must be TRON (TRC20). Do NOT use Ethereum (ERC20), BSC (BEP20), or any other network — funds sent on the wrong network may be unrecoverable.
