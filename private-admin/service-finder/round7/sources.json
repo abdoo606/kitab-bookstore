@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://www.memorystudiesassociation.org/web-designer-developer-needed-for-international-non-profit-association-website/",
+    "organization": "Memory Studies Association",
+    "source_kind": "official_issuer_manually_checked",
+    "snapshot": "memory-studies.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from the Association's official call (fetched 2026-10-20, posted 2026-09-28): apply by email to info@memorystudiesassociation.org (subject 'website development') by 1 November 2026; ~1,500 members/50+ countries; WordPress no longer fit for purpose; membership dues/donations + mail campaigns + members-only area/event registration + public announcements/events agenda + Dryfta conference discussion; GDPR, EU hosting/software, WCAG, launch before 1 July 2027; asks portfolio (no references count), platform recommendation, development + annual + maintenance cost estimates, timeline, training willingness.",
+    "outreach_status": "SENT 2026-10-20 (Gmail message 1a159f821f1d1e7f) before the Nov 1 deadline, after user directed Europe+Asia targeting: working concept built first (builds/memory-studies-association, commit ed5bc2b, public GitHub link verified), Phase A USD 750 fixed templates+blueprint, Phase B indicative USD 1,900-2,900 fixed after Phase A, annual platform at cost, maintenance $45/h or $120/mo, training included; explicit solo/no-client-references/independent-samples disclosure"
+  },
+  {
+    "url": "https://www.developmentaid.org/tenders/view/1676024/rfp-website-redesign-and-development-for-the-hans-foundation",
+    "organization": "The Hans Foundation (India)",
+    "source_kind": "portal_listing_manually_checked",
+    "snapshot": "hans-foundation.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "DevelopmentAid page fetched 2026-10-20 shows Status: Closed (posted Jun 30, 2026), Eligibility: Organisation, and contact details available only with paid membership.",
+    "outreach_status": "not_sent_screened_out: tender closed; organisation-only eligibility; submission contacts paywalled (no email in request; user forbids subscriptions)"
+  },
+  {
+    "url": "https://rhac.org.kh/website-redesign-%26-content-upd",
+    "organization": "Reproductive Health Association of Cambodia (RHAC)",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "snapshot": "rhac-cambodia.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Indexed excerpts of issuer page checked 2026-10-20: submission deadline 15 September 2026 5:00 PM Cambodia time; requires portfolio of at least 3 relevant projects and at least two client references; proposals by email hr@rhac.org.kh.",
+    "outreach_status": "not_sent_screened_out: deadline passed (Sep 15) and client references mandatory"
+  },
+  {
+    "url": "https://eeb.org/en/call-for-web-developers-new-website-for-eeb",
+    "organization": "European Environmental Bureau (EEB)",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "snapshot": "eeb.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Indexed excerpt checked 2026-10-20: proposals from qualified web development agencies to tenders@eeb.org by midnight CET 3 July 2026.",
+    "outreach_status": "not_sent_screened_out: deadline passed (Jul 3, 2026); agency-scale federation rebuild"
+  }
+]
