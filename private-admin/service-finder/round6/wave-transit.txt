@@ -1,0 +1,13 @@
+Cape Fear Public Transportation Authority (dba Wave Transit), Wilmington, North Carolina
+REQUEST FOR PROPOSALS (RFP) for Website Redesign, Development, Hosting, Integration, Training, Maintenance, and Support
+RFP Issue Date 10/1/26 | Questions Due 10/13/26 at 4 PM EST | Proposal Due Date 11/10/26 at 4PM EDT | Email Submission jdodson@wavetransit.com
+(Official procurement page wavetransit.com/procurement lists: RFP published October 1, 2026; Proposal due November 10, 2026 at 4:00pm EST.)
+Proposals shall be submitted electronically in Adobe Acrobat PDF format to jdodson@wavetransit.com.
+Any contract resulting from this RFP may be financed in whole or in part with funds provided through the Federal Transit Administration (FTA), North Carolina Department of Transportation (NCDOT), local funds, or other eligible sources.
+The anticipated initial term will cover implementation and the first twelve months of post-launch support, followed by up to four optional one-year renewal periods.
+11.19 Insurance: The Contractor shall maintain insurance appropriate to the services provided, including workers' compensation as required by North Carolina law, commercial general liability, automobile liability where applicable, professional/errors and omissions coverage, cyber/network security and privacy liability appropriate to the services, and any other coverage required by the final contract.
+Attachment E — Legal Status and Evidence of Authority: The proposer certifies that it is legally authorized to conduct business in North Carolina.
+Attachment F — Financial Capacity: evidence may include a financial statement, letter from a financial institution, audited financial statement.
+Attachment G — North Carolina E-Verify Status (notarized affidavit). Attachment I requires Federal Tax ID and NC Secretary of State Registration.
+Attachments A–I: Lobbying Certification; Debarment and Suspension Certification; Cost Sheet; Addenda; Legal Status; Financial Capacity; NC E-Verify; DBE Submittal; Proposal Submission Form.
+Scope: complete replacement website, staff CMS, routes/schedules/fares/alerts, links to existing Connexionz/Spare/CTS rider systems, WCAG 2.2 Level AA target, hosting and support.

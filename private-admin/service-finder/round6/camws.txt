@@ -1,0 +1,8 @@
+Classical Association of the Middle West and South (CAMWS) — Website Redesign and Development Services
+(Upscale Method summary, fetched 2026-10-20; the linked original PDF was behind a robot-challenge screen at fetch time, so this snapshot is aggregator text, not the issuer original.)
+Location: Natchitoches, Louisiana. Proposals Deadline: Friday, October 30, 2026. Proposals must be submitted electronically in PDF format; reviewed on a rolling basis. Contact: Professor Victoria Pagan, nominating@camws.org.
+CAMWS is a nonprofit scholarly association founded in 1905 with approximately 1,100 members.
+The selected agency will be responsible for planning, information architecture, visual design, development, content migration, member functionality, conference registration, accessibility, security, performance, training, launch, and post launch support.
+Key features include: member portal with login, profile management, membership renewals and member directory; online membership applications, dues payments; conference registration including abstract submissions and payment processing; WCAG 2.2 AA accessibility compliance; backups, malware and firewall protection, multi factor authentication.
+"The proposal must include comparable portfolio examples and at least three client references from similar engagements."
+Estimated Budget $35,000 to $45,000 is Upscale Method's estimate, "not a budget stated by CAMWS in the RFP."

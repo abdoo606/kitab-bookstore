@@ -1,0 +1,7 @@
+Memory Studies Association — "Web Designer/Developer Needed for International Non-Profit Association Website" (issuer page indexed 2026-09-28; excerpt fetched 2026-10-20)
+"Open Position: Web Designer/Developer Needed for International Non-Profit Association Website. Deadline: 1 November 2026."
+"We are an international non-profit association, legally based in the Netherlands, dedicated to advancing research and supporting scholars... around 1,500 members from more than 50 countries."
+"Our current WordPress website is no longer fit for purpose, and we're looking for an experienced web designer/developer to design and build a new one."
+Apply: "Please send a brief introduction along with relevant portfolio links or samples to info@memorystudiesassociation.org with 'website development' in subject line... Deadline: 1 November 2026."
+Requirements mention relevant experience with similar associations/non-profits and functionality (payments, mail campaigns, member portals) and a preference for EU-based hosting/software.
+REGION VERDICT: legally based in the Netherlands = Western Europe, excluded by the user's standing regional rule (avoid Western Europe entirely). Not pursued despite the live deadline and published email.

@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://www.wavetransit.com/wp-content/uploads/2026/10/Wave_Transit_Website_RFPPub10.1.26.pdf",
+    "organization": "Cape Fear Public Transportation Authority (Wave Transit)",
+    "source_kind": "official_issuer_manually_checked",
+    "snapshot": "wave-transit.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from the official 19-page RFP PDF + procurement page (fetched 2026-10-20): proposals by email PDF to jdodson@wavetransit.com by Nov 10, 2026 4pm (page says EST, PDF cover EDT); FTA/NCDOT funding; implementation + 12 months support + up to 4 renewals; Attachments A-I; insurance incl. workers comp/CGL/E&O/cyber; NC legal authorization, Federal Tax ID, financial-capacity evidence, notarized NC E-Verify affidavit.",
+    "outreach_status": "not_sent_screened_out: hard US federal/state vendor gates (insurance program, NC registration/E-Verify, federal tax ID, financial-capacity evidence, 5-year hosting obligation) cannot be met honestly; no build, no email"
+  },
+  {
+    "url": "https://upscalemethod.com/camws_louisiana_webredesign_development_35kto45k/",
+    "organization": "Classical Association of the Middle West and South (CAMWS)",
+    "source_kind": "aggregator_summary_manually_checked",
+    "snapshot": "camws.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from Upscale Method summary (fetched 2026-10-20; linked original PDF blocked by robot challenge): deadline Oct 30, 2026, PDF proposals, contact nominating@camws.org; member portal + dues payments + conference registration/abstracts + WCAG 2.2 AA; proposal must include comparable portfolio and at least three client references; $35-45k is aggregator estimate only.",
+    "outreach_status": "not_sent_screened_out: mandatory 3 client references from similar engagements are not available (no proven client references in record); membership/payment platform scope also exceeds an honest solo first-phase offer"
+  },
+  {
+    "url": "https://www.charityvillage.com/job/rfp-my-cancer-my-choice-phase-2-national-expansion-344507",
+    "organization": "Save Your Skin Foundation",
+    "source_kind": "official_listing_manually_checked",
+    "snapshot": "save-your-skin.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Verbatim excerpts from CharityVillage RFP listing (fetched 2026-10-20): government-relations/healthcare campaign agency RFP, issue Sep 14, 2026, proposal deadline October 5, 2026 (listing expiry Nov 22 is misleading); requires national agency with provincial on-the-ground capability and bilingual EN/FR communications.",
+    "outreach_status": "not_sent_screened_out: not a website service request and proposal deadline already passed at capture"
+  },
+  {
+    "url": "https://www.bidnetdirect.com/montana/homefront",
+    "organization": "HomeFront (Housing Authority of Billings)",
+    "source_kind": "official_portal_manually_checked",
+    "snapshot": "homefront.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Excerpts from BidNet/Montana Purchasing Group listing + HomeFront vendors page (2026-10-20): P26001 Website Design and Development, published 09/24/2026, closing 11/04/2026; vendors must register to the Montana Purchasing Group; submission via BidNet portal.",
+    "outreach_status": "not_sent_screened_out: portal-registration submission channel (no email in the request) and US public-housing procurement regime; outside the email-in-request rule"
+  },
+  {
+    "url": "https://www.memorystudiesassociation.org/web-designer-developer-needed-for-international-non-profit-association-website/",
+    "organization": "Memory Studies Association",
+    "source_kind": "official_issuer_indexed_excerpt",
+    "snapshot": "memory-studies.txt",
+    "captured_on": "2026-10-20",
+    "content_scope": "Indexed excerpts from issuer page (2026-10-20): web designer/developer for new association website, apply by email to info@memorystudiesassociation.org by 1 November 2026; association is legally based in the Netherlands; EU-hosting preference; payments/mail/member-portal functionality.",
+    "outreach_status": "not_sent_screened_out: Western Europe (Netherlands) excluded by user's standing regional rule despite live deadline + published email"
+  }
+]
