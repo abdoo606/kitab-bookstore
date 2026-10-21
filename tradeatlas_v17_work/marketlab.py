@@ -6683,7 +6683,7 @@ DATA_GUIDE = [
 def lab_spec() -> dict:
     return {
         "name": "TradeAtlas Market Lab",
-        "version": "16.0",
+        "version": "17.0",
         "timeframes": TIMEFRAMES,
         "strategies": STRATEGY_ENGINES,
         "indicators": ["SMA20/50/200", "EMA20/50", "RSI(14)", "MACD(12,26,9)",

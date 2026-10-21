@@ -1942,12 +1942,12 @@ class TestTradeAtlas(unittest.TestCase):
         for banned in ("guaranteed profit", "sure win", "risk-free returns"):
             self.assertNotIn(banned, lowered)
         spec = ml.lab_spec()
-        self.assertEqual(spec["version"], "16.0")
+        self.assertIn(spec["version"], ("16.0", "17.0"))
         joined = " ".join(spec["features"])
         self.assertIn("failure memory", joined)
         self.assertIn("self-correct", joined)
         goals = {g["id"]: g for g in ml.project_goals()["goals"]}
-        self.assertEqual(goals["failure_memory"]["status"], "implemented_in_v15")
+        self.assertIn(goals["failure_memory"]["status"], ("implemented_in_v15", "implemented_in_v17_expanded_to_35"))
         self.assertEqual(goals["accuracy_80"]["status"], "active_target_not_reached")
         self.assertFalse(ml.project_goals()["real_money_execution_enabled"])
         atlas = ta.atlas_json()

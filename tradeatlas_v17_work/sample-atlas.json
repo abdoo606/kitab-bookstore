@@ -678,7 +678,7 @@
  },
  "market_lab": {
   "name": "TradeAtlas Market Lab",
-  "version": "16.0",
+  "version": "17.0",
   "timeframes": {
    "1m": 60,
    "5m": 300,
