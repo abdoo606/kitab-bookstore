@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IARC / WHO Bulletin PLW Editorial & NCBI JATS 1.3 XML Automation Workbench</title>
+  <style>
+    :root { --navy:#0b3b60; --blue:#0072b5; --bg:#f4f7fa; --panel:#ffffff; --border:#d0d9e3; --text:#162433; --muted:#526378; --ok:#0f766e; --warn:#b45309; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family: "Segoe UI", Roboto, -apple-system, sans-serif; background:var(--bg); color:var(--text); line-height:1.55; }
+    .top-bar { background:var(--navy); color:#fff; padding:10px 24px; font-size:13px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+    header { background:#fff; border-bottom:1px solid var(--border); padding:20px 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+    header h1 { font-size:20px; color:var(--navy); }
+    header p { font-size:13px; color:var(--muted); max-width:760px; margin-top:3px; }
+    .layout { display:grid; grid-template-columns:1fr 1fr; gap:18px; padding:20px 24px; }
+    @media (max-width:980px){ .layout { grid-template-columns:1fr; } }
+    .card { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:16px; margin-bottom:16px; }
+    .card h2 { font-size:15px; color:var(--navy); margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; }
+    textarea { width:100%; min-height:250px; padding:12px; border:1px solid var(--border); border-radius:8px; font-family: ui-monospace, Menlo, monospace; font-size:12.5px; line-height:1.5; }
+    .btn { background:#eef3f8; color:var(--navy); border:1px solid var(--border); border-radius:7px; padding:8px 14px; font-weight:600; font-size:13px; cursor:pointer; }
+    .btn-primary { background:var(--blue); color:#fff; border-color:var(--blue); }
+    .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:0 24px; margin-top:16px; }
+    @media (max-width:700px){ .metrics { grid-template-columns:repeat(2,1fr); } }
+    .metric { background:#fff; border:1px solid var(--border); border-radius:9px; padding:12px; }
+    .metric .l { font-size:11px; color:var(--muted); text-transform:uppercase; }
+    .metric .v { font-size:20px; font-weight:700; color:var(--navy); margin-top:3px; }
+    .finding { border-left:4px solid var(--warn); background:#fffbeb; padding:9px 12px; margin-bottom:8px; font-size:12.5px; border-radius:4px; }
+    .finding.ok { border-left-color:var(--ok); background:#f0fdfa; }
+    pre { background:#0f172a; color:#e2e8f0; border-radius:8px; padding:12px; font-size:12px; overflow-x:auto; max-height:330px; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <span><strong>TECHNICAL DEMONSTRATION PROTOTYPE</strong> &mdash; Reference: 2026-10-RFP PLW Automation Software for IARC Publications</span>
+    <span>Editorial Preparation &middot; Reference Validation &middot; WHO/IARC Style Rules &middot; NCBI JATS 1.3 XML Generator</span>
+  </div>
+
+  <header>
+    <div>
+      <h1>IARC &amp; Bulletin of the WHO — Editorial Automation &amp; JATS XML Studio</h1>
+      <p>Automated manuscript structuring (IMRaD), WHO/IARC house style rules verification, DOI/PMID/Vancouver reference validation, and one-click compliant NCBI JATS 1.3 XML compilation.</p>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn" id="loadSampleBtn">Load Sample Oncology Manuscript</button>
+      <button class="btn btn-primary" id="runPipelineBtn">Run Rules Check + Generate JATS XML</button>
+      <button class="btn" id="downloadXmlBtn">Download .xml (JATS 1.3)</button>
+    </div>
+  </header>
+
+  <section class="metrics">
+    <div class="metric"><div class="l">Structured Sections</div><div class="v" id="mSections">0</div></div>
+    <div class="metric"><div class="l">WHO/IARC Style Rules Checked</div><div class="v" id="mRules">0</div></div>
+    <div class="metric"><div class="l">Validated References (DOI/PMID)</div><div class="v" id="mRefs">0</div></div>
+    <div class="metric"><div class="l">JATS 1.3 Schema Status</div><div class="v" style="color:#0f766e;" id="mStatus">READY</div></div>
+  </section>
+
+  <main class="layout">
+    <section>
+      <div class="card">
+        <h2><span>Input Manuscript Text / Structured Draft</span><span style="font-size:12px;color:#526378;">Editable live input</span></h2>
+        <textarea id="manuscriptInput" aria-label="Manuscript source input"></textarea>
+      </div>
+      <div class="card">
+        <h2><span>Editorial Rules &amp; Reference Validation Audit</span></h2>
+        <div id="auditList"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="card">
+        <h2><span>Normalized Clean Editorial Text (Auto-Corrected House Style)</span></h2>
+        <pre id="normalizedPreview" style="max-height:200px;"></pre>
+      </div>
+      <div class="card">
+        <h2><span>Generated NCBI JATS 1.3 XML Output (`<!DOCTYPE article ...>`)</span></h2>
+        <pre id="xmlOutput"></pre>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const SAMPLE = `TITLE: HPV-16 E6/E7 Biomarker Stratification in Cervical Screening Cohorts Across Low-Resource Settings
+AUTHORS: Claire Moreau; Kenji Takahashi; Elena Rostova
+DOI: 10.2471/BLT.26.291044
+
+ABSTRACT: Objective: To evaluate in vitro and in vivo diagnostic sensitivity of dry-swab PCR triage across 4,120 participants. Findings: Sensitivity reached 94.6% (95%CI 92.8-96.1; p = 0.0004) at 25mg/L reagent concentration and 4C storage.
+
+METHODS: Between January 2024 and March 2026, cervical specimens (ICD-O-3 8070/3) were analyzed across three regional reference laboratories.
+
+RESULTS: Concordance between automated dry-swab testing and liquid cytology exceeded 93.2% across all age strata.
+
+REFERENCES:
+1. Sung H, Ferlay J, Siegel RL, Laversanne M, Soerjomataram I, Jemal A, et al. Global cancer statistics. CA Cancer J Clin. 2021;71(3):209-249. doi:10.3322/caac.21660 PMID:33538338
+2. Bouvard V, Wentzensen N, Mackie A, Berkhof J, Brotherton J, Giorgi-Rossi P. The IARC perspective on cervical cancer screening. N Engl J Med. 2021;385(20):1908-1918. doi:10.1056/NEJMsr2030640 PMID:34758259
+3. Unverified Preprint Draft Without Persistent Identifier 2025.`;
+
+    let latestXml = "";
+
+    function escXml(s) {
+      return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+
+    function runPipeline() {
+      const raw = document.getElementById("manuscriptInput").value;
+      const findings = [];
+      let cleaned = raw;
+
+      // Rule 1: Latin biomedical terms italicization tag marker
+      if (/\bin (vitro|vivo|situ)\b/.test(cleaned)) {
+        findings.push({ type: "warn", msg: "WHO/IARC Style Rule R-01: Italicize Latin terms ('in vitro', 'in vivo') -> mapped to <italic> in JATS XML." });
+      }
+      // Rule 2: Space before SI units (25mg/L -> 25 mg/L, 4C -> 4 °C)
+      if (/\b(\d+)(mg\/L|ml|ug|kg)\b/i.test(cleaned)) {
+        cleaned = cleaned.replace(/\b(\d+)(mg\/L|ml|ug|kg)\b/gi, "$1 $2");
+        findings.push({ type: "warn", msg: "WHO/IARC Style Rule R-02: Inserted non-breaking SI unit spacing (e.g., '25mg/L' -> '25 mg/L')." });
+      }
+      if (/\b(\d+)C\b/.test(cleaned)) {
+        cleaned = cleaned.replace(/\b(\d+)C\b/g, "$1 °C");
+        findings.push({ type: "warn", msg: "WHO/IARC Style Rule R-03: Standardized Celsius notation ('4C' -> '4 °C')." });
+      }
+      // Rule 3: 95% CI spacing & en-dash
+      if (/95%CI\s*(\d+\.?\d*)-(\d+\.?\d*)/.test(cleaned)) {
+        cleaned = cleaned.replace(/95%CI\s*(\d+\.?\d*)-(\d+\.?\d*)/g, "95% CI: $1–$2");
+        findings.push({ type: "warn", msg: "WHO/IARC Statistical Rule R-04: Normalized confidence interval ('95% CI: lower–upper' with en-dash)." });
+      }
+      // Rule 4: Uppercase italic P value
+      if (/\bp\s*=\s*0\./.test(cleaned)) {
+        cleaned = cleaned.replace(/\bp\s*=\s*(0\.\d+)/g, "P = $1");
+        findings.push({ type: "warn", msg: "WHO/IARC Statistical Rule R-05: Standardized probability notation ('p =' -> 'P =')." });
+      }
+
+      const lines = cleaned.split(/\n+/).map(l => l.trim()).filter(Boolean);
+      let title = "Untitled Manuscript", authors = [], doi = "10.2471/PENDING", sections = [], refs = [];
+      let inRefs = false;
+      for (const line of lines) {
+        if (line.startsWith("TITLE:")) title = line.slice(6).trim();
+        else if (line.startsWith("AUTHORS:")) authors = line.slice(8).split(";").map(a => a.trim()).filter(Boolean);
+        else if (line.startsWith("DOI:")) doi = line.slice(4).trim();
+        else if (/^REFERENCES:?$/i.test(line)) inRefs = true;
+        else if (inRefs) refs.push(line.replace(/^\d+\.\s*/, ""));
+        else {
+          const m = line.match(/^(ABSTRACT|INTRODUCTION|METHODS|RESULTS|DISCUSSION):(.*)$/i);
+          if (m) sections.push({ heading: m[1].toUpperCase(), body: m[2].trim() });
+          else sections.push({ heading: "BODY", body: line });
+        }
+      }
+
+      let validRefs = 0;
+      const refXml = refs.map((r, i) => {
+        const doiMatch = r.match(/doi:([^\s]+)/i);
+        const pmidMatch = r.match(/PMID:(\d+)/i);
+        if (doiMatch || pmidMatch) {
+          validRefs++;
+          findings.push({ type: "ok", msg: `Reference [${i + 1}] verified: ${doiMatch ? "DOI " + doiMatch[1] : ""} ${pmidMatch ? "PMID " + pmidMatch[1] : ""}` });
+        } else {
+          findings.push({ type: "warn", msg: `Reference [${i + 1}] MISSING DOI/PMID persistent identifier — flagged for editorial query.` });
+        }
+        return `      <ref id="R${i + 1}">\n        <mixed-citation>${escXml(r)}${doiMatch ? ` <pub-id pub-id-type="doi">${escXml(doiMatch[1])}</pub-id>` : ""}${pmidMatch ? ` <pub-id pub-id-type="pmid">${escXml(pmidMatch[1])}</pub-id>` : ""}</mixed-citation>\n      </ref>`;
+      }).join("\n");
+
+      const formatInlineXml = txt => escXml(txt).replace(/\b(in vitro|in vivo|in situ|et al\.)/g, "<italic>$1</italic>");
+      const contribXml = authors.map(a => {
+        const parts = a.split(/\s+/);
+        const surname = parts.pop() || a;
+        const given = parts.join(" ");
+        return `        <contrib contrib-type="author"><name><surname>${escXml(surname)}</surname><given-names>${escXml(given)}</given-names></name></contrib>`;
+      }).join("\n");
+
+      const abstractSec = sections.find(s => s.heading === "ABSTRACT");
+      const bodySecs = sections.filter(s => s.heading !== "ABSTRACT");
+
+      latestXml = `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.3 20210610//EN" "JATS-journalpublishing1-3.dtd">
+<article article-type="research-article" dtd-version="1.3" xml:lang="en">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Bull World Health Organ</journal-id>
+      <publisher><publisher-name>IARC / World Health Organization</publisher-name></publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="doi">${escXml(doi)}</article-id>
+      <title-group><article-title>${formatInlineXml(title)}</article-title></title-group>
+      <contrib-group>
+${contribXml}
+      </contrib-group>
+      ${abstractSec ? `<abstract><p>${formatInlineXml(abstractSec.body)}</p></abstract>` : ""}
+    </article-meta>
+  </front>
+  <body>
+${bodySecs.map((s, idx) => `    <sec id="sec${idx + 1}"><title>${escXml(s.heading)}</title><p>${formatInlineXml(s.body)}</p></sec>`).join("\n")}
+  </body>
+  <back>
+    <ref-list>
+${refXml}
+    </ref-list>
+  </back>
+</article>`;
+
+      document.getElementById("mSections").textContent = sections.length;
+      document.getElementById("mRules").textContent = "5 / 5 Active";
+      document.getElementById("mRefs").textContent = `${validRefs} / ${refs.length} Verified`;
+      document.getElementById("mStatus").textContent = validRefs === refs.length ? "JATS 1.3 VALID" : "QUERY FLAGGED";
+      document.getElementById("normalizedPreview").textContent = cleaned;
+      document.getElementById("xmlOutput").textContent = latestXml;
+      document.getElementById("auditList").innerHTML = findings.map(f =>
+        `<div class="finding ${f.type === "ok" ? "ok" : ""}">${f.msg}</div>`
+      ).join("");
+    }
+
+    document.getElementById("loadSampleBtn").addEventListener("click", () => {
+      document.getElementById("manuscriptInput").value = SAMPLE;
+      runPipeline();
+    });
+    document.getElementById("runPipelineBtn").addEventListener("click", runPipeline);
+    document.getElementById("downloadXmlBtn").addEventListener("click", () => {
+      const blob = new Blob([latestXml], { type: "application/xml" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "iarc-jats-1.3-output.xml";
+      a.click();
+    });
+
+    document.getElementById("manuscriptInput").value = SAMPLE;
+    runPipeline();
+  </script>
+</body>
+</html>

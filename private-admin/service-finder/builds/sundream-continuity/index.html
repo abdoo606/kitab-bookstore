@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sundream Continuity & Budget Orchestrator — Engineering Prototype</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="preview-banner" role="region" aria-label="Proposal preview notice">
+    <div>
+      <span class="badge badge-amber">Engineering Preview Build</span>
+      Custom scene-graph continuity, model credit optimizer &amp; FCPXML/EDL export prototype built for <strong>Sundream Studio</strong>.
+    </div>
+    <div>
+      <strong> Abdulrhman</strong> &middot; Full async render worker &amp; Postgres/Supabase backend ready for Milestone 1 integration
+    </div>
+  </div>
+
+  <header>
+    <div>
+      <h1>Sundream Continuity &amp; Credit-Budget Director Workbench</h1>
+      <p>Turns long-form creative film decisions into cast-locked, credit-budgeted multi-model render plans across Seedream 4.5 (4 cr), Seedance 2.0 Mini (28 cr / 8s), and MiniMax H3 2K (104 cr / 8s), with pre-export timeline validation.</p>
+    </div>
+    <div class="controls-row">
+      <label for="projectSelect" style="font-size:13px;color:#9aa6c7;">Production Preset:</label>
+      <select id="projectSelect" class="btn" aria-label="Select production preset">
+        <option value="last_train">The Last Train (5-Scene Neo-Noir Short)</option>
+        <option value="sneaker_ad">Sneaker Spec Ad (6-Scene Commercial Spot)</option>
+      </select>
+      <button id="exportEdlBtn" class="btn btn-primary">Export FCPXML / Scene JSON</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <section>
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="label">Planned Render Cost</div>
+          <div class="val" id="kpiCredits">0 cr</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Target Budget Cap</div>
+          <div class="val" id="kpiCap">360 cr</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Cast Continuity Lock</div>
+          <div class="val" id="kpiContinuity">0%</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Runtime / Export Check</div>
+          <div class="val" id="kpiRuntime">40s PASS</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>
+          <span>Credit-Budget Auto-Router (Pro Plan: 2,729 cr/mo reference)</span>
+          <span class="badge badge-blue" id="budgetStatusBadge">Within Budget</span>
+        </h2>
+        <div class="controls-row">
+          <label for="budgetSlider" style="font-size:13px;">Scene Render Budget Ceiling: <strong id="budgetLabel">360</strong> credits</label>
+          <input type="range" id="budgetSlider" min="150" max="700" step="10" value="360" style="flex:1;min-width:180px;" />
+          <button id="autoOptimizeBtn" class="btn">Auto-Allocate Models Within Cap</button>
+          <button id="lockAllCastBtn" class="btn">Lock All Cast &amp; Lighting Anchors</button>
+        </div>
+        <p style="font-size:12px;color:#9aa6c7;">Hero narrative beats automatically prioritize <strong>MiniMax H3 2K (104 cr)</strong> while transitional coverage routes to <strong>Seedance 2.0 Mini (28 cr)</strong> + <strong>Seedream 4.5 4K keyframes (4 cr)</strong>.</p>
+      </div>
+
+      <div class="card">
+        <h2>
+          <span>Scene-Graph Storyboard &amp; Continuity Matrix</span>
+          <span style="font-size:12px;color:#9aa6c7;">Click model selector or Lock Anchor on any shot</span>
+        </h2>
+        <div class="shots-grid" id="shotsGrid"></div>
+      </div>
+
+      <div class="card">
+        <h2>
+          <span>Multi-Track Picture + Dialogue + Ambience Timeline &amp; Export Manifest</span>
+          <span class="badge badge-green" id="exportGateBadge">Export Ready</span>
+        </h2>
+        <div class="timeline-track" id="timelineTrack"></div>
+        <pre id="manifestPreview"></pre>
+      </div>
+    </section>
+
+    <aside>
+      <div class="card">
+        <h2>
+          <span>Docked Director Assistant</span>
+          <span class="badge badge-amber">Human-in-the-Loop</span>
+        </h2>
+        <p style="font-size:13px;color:#9aa6c7;margin-bottom:12px;">Proposes concrete credit &amp; continuity actions before spending render credits. Stops where creative decisions belong to the director.</p>
+        <div id="assistantProposals"></div>
+      </div>
+
+      <div class="card">
+        <h2><span> assistant Event Log</span></h2>
+        <pre id="eventLog" style="max-height:220px;"></pre>
+      </div>
+    </aside>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

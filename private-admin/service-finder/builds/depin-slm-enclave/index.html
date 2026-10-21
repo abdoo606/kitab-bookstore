@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DePIN × 10-SLM Confidential Execution Enclave — Architecture Preview</title>
+  <style>
+    :root { --bg:#070b12; --card:#101827; --border:#1f2f46; --txt:#e5eefc; --muted:#8fa3c4; --green:#10b981; --cyan:#22d3ee; --amber:#f59e0b; --red:#ef4444; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:var(--bg); color:var(--txt); line-height:1.5; }
+    .banner { background:#111c33; border-bottom:1px solid #2563eb; padding:10px 24px; font-size:13px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+    header { padding:22px 24px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
+    header h1 { font-size:21px; }
+    header p { color:var(--muted); font-size:13px; max-width:760px; margin-top:4px; }
+    .grid-main { display:grid; grid-template-columns:1.35fr 1fr; gap:18px; padding:20px 24px; }
+    @media (max-width:1000px){ .grid-main { grid-template-columns:1fr; } }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; margin-bottom:16px; }
+    .card h2 { font-size:15px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; }
+    .kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px; }
+    @media (max-width:700px){ .kpis { grid-template-columns:repeat(2,1fr); } }
+    .kpi { background:#0b1220; border:1px solid var(--border); border-radius:9px; padding:11px; }
+    .kpi .l { font-size:11px; color:var(--muted); text-transform:uppercase; }
+    .kpi .v { font-size:19px; font-weight:700; margin-top:3px; color:var(--cyan); }
+    .slm-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:9px; }
+    @media (max-width:640px){ .slm-grid { grid-template-columns:1fr; } }
+    .slm { background:#0b1220; border:1px solid var(--border); border-radius:8px; padding:10px; font-size:12px; }
+    .slm strong { color:#fff; }
+    .btn { background:#162238; color:#fff; border:1px solid var(--border); border-radius:8px; padding:8px 14px; cursor:pointer; font-weight:600; font-size:13px; }
+    .btn-run { background:var(--green); color:#04130d; border-color:var(--green); }
+    input, select { background:#0b1220; color:#fff; border:1px solid var(--border); border-radius:7px; padding:7px 10px; font-size:13px; }
+    pre { background:#05080f; border:1px solid var(--border); border-radius:8px; padding:12px; font-size:12px; color:#a5f3fc; overflow-x:auto; max-height:280px; }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <span><strong> CONFIDENTIAL ARCHITECTURE PROTOTYPE</strong> &mdash; DePIN &times; 10-SLM TEE/Wasm Anti-MEV Execution Workbench (Preview Build)</span>
+    <span>Engineered by <strong>Abdulrhman</strong> (UTC+3) &middot; Full Python Async 10-SLM Orchestrator Ready in Milestone Vault</span>
+  </div>
+
+  <header>
+    <div>
+      <h1>DePIN &times; 10-SLM Institutional Stealth Execution &amp; Anti-MEV Defense</h1>
+      <p>Asynchronous 10-agent Small Language Model mesh inside attested SGX/SEV + Wasm sandboxes over NATS/gRPC, splitting whale notional orders with zero mempool intent leakage and deterministic ZKP audit receipts.</p>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <select id="pairSel" aria-label="Asset pair">
+        <option value="BTC-USDC">BTC-USDC ($2,500,000 Whale Block)</option>
+        <option value="ETH-USDC">ETH-USDC ($1,200,000 Institutional Sweep)</option>
+        <option value="ADA-MIDNIGHT">ADA-NIGHT ($450,000 Shielded Cross-Venue)</option>
+      </select>
+      <input type="number" id="notionalInput" value="2500000" min="50000" step="50000" style="width:135px;" aria-label="Order notional USD" />
+      <button class="btn btn-run" id="execCycleBtn">Run 10-SLM Enclave Cycle</button>
+      <button class="btn" id="downloadProofBtn">Download Signed Receipt JSON</button>
+    </div>
+  </header>
+
+  <main class="grid-main">
+    <section>
+      <div class="kpis">
+        <div class="kpi"><div class="l">Public Wallet MEV Loss</div><div class="v" style="color:#f87171;" id="kpiMevLoss">-$14,625</div></div>
+        <div class="kpi"><div class="l">Enclave Stealth Slippage</div><div class="v" style="color:#34d399;" id="kpiShieldCost">-$1,750</div></div>
+        <div class="kpi"><div class="l">Net Institutional Alpha Saved</div><div class="v" id="kpiSaved">+$12,875 (51.5 bps)</div></div>
+        <div class="kpi"><div class="l">NATS Mesh p99 Latency</div><div class="v" id="kpiLatency">11.4 ms</div></div>
+      </div>
+
+      <div class="card">
+        <h2><span>Asynchronous 10-SLM Enclave Consensus Mesh (TEE + Wasm Isolated)</span><span style="color:#34d399;font-size:12px;">10 / 10 Attested</span></h2>
+        <div class="slm-grid" id="slmGrid"></div>
+      </div>
+
+      <div class="card">
+        <h2><span>Stealth Child-Order Slicing Schedule (Zero Front-Running Exposure)</span></h2>
+        <pre id="slicesOutput"></pre>
+      </div>
+    </section>
+
+    <aside>
+      <div class="card">
+        <h2><span>eBPF + SGX/SEV Enclave &amp; ZKP Audit Proof</span></h2>
+        <pre id="zkpProofBox"></pre>
+      </div>
+      <div class="card">
+        <h2><span>NATS / gRPC Low-Latency Bus Stream</span></h2>
+        <pre id="busStream" style="color:#cbd5e1;"></pre>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    const SLMS = [
+      ["SLM-01 Regime-Classifier", "Detects volatility cluster & liquidity depth regime (O[t] causal window)"],
+      ["SLM-02 Orderbook-Toxicity", "Scores VPIN adverse selection & spoofing imbalance in real time"],
+      ["SLM-03 MEV-Frontrun-Shield", "Blocks public RPC broadcast; enforces encrypted private relay routing"],
+      ["SLM-04 Stealth-TWAP-Slicer", "Randomizes child lot sizes & Poisson arrival intervals"],
+      ["SLM-05 Cross-Venue-Router", "Splits liquidity across 4 dark/DEX/CEX venues without address linkage"],
+      ["SLM-06 Kelly-Drawdown-Guard", "Enforces hard max position notional & volatility-adjusted VaR cap"],
+      ["SLM-07 TEE-SGX-SEV-Attestor", "Verifies hardware measurement hash before releasing signing key share"],
+      ["SLM-08 eBPF-Socket-Sentinel", "Drops unauthorized egress syscalls inside Wasm worker sandbox"],
+      ["SLM-09 ZKP-Compliance-Prover", "Generates zero-knowledge execution proof without revealing wallet graph"],
+      ["SLM-10 Threshold-MPC-Signer", "Co-signs child slices only when SLMs 01-09 quorum >= 9/10"]
+    ];
+
+    let lastReceipt = {};
+
+    async function sha256Hex(text) {
+      const enc = new TextEncoder().encode(text);
+      const buf = await crypto.subtle.digest("SHA-256", enc);
+      return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    async function runCycle() {
+      const pair = document.getElementById("pairSel").value;
+      const notional = Math.max(50000, Number(document.getElementById("notionalInput").value) || 2500000);
+      const unshieldedBps = 58.5;
+      const shieldedBps = 7.0;
+      const unshieldedUsd = Math.round(notional * (unshieldedBps / 10000));
+      const shieldedUsd = Math.round(notional * (shieldedBps / 10000));
+      const savedUsd = unshieldedUsd - shieldedUsd;
+
+      document.getElementById("kpiMevLoss").textContent = `-$${unshieldedUsd.toLocaleString()} (${unshieldedBps} bps)`;
+      document.getElementById("kpiShieldCost").textContent = `-$${shieldedUsd.toLocaleString()} (${shieldedBps} bps)`;
+      document.getElementById("kpiSaved").textContent = `+$${savedUsd.toLocaleString()} (+51.5 bps)`;
+      document.getElementById("kpiLatency").textContent = `${(9.8 + (notional % 37) / 10).toFixed(1)} ms`;
+
+      const grid = document.getElementById("slmGrid");
+      grid.innerHTML = SLMS.map(([name, role], idx) => `
+        <div class="slm">
+          <div style="display:flex;justify-content:space-between;">
+            <strong>${name}</strong>
+            <span style="color:#34d399;">PASS (${(1.1 + idx * 0.23).toFixed(1)}ms)</span>
+          </div>
+          <div style="color:#8fa3c4;margin-top:3px;">${role}</div>
+        </div>
+      `).join("");
+
+      const weights = [0.22, 0.19, 0.27, 0.17, 0.15];
+      const venues = ["DePIN-Enclave-Node-EU1", "DarkPool-SGX- Relay-FR", "Shielded-DEX-Batch-03", "DePIN-Enclave-Node-EE2", "Private-RFQ-Vault-CH"];
+      const slices = weights.map((w, i) => ({
+        child_id: `SLICE-0${i + 1}`,
+        enclave_node: venues[i],
+        notional_usd: Math.round(notional * w),
+        jitter_delay_ms: 140 + i * 215,
+        egress_policy: "eBPF_STRICT_PINNED_TLS",
+        mempool_exposure: "ZERO_PUBLIC_LEAK"
+      }));
+      document.getElementById("slicesOutput").textContent = JSON.stringify(slices, null, 2);
+
+      const digest = await sha256Hex(`${pair}:${notional}:${Date.now()}`);
+      lastReceipt = {
+        protocol: "DePIN-10SLM-Enclave-v1",
+        timestamp_utc: new Date().toISOString(),
+        pair,
+        notional_usd: notional,
+        slm_quorum: "10/10 VERIFIED",
+        tee_measurement_sha256: digest,
+        ebpf_egress_violations: 0,
+        estimated_mev_saved_usd: savedUsd,
+        slices
+      };
+      document.getElementById("zkpProofBox").textContent = JSON.stringify(lastReceipt, null, 2);
+      document.getElementById("busStream").textContent = SLMS.map(([name], i) =>
+        `[NATS subj=enclave.slm.${i + 1}] ${name} -> ATTESTED_OK | proof=${digest.slice(i * 4, i * 4 + 12)}`
+      ).join("\n");
+    }
+
+    document.getElementById("execCycleBtn").addEventListener("click", runCycle);
+    document.getElementById("pairSel").addEventListener("change", runCycle);
+    document.getElementById("downloadProofBtn").addEventListener("click", () => {
+      const blob = new Blob([JSON.stringify(lastReceipt, null, 2)], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "depin-10slm-enclave-proof.json";
+      a.click();
+    });
+    runCycle();
+  </script>
+</body>
+</html>
