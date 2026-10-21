@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://www.sacnasp.org.za/uploads/files/RFP-Unified-Digital-System.pdf",
+    "organization": "South African Council for Natural Scientific Professions (South Africa) - Unified Digital System RFP SAC2603-008, scm@sacnasp.org.za",
+    "source_kind": "official_pdf_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "Unified statutory-regulator ICT platform including scientist portal, lifecycle workflows, payments, legal case management, HR, BI, website redevelopment, Azure deployment, POPIA security, legacy migration and 12-month support; email submissions closed 15:00 on 20 March 2026.",
+    "outreach_status": "not_sent_screened_out: deadline passed (Mar 20, 2026) and enterprise platform scope far beyond an honest small website offer"
+  },
+  {
+    "url": "https://www.iziko.org.za/tenders/",
+    "organization": "Iziko Museums of South Africa - official tenders gateway, scm@iziko.org.za",
+    "source_kind": "official_page_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "South African public-entity procurement requiring Central Supplier Database self-registration; displayed open tenders on capture date were artificial rockwork (closed Sep 30, 2026) and POS hardware/system (closed Sep 25, 2026), not website services.",
+    "outreach_status": "not_sent_screened_out: supplier-database public procurement and no live website-service request"
+  },
+  {
+    "url": "https://rightsandresources.org/wp-content/uploads/RFP-Web-Designer.pdf",
+    "organization": "Rights and Resources Initiative - Website Redesign RFP, kconstantine@rightsandresources.org",
+    "source_kind": "official_pdf_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "24-month global website redesign with research/strategy, multilingual WordPress implementation, migration, QA, launch and support; budget USD 100,000-120,000; proposals by email due 17:00 ET May 29, 2026; requires 10 years experience, two client testimonials/references, samples, CVs and insurance/certifications/licenses.",
+    "outreach_status": "not_sent_screened_out: deadline passed (May 29, 2026) and qualification gates cannot be met honestly"
+  },
+  {
+    "url": "https://www.cepf.net/resources/documents/website-redesign-request-proposal",
+    "organization": "Critical Ecosystem Partnership Fund - Website Redesign and Redevelopment RFP, mhozempa@cepf.net / jshaw@cepf.net",
+    "source_kind": "official_page_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "Mobile-first modular CMS, grants database and digital asset library redesign/redevelopment; released Sep 30, 2016, proposals due Oct 24, 2016; requires comparable-project portfolio/results, key personnel and reputation/recommendation evidence.",
+    "outreach_status": "not_sent_screened_out: closed in 2016 (zombie page) and firm/portfolio gates"
+  }
+]

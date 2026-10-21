@@ -1,0 +1,52 @@
+Round 26 hunt excerpts — captured 2026-10-21 (verdicts in sources.json)
+
+--- 1) SACNASP (South African Council for Natural Scientific Professions) — Unified Digital System RFP
+URL: https://www.sacnasp.org.za/uploads/files/RFP-Unified-Digital-System.pdf
+Excerpt (original RFP fetched): "RFP NUMBER SAC2603-008... RFP ISSUE DATE 3 MARCH 2026...
+CLOSING DATE & TIME 20 MARCH 2026... SUBMISSIONS EMAIL TO: scm@sacnasp.org.za...
+appointment of a service provider for the development, implementation, migration and
+support of a unified SACNASP ICT / digital platform... Website Redevelopment: design and
+implement a new SACNASP website, integration with portal and dashboards... Proposals that
+offer multiple separate systems will be regarded as non-responsive... cloud-native...
+Microsoft Azure... POPIA... data migration... minimum 12-month support."
+Verdict: although email submission existed, the deadline passed seven months before this
+round and the scope is an enterprise-wide statutory regulator platform (portal,
+registrations, payments, case management, HR, BI, migration, penetration testing and
+support), not a small website service honestly coverable here → screened out, not contacted.
+
+--- 2) Iziko Museums of South Africa — official tenders gateway
+URL: https://www.iziko.org.za/tenders/
+Excerpt (original page fetched): "All current and potential creditors / contractors /
+consultants and other suppliers... are required to self-register on the government Central
+Supplier Database... OPEN TENDERS... [artificial rockwork] Closing date... 30 September
+2026 at 11h00... [POS system] Closing date... 25 September 2026 at 14h00... Quotes /
+Proposals... must be emailed to scm@iziko.org.za..."
+Verdict: the official South African public-entity route is supplier-database procurement.
+The items still displayed under "open tenders" closed in September 2026 and none is a
+website service → no live qualifying website request; screened out, not contacted.
+
+--- 3) Rights and Resources Initiative — Website Redesign RFP
+URL: https://rightsandresources.org/wp-content/uploads/RFP-Web-Designer.pdf
+Excerpt (original PDF fetched): "RRI seeks a qualified web designer with strategic
+communications specialization for a 24-month agreement... Minimum Qualifications: at least
+10 years of experience in website design... at least two client testimonials along with
+their contact information... Samples of Work... Current CV... send your proposal to
+kconstantine@rightsandresources.org... deadline for submission is 5:00 ET on May 29, 2026...
+Consultant is responsible for ensuring that they have all required insurance,
+certifications, and/or licenses."
+Verdict: expired May 29, 2026 and gates require 10 years' experience, client testimonials,
+insurance/certifications/licenses — not meetable honestly → screened out, not contacted.
+
+--- 4) Critical Ecosystem Partnership Fund — Website Redesign and Redevelopment RFP
+URL: https://www.cepf.net/resources/documents/website-redesign-request-proposal
+Excerpt (original page fetched): "Request release date: September 30, 2016. Proposals due
+date: October 24, 2016... Budget: $110,000... Requirements: evidence of experience with
+similar assignments... Portfolio of comparable past projects and their results... proposals
+must be delivered electronically... to mhozempa@cepf.net and jshaw@cepf.net."
+Verdict: a ten-year-old zombie RFP for a development firm with comparable-project and
+reputation scoring → screened out, not contacted.
+
+Notes: Kenya-specific searching mostly returned expired 2024/2025 NGO-job reposts, firms'
+marketing pages, or public procurement portals/documents rather than a live original with
+a public submission email. Nawiri appeared again in aggregator results but was already
+screened in an earlier round and was not re-hunted. Qualified this round: 0. Emailed: 0.

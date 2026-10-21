@@ -19,7 +19,7 @@ health, CA small libraries & municipalities)
 - **Grampians Community Health (AU)** website redesign tender — closed
   **Feb 2020**.
 - Evidence: `round25/excerpts.txt`, `round25/sources.json`, snapshot
-  `results/round24/`→`results/round25/` (4 records; regex triage status
+  `results/round25/` (4 records; regex triage status
   `conflicting_deadlines_review`, human verdicts above govern).
 
 ## ShieldScan MAX 17.0 (live, port 8808) — the report becomes appointments
