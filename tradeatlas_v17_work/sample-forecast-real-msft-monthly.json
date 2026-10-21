@@ -1,0 +1,2986 @@
+{
+ "bars": 123,
+ "analog_now": {
+  "as_of_bar": "2010-03-01T00:00:00Z",
+  "analogs_per_horizon": 30,
+  "horizons": [
+   {
+    "horizon_bars": 1,
+    "n": 30,
+    "median_pct": 0.395,
+    "p25_pct": -3.982,
+    "p75_pct": 2.56,
+    "share_up_pct": 53.3,
+    "worst_pct": -11.278,
+    "best_pct": 24.929
+   },
+   {
+    "horizon_bars": 3,
+    "n": 30,
+    "median_pct": 0.499,
+    "p25_pct": -5.894,
+    "p75_pct": 6.423,
+    "share_up_pct": 53.3,
+    "worst_pct": -15.375,
+    "best_pct": 27.382
+   },
+   {
+    "horizon_bars": 5,
+    "n": 30,
+    "median_pct": 0.787,
+    "p25_pct": -4.894,
+    "p75_pct": 3.757,
+    "share_up_pct": 50.0,
+    "worst_pct": -16.603,
+    "best_pct": 23.636
+   },
+   {
+    "horizon_bars": 10,
+    "n": 30,
+    "median_pct": 3.18,
+    "p25_pct": -3.13,
+    "p75_pct": 8.418,
+    "share_up_pct": 56.7,
+    "worst_pct": -36.845,
+    "best_pct": 27.676
+   },
+   {
+    "horizon_bars": 20,
+    "n": 30,
+    "median_pct": 1.644,
+    "p25_pct": -19.001,
+    "p75_pct": 12.038,
+    "share_up_pct": 53.3,
+    "worst_pct": -43.435,
+    "best_pct": 39.896
+   }
+  ],
+  "method": "feature vector per bar (1/3/5/10/20-bar returns, RSI-14, distance to SMA-20, 10-bar volatility), nearest neighbours by scaled Euclidean distance; analog outcomes must end before the origin bar (no lookahead)",
+  "warning": "A histogram of what followed similar setups in THIS sample — not a price forecast, not a probability about the future, and worthless without the out-of-sample evaluation next to it."
+ },
+ "candle_analog_now": {
+  "error": "candle-structure analogs unavailable: fewer than half the bars have high > low",
+  "candle_data": {
+   "usable_range_share": 0.0,
+   "nonzero_volume_share": 0.0,
+   "available": false
+  }
+ },
+ "indicator_analog_now": {
+  "as_of_bar": "2010-03-01T00:00:00Z",
+  "analogs_per_horizon": 30,
+  "horizons": [
+   {
+    "horizon_bars": 1,
+    "n": 30,
+    "median_pct": -0.354,
+    "p25_pct": -5.523,
+    "p75_pct": 2.862,
+    "share_up_pct": 46.7,
+    "worst_pct": -16.254,
+    "best_pct": 24.929
+   },
+   {
+    "horizon_bars": 3,
+    "n": 30,
+    "median_pct": -1.142,
+    "p25_pct": -6.328,
+    "p75_pct": 6.423,
+    "share_up_pct": 50.0,
+    "worst_pct": -19.971,
+    "best_pct": 27.382
+   },
+   {
+    "horizon_bars": 5,
+    "n": 30,
+    "median_pct": 1.016,
+    "p25_pct": -10.104,
+    "p75_pct": 3.699,
+    "share_up_pct": 50.0,
+    "worst_pct": -22.324,
+    "best_pct": 23.636
+   },
+   {
+    "horizon_bars": 10,
+    "n": 30,
+    "median_pct": 1.38,
+    "p25_pct": -7.88,
+    "p75_pct": 7.56,
+    "share_up_pct": 53.3,
+    "worst_pct": -36.845,
+    "best_pct": 27.676
+   },
+   {
+    "horizon_bars": 20,
+    "n": 30,
+    "median_pct": -4.055,
+    "p25_pct": -27.432,
+    "p75_pct": 12.557,
+    "share_up_pct": 46.7,
+    "worst_pct": -43.435,
+    "best_pct": 39.896
+   }
+  ],
+  "indicator_data": {
+   "available": true,
+   "min_feature_index": 60,
+   "close_only_series": true,
+   "nonzero_volume_share": 0.0,
+   "note": "On close-only bars, range-based indicators collapse to functions of the close path; they do not invent highs, lows or candle anatomy."
+  },
+  "feature_set": [
+   "rsi14_centered",
+   "rsi14_slope_3bar",
+   "macd_line_atr_normalized",
+   "macd_histogram_atr_normalized",
+   "bollinger_percent_b",
+   "bollinger_bandwidth_pct",
+   "distance_to_sma20_in_atr",
+   "distance_to_sma50_in_atr",
+   "sma20_slope_5bar_pct",
+   "donchian20_position",
+   "stochastic_k14",
+   "directional_balance_plus_minus_di",
+   "adx14_trend_strength",
+   "realized_volatility_vs_trailing_median_log",
+   "volume_surprise_vs_20bar_median_log"
+  ],
+  "method": "15 origin-time indicator/regime features per completed bar (RSI level/slope, ATR-normalized MACD, Bollinger %B/bandwidth, SMA distances/slope, Donchian and Stochastic position, ADX direction/strength, volatility regime and volume surprise); nearest neighbours by scaled Euclidean distance; candidate outcomes must end on or before the origin",
+  "warning": "Another conditional histogram of THIS sample, not a third independent oracle: indicators are transformations of the same price path and are often correlated. Believe only the blind ensemble rows beside it."
+ },
+ "path_analog_now": {
+  "as_of_bar": "2010-03-01T00:00:00Z",
+  "analogs_per_horizon": 30,
+  "horizons": [
+   {
+    "horizon_bars": 1,
+    "n": 30,
+    "median_pct": 2.385,
+    "p25_pct": -1.61,
+    "p75_pct": 5.393,
+    "share_up_pct": 60.0,
+    "worst_pct": -16.33,
+    "best_pct": 24.929
+   },
+   {
+    "horizon_bars": 3,
+    "n": 30,
+    "median_pct": 1.198,
+    "p25_pct": -5.076,
+    "p75_pct": 16.835,
+    "share_up_pct": 53.3,
+    "worst_pct": -26.649,
+    "best_pct": 27.382
+   },
+   {
+    "horizon_bars": 5,
+    "n": 30,
+    "median_pct": 2.79,
+    "p25_pct": -14.802,
+    "p75_pct": 14.812,
+    "share_up_pct": 53.3,
+    "worst_pct": -38.673,
+    "best_pct": 33.463
+   },
+   {
+    "horizon_bars": 10,
+    "n": 30,
+    "median_pct": -4.855,
+    "p25_pct": -24.75,
+    "p75_pct": 13.259,
+    "share_up_pct": 40.0,
+    "worst_pct": -42.173,
+    "best_pct": 55.92
+   },
+   {
+    "horizon_bars": 20,
+    "n": 23,
+    "median_pct": -18.118,
+    "p25_pct": -28.147,
+    "p75_pct": 5.409,
+    "share_up_pct": 30.4,
+    "worst_pct": -43.435,
+    "best_pct": 16.364
+   }
+  ],
+  "path_data": {
+   "available": true,
+   "min_feature_index": 80,
+   "close_only_series": true,
+   "nonzero_volume_share": 0.0,
+   "note": "Path geometry is computed from completed closes (and real highs/lows/volume when present). On close-only bars the range-position pieces collapse to the close path; no candle anatomy or volume is invented."
+  },
+  "feature_set": [
+   "efficiency_ratio_20_signed",
+   "efficiency_ratio_60_signed",
+   "log_trend_slope_20_vol_normalized",
+   "log_trend_slope_60_vol_normalized",
+   "variance_ratio_5_log",
+   "lag1_autocorrelation_30",
+   "realized_skew_20",
+   "downside_variance_share_20",
+   "drawdown_from_60bar_high_pct",
+   "runup_from_60bar_low_pct",
+   "range_position_60",
+   "max_drawdown_20_pct",
+   "volatility_ratio_10_to_60_log",
+   "signed_return_streak",
+   "up_down_volume_balance_20",
+   "range_compression_10_to_60_log"
+  ],
+  "method": "16 origin-time path-geometry features per completed bar (20/60-bar travel efficiency, volatility-normalized log-trend slopes, 5-bar variance ratio, lag-1 autocorrelation, skew/downside share, 60-bar drawdown/run-up/range position, 20-bar max drawdown, volatility and range compression, sign streak and real up/down volume balance); nearest neighbours by scaled Euclidean distance; candidate outcomes must end on or before the origin",
+  "warning": "A fourth conditional histogram of THIS sample, not a fourth oracle: path geometry re-describes the same completed bars. Only the blind race and after-cost rows beside it say whether the description helped here."
+ },
+ "cycle_analog_now": {
+  "as_of_bar": "2010-03-01T00:00:00Z",
+  "analogs_per_horizon": 30,
+  "horizons": [
+   {
+    "horizon_bars": 1,
+    "n": 30,
+    "median_pct": 1.955,
+    "p25_pct": -2.862,
+    "p75_pct": 4.373,
+    "share_up_pct": 60.0,
+    "worst_pct": -16.254,
+    "best_pct": 24.929
+   },
+   {
+    "horizon_bars": 3,
+    "n": 30,
+    "median_pct": -2.328,
+    "p25_pct": -6.08,
+    "p75_pct": 9.313,
+    "share_up_pct": 46.7,
+    "worst_pct": -25.417,
+    "best_pct": 27.382
+   },
+   {
+    "horizon_bars": 5,
+    "n": 30,
+    "median_pct": -1.591,
+    "p25_pct": -14.969,
+    "p75_pct": 12.475,
+    "share_up_pct": 46.7,
+    "worst_pct": -38.673,
+    "best_pct": 30.889
+   },
+   {
+    "horizon_bars": 10,
+    "n": 30,
+    "median_pct": -4.855,
+    "p25_pct": -24.75,
+    "p75_pct": 13.259,
+    "share_up_pct": 40.0,
+    "worst_pct": -42.173,
+    "best_pct": 45.32
+   },
+   {
+    "horizon_bars": 20,
+    "n": 23,
+    "median_pct": -18.118,
+    "p25_pct": -28.147,
+    "p75_pct": 5.409,
+    "share_up_pct": 30.4,
+    "worst_pct": -43.435,
+    "best_pct": 16.364
+   }
+  ],
+  "cycle_data": {
+   "available": true,
+   "min_feature_index": 80,
+   "close_only_series": true,
+   "nonzero_volume_share": 0.0,
+   "note": "Cycle/flow coordinates use completed OHLCV only. On close-only bars, range and flow pieces collapse toward close-path/neutral values; highs, lows, volume and order flow are never invented."
+  },
+  "feature_set": [
+   "aroon_oscillator_25",
+   "vortex_balance_14",
+   "chande_momentum_14",
+   "fisher_transform_10",
+   "relative_vigor_index_10",
+   "schaff_trend_cycle",
+   "kst_volatility_normalized",
+   "coppock_volatility_normalized",
+   "chaikin_money_flow_20",
+   "money_flow_index_14",
+   "elder_force_index_atr_volume_normalized",
+   "rolling_vwap_distance_atr_20",
+   "ulcer_index_14",
+   "ehlers_super_smoother_slope_atr",
+   "permutation_entropy_order_score",
+   "signed_path_pressure_index_20",
+   "entropy_weighted_multiscale_trend",
+   "overnight_to_intraday_volatility_log_20"
+  ],
+  "method": "18 origin-time cycle/flow features (Aroon, Vortex, CMO, Fisher, RVI, Schaff, KST, Coppock, CMF/MFI, Force Index, rolling VWAP distance, Ulcer, SuperSmoother slope, permutation entropy, Signed Path Pressure, Entropy-Weighted Multiscale Trend and overnight/intraday volatility balance); nearest neighbours by scaled Euclidean distance; candidate outcomes must end on or before the origin",
+  "warning": "A fifth conditional histogram of the same completed bars, not five independent sources of information. Flow formulas here are OHLCV proxies, not exchange order flow."
+ },
+ "rank_fusion_analog_now": {
+  "as_of_bar": "2010-03-01T00:00:00Z",
+  "analogs_per_horizon": 30,
+  "horizons": [
+   {
+    "horizon_bars": 1,
+    "n": 30,
+    "median_pct": 1.088,
+    "p25_pct": -2.862,
+    "p75_pct": 4.339,
+    "share_up_pct": 56.7,
+    "worst_pct": -16.254,
+    "best_pct": 24.929
+   },
+   {
+    "horizon_bars": 3,
+    "n": 30,
+    "median_pct": -2.628,
+    "p25_pct": -6.328,
+    "p75_pct": 9.313,
+    "share_up_pct": 43.3,
+    "worst_pct": -26.649,
+    "best_pct": 27.382
+   },
+   {
+    "horizon_bars": 5,
+    "n": 30,
+    "median_pct": -1.591,
+    "p25_pct": -14.969,
+    "p75_pct": 12.475,
+    "share_up_pct": 46.7,
+    "worst_pct": -38.673,
+    "best_pct": 30.889
+   },
+   {
+    "horizon_bars": 10,
+    "n": 30,
+    "median_pct": -4.855,
+    "p25_pct": -24.75,
+    "p75_pct": 13.259,
+    "share_up_pct": 40.0,
+    "worst_pct": -42.173,
+    "best_pct": 55.92
+   },
+   {
+    "horizon_bars": 20,
+    "n": 23,
+    "median_pct": -18.118,
+    "p25_pct": -28.147,
+    "p75_pct": 5.409,
+    "share_up_pct": 30.4,
+    "worst_pct": -43.435,
+    "best_pct": 16.364
+   }
+  ],
+  "families_used": [
+   "return_shape",
+   "candle_structure",
+   "indicator_regime",
+   "path_geometry",
+   "cycle_flow"
+  ],
+  "method": "For every admissible past candidate, average its distance rank across the return/candle/indicator/path/cycle-flow views; take the lowest mean-rank neighbours. Candidate outcomes must end on or before the origin.",
+  "warning": "Rank fusion cannot create new information: all views are transformations of the same completed bars. The blind race and costs decide whether it helped."
+ },
+ "multiscale_trend_now": {
+  "as_of_bar": "2010-03-01T00:00:00Z",
+  "score": 0.2587,
+  "mechanical_direction": "positive",
+  "contributions": [
+   {
+    "window_bars": 3,
+    "available": true,
+    "return_pct": -5.076,
+    "volatility_normalized": -0.5439,
+    "tanh_contribution": -0.4959
+   },
+   {
+    "window_bars": 5,
+    "available": true,
+    "return_pct": 4.803,
+    "volatility_normalized": 0.3987,
+    "tanh_contribution": 0.3788
+   },
+   {
+    "window_bars": 10,
+    "available": true,
+    "return_pct": 39.874,
+    "volatility_normalized": 2.3401,
+    "tanh_contribution": 0.9816
+   },
+   {
+    "window_bars": 20,
+    "available": true,
+    "return_pct": 16.364,
+    "volatility_normalized": 0.6791,
+    "tanh_contribution": 0.5909
+   },
+   {
+    "window_bars": 60,
+    "available": true,
+    "return_pct": 29.496,
+    "volatility_normalized": 0.7067,
+    "tanh_contribution": 0.6086
+   },
+   {
+    "window_bars": 120,
+    "available": true,
+    "return_pct": -33.364,
+    "volatility_normalized": -0.5652,
+    "tanh_contribution": -0.5119
+   }
+  ],
+  "permutation_entropy": 0.6708,
+  "entropy_weighted_score": 0.0852,
+  "method": "Average of tanh(return/(10-bar volatility*sqrt(window))) over available 3/5/10/20/60/120-bar windows (at least four required). Origin-time only.",
+  "warning": "A bounded trend descriptor, not a probability and not a trade instruction. Its worth is decided only by the hidden-future rows."
+ },
+ "kalman_trend_now": {
+  "as_of_bar": "2010-03-01T00:00:00Z",
+  "score": 0.9971,
+  "mechanical_direction": "positive",
+  "method": "Causal alpha-beta local-linear trend on log price (level gain 0.35, slope gain 0.08); score=tanh(100*slope per bar).",
+  "warning": "A local trend descriptor, not a probability or trade instruction."
+ },
+ "hull_trend_now": {
+  "as_of_bar": "2010-03-01T00:00:00Z",
+  "score": 0.9289,
+  "mechanical_direction": "positive",
+  "method": "Hull MA(20) price distance plus 3-bar Hull slope, ATR-normalized and tanh-bounded.",
+  "warning": "A trend descriptor, not a probability or trade instruction."
+ },
+ "omni_direct_now": {
+  "as_of_bar": "2010-03-01T00:00:00Z",
+  "horizon_bars": 3,
+  "score": 0.5968,
+  "mechanical_direction": "positive",
+  "components": {
+   "multiscale_trend": 0.2587,
+   "kalman_trend": 0.9971,
+   "horizon_matched_trend": 0.4495,
+   "parabolic_sar_trend": 1,
+   "oscillator_basket": 0.4906
+  },
+  "weights": {
+   "multiscale_trend": 1.2,
+   "kalman_trend": 0.9,
+   "horizon_matched_trend": 0.7,
+   "parabolic_sar_trend": 0.5,
+   "oscillator_basket": 0.5
+  },
+  "method": "Fixed weighted average of available bounded direct components; not fitted to this symbol.",
+  "warning": "A consensus score, not a probability and not a trade instruction."
+ },
+ "atlas_pressure_wave_now": {
+  "as_of_bar": "2010-03-01T00:00:00Z",
+  "score": 0.085,
+  "mechanical_direction": "positive",
+  "method": "15-bar exponentially weighted candle close/body pressure scaled by ATR range and real relative volume, fused with 3/10-bar volatility-normalized momentum.",
+  "warning": "A bounded origin-time research score, not a probability or trade instruction."
+ },
+ "atlas_regime_compass_now": {
+  "as_of_bar": "2010-03-01T00:00:00Z",
+  "score": 0.4357,
+  "mechanical_direction": "positive",
+  "method": "ADX and permutation entropy smoothly choose between Hull/multiscale trend evidence and Bollinger/RSI range-reversion evidence.",
+  "warning": "A bounded origin-time research score, not a probability or trade instruction."
+ },
+ "atlas_phoenix_now": {
+  "as_of_bar": "2010-03-01T00:00:00Z",
+  "score": 0.4334,
+  "mechanical_direction": "positive",
+  "method": "Family-balanced fusion (trend filters 25%, momentum 25%, structure 20%, flow 20%, Regime Compass 10%); each family is averaged before fusion.",
+  "warning": "A bounded origin-time research score, not a probability or trade instruction."
+ },
+ "atlas_minute_pulse_now": {
+  "as_of_bar": "2010-03-01T00:00:00Z",
+  "score": 0.4811,
+  "mechanical_direction": "positive",
+  "method": "EMA ribbon 25% + Pressure Wave 25% + rolling-VWAP trend side 15% + UTC opening-range state 15% + volume surge 10% + squeeze release 10%, entropy-damped.",
+  "warning": "A bounded origin-time research score, not a probability or trade instruction."
+ },
+ "rolling_eval": {
+  "attempts_requested": 40,
+  "attempts_made": 40,
+  "horizon_bars": 3,
+  "analogs_per_forecast": 30,
+  "origin_step_bars": 1,
+  "analog_direction_accuracy_pct": 45.0,
+  "baseline_always_up_pct": 47.5,
+  "baseline_momentum_5bar_pct": 55.0,
+  "baseline_mean_reversion_5bar_pct": 45.0,
+  "brier_score_analog": 0.3462,
+  "brier_skill_vs_climatology": -0.3884,
+  "verdict": "no_edge_over_baselines_on_this_sample",
+  "regimes": {
+   "above_sma20": {
+    "attempts": 22,
+    "analog_accuracy_pct": 59.1,
+    "always_up_pct": 50.0
+   },
+   "below_sma20": {
+    "attempts": 18,
+    "analog_accuracy_pct": 27.8,
+    "always_up_pct": 44.4
+   },
+   "high_vol": {
+    "attempts": 22,
+    "analog_accuracy_pct": 22.7,
+    "always_up_pct": 40.9
+   },
+   "low_vol": {
+    "attempts": 18,
+    "analog_accuracy_pct": 72.2,
+    "always_up_pct": 55.6
+   }
+  },
+  "regime_note": "Buckets use only origin-time information (price vs causal SMA-20; 10-bar volatility vs its trailing-100-bar median). Small buckets are noise with labels — compare against always-up inside the same bucket.",
+  "honesty_notes": [
+   "Out-of-sample by construction: analogs and their outcomes all predate each origin.",
+   "Origins may overlap in time, so attempts are not fully independent — treat the accuracy gap, not the third decimal, as the signal.",
+   "One symbol and one era prove nothing about other symbols, eras or the future; re-run per series and distrust any single-sample 'edge'.",
+   "Direction accuracy ignores magnitude, costs and risk: a 55% direction rate can still lose money after spreads, fees and tails."
+  ]
+ },
+ "ensemble_eval": {
+  "attempts_made": 40,
+  "horizon_bars": 3,
+  "direction_accuracy_pct": {
+   "analog_median": 45.0,
+   "analog_weighted": 47.5,
+   "momentum_5bar": 55.0,
+   "majority_vote": 52.5,
+   "candle_analog_median": null,
+   "candle_analog_weighted": null,
+   "majority_vote_v2": null,
+   "indicator_analog_median": 47.5,
+   "indicator_analog_weighted": 52.5,
+   "majority_vote_v3": 52.5,
+   "path_analog_median": 42.9,
+   "path_analog_weighted": 28.6,
+   "majority_vote_v4": 42.9,
+   "cycle_flow_analog_median": 46.4,
+   "cycle_flow_analog_weighted": 39.3,
+   "multiscale_trend": 57.5,
+   "majority_vote_v5": 50.0,
+   "kalman_trend": 60.0,
+   "omni_direct_consensus": 57.5,
+   "rank_fusion_analog_median": 46.4,
+   "rank_fusion_analog_weighted": 39.3,
+   "majority_vote_v6": 57.5,
+   "hull_trend": 52.5,
+   "supertrend_trend": 60.0,
+   "kaufman_trend": 60.0,
+   "haar_wavelet_trend": 42.5,
+   "markov_regime": 57.5,
+   "atlas_fusion_v12": 60.0,
+   "majority_vote_v7": 55.0,
+   "aroon_trend": 32.5,
+   "tsi_momentum": 52.5,
+   "trix_momentum": 27.5,
+   "cmo_momentum": 45.0,
+   "ultimate_trend": 55.0,
+   "rvi_trend": 52.5,
+   "regression_trend": 30.0,
+   "donchian_trend": 50.0,
+   "obv_flow_trend": null,
+   "coppock_trend": 37.5,
+   "atlas_pressure_wave": 60.0,
+   "atlas_regime_compass": 55.0,
+   "atlas_phoenix_fusion": 55.0,
+   "majority_vote_v8": 50.0,
+   "atlas_meta_hedge": 55.0,
+   "atlas_online_logistic": 30.0,
+   "adaptive_selector": 45.0,
+   "agreement_only": null,
+   "consensus_3plus": null
+  },
+  "method_attempts": {
+   "analog_median": 40,
+   "analog_weighted": 40,
+   "momentum_5bar": 40,
+   "majority_vote": 40,
+   "candle_analog_median": 0,
+   "candle_analog_weighted": 0,
+   "majority_vote_v2": 0,
+   "indicator_analog_median": 40,
+   "indicator_analog_weighted": 40,
+   "majority_vote_v3": 40,
+   "path_analog_median": 28,
+   "path_analog_weighted": 28,
+   "majority_vote_v4": 28,
+   "cycle_flow_analog_median": 28,
+   "cycle_flow_analog_weighted": 28,
+   "multiscale_trend": 40,
+   "majority_vote_v5": 40,
+   "kalman_trend": 40,
+   "omni_direct_consensus": 40,
+   "rank_fusion_analog_median": 28,
+   "rank_fusion_analog_weighted": 28,
+   "majority_vote_v6": 40,
+   "hull_trend": 40,
+   "supertrend_trend": 40,
+   "kaufman_trend": 40,
+   "haar_wavelet_trend": 40,
+   "markov_regime": 40,
+   "atlas_fusion_v12": 40,
+   "majority_vote_v7": 40,
+   "aroon_trend": 40,
+   "tsi_momentum": 40,
+   "trix_momentum": 40,
+   "cmo_momentum": 40,
+   "ultimate_trend": 40,
+   "rvi_trend": 40,
+   "regression_trend": 40,
+   "donchian_trend": 40,
+   "obv_flow_trend": 0,
+   "coppock_trend": 40,
+   "atlas_pressure_wave": 40,
+   "atlas_regime_compass": 40,
+   "atlas_phoenix_fusion": 40,
+   "majority_vote_v8": 40,
+   "atlas_meta_hedge": 40,
+   "atlas_online_logistic": 40,
+   "adaptive_selector": 40
+  },
+  "candle_data": {
+   "usable_range_share": 0.0,
+   "nonzero_volume_share": 0.0,
+   "available": false
+  },
+  "candle_feature_set": [
+   "gap_pct",
+   "range_pct",
+   "signed_body",
+   "mean_body_3bar",
+   "close_location",
+   "mean_close_location_3bar",
+   "wick_balance",
+   "range_expansion_vs_20bar",
+   "volume_surprise_vs_20bar_median"
+  ],
+  "agreement_coverage_pct": 12.5,
+  "agreement_attempts": 5,
+  "consensus_3plus_coverage_pct": 12.5,
+  "consensus_3plus_attempts": 5,
+  "indicator_data": {
+   "available": true,
+   "min_feature_index": 60,
+   "close_only_series": true,
+   "nonzero_volume_share": 0.0,
+   "note": "On close-only bars, range-based indicators collapse to functions of the close path; they do not invent highs, lows or candle anatomy."
+  },
+  "indicator_feature_set": [
+   "rsi14_centered",
+   "rsi14_slope_3bar",
+   "macd_line_atr_normalized",
+   "macd_histogram_atr_normalized",
+   "bollinger_percent_b",
+   "bollinger_bandwidth_pct",
+   "distance_to_sma20_in_atr",
+   "distance_to_sma50_in_atr",
+   "sma20_slope_5bar_pct",
+   "donchian20_position",
+   "stochastic_k14",
+   "directional_balance_plus_minus_di",
+   "adx14_trend_strength",
+   "realized_volatility_vs_trailing_median_log",
+   "volume_surprise_vs_20bar_median_log"
+  ],
+  "path_data": {
+   "available": true,
+   "min_feature_index": 80,
+   "close_only_series": true,
+   "nonzero_volume_share": 0.0,
+   "note": "Path geometry is computed from completed closes (and real highs/lows/volume when present). On close-only bars the range-position pieces collapse to the close path; no candle anatomy or volume is invented."
+  },
+  "path_feature_set": [
+   "efficiency_ratio_20_signed",
+   "efficiency_ratio_60_signed",
+   "log_trend_slope_20_vol_normalized",
+   "log_trend_slope_60_vol_normalized",
+   "variance_ratio_5_log",
+   "lag1_autocorrelation_30",
+   "realized_skew_20",
+   "downside_variance_share_20",
+   "drawdown_from_60bar_high_pct",
+   "runup_from_60bar_low_pct",
+   "range_position_60",
+   "max_drawdown_20_pct",
+   "volatility_ratio_10_to_60_log",
+   "signed_return_streak",
+   "up_down_volume_balance_20",
+   "range_compression_10_to_60_log"
+  ],
+  "cycle_data": {
+   "available": true,
+   "min_feature_index": 80,
+   "close_only_series": true,
+   "nonzero_volume_share": 0.0,
+   "note": "Cycle/flow coordinates use completed OHLCV only. On close-only bars, range and flow pieces collapse toward close-path/neutral values; highs, lows, volume and order flow are never invented."
+  },
+  "cycle_feature_set": [
+   "aroon_oscillator_25",
+   "vortex_balance_14",
+   "chande_momentum_14",
+   "fisher_transform_10",
+   "relative_vigor_index_10",
+   "schaff_trend_cycle",
+   "kst_volatility_normalized",
+   "coppock_volatility_normalized",
+   "chaikin_money_flow_20",
+   "money_flow_index_14",
+   "elder_force_index_atr_volume_normalized",
+   "rolling_vwap_distance_atr_20",
+   "ulcer_index_14",
+   "ehlers_super_smoother_slope_atr",
+   "permutation_entropy_order_score",
+   "signed_path_pressure_index_20",
+   "entropy_weighted_multiscale_trend",
+   "overnight_to_intraday_volatility_log_20"
+  ],
+  "multiscale_trend": {
+   "windows_bars": [
+    3,
+    5,
+    10,
+    20,
+    60,
+    120
+   ],
+   "rule": "sign of the average tanh(return/(10-bar volatility*sqrt(window))) across available windows",
+   "attempts": 40
+  },
+  "multiscale_confidence_coverage": {
+   "thresholds": [
+    {
+     "absolute_score_at_least": 0.3,
+     "attempts": 25,
+     "coverage_pct": 62.5,
+     "direction_accuracy_pct": 44.0,
+     "mean_net_pct_per_trade_10bps": -1.214,
+     "mean_net_pct_per_trade_25bps": -1.364
+    },
+    {
+     "absolute_score_at_least": 0.5,
+     "attempts": 17,
+     "coverage_pct": 42.5,
+     "direction_accuracy_pct": 29.4,
+     "mean_net_pct_per_trade_10bps": -5.879,
+     "mean_net_pct_per_trade_25bps": -6.029
+    },
+    {
+     "absolute_score_at_least": 0.7,
+     "attempts": 9,
+     "coverage_pct": 22.5,
+     "direction_accuracy_pct": null,
+     "mean_net_pct_per_trade_10bps": -7.811,
+     "mean_net_pct_per_trade_25bps": -7.961
+    }
+   ],
+   "warning": "Coverage-limited diagnostic only. A high selective rate is not the full-test score, is never eligible for best_method_on_this_sample, and score magnitude may not calibrate across symbols/eras."
+  },
+  "adaptive_selector": {
+   "rule": "Follow the candidate with the best shrunken hit rate over fully revealed prior attempts only: (revealed_hits + 5) / (revealed_attempts + 10). A prior attempt is revealed only when old_origin + horizon <= current origin, so overlapping unfinished windows cannot teach the selector early.",
+   "min_revealed_attempts_per_method": 20,
+   "prior_pseudo_attempts_at_50pct": 10,
+   "fallback": "majority_vote_v8 when available, otherwise the newest available majority vote, then momentum_5bar",
+   "fallback_attempts": 22,
+   "choices": {
+    "analog_weighted": 4,
+    "kalman_trend": 14,
+    "majority_vote_v8": 22
+   },
+   "revealed_attempts_by_method_at_end": {
+    "analog_median": 37,
+    "analog_weighted": 37,
+    "momentum_5bar": 37,
+    "majority_vote": 37,
+    "candle_analog_median": 0,
+    "candle_analog_weighted": 0,
+    "majority_vote_v2": 0,
+    "indicator_analog_median": 37,
+    "indicator_analog_weighted": 37,
+    "majority_vote_v3": 37,
+    "path_analog_median": 25,
+    "path_analog_weighted": 25,
+    "majority_vote_v4": 25,
+    "cycle_flow_analog_median": 25,
+    "cycle_flow_analog_weighted": 25,
+    "multiscale_trend": 37,
+    "majority_vote_v5": 37,
+    "kalman_trend": 37,
+    "omni_direct_consensus": 37,
+    "rank_fusion_analog_median": 25,
+    "rank_fusion_analog_weighted": 25,
+    "majority_vote_v6": 37,
+    "hull_trend": 37,
+    "supertrend_trend": 37,
+    "kaufman_trend": 37,
+    "haar_wavelet_trend": 37,
+    "markov_regime": 37,
+    "atlas_fusion_v12": 37,
+    "majority_vote_v7": 37,
+    "aroon_trend": 37,
+    "tsi_momentum": 37,
+    "trix_momentum": 37,
+    "cmo_momentum": 37,
+    "ultimate_trend": 37,
+    "rvi_trend": 37,
+    "regression_trend": 37,
+    "donchian_trend": 37,
+    "obv_flow_trend": 0,
+    "coppock_trend": 37,
+    "atlas_pressure_wave": 37,
+    "atlas_regime_compass": 37,
+    "atlas_phoenix_fusion": 37,
+    "majority_vote_v8": 37,
+    "atlas_meta_hedge": 37,
+    "atlas_online_logistic": 37
+   },
+   "revealed_hits_by_method_at_end": {
+    "analog_median": 16,
+    "analog_weighted": 17,
+    "momentum_5bar": 21,
+    "majority_vote": 20,
+    "candle_analog_median": 0,
+    "candle_analog_weighted": 0,
+    "majority_vote_v2": 0,
+    "indicator_analog_median": 18,
+    "indicator_analog_weighted": 20,
+    "majority_vote_v3": 20,
+    "path_analog_median": 11,
+    "path_analog_weighted": 8,
+    "majority_vote_v4": 11,
+    "cycle_flow_analog_median": 11,
+    "cycle_flow_analog_weighted": 9,
+    "multiscale_trend": 22,
+    "majority_vote_v5": 19,
+    "kalman_trend": 23,
+    "omni_direct_consensus": 22,
+    "rank_fusion_analog_median": 11,
+    "rank_fusion_analog_weighted": 10,
+    "majority_vote_v6": 22,
+    "hull_trend": 20,
+    "supertrend_trend": 23,
+    "kaufman_trend": 23,
+    "haar_wavelet_trend": 16,
+    "markov_regime": 22,
+    "atlas_fusion_v12": 23,
+    "majority_vote_v7": 21,
+    "aroon_trend": 11,
+    "tsi_momentum": 20,
+    "trix_momentum": 9,
+    "cmo_momentum": 17,
+    "ultimate_trend": 21,
+    "rvi_trend": 19,
+    "regression_trend": 11,
+    "donchian_trend": 19,
+    "obv_flow_trend": 0,
+    "coppock_trend": 15,
+    "atlas_pressure_wave": 23,
+    "atlas_regime_compass": 21,
+    "atlas_phoenix_fusion": 21,
+    "majority_vote_v8": 19,
+    "atlas_meta_hedge": 21,
+    "atlas_online_logistic": 12
+   },
+   "selection_log": [
+    {
+     "origin_index": 80,
+     "origin_time": "2006-09-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 0,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 81,
+     "origin_time": "2006-10-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 0,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 82,
+     "origin_time": "2006-11-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 0,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 83,
+     "origin_time": "2006-12-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 1,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 84,
+     "origin_time": "2007-01-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 2,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 85,
+     "origin_time": "2007-02-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 3,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 86,
+     "origin_time": "2007-03-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 4,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 87,
+     "origin_time": "2007-04-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 5,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 88,
+     "origin_time": "2007-05-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 6,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 89,
+     "origin_time": "2007-06-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 7,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 90,
+     "origin_time": "2007-07-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 8,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 91,
+     "origin_time": "2007-08-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 9,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 92,
+     "origin_time": "2007-09-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 10,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 93,
+     "origin_time": "2007-10-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 11,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 94,
+     "origin_time": "2007-11-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 12,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 95,
+     "origin_time": "2007-12-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 13,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 96,
+     "origin_time": "2008-01-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 14,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 97,
+     "origin_time": "2008-02-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 15,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 98,
+     "origin_time": "2008-03-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 16,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 99,
+     "origin_time": "2008-04-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 17,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 100,
+     "origin_time": "2008-05-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 18,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 101,
+     "origin_time": "2008-06-01T00:00:00Z",
+     "chosen_method": "majority_vote_v8",
+     "used_fallback": true,
+     "revealed_attempts_for_chosen": 19,
+     "eligible_methods": []
+    },
+    {
+     "origin_index": 102,
+     "origin_time": "2008-07-01T00:00:00Z",
+     "chosen_method": "analog_weighted",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 20,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 103,
+     "origin_time": "2008-08-01T00:00:00Z",
+     "chosen_method": "analog_weighted",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 21,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 104,
+     "origin_time": "2008-09-01T00:00:00Z",
+     "chosen_method": "analog_weighted",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 22,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 105,
+     "origin_time": "2008-10-01T00:00:00Z",
+     "chosen_method": "analog_weighted",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 23,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 106,
+     "origin_time": "2008-11-01T00:00:00Z",
+     "chosen_method": "kalman_trend",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 24,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 107,
+     "origin_time": "2008-12-01T00:00:00Z",
+     "chosen_method": "kalman_trend",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 25,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 108,
+     "origin_time": "2009-01-01T00:00:00Z",
+     "chosen_method": "kalman_trend",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 26,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 109,
+     "origin_time": "2009-02-01T00:00:00Z",
+     "chosen_method": "kalman_trend",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 27,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 110,
+     "origin_time": "2009-03-01T00:00:00Z",
+     "chosen_method": "kalman_trend",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 28,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 111,
+     "origin_time": "2009-04-01T00:00:00Z",
+     "chosen_method": "kalman_trend",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 29,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 112,
+     "origin_time": "2009-05-01T00:00:00Z",
+     "chosen_method": "kalman_trend",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 30,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 113,
+     "origin_time": "2009-06-01T00:00:00Z",
+     "chosen_method": "kalman_trend",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 31,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 114,
+     "origin_time": "2009-07-01T00:00:00Z",
+     "chosen_method": "kalman_trend",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 32,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "path_analog_median",
+      "path_analog_weighted",
+      "majority_vote_v4",
+      "cycle_flow_analog_median",
+      "cycle_flow_analog_weighted",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "rank_fusion_analog_median",
+      "rank_fusion_analog_weighted",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 115,
+     "origin_time": "2009-08-01T00:00:00Z",
+     "chosen_method": "kalman_trend",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 33,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "path_analog_median",
+      "path_analog_weighted",
+      "majority_vote_v4",
+      "cycle_flow_analog_median",
+      "cycle_flow_analog_weighted",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "rank_fusion_analog_median",
+      "rank_fusion_analog_weighted",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 116,
+     "origin_time": "2009-09-01T00:00:00Z",
+     "chosen_method": "kalman_trend",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 34,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "path_analog_median",
+      "path_analog_weighted",
+      "majority_vote_v4",
+      "cycle_flow_analog_median",
+      "cycle_flow_analog_weighted",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "rank_fusion_analog_median",
+      "rank_fusion_analog_weighted",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 117,
+     "origin_time": "2009-10-01T00:00:00Z",
+     "chosen_method": "kalman_trend",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 35,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "path_analog_median",
+      "path_analog_weighted",
+      "majority_vote_v4",
+      "cycle_flow_analog_median",
+      "cycle_flow_analog_weighted",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "rank_fusion_analog_median",
+      "rank_fusion_analog_weighted",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 118,
+     "origin_time": "2009-11-01T00:00:00Z",
+     "chosen_method": "kalman_trend",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 36,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "path_analog_median",
+      "path_analog_weighted",
+      "majority_vote_v4",
+      "cycle_flow_analog_median",
+      "cycle_flow_analog_weighted",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "rank_fusion_analog_median",
+      "rank_fusion_analog_weighted",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    },
+    {
+     "origin_index": 119,
+     "origin_time": "2009-12-01T00:00:00Z",
+     "chosen_method": "kalman_trend",
+     "used_fallback": false,
+     "revealed_attempts_for_chosen": 37,
+     "eligible_methods": [
+      "analog_median",
+      "analog_weighted",
+      "momentum_5bar",
+      "majority_vote",
+      "indicator_analog_median",
+      "indicator_analog_weighted",
+      "majority_vote_v3",
+      "path_analog_median",
+      "path_analog_weighted",
+      "majority_vote_v4",
+      "cycle_flow_analog_median",
+      "cycle_flow_analog_weighted",
+      "multiscale_trend",
+      "majority_vote_v5",
+      "kalman_trend",
+      "omni_direct_consensus",
+      "rank_fusion_analog_median",
+      "rank_fusion_analog_weighted",
+      "majority_vote_v6",
+      "hull_trend",
+      "supertrend_trend",
+      "kaufman_trend",
+      "haar_wavelet_trend",
+      "markov_regime",
+      "atlas_fusion_v12",
+      "majority_vote_v7",
+      "aroon_trend",
+      "tsi_momentum",
+      "trix_momentum",
+      "cmo_momentum",
+      "ultimate_trend",
+      "rvi_trend",
+      "regression_trend",
+      "donchian_trend",
+      "coppock_trend",
+      "atlas_pressure_wave",
+      "atlas_regime_compass",
+      "atlas_phoenix_fusion",
+      "majority_vote_v8",
+      "atlas_meta_hedge",
+      "atlas_online_logistic"
+     ]
+    }
+   ]
+  },
+  "v11_direct_methods": {
+   "kalman_trend": "sign of causal alpha-beta log-price slope (level gain 0.35, slope gain 0.08)",
+   "omni_direct_consensus": "fixed weighted fusion of multiscale trend (1.2), Kalman slope (0.9), horizon-matched trend (0.7), Parabolic SAR (0.5) and a CCI/Williams/TSI/TRIX/Ultimate/CMO/Fisher/Schaff oscillator basket (0.5)",
+   "rank_fusion_analog": "neighbours selected by mean normalized distance rank across the five existing feature families",
+   "attempts": {
+    "kalman_trend": 40,
+    "omni_direct_consensus": 40,
+    "rank_fusion_analog_median": 28,
+    "rank_fusion_analog_weighted": 28,
+    "majority_vote_v6": 40
+   }
+  },
+  "v12_direct_methods": {
+   "hull_trend": "Hull MA price distance plus 3-bar slope, ATR-normalized",
+   "supertrend_trend": "Supertrend(10,3) state",
+   "kaufman_trend": "Kaufman AMA price/slope state, ATR-normalized",
+   "haar_wavelet_trend": "Haar block-average scales 4/8/16/32/64, volatility-normalized",
+   "markov_regime": "trend/volatility/RSI state; sign is mean fully revealed prior-attempt outcome in that state after 10 samples, otherwise multiscale",
+   "atlas_fusion_v12": "majority of Hull, Kalman, Markov regime, Omni and multiscale votes",
+   "attempts": {
+    "hull_trend": 40,
+    "supertrend_trend": 40,
+    "kaufman_trend": 40,
+    "haar_wavelet_trend": 40,
+    "markov_regime": 40,
+    "atlas_fusion_v12": 40,
+    "majority_vote_v7": 40
+   }
+  },
+  "v13_direct_methods": {
+   "classic_and_modern": "Aroon, TSI, TRIX, CMO, Ultimate, RVI, 20/60 log-regression, Donchian, OBV flow and Coppock are raced as bounded direct signs beside every older method.",
+   "atlas_pressure_wave": "15-bar exponentially weighted candle close/body pressure scaled by ATR range and real relative volume, fused with 3/10-bar volatility-normalized momentum; close-only inputs collapse honestly to close-path pressure.",
+   "atlas_regime_compass": "ADX/permutation-entropy trend weight blends Hull/multiscale trend with Bollinger/RSI range reversion.",
+   "atlas_phoenix_fusion": "family-balanced fusion: trend filters 25%, momentum 25%, structure 20%, OHLCV flow proxies 20%, Regime Compass 10%; correlated inputs are averaged inside families first.",
+   "majority_vote_v8": "all available analog-family, v4-v12 direct and v13 direct votes; Phoenix/Pressure/Atlas Fusion breaks ties in that order.",
+   "attempts": {
+    "aroon_trend": 40,
+    "tsi_momentum": 40,
+    "trix_momentum": 40,
+    "cmo_momentum": 40,
+    "ultimate_trend": 40,
+    "rvi_trend": 40,
+    "regression_trend": 40,
+    "donchian_trend": 40,
+    "obv_flow_trend": 0,
+    "coppock_trend": 40,
+    "atlas_pressure_wave": 40,
+    "atlas_regime_compass": 40,
+    "atlas_phoenix_fusion": 40,
+    "majority_vote_v8": 40
+   }
+  },
+  "v13_meta_learners": {
+   "atlas_meta_hedge": {
+    "rule": "Exponentially weighted majority over 16 diversified contestants. A revealed hit multiplies a candidate weight by exp(+0.15), a miss by exp(-0.15), then weights are renormalized to mean 1. Labels reveal only when old_origin + horizon <= current origin.",
+    "candidates": [
+     "analog_weighted",
+     "path_analog_weighted",
+     "cycle_flow_analog_weighted",
+     "rank_fusion_analog_weighted",
+     "multiscale_trend",
+     "kalman_trend",
+     "omni_direct_consensus",
+     "hull_trend",
+     "kaufman_trend",
+     "atlas_fusion_v12",
+     "majority_vote_v7",
+     "tsi_momentum",
+     "ultimate_trend",
+     "atlas_pressure_wave",
+     "atlas_regime_compass",
+     "atlas_phoenix_fusion"
+    ],
+    "eta": 0.15,
+    "revealed_attempts_by_end": 37,
+    "final_weights_mean_one": {
+     "analog_weighted": 0.296,
+     "path_analog_weighted": 0.1203,
+     "cycle_flow_analog_weighted": 0.1624,
+     "rank_fusion_analog_weighted": 0.2193,
+     "multiscale_trend": 1.3265,
+     "kalman_trend": 1.7906,
+     "omni_direct_consensus": 1.3265,
+     "hull_trend": 0.728,
+     "kaufman_trend": 1.7906,
+     "atlas_fusion_v12": 1.7906,
+     "majority_vote_v7": 0.9827,
+     "tsi_momentum": 0.728,
+     "ultimate_trend": 0.9827,
+     "atlas_pressure_wave": 1.7906,
+     "atlas_regime_compass": 0.9827,
+     "atlas_phoenix_fusion": 0.9827
+    },
+    "attempts": 40
+   },
+   "atlas_online_logistic": {
+    "rule": "Online logistic regression on bounded origin-time scores/analog shares. One L2-regularized SGD update (learning rate 0.08, lambda 0.002) is applied only after an attempt's full horizon has revealed; missing features are neutral zero, never future-filled.",
+    "features": [
+     "multiscale_trend",
+     "hull_trend",
+     "kalman_trend",
+     "kaufman_trend",
+     "haar_wavelet_trend",
+     "regression_trend",
+     "atlas_pressure_wave",
+     "atlas_regime_compass",
+     "atlas_phoenix_fusion",
+     "ultimate_trend",
+     "analog_weighted_share",
+     "path_weighted_share",
+     "cycle_weighted_share",
+     "rank_weighted_share",
+     "rsi_centered"
+    ],
+    "learning_rate": 0.08,
+    "l2_lambda": 0.002,
+    "revealed_attempts_by_end": 37,
+    "final_intercept": 0.0084,
+    "final_weights": {
+     "multiscale_trend": -0.0786,
+     "hull_trend": 0.106,
+     "kalman_trend": 0.1219,
+     "kaufman_trend": 0.1645,
+     "haar_wavelet_trend": -0.1113,
+     "regression_trend": -0.2495,
+     "atlas_pressure_wave": -0.007,
+     "atlas_regime_compass": 0.0386,
+     "atlas_phoenix_fusion": -0.0946,
+     "ultimate_trend": -0.0677,
+     "analog_weighted_share": -0.1449,
+     "path_weighted_share": -0.0983,
+     "cycle_weighted_share": -0.084,
+     "rank_weighted_share": -0.1326,
+     "rsi_centered": -0.1541
+    },
+    "attempts": 40
+   },
+   "warning": "Causal online learning prevents label leakage, not overfitting, regime change or correlated-input double counting. A meta-learner trained inside one race still needs untouched symbols/eras before anyone should trust it."
+  },
+  "best_method_on_this_sample": "kalman_trend",
+  "cost_analysis": [
+   {
+    "round_trip_cost_bps": 10,
+    "analog_median": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 45.0,
+     "mean_net_pct_per_trade": -0.787,
+     "total_net_pct_overlapping_sum": -31.5
+    },
+    "analog_weighted": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 47.5,
+     "mean_net_pct_per_trade": -1.515,
+     "total_net_pct_overlapping_sum": -60.6
+    },
+    "momentum_5bar": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 55.0,
+     "mean_net_pct_per_trade": 2.472,
+     "total_net_pct_overlapping_sum": 98.9
+    },
+    "majority_vote": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 52.5,
+     "mean_net_pct_per_trade": 0.711,
+     "total_net_pct_overlapping_sum": 28.4
+    },
+    "candle_analog_median": null,
+    "candle_analog_weighted": null,
+    "majority_vote_v2": null,
+    "indicator_analog_median": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 47.5,
+     "mean_net_pct_per_trade": 1.55,
+     "total_net_pct_overlapping_sum": 62.0
+    },
+    "indicator_analog_weighted": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 52.5,
+     "mean_net_pct_per_trade": 1.485,
+     "total_net_pct_overlapping_sum": 59.4
+    },
+    "majority_vote_v3": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 52.5,
+     "mean_net_pct_per_trade": 1.485,
+     "total_net_pct_overlapping_sum": 59.4
+    },
+    "path_analog_median": {
+     "trades": 28,
+     "win_rate_after_cost_pct": 42.9,
+     "mean_net_pct_per_trade": -4.92,
+     "total_net_pct_overlapping_sum": -137.8
+    },
+    "path_analog_weighted": {
+     "trades": 28,
+     "win_rate_after_cost_pct": 28.6,
+     "mean_net_pct_per_trade": -5.681,
+     "total_net_pct_overlapping_sum": -159.1
+    },
+    "majority_vote_v4": {
+     "trades": 28,
+     "win_rate_after_cost_pct": 42.9,
+     "mean_net_pct_per_trade": -1.24,
+     "total_net_pct_overlapping_sum": -34.7
+    },
+    "cycle_flow_analog_median": {
+     "trades": 28,
+     "win_rate_after_cost_pct": 46.4,
+     "mean_net_pct_per_trade": -4.558,
+     "total_net_pct_overlapping_sum": -127.6
+    },
+    "cycle_flow_analog_weighted": {
+     "trades": 28,
+     "win_rate_after_cost_pct": 39.3,
+     "mean_net_pct_per_trade": -4.144,
+     "total_net_pct_overlapping_sum": -116.0
+    },
+    "multiscale_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 57.5,
+     "mean_net_pct_per_trade": 2.85,
+     "total_net_pct_overlapping_sum": 114.0
+    },
+    "majority_vote_v5": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 50.0,
+     "mean_net_pct_per_trade": 0.638,
+     "total_net_pct_overlapping_sum": 25.5
+    },
+    "kalman_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 60.0,
+     "mean_net_pct_per_trade": 2.307,
+     "total_net_pct_overlapping_sum": 92.3
+    },
+    "omni_direct_consensus": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 57.5,
+     "mean_net_pct_per_trade": 2.08,
+     "total_net_pct_overlapping_sum": 83.2
+    },
+    "rank_fusion_analog_median": {
+     "trades": 28,
+     "win_rate_after_cost_pct": 46.4,
+     "mean_net_pct_per_trade": -4.558,
+     "total_net_pct_overlapping_sum": -127.6
+    },
+    "rank_fusion_analog_weighted": {
+     "trades": 28,
+     "win_rate_after_cost_pct": 39.3,
+     "mean_net_pct_per_trade": -2.131,
+     "total_net_pct_overlapping_sum": -59.7
+    },
+    "majority_vote_v6": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 57.5,
+     "mean_net_pct_per_trade": 2.143,
+     "total_net_pct_overlapping_sum": 85.7
+    },
+    "hull_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 52.5,
+     "mean_net_pct_per_trade": -0.288,
+     "total_net_pct_overlapping_sum": -11.5
+    },
+    "supertrend_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 60.0,
+     "mean_net_pct_per_trade": 3.013,
+     "total_net_pct_overlapping_sum": 120.5
+    },
+    "kaufman_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 60.0,
+     "mean_net_pct_per_trade": 3.013,
+     "total_net_pct_overlapping_sum": 120.5
+    },
+    "haar_wavelet_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 42.5,
+     "mean_net_pct_per_trade": -0.957,
+     "total_net_pct_overlapping_sum": -38.3
+    },
+    "markov_regime": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 57.5,
+     "mean_net_pct_per_trade": 2.85,
+     "total_net_pct_overlapping_sum": 114.0
+    },
+    "atlas_fusion_v12": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 60.0,
+     "mean_net_pct_per_trade": 3.013,
+     "total_net_pct_overlapping_sum": 120.5
+    },
+    "majority_vote_v7": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 55.0,
+     "mean_net_pct_per_trade": 1.917,
+     "total_net_pct_overlapping_sum": 76.7
+    },
+    "aroon_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 32.5,
+     "mean_net_pct_per_trade": -5.378,
+     "total_net_pct_overlapping_sum": -215.1
+    },
+    "tsi_momentum": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 52.5,
+     "mean_net_pct_per_trade": 1.161,
+     "total_net_pct_overlapping_sum": 46.5
+    },
+    "trix_momentum": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 27.5,
+     "mean_net_pct_per_trade": -7.269,
+     "total_net_pct_overlapping_sum": -290.7
+    },
+    "cmo_momentum": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 45.0,
+     "mean_net_pct_per_trade": -0.917,
+     "total_net_pct_overlapping_sum": -36.7
+    },
+    "ultimate_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 55.0,
+     "mean_net_pct_per_trade": 1.212,
+     "total_net_pct_overlapping_sum": 48.5
+    },
+    "rvi_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 52.5,
+     "mean_net_pct_per_trade": -1.75,
+     "total_net_pct_overlapping_sum": -70.0
+    },
+    "regression_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 30.0,
+     "mean_net_pct_per_trade": -6.3,
+     "total_net_pct_overlapping_sum": -252.0
+    },
+    "donchian_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 50.0,
+     "mean_net_pct_per_trade": -0.28,
+     "total_net_pct_overlapping_sum": -11.2
+    },
+    "obv_flow_trend": null,
+    "coppock_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 37.5,
+     "mean_net_pct_per_trade": -2.012,
+     "total_net_pct_overlapping_sum": -80.5
+    },
+    "atlas_pressure_wave": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 60.0,
+     "mean_net_pct_per_trade": 3.431,
+     "total_net_pct_overlapping_sum": 137.3
+    },
+    "atlas_regime_compass": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 55.0,
+     "mean_net_pct_per_trade": 0.269,
+     "total_net_pct_overlapping_sum": 10.8
+    },
+    "atlas_phoenix_fusion": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 55.0,
+     "mean_net_pct_per_trade": 0.937,
+     "total_net_pct_overlapping_sum": 37.5
+    },
+    "majority_vote_v8": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 50.0,
+     "mean_net_pct_per_trade": 0.548,
+     "total_net_pct_overlapping_sum": 21.9
+    },
+    "atlas_meta_hedge": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 55.0,
+     "mean_net_pct_per_trade": 1.917,
+     "total_net_pct_overlapping_sum": 76.7
+    },
+    "atlas_online_logistic": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 30.0,
+     "mean_net_pct_per_trade": -6.527,
+     "total_net_pct_overlapping_sum": -261.1
+    },
+    "adaptive_selector": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 45.0,
+     "mean_net_pct_per_trade": -2.474,
+     "total_net_pct_overlapping_sum": -99.0
+    },
+    "agreement_only": {
+     "trades": 5,
+     "win_rate_after_cost_pct": 60.0,
+     "mean_net_pct_per_trade": 4.527,
+     "total_net_pct_overlapping_sum": 22.6
+    },
+    "consensus_3plus": {
+     "trades": 5,
+     "win_rate_after_cost_pct": 60.0,
+     "mean_net_pct_per_trade": 4.527,
+     "total_net_pct_overlapping_sum": 22.6
+    },
+    "always_up_long": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 47.5,
+     "mean_net_pct_per_trade": 1.55,
+     "total_net_pct_overlapping_sum": 62.0
+    }
+   },
+   {
+    "round_trip_cost_bps": 25,
+    "analog_median": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 45.0,
+     "mean_net_pct_per_trade": -0.937,
+     "total_net_pct_overlapping_sum": -37.5
+    },
+    "analog_weighted": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 47.5,
+     "mean_net_pct_per_trade": -1.665,
+     "total_net_pct_overlapping_sum": -66.6
+    },
+    "momentum_5bar": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 55.0,
+     "mean_net_pct_per_trade": 2.322,
+     "total_net_pct_overlapping_sum": 92.9
+    },
+    "majority_vote": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 52.5,
+     "mean_net_pct_per_trade": 0.561,
+     "total_net_pct_overlapping_sum": 22.4
+    },
+    "candle_analog_median": null,
+    "candle_analog_weighted": null,
+    "majority_vote_v2": null,
+    "indicator_analog_median": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 47.5,
+     "mean_net_pct_per_trade": 1.4,
+     "total_net_pct_overlapping_sum": 56.0
+    },
+    "indicator_analog_weighted": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 52.5,
+     "mean_net_pct_per_trade": 1.335,
+     "total_net_pct_overlapping_sum": 53.4
+    },
+    "majority_vote_v3": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 52.5,
+     "mean_net_pct_per_trade": 1.335,
+     "total_net_pct_overlapping_sum": 53.4
+    },
+    "path_analog_median": {
+     "trades": 28,
+     "win_rate_after_cost_pct": 42.9,
+     "mean_net_pct_per_trade": -5.07,
+     "total_net_pct_overlapping_sum": -142.0
+    },
+    "path_analog_weighted": {
+     "trades": 28,
+     "win_rate_after_cost_pct": 28.6,
+     "mean_net_pct_per_trade": -5.831,
+     "total_net_pct_overlapping_sum": -163.3
+    },
+    "majority_vote_v4": {
+     "trades": 28,
+     "win_rate_after_cost_pct": 42.9,
+     "mean_net_pct_per_trade": -1.39,
+     "total_net_pct_overlapping_sum": -38.9
+    },
+    "cycle_flow_analog_median": {
+     "trades": 28,
+     "win_rate_after_cost_pct": 46.4,
+     "mean_net_pct_per_trade": -4.708,
+     "total_net_pct_overlapping_sum": -131.8
+    },
+    "cycle_flow_analog_weighted": {
+     "trades": 28,
+     "win_rate_after_cost_pct": 39.3,
+     "mean_net_pct_per_trade": -4.294,
+     "total_net_pct_overlapping_sum": -120.2
+    },
+    "multiscale_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 57.5,
+     "mean_net_pct_per_trade": 2.7,
+     "total_net_pct_overlapping_sum": 108.0
+    },
+    "majority_vote_v5": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 50.0,
+     "mean_net_pct_per_trade": 0.488,
+     "total_net_pct_overlapping_sum": 19.5
+    },
+    "kalman_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 60.0,
+     "mean_net_pct_per_trade": 2.157,
+     "total_net_pct_overlapping_sum": 86.3
+    },
+    "omni_direct_consensus": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 57.5,
+     "mean_net_pct_per_trade": 1.93,
+     "total_net_pct_overlapping_sum": 77.2
+    },
+    "rank_fusion_analog_median": {
+     "trades": 28,
+     "win_rate_after_cost_pct": 46.4,
+     "mean_net_pct_per_trade": -4.708,
+     "total_net_pct_overlapping_sum": -131.8
+    },
+    "rank_fusion_analog_weighted": {
+     "trades": 28,
+     "win_rate_after_cost_pct": 39.3,
+     "mean_net_pct_per_trade": -2.281,
+     "total_net_pct_overlapping_sum": -63.9
+    },
+    "majority_vote_v6": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 57.5,
+     "mean_net_pct_per_trade": 1.993,
+     "total_net_pct_overlapping_sum": 79.7
+    },
+    "hull_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 52.5,
+     "mean_net_pct_per_trade": -0.438,
+     "total_net_pct_overlapping_sum": -17.5
+    },
+    "supertrend_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 60.0,
+     "mean_net_pct_per_trade": 2.863,
+     "total_net_pct_overlapping_sum": 114.5
+    },
+    "kaufman_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 60.0,
+     "mean_net_pct_per_trade": 2.863,
+     "total_net_pct_overlapping_sum": 114.5
+    },
+    "haar_wavelet_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 42.5,
+     "mean_net_pct_per_trade": -1.107,
+     "total_net_pct_overlapping_sum": -44.3
+    },
+    "markov_regime": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 57.5,
+     "mean_net_pct_per_trade": 2.7,
+     "total_net_pct_overlapping_sum": 108.0
+    },
+    "atlas_fusion_v12": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 60.0,
+     "mean_net_pct_per_trade": 2.863,
+     "total_net_pct_overlapping_sum": 114.5
+    },
+    "majority_vote_v7": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 55.0,
+     "mean_net_pct_per_trade": 1.767,
+     "total_net_pct_overlapping_sum": 70.7
+    },
+    "aroon_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 32.5,
+     "mean_net_pct_per_trade": -5.528,
+     "total_net_pct_overlapping_sum": -221.1
+    },
+    "tsi_momentum": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 52.5,
+     "mean_net_pct_per_trade": 1.011,
+     "total_net_pct_overlapping_sum": 40.5
+    },
+    "trix_momentum": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 27.5,
+     "mean_net_pct_per_trade": -7.419,
+     "total_net_pct_overlapping_sum": -296.7
+    },
+    "cmo_momentum": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 45.0,
+     "mean_net_pct_per_trade": -1.067,
+     "total_net_pct_overlapping_sum": -42.7
+    },
+    "ultimate_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 55.0,
+     "mean_net_pct_per_trade": 1.062,
+     "total_net_pct_overlapping_sum": 42.5
+    },
+    "rvi_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 52.5,
+     "mean_net_pct_per_trade": -1.9,
+     "total_net_pct_overlapping_sum": -76.0
+    },
+    "regression_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 30.0,
+     "mean_net_pct_per_trade": -6.45,
+     "total_net_pct_overlapping_sum": -258.0
+    },
+    "donchian_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 50.0,
+     "mean_net_pct_per_trade": -0.43,
+     "total_net_pct_overlapping_sum": -17.2
+    },
+    "obv_flow_trend": null,
+    "coppock_trend": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 37.5,
+     "mean_net_pct_per_trade": -2.162,
+     "total_net_pct_overlapping_sum": -86.5
+    },
+    "atlas_pressure_wave": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 60.0,
+     "mean_net_pct_per_trade": 3.281,
+     "total_net_pct_overlapping_sum": 131.3
+    },
+    "atlas_regime_compass": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 55.0,
+     "mean_net_pct_per_trade": 0.119,
+     "total_net_pct_overlapping_sum": 4.8
+    },
+    "atlas_phoenix_fusion": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 55.0,
+     "mean_net_pct_per_trade": 0.787,
+     "total_net_pct_overlapping_sum": 31.5
+    },
+    "majority_vote_v8": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 50.0,
+     "mean_net_pct_per_trade": 0.398,
+     "total_net_pct_overlapping_sum": 15.9
+    },
+    "atlas_meta_hedge": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 55.0,
+     "mean_net_pct_per_trade": 1.767,
+     "total_net_pct_overlapping_sum": 70.7
+    },
+    "atlas_online_logistic": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 30.0,
+     "mean_net_pct_per_trade": -6.677,
+     "total_net_pct_overlapping_sum": -267.1
+    },
+    "adaptive_selector": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 45.0,
+     "mean_net_pct_per_trade": -2.624,
+     "total_net_pct_overlapping_sum": -105.0
+    },
+    "agreement_only": {
+     "trades": 5,
+     "win_rate_after_cost_pct": 60.0,
+     "mean_net_pct_per_trade": 4.377,
+     "total_net_pct_overlapping_sum": 21.9
+    },
+    "consensus_3plus": {
+     "trades": 5,
+     "win_rate_after_cost_pct": 60.0,
+     "mean_net_pct_per_trade": 4.377,
+     "total_net_pct_overlapping_sum": 21.9
+    },
+    "always_up_long": {
+     "trades": 40,
+     "win_rate_after_cost_pct": 47.5,
+     "mean_net_pct_per_trade": 1.4,
+     "total_net_pct_overlapping_sum": 56.0
+    }
+   }
+  ],
+  "honesty_notes": [
+   "Several variants raced on ONE sample: the best-looking one is inflated by multiple comparisons. Treat the winner as a hypothesis to re-test on fresh data, never as a discovered edge.",
+   "agreement_only accuracy is meaningless without its coverage: a filter that speaks rarely can look clever while avoiding most of the test.",
+   "Cost rows use overlapping origins, so totals are NOT a compounded equity curve — read mean-net-per-trade and win-rate-after-cost instead.",
+   "Costs shown are flat round-trip bps; real spreads/slippage vary by market, size and hour and are usually worse than the tidy number.",
+   "Candle-shape neighbours can be numerous and near-duplicates within one trend; their outcome spread is sample folklore until this same blind test survives a second symbol/era. Close-only bars are reported unavailable, not scored as zero.",
+   "Indicator-regime neighbours are transformations of the same historical price path, not independent information: RSI, MACD, Bollinger, Stochastic and Donchian can all agree because they are looking at one move through related windows. On close-only data the range-based pieces collapse to close-path functions and are labelled as such.",
+   "consensus_3plus is a coverage-limited subset, never a full-test score: judge it only beside its attempts/coverage and after-cost rows, and expect small subsets to wobble.",
+   "Path-geometry neighbours re-describe the same completed price path (efficiency, variance scaling, drawdowns and streaks are not new information arriving from outside the chart). On close-only data its high/low pieces collapse to closes and its volume balance is zero rather than invented.",
+   "adaptive_selector is causal by construction — it learns only from attempts whose outcome window had already ended — but it is still selecting among many correlated contestants on one sample. A good selector score here is a reason to re-test on a second symbol/era, not evidence of a durable forecasting edge.",
+   "Cycle/flow neighbours add classic Aroon/Vortex/Fisher/Schaff/KST/Coppock and OHLCV flow proxies, but they remain transformations of the same bars. CMF/MFI/Force/VWAP are not exchange order-flow data, and close-only inputs collapse toward neutral.",
+   "multiscale_trend is a direct trend contestant, not a nearest-neighbour oracle. A 60/100-style result beside momentum's high-50s on one sample is inside ordinary sampling noise unless it survives other horizons, symbols, eras and costs.",
+   "multiscale confidence rows are selective subsets. Their accuracy must always be read with attempts and coverage; TradeAtlas does not let a threshold manufacture a headline.",
+   "v11 adds Kalman, PSAR/Ichimoku/oscillator-informed direct fusion and rank-fused neighbours. They are more transformations of the same OHLCV bars, so a higher sample score can still be multiple-comparison luck; no universal percentage lift is claimed.",
+   "v12 adds Hull/Supertrend/Kaufman/Haar and a causal Markov-regime vote. More methods also means more chances to overfit one sample; an 80% universal direction rate is not claimed.",
+   "v13 adds Aroon/TSI/TRIX/CMO/Ultimate/RVI/regression/Donchian/OBV/Coppock direct signs, invented Pressure Wave/Regime Compass/Phoenix scores, and causal Meta Hedge + online logistic learners. They are still deterministic transformations or delayed-label fits to the same OHLCV history; more machinery can lose faster and an 80% universal rate remains unproven."
+  ]
+ },
+ "multi_horizon_eval": [
+  {
+   "horizon_bars": 1,
+   "attempts_made": 40,
+   "analog_direction_accuracy_pct": 47.5,
+   "baseline_always_up_pct": 52.5,
+   "baseline_momentum_5bar_pct": 60.0,
+   "baseline_mean_reversion_5bar_pct": 40.0,
+   "brier_skill_vs_climatology": -0.1205,
+   "verdict": "no_edge_over_baselines_on_this_sample"
+  },
+  {
+   "horizon_bars": 3,
+   "attempts_made": 40,
+   "analog_direction_accuracy_pct": 45.0,
+   "baseline_always_up_pct": 47.5,
+   "baseline_momentum_5bar_pct": 55.0,
+   "baseline_mean_reversion_5bar_pct": 45.0,
+   "brier_skill_vs_climatology": -0.3884,
+   "verdict": "no_edge_over_baselines_on_this_sample"
+  },
+  {
+   "horizon_bars": 6,
+   "attempts_made": 40,
+   "analog_direction_accuracy_pct": 60.0,
+   "baseline_always_up_pct": 60.0,
+   "baseline_momentum_5bar_pct": 55.0,
+   "baseline_mean_reversion_5bar_pct": 45.0,
+   "brier_skill_vs_climatology": -0.1286,
+   "verdict": "no_edge_over_baselines_on_this_sample"
+  }
+ ],
+ "multiscale_trend_eval": {
+  "method": "fixed multiscale trend score; origins selected exactly like the ensemble race",
+  "windows_bars": [
+   3,
+   5,
+   10,
+   20,
+   60,
+   120
+  ],
+  "horizons": [
+   {
+    "horizon_bars": 1,
+    "attempts_made": 40,
+    "multiscale_direction_accuracy_pct": 57.5,
+    "baseline_momentum_5bar_pct": 60.0,
+    "baseline_always_up_pct": 52.5,
+    "multiscale_mean_net_pct_per_trade_10bps": 1.113,
+    "multiscale_mean_net_pct_per_trade_25bps": 0.963,
+    "momentum_mean_net_pct_per_trade_10bps": -0.091
+   },
+   {
+    "horizon_bars": 3,
+    "attempts_made": 40,
+    "multiscale_direction_accuracy_pct": 57.5,
+    "baseline_momentum_5bar_pct": 55.0,
+    "baseline_always_up_pct": 47.5,
+    "multiscale_mean_net_pct_per_trade_10bps": 2.85,
+    "multiscale_mean_net_pct_per_trade_25bps": 2.7,
+    "momentum_mean_net_pct_per_trade_10bps": 2.472
+   },
+   {
+    "horizon_bars": 6,
+    "attempts_made": 40,
+    "multiscale_direction_accuracy_pct": 55.0,
+    "baseline_momentum_5bar_pct": 55.0,
+    "baseline_always_up_pct": 60.0,
+    "multiscale_mean_net_pct_per_trade_10bps": 0.075,
+    "multiscale_mean_net_pct_per_trade_25bps": -0.075,
+    "momentum_mean_net_pct_per_trade_10bps": 1.62
+   }
+  ],
+  "warning": "Neighbouring horizons are a fragility check, not independent confirmations: overlapping windows on one symbol/era remain one sample."
+ },
+ "direct_method_eval": {
+  "method": "fixed v11/v12/v13 direct scores; origins selected exactly like the ensemble race",
+  "horizons": [
+   {
+    "horizon_bars": 1,
+    "methods": {
+     "kalman_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 60.0,
+      "mean_net_pct_per_trade_10bps": 0.788,
+      "mean_net_pct_per_trade_25bps": 0.638
+     },
+     "omni_direct_consensus": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 57.5,
+      "mean_net_pct_per_trade_10bps": 0.569,
+      "mean_net_pct_per_trade_25bps": 0.419
+     },
+     "multiscale_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 57.5,
+      "mean_net_pct_per_trade_10bps": 1.113,
+      "mean_net_pct_per_trade_25bps": 0.963
+     },
+     "hull_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 57.5,
+      "mean_net_pct_per_trade_10bps": -0.089,
+      "mean_net_pct_per_trade_25bps": -0.239
+     },
+     "supertrend_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 60.0,
+      "mean_net_pct_per_trade_10bps": 1.256,
+      "mean_net_pct_per_trade_25bps": 1.106
+     },
+     "kaufman_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 60.0,
+      "mean_net_pct_per_trade_10bps": 1.256,
+      "mean_net_pct_per_trade_25bps": 1.106
+     },
+     "haar_wavelet_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 52.5,
+      "mean_net_pct_per_trade_10bps": -0.108,
+      "mean_net_pct_per_trade_25bps": -0.258
+     },
+     "ultimate_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 55.0,
+      "mean_net_pct_per_trade_10bps": 0.441,
+      "mean_net_pct_per_trade_25bps": 0.291
+     },
+     "tsi_momentum": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 60.0,
+      "mean_net_pct_per_trade_10bps": 0.62,
+      "mean_net_pct_per_trade_25bps": 0.47
+     },
+     "regression_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 40.0,
+      "mean_net_pct_per_trade_10bps": -2.051,
+      "mean_net_pct_per_trade_25bps": -2.201
+     },
+     "atlas_pressure_wave": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 60.0,
+      "mean_net_pct_per_trade_10bps": 1.987,
+      "mean_net_pct_per_trade_25bps": 1.837
+     },
+     "atlas_regime_compass": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 60.0,
+      "mean_net_pct_per_trade_10bps": 0.33,
+      "mean_net_pct_per_trade_25bps": 0.18
+     },
+     "atlas_phoenix_fusion": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 60.0,
+      "mean_net_pct_per_trade_10bps": 0.569,
+      "mean_net_pct_per_trade_25bps": 0.419
+     },
+     "momentum_5bar": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 60.0,
+      "mean_net_pct_per_trade_10bps": -0.091,
+      "mean_net_pct_per_trade_25bps": -0.241
+     },
+     "always_up": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 52.5,
+      "mean_net_pct_per_trade_10bps": 0.323,
+      "mean_net_pct_per_trade_25bps": 0.173
+     }
+    }
+   },
+   {
+    "horizon_bars": 3,
+    "methods": {
+     "kalman_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 60.0,
+      "mean_net_pct_per_trade_10bps": 2.307,
+      "mean_net_pct_per_trade_25bps": 2.157
+     },
+     "omni_direct_consensus": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 57.5,
+      "mean_net_pct_per_trade_10bps": 2.08,
+      "mean_net_pct_per_trade_25bps": 1.93
+     },
+     "multiscale_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 57.5,
+      "mean_net_pct_per_trade_10bps": 2.85,
+      "mean_net_pct_per_trade_25bps": 2.7
+     },
+     "hull_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 52.5,
+      "mean_net_pct_per_trade_10bps": -0.288,
+      "mean_net_pct_per_trade_25bps": -0.438
+     },
+     "supertrend_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 60.0,
+      "mean_net_pct_per_trade_10bps": 3.013,
+      "mean_net_pct_per_trade_25bps": 2.863
+     },
+     "kaufman_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 60.0,
+      "mean_net_pct_per_trade_10bps": 3.013,
+      "mean_net_pct_per_trade_25bps": 2.863
+     },
+     "haar_wavelet_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 42.5,
+      "mean_net_pct_per_trade_10bps": -0.957,
+      "mean_net_pct_per_trade_25bps": -1.107
+     },
+     "ultimate_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 55.0,
+      "mean_net_pct_per_trade_10bps": 1.212,
+      "mean_net_pct_per_trade_25bps": 1.062
+     },
+     "tsi_momentum": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 52.5,
+      "mean_net_pct_per_trade_10bps": 1.161,
+      "mean_net_pct_per_trade_25bps": 1.011
+     },
+     "regression_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 30.0,
+      "mean_net_pct_per_trade_10bps": -6.3,
+      "mean_net_pct_per_trade_25bps": -6.45
+     },
+     "atlas_pressure_wave": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 60.0,
+      "mean_net_pct_per_trade_10bps": 3.431,
+      "mean_net_pct_per_trade_25bps": 3.281
+     },
+     "atlas_regime_compass": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 55.0,
+      "mean_net_pct_per_trade_10bps": 0.269,
+      "mean_net_pct_per_trade_25bps": 0.119
+     },
+     "atlas_phoenix_fusion": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 55.0,
+      "mean_net_pct_per_trade_10bps": 0.937,
+      "mean_net_pct_per_trade_25bps": 0.787
+     },
+     "momentum_5bar": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 55.0,
+      "mean_net_pct_per_trade_10bps": 2.472,
+      "mean_net_pct_per_trade_25bps": 2.322
+     },
+     "always_up": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 47.5,
+      "mean_net_pct_per_trade_10bps": 1.55,
+      "mean_net_pct_per_trade_25bps": 1.4
+     }
+    }
+   },
+   {
+    "horizon_bars": 6,
+    "methods": {
+     "kalman_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 55.0,
+      "mean_net_pct_per_trade_10bps": -1.102,
+      "mean_net_pct_per_trade_25bps": -1.252
+     },
+     "omni_direct_consensus": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 52.5,
+      "mean_net_pct_per_trade_10bps": -1.158,
+      "mean_net_pct_per_trade_25bps": -1.308
+     },
+     "multiscale_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 55.0,
+      "mean_net_pct_per_trade_10bps": 0.075,
+      "mean_net_pct_per_trade_25bps": -0.075
+     },
+     "hull_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 57.5,
+      "mean_net_pct_per_trade_10bps": 0.67,
+      "mean_net_pct_per_trade_25bps": 0.52
+     },
+     "supertrend_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 55.0,
+      "mean_net_pct_per_trade_10bps": 0.95,
+      "mean_net_pct_per_trade_25bps": 0.8
+     },
+     "kaufman_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 57.5,
+      "mean_net_pct_per_trade_10bps": 1.468,
+      "mean_net_pct_per_trade_25bps": 1.318
+     },
+     "haar_wavelet_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 37.5,
+      "mean_net_pct_per_trade_10bps": -8.637,
+      "mean_net_pct_per_trade_25bps": -8.787
+     },
+     "ultimate_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 55.0,
+      "mean_net_pct_per_trade_10bps": -0.926,
+      "mean_net_pct_per_trade_25bps": -1.076
+     },
+     "tsi_momentum": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 47.5,
+      "mean_net_pct_per_trade_10bps": -2.766,
+      "mean_net_pct_per_trade_25bps": -2.916
+     },
+     "regression_trend": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 32.5,
+      "mean_net_pct_per_trade_10bps": -11.412,
+      "mean_net_pct_per_trade_25bps": -11.562
+     },
+     "atlas_pressure_wave": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 62.5,
+      "mean_net_pct_per_trade_10bps": 3.258,
+      "mean_net_pct_per_trade_25bps": 3.108
+     },
+     "atlas_regime_compass": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 60.0,
+      "mean_net_pct_per_trade_10bps": 1.768,
+      "mean_net_pct_per_trade_25bps": 1.618
+     },
+     "atlas_phoenix_fusion": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 52.5,
+      "mean_net_pct_per_trade_10bps": -3.112,
+      "mean_net_pct_per_trade_25bps": -3.262
+     },
+     "momentum_5bar": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 55.0,
+      "mean_net_pct_per_trade_10bps": 1.62,
+      "mean_net_pct_per_trade_25bps": 1.47
+     },
+     "always_up": {
+      "attempts_made": 40,
+      "direction_accuracy_pct": 60.0,
+      "mean_net_pct_per_trade_10bps": 4.875,
+      "mean_net_pct_per_trade_25bps": 4.725
+     }
+    }
+   }
+  ],
+  "warning": "Neighbouring horizons and methods are correlated checks on one sample, not independent confirmations."
+ },
+ "path_simulation": {
+  "horizon_bars": 12,
+  "analog_paths_real": 30,
+  "simulated_paths": 500,
+  "seed": 42,
+  "terminal_return_pct": {
+   "p5": -11.04,
+   "p25": -5.3,
+   "p50_median": 3.39,
+   "p75": 8.16,
+   "p95": 15.81
+  },
+  "max_drawdown_pct": {
+   "p50_median": 18.94,
+   "p75": 25.58,
+   "p95": 29.35
+  },
+  "share_paths_up_pct": 56.2,
+  "warning": "Bootstrapped from the realized paths of similar past setups in THIS file. It quantifies how wide the historical spread was; it is not a probability distribution for the future and inherits every bias of the sample."
+ },
+ "disclaimer": "Educational/research output only — not financial advice and not a recommendation. Mechanical indicator conditions can be wrong, historical accuracy does not predict future results, and most short-term traders lose money. Verify data rights, costs, liquidity, taxes and broker rules independently; consider paper trading first.",
+ "source": "REAL historical MSFT MONTHLY closes 2000-2010 from the public vega/vega-datasets sample (close-only, survivor-biased teaching data; see real-data/REAL-DATA-NOTICE.md). Monthly bars: horizons are months. Historical snapshot, not live data.",
+ "source_is_synthetic": false
+}

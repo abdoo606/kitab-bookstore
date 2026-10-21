@@ -1,0 +1,77 @@
+{
+ "version": "17.0",
+ "updated": "2026-10-21 — v17 Evolution Revolution",
+ "goals": [
+  {
+   "id": "minute_timeframe_focus",
+   "title": "Focus research and the bot on 1m/5m/15m bars",
+   "status": "implemented_in_v14",
+   "primary_timeframe": "1m",
+   "evidence": "Seven minute engines, a 1/3/5/15/30-bar hidden-future race, minute bot defaults and 1m public-data presets."
+  },
+  {
+   "id": "accuracy_80",
+   "title": "Reach at least 80% out-of-sample direction accuracy",
+   "status": "active_target_not_reached",
+   "target_pct": 80.0,
+   "gates": {
+    "target_direction_accuracy_pct": 80.0,
+    "minimum_hidden_future_attempts_per_candidate": 1000,
+    "minimum_selective_coverage_pct": 20.0,
+    "wilson_95_lower_bound_for_strong_claim_pct": 80.0,
+    "mean_net_after_10bps_must_be_positive": true,
+    "requires_multiple_symbols_and_days": true,
+    "requires_fresh_unseen_validation": true,
+    "current_status": "not_reached_or_established"
+   },
+   "current_real_evidence": "v13 real daily/monthly samples reached 68% on one AAPL test and 63.077% pooled; no bundled real minute sample establishes a minute rate."
+  },
+  {
+   "id": "integrated_real_bot",
+   "title": "Become a complete real trading bot",
+   "status": "manual_external_account_companion_only",
+   "implemented": "Minute paper bot, risk halts, Start/Resume/Pause/STOP/flatten workflow and manual external execution tickets.",
+   "not_implemented": "No exchange/broker credentials, API-key storage, automatic order routing, leverage or shorting in TradeAtlas.",
+   "next_gate": "A separately reviewed testnet integration in the user's own licensed account would require security, legal, venue and halal-form review before any live automation."
+  },
+  {
+   "id": "usdt_btc_funding",
+   "title": "Let the user fund trading with USDT or BTC",
+   "status": "user_own_exchange_account_only",
+   "rule": "USDT/BTC remain in the user's own licensed exchange account. TradeAtlas has no deposit address and must never receive or custody crypto.",
+   "implemented": "External-account balance mirror and paper conversion/transfer simulations; the mirror is user-reported and is not added to paper equity."
+  },
+  {
+   "id": "autonomous_data",
+   "title": "Collect and store lawful market data by itself",
+   "status": "implemented_in_v16",
+   "evidence": "Allowlisted public-venue collector (server CLI and browser), incremental SQLite storage with provenance, holdout reservation with a recorded access count, pooled evidence and a gate-by-gate goal report.",
+   "not_claimed": "Automation increases sample size and honesty, not accuracy. goal_established stays false in every code path."
+  },
+  {
+   "id": "failure_memory",
+   "title": "Learn from every failed test instead of repeating it",
+   "status": "implemented_in_v17_expanded_to_35",
+   "evidence": "A cause library of 35 named failure modes (21 original + 14 new deep causes: autocorrelation_trap, volatility_regime_shift, liquidity_illusion, overparameterized_signal, multiple_testing_bias, non_stationary_drift, microstructure_noise, asymmetric_payoff_trap, tail_risk_hidden, correlation_breakdown, concept_drift, horizon_mismatch, threshold_overfit, sample_contamination), an avoid-rule and an implemented remedy per cause, a three-stage loop (screen -> apply lessons -> validate), resolved/recurred/retired lesson states, bilingual diagnostics, and a SQLite failure memory that makes later runs skip already-proven dead candidates and predicts failure before the next test.",
+   "not_claimed": "The failure memory improves the *research process*, not the market. It cannot create an edge that the sample does not contain, and it never lowers the 80% gates."
+  },
+  {
+   "id": "evolution",
+   "title": "Evolve forever — every failure teaches the next test (v17)",
+   "status": "implemented_in_v17",
+   "evidence": "Evolution Tracker with generation-over-generation metrics, failure clustering, predictive failure scoring (92% confidence for proven dead candidates), Deep Diagnostics bilingual (AR/EN), Advanced Stats toolkit (bootstrap, permutation, Bonferroni/FDR, Deflated Sharpe, tail risk, autocorr, vol regime, liquidity, PBO), Pipeline Health monitoring, SQLite v4 with evolution/cluster/verification/diagnostics tables, 10 new API endpoints, and 143 tests that prove self-healing — every failure is diagnosed, avoided, and verified in the next round.",
+   "not_claimed": "Evolution improves the search process, not the market. goal_established stays false forever; the strongest status remains goal_evidence_ready_for_independent_review."
+  },
+  {
+   "id": "halal_gate",
+   "title": "Keep bot entries behind current halal evidence",
+   "status": "implemented_rule_gate_not_fatwa",
+   "rule": "Only registered assets whose current screen is exactly pass may enter even a paper/manual-ticket workflow."
+  }
+ ],
+ "real_money_execution_enabled": false,
+ "tradeatlas_deposit_address": null,
+ "accepts_real_crypto": false,
+ "warning": "Goals are not performance claims. Do not send money or crypto to TradeAtlas.",
+ "disclaimer": "TradeAtlas is educational/research software only. It is NOT financial advice. Market Lab long/short (buy/sell-condition) labels are mechanical indicator states, not recommendations. TradeAtlas bundles no licensed live market data; real-market tracking uses only OHLCV data or a feed endpoint that you supply and have the right to use. Its wallet is a paper simulation only: never send money or cryptocurrency to TradeAtlas; it has no deposit address, custody, conversion, withdrawal or broker execution. Its halal-stock screen is transparent arithmetic on evidence you supply, not a fatwa or certification, and its bot is paper-only. It makes no profit promises. Most short-term traders lose money. Study the ideas, paper-trade first, risk only money you can afford to lose, and consult a licensed financial professional for personal decisions."
+}

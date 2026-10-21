@@ -1,0 +1,2014 @@
+{
+ "name": "TradeAtlas",
+ "version": "17.0",
+ "disclaimer": "TradeAtlas is educational/research software only. It is NOT financial advice. Market Lab long/short (buy/sell-condition) labels are mechanical indicator states, not recommendations. TradeAtlas bundles no licensed live market data; real-market tracking uses only OHLCV data or a feed endpoint that you supply and have the right to use. Its wallet is a paper simulation only: never send money or cryptocurrency to TradeAtlas; it has no deposit address, custody, conversion, withdrawal or broker execution. Its halal-stock screen is transparent arithmetic on evidence you supply, not a fatwa or certification, and its bot is paper-only. It makes no profit promises. Most short-term traders lose money. Study the ideas, paper-trade first, risk only money you can afford to lose, and consult a licensed financial professional for personal decisions.",
+ "strategies": [
+  {
+   "id": "trend-following",
+   "name": "Trend following",
+   "family": "Trend",
+   "markets": "Stocks, futures, forex, crypto",
+   "timeframes": "Daily / weekly",
+   "difficulty": "Beginner",
+   "idea": "Prices that have been rising tend to keep rising for a while ('the trend is your friend'). The strategy rides established directional moves instead of predicting reversals.",
+   "rules": {
+    "entry": "Join the existing direction: e.g., buy when price holds above a rising long-term moving average after a pullback.",
+    "exit": "Trail the stop behind the trend and let winners run; exit when the trend breaks (e.g., close below the trend line / average).",
+    "stop": "Below the most recent swing low (long) or a volatility-based distance such as 2x ATR."
+   },
+   "pros": "Simple, captures the biggest moves, works across many markets.",
+   "fails": "Sideways/ranging markets cause repeated small losses ('whipsaws'); late entries when the trend is exhausted.",
+   "risk": "Expect many small losses between a few large wins — psychology, not math, is the hard part."
+  },
+  {
+   "id": "breakout",
+   "name": "Breakout trading",
+   "family": "Trend",
+   "markets": "All liquid markets",
+   "timeframes": "Hourly to daily",
+   "difficulty": "Beginner",
+   "idea": "When price escapes a well-defined range or level (support/resistance, prior high/low), stored energy releases and a new move often begins.",
+   "rules": {
+    "entry": "Enter after a close beyond the level, ideally with above-average volume confirming.",
+    "exit": "Target measured moves (e.g., range height projected from the breakout) or trail the stop.",
+    "stop": "Just back inside the broken range — if price returns, the breakout failed."
+   },
+   "pros": "Clear levels, clear invalidation; catches moves early.",
+   "fails": "False breakouts ('fakeouts') are common, especially on low volume or into news.",
+   "risk": "Chasing extended breakouts without waiting for the close is the classic beginner trap."
+  },
+  {
+   "id": "pullback-retest",
+   "name": "Pullback / retest entries",
+   "family": "Trend",
+   "markets": "All liquid markets",
+   "timeframes": "Hourly to weekly",
+   "difficulty": "Beginner",
+   "idea": "Instead of chasing, wait for a trending market to dip to a known level (old resistance turns support, a rising moving average) and enter there at a better price with a closer stop.",
+   "rules": {
+    "entry": "After the pullback reaches the level and shows rejection (e.g., a bullish candle at support in an uptrend).",
+    "exit": "Previous swing high first, then trail the stop under rising swing lows.",
+    "stop": "Beyond the level being tested — if it gives way, the idea is wrong."
+   },
+   "pros": "Better prices and tighter, logical stops than chasing.",
+   "fails": "Strong trends sometimes never pull back; weak trends 'pull back' all the way into reversal.",
+   "risk": "Distinguishing a healthy pullback from the start of a reversal is judgment, not certainty."
+  },
+  {
+   "id": "range-mean-reversion",
+   "name": "Range trading & mean reversion",
+   "family": "Mean reversion",
+   "markets": "Sideways stocks, forex pairs, indices",
+   "timeframes": "Hourly to daily",
+   "difficulty": "Intermediate",
+   "idea": "In a sideways market, price oscillates between support and resistance and tends to return toward its average. Buy near support, sell near resistance, fade extremes.",
+   "rules": {
+    "entry": "At the range edges with confirmation (rejection candle, oscillator extreme).",
+    "exit": "Mid-range (the mean) first, opposite edge second.",
+    "stop": "Outside the range — a close beyond it means the regime changed."
+   },
+   "pros": "Frequent, well-defined setups; clear levels both ways.",
+   "fails": "Ranges eventually break — one breakout against you can erase many small range wins.",
+   "risk": "Never 'average down' a broken range without a predefined maximum loss."
+  },
+  {
+   "id": "rsi-momentum",
+   "name": "RSI momentum & extremes",
+   "family": "Momentum",
+   "markets": "All liquid markets",
+   "timeframes": "Hourly to daily",
+   "difficulty": "Beginner",
+   "idea": "The Relative Strength Index (0-100) measures speed of recent gains vs losses. Readings above 70 / below 30 flag stretched conditions; in trends, pullbacks to RSI 40-50 (uptrend) mark continuation zones.",
+   "rules": {
+    "entry": "Two textbook styles: (a) fade extremes only inside ranges; (b) in trends, enter when RSI resets to mid-zone and turns back with price.",
+    "exit": "Opposite extreme, or price-based targets (prior swing).",
+    "stop": "Beyond the swing that created the RSI signal."
+   },
+   "pros": "Objective overbought/oversold gauge; divergence warns of weakening moves.",
+   "fails": "In strong trends RSI can stay 'overbought' for weeks — fading it blindly is expensive.",
+   "risk": "RSI is a thermometer, not a steering wheel: it describes, it does not predict."
+  },
+  {
+   "id": "macd-crossover",
+   "name": "MACD crossover & histogram",
+   "family": "Momentum",
+   "markets": "All liquid markets",
+   "timeframes": "Daily / 4-hour",
+   "difficulty": "Beginner",
+   "idea": "MACD compares two exponential moving averages (12 vs 26). Crossovers of the MACD line and its 9-period signal line mark momentum shifts; the histogram visualizes their distance.",
+   "rules": {
+    "entry": "Long when MACD crosses up through the signal line (stronger below/near the zero line in an uptrend context).",
+    "exit": "Opposite crossover, histogram shrinking after extension, or price targets.",
+    "stop": "Beyond the swing low/high preceding the crossover."
+   },
+   "pros": "Combines trend + momentum in one panel; divergence is a useful warning.",
+   "fails": "Lagging and noisy in ranges — crossovers whipsaw sideways markets.",
+   "risk": "Because it is built from averages, MACD always confirms AFTER price has moved."
+  },
+  {
+   "id": "bollinger-squeeze",
+   "name": "Bollinger Band squeeze",
+   "family": "Volatility",
+   "markets": "All liquid markets",
+   "timeframes": "Daily / 4-hour",
+   "difficulty": "Intermediate",
+   "idea": "Bollinger Bands (20-period average ±2 standard deviations) widen with volatility and contract in quiet markets. Extreme contraction ('the squeeze') often precedes an expansion move — direction unknown.",
+   "rules": {
+    "entry": "Wait for the expansion: a strong close outside the band after a squeeze, trade in that direction.",
+    "exit": "Ride while closes stay outside/near the band ('walking the band'); exit when momentum closes back inside.",
+    "stop": "Middle band (the 20-period average) or the squeeze's opposite edge."
+   },
+   "pros": "Objective volatility regime detector; adapts to market speed.",
+   "fails": "The squeeze says 'something is coming', never which way; first expansion can reverse violently.",
+   "risk": "Touching a band is not by itself a reversal signal — in trends price hugs bands."
+  },
+  {
+   "id": "ma-cross",
+   "name": "Moving-average cross (golden / death cross)",
+   "family": "Trend",
+   "markets": "Indices, large stocks, forex",
+   "timeframes": "Daily / weekly",
+   "difficulty": "Beginner",
+   "idea": "A faster average (e.g., 50-day) crossing above a slower one (200-day) is called a golden cross; below, a death cross. A slow regime filter more than a precise trigger.",
+   "rules": {
+    "entry": "Favor longs while price and the fast average sit above the slow average; favor defense/cash below.",
+    "exit": "Opposite cross, or use crosses only as a bias filter for other entries.",
+    "stop": "System-level: the opposite cross IS the exit — per-trade stops still apply."
+   },
+   "pros": "Keeps you on the right side of major trends; trivially backtestable.",
+   "fails": "Very lagging — by the cross, much of the move happened; sideways years whipsaw it.",
+   "risk": "A filter reduces (never removes) drawdowns; past index behavior is not a guarantee."
+  },
+  {
+   "id": "sr-bounce",
+   "name": "Support & resistance (horizontal levels)",
+   "family": "Price action",
+   "markets": "All markets",
+   "timeframes": "All",
+   "difficulty": "Beginner",
+   "idea": "Markets remember levels where price previously reversed or stalled. Those zones attract orders again, so trades are planned around them rather than in empty space.",
+   "rules": {
+    "entry": "Buy support / sell resistance with a confirmation candle, or trade the break-and-retest.",
+    "exit": "The next opposing level.",
+    "stop": "Just beyond the level — beyond it, the level failed."
+   },
+   "pros": "The foundation under almost every other strategy; no indicators needed.",
+   "fails": "Levels are zones, not laser lines; they weaken with each test and break without warning.",
+   "risk": "Drawing a level does not obligate the market to respect it."
+  },
+  {
+   "id": "fibonacci",
+   "name": "Fibonacci retracement",
+   "family": "Price action",
+   "markets": "All markets",
+   "timeframes": "Hourly to weekly",
+   "difficulty": "Intermediate",
+   "idea": "After an impulse move, pullbacks often pause near 38.2%, 50%, or 61.8% of that move. Traders watch those proportional zones for trend-continuation entries.",
+   "rules": {
+    "entry": "In the 50-61.8% zone ('golden pocket') when it aligns with structure (old level, average) and a rejection appears.",
+    "exit": "Prior swing extreme, then extension levels (127%, 161.8%).",
+    "stop": "Beyond the next retracement level or the impulse origin."
+   },
+   "pros": "Gives planned, proportional entry zones instead of chasing.",
+   "fails": "Self-fulfilling at best; weak trends retrace 100%+. Three zones means one usually 'works' — selection bias.",
+   "risk": "Ratios are conventions, not physics. Confluence with structure matters more than the decimal."
+  },
+  {
+   "id": "vwap-intraday",
+   "name": "VWAP intraday",
+   "family": "Intraday",
+   "markets": "Stocks, futures (intraday)",
+   "timeframes": "1-15 minute",
+   "difficulty": "Intermediate",
+   "idea": "VWAP is the day's volume-weighted average price — the level institutions benchmark fills against. Intraday traders use it as a fair-value magnet and bias line.",
+   "rules": {
+    "entry": "Trend day: buy pullbacks to a rising VWAP. Range day: fade moves 2+ standard-deviation bands away from VWAP back toward it.",
+    "exit": "VWAP itself (mean trades) or band extensions (trend trades). Flat by the close.",
+    "stop": "Beyond the band/level that defined the setup; time-based exit before close."
+   },
+   "pros": "Objective, widely watched intraday reference; resets daily so no stale levels.",
+   "fails": "Requires volume data and screen time; news days ignore VWAP entirely.",
+   "risk": "Intraday trading has the highest cost drag (spread+fees) — most day traders lose."
+  },
+  {
+   "id": "gap-and-go",
+   "name": "Gap-and-go (opening momentum)",
+   "family": "Intraday",
+   "markets": "Stocks with overnight news",
+   "timeframes": "First 30-90 minutes",
+   "difficulty": "Advanced",
+   "idea": "A stock gapping on real news with heavy pre-market volume sometimes continues in the gap direction during the opening range as institutions reposition.",
+   "rules": {
+    "entry": "After the first minutes form an opening range; enter on its break in the gap direction with volume surging.",
+    "exit": "Fast, into opening momentum; most gap trades are done within the first hour.",
+    "stop": "Opening-range opposite edge — gaps that fill immediately are failed ideas."
+   },
+   "pros": "Concentrated opportunity window; news provides a genuine catalyst.",
+   "fails": "Many gaps fade and fill; spreads and slippage are widest exactly then.",
+   "risk": "Fastest way for a beginner to lose: emotional, leveraged, wide spreads. Paper-trade extensively."
+  },
+  {
+   "id": "pairs-statarb",
+   "name": "Pairs trading (statistical basics)",
+   "family": "Market-neutral",
+   "markets": "Related stocks, ETFs, futures spreads",
+   "timeframes": "Daily",
+   "difficulty": "Advanced",
+   "idea": "Two historically related instruments (e.g., two banks) tend to keep a stable price relationship. When the spread stretches far from its average, buy the laggard and short the leader, betting on the relationship — not direction.",
+   "rules": {
+    "entry": "When the spread's z-score exceeds a threshold (textbooks use ±2) after checking the pair is still fundamentally linked.",
+    "exit": "Spread returns toward its mean (z near 0).",
+    "stop": "A wider z (e.g., ±3-4) or any fundamental break in one leg (earnings disaster, merger)."
+   },
+   "pros": "Market-direction neutral in theory; the rationale is statistical, testable.",
+   "fails": "Relationships break permanently ('the spread can stay irrational longer…'); borrow costs on the short leg.",
+   "risk": "Correlation is not a contract. Cointegration can vanish exactly when you size up."
+  },
+  {
+   "id": "carry",
+   "name": "Forex carry basics",
+   "family": "Macro",
+   "markets": "Forex (major pairs)",
+   "timeframes": "Weeks to months",
+   "difficulty": "Advanced",
+   "idea": "Borrow a low-interest currency, hold a higher-interest one, and earn the rate difference ('swap'). The return is the interest — the risk is the exchange rate moving against you more than the carry earned.",
+   "rules": {
+    "entry": "Textbook version pairs the carry with a supportive trend/risk environment and modest leverage.",
+    "exit": "When rate differentials shrink, volatility spikes, or the trend breaks.",
+    "stop": "Position-level risk limits; carry trades historically unwind violently in crises."
+   },
+   "pros": "A real, well-documented long-term factor in currency markets.",
+   "fails": "'Picking up pennies in front of a steamroller': calm gains, sudden crash losses (2008, 2020).",
+   "risk": "Leverage turns a slow interest trickle into a fast margin call. This is a professional strategy."
+  },
+  {
+   "id": "dca-value",
+   "name": "Dollar-cost averaging & value averaging",
+   "family": "Investing",
+   "markets": "Broad index funds, diversified portfolios",
+   "timeframes": "Monthly, years",
+   "difficulty": "Beginner",
+   "idea": "Invest a fixed amount on a fixed schedule regardless of market noise. You automatically buy more units when prices are low and fewer when high, removing timing decisions.",
+   "rules": {
+    "entry": "Automatic fixed contributions (e.g., monthly) into diversified holdings.",
+    "exit": "Goal-based (retirement, house deposit), with periodic rebalancing — not headlines.",
+    "stop": "None per-trade; risk is managed by diversification, horizon, and keeping an emergency fund outside the market."
+   },
+   "pros": "The approach with the strongest evidence for ordinary savers; behaviorally robust.",
+   "fails": "Sitting through -30% drawdowns is emotionally hard; single-stock DCA can ride a failing company to zero.",
+   "risk": "Still not a guarantee: markets can fall for years. Diversification and horizon do the heavy lifting."
+  },
+  {
+   "id": "catalyst-momentum",
+   "name": "Catalyst / earnings momentum",
+   "family": "Momentum",
+   "markets": "Stocks (earnings, guidance, approvals)",
+   "timeframes": "Days to weeks",
+   "difficulty": "Intermediate",
+   "idea": "Genuine news (earnings beats, raised guidance, regulatory approvals) re-prices a stock, and the repricing often drifts over days/weeks ('post-earnings-announcement drift', a documented academic effect).",
+   "rules": {
+    "entry": "After the initial reaction day, on strength in the news direction once a base/pullback forms — not into the first chaotic spike.",
+    "exit": "As volume and momentum normalize, or at predefined targets.",
+    "stop": "Below the post-news base; if the market rejects the news, leave."
+   },
+   "pros": "Grounded in a real, studied market phenomenon; news gives a 'why'.",
+   "fails": "'Buy the rumor, sell the news' — good news already priced in gets sold into.",
+   "risk": "Event risk cuts both ways: secondary offerings, lawsuits, or guidance cuts can gap through stops."
+  }
+ ],
+ "methods": [
+  {
+   "id": "price-action",
+   "name": "Price action & market structure",
+   "summary": "Reading raw price: higher highs/lows (uptrend), lower highs/lows (downtrend), breaks of structure, and reactions at prior swing points. The grammar every other method annotates.",
+   "tools": "Swing points, trend lines, horizontal levels, candlestick rejection wicks.",
+   "watch_out": "Structure is fractal — an uptrend on 5-minutes can sit inside a weekly downtrend. State your timeframe or fool yourself."
+  },
+  {
+   "id": "candlesticks",
+   "name": "Candlestick patterns",
+   "summary": "Single- and multi-candle shapes (engulfing, pin bar, doji, morning star…) that summarize who won the session's battle between buyers and sellers.",
+   "tools": "The illustrated patterns in this atlas; always read location (at support/resistance) over shape alone.",
+   "watch_out": "A pattern in the middle of nowhere means little; the same candle at a major level means more. Context first, names second."
+  },
+  {
+   "id": "chart-patterns",
+   "name": "Chart patterns",
+   "summary": "Larger formations — triangles, flags, head-and-shoulders, double tops/bottoms, wedges — that frame consolidation vs continuation and give measured-move targets.",
+   "tools": "Trend lines, necklines, measured moves (pattern height projected from the break).",
+   "watch_out": "Patterns are in the eye of the beholder until they break; trade the break + retest, not the hope."
+  },
+  {
+   "id": "indicators",
+   "name": "Indicator analysis",
+   "summary": "Mathematical transformations of price/volume: moving averages (trend), RSI/Stochastic (momentum), MACD (both), ATR (volatility for stops/position sizing), Bollinger Bands (volatility envelope).",
+   "tools": "One tool per job: trend filter, timing aid, volatility gauge. Fewer, understood deeply, beat ten stacked randomly.",
+   "watch_out": "Every indicator is derived from price — it cannot know more than price. Lag is the price of smoothness."
+  },
+  {
+   "id": "volume",
+   "name": "Volume analysis",
+   "summary": "Volume shows conviction: breakouts on expanding volume, pullbacks on shrinking volume, climax volume at exhaustions, and volume profile (where most trading actually happened).",
+   "tools": "Volume bars vs their average, OBV, VWAP, volume-profile high/low volume nodes.",
+   "watch_out": "Forex 'volume' from a broker is tick count, not true volume; crypto volume varies wildly by exchange."
+  },
+  {
+   "id": "order-flow",
+   "name": "Order-flow basics",
+   "summary": "Watching the actual bid/ask battle: order book (Level 2), time & sales, and footprint/delta concepts used by futures day traders.",
+   "tools": "Depth of market, tape speed, cumulative delta. Mostly an intraday, futures-centric craft.",
+   "watch_out": "Spoofing and hidden iceberg orders mean the book can lie; tools and data feeds for this usually cost money."
+  },
+  {
+   "id": "fundamental",
+   "name": "Fundamental analysis",
+   "summary": "Valuing the underlying business/economy: revenue growth, margins, cash flow, debt, moat, management; for macro assets: rates, inflation, growth, central-bank policy.",
+   "tools": "Income statement, balance sheet, cash-flow statement; ratios (P/E, ROE, debt/equity); earnings quality checks.",
+   "watch_out": "A great company can be a terrible stock if the price already assumes perfection. Value and price are different questions."
+  },
+  {
+   "id": "macro-sentiment",
+   "name": "Macro & sentiment analysis",
+   "summary": "Positioning and mood: interest-rate expectations, fear/greed gauges, put/call ratios, COT reports, fund flows. Extremes of one-sided positioning precede reversals — timing them is the art.",
+   "tools": "Central-bank calendars, CPI/jobs releases, VIX, COT (Commitment of Traders) data.",
+   "watch_out": "Sentiment can stay extreme far longer than a leveraged account can stay solvent. Extremes warn; price confirms."
+  },
+  {
+   "id": "intermarket",
+   "name": "Intermarket analysis",
+   "summary": "Markets move in families: dollar vs commodities, yields vs growth stocks, risk-on vs risk-off currencies, credit spreads vs equities. Cross-checking relatives confirms or questions a move.",
+   "tools": "Correlation checks across DXY, yields, gold, oil, major indices before committing to a narrative.",
+   "watch_out": "Correlations are regime-dependent; in panics, 'everything correlates to 1' — diversification fails exactly when wanted most."
+  },
+  {
+   "id": "backtesting-journaling",
+   "name": "Backtesting & trade journaling",
+   "summary": "The scientific layer: test a rule-set on historical data (including costs), then journal live trades — setup, size, exit, emotion — and review expectancy per setup, not per opinion.",
+   "tools": "Spreadsheet or code backtests, walk-forward checks, a trade journal with expectancy = win% × avg win − loss% × avg loss.",
+   "watch_out": "Overfitting: tuning rules until history looks perfect guarantees the future disappoints. Out-of-sample honesty or it didn't happen."
+  }
+ ],
+ "patterns": [
+  {
+   "id": "bullish-engulfing",
+   "name": "Bullish engulfing",
+   "signal": "Potential reversal up (at support)",
+   "bars": [
+    [
+     10.6,
+     10.7,
+     9.9,
+     10.0
+    ],
+    [
+     9.95,
+     11.0,
+     9.9,
+     10.85
+    ]
+   ],
+   "read": "A red candle followed by a green candle whose body completely covers the prior body: buyers overwhelmed sellers in one session."
+  },
+  {
+   "id": "bearish-engulfing",
+   "name": "Bearish engulfing",
+   "signal": "Potential reversal down (at resistance)",
+   "bars": [
+    [
+     10.0,
+     10.75,
+     9.95,
+     10.65
+    ],
+    [
+     10.7,
+     10.75,
+     9.75,
+     9.85
+    ]
+   ],
+   "read": "A green candle engulfed by a red one: sellers took the session back. Most meaningful after a run-up into resistance."
+  },
+  {
+   "id": "hammer",
+   "name": "Hammer (pin bar at lows)",
+   "signal": "Rejection of lower prices",
+   "bars": [
+    [
+     10.4,
+     10.45,
+     9.7,
+     9.8
+    ],
+    [
+     9.8,
+     10.15,
+     9.05,
+     10.05
+    ]
+   ],
+   "read": "Price plunged intraday but closed near the open, leaving a long lower wick: the dip was bought. At support after a decline, it warns sellers are tiring."
+  },
+  {
+   "id": "shooting-star",
+   "name": "Shooting star",
+   "signal": "Rejection of higher prices",
+   "bars": [
+    [
+     10.0,
+     10.6,
+     9.95,
+     10.55
+    ],
+    [
+     10.55,
+     11.5,
+     10.35,
+     10.45
+    ]
+   ],
+   "read": "A long upper wick after an advance: buyers pushed up, sellers pushed it all back by the close. The mirror image of the hammer."
+  },
+  {
+   "id": "doji",
+   "name": "Doji",
+   "signal": "Indecision / balance",
+   "bars": [
+    [
+     10.0,
+     10.55,
+     9.45,
+     10.02
+    ]
+   ],
+   "read": "Open and close nearly equal despite a wide range: neither side won. After a long trend it hints momentum is stalling — it is a question, not an answer."
+  },
+  {
+   "id": "morning-star",
+   "name": "Morning star (3-candle)",
+   "signal": "Potential bottoming reversal",
+   "bars": [
+    [
+     11.0,
+     11.05,
+     10.1,
+     10.2
+    ],
+    [
+     10.1,
+     10.25,
+     9.95,
+     10.15
+    ],
+    [
+     10.2,
+     11.1,
+     10.15,
+     11.0
+    ]
+   ],
+   "read": "Strong red candle, small indecisive candle, strong green candle closing deep into the first: a three-act handover from sellers to buyers."
+  },
+  {
+   "id": "evening-star",
+   "name": "Evening star (3-candle)",
+   "signal": "Potential topping reversal",
+   "bars": [
+    [
+     10.0,
+     11.0,
+     9.95,
+     10.9
+    ],
+    [
+     10.95,
+     11.15,
+     10.85,
+     10.9
+    ],
+    [
+     10.85,
+     10.9,
+     9.85,
+     9.95
+    ]
+   ],
+   "read": "The morning star inverted: strong advance, pause, then a strong red candle. A handover from buyers to sellers at highs."
+  },
+  {
+   "id": "inside-bar",
+   "name": "Inside bar",
+   "signal": "Compression / pending expansion",
+   "bars": [
+    [
+     10.0,
+     11.2,
+     9.6,
+     11.0
+    ],
+    [
+     10.7,
+     10.95,
+     10.25,
+     10.45
+    ]
+   ],
+   "read": "A candle fully inside the previous candle's range: volatility contracted. Traders watch which side of the mother bar breaks first — with the trend preferred."
+  }
+ ],
+ "risk_rules": [
+  {
+   "title": "Risk a tiny fixed fraction per trade",
+   "detail": "Textbooks suggest risking about 0.5-2% of the account per idea, so a losing streak is survivable math, not ruin. Position size is derived FROM the stop distance — never the other way around."
+  },
+  {
+   "title": "The stop is part of the idea",
+   "detail": "Decide before entry where you are proven wrong. A stop that gets moved 'just a bit further' is not risk management; it is hope with extra steps."
+  },
+  {
+   "title": "Expectancy over win-rate",
+   "detail": "A system can win 40% of the time and profit (big wins, small losses) or win 80% and lose (tiny wins, rare disasters). Track expectancy in R: (win% × avg win) − (loss% × avg loss)."
+  },
+  {
+   "title": "Costs are a strategy filter",
+   "detail": "Spread + commission + slippage tax every trade. Hyperactive strategies must overcome a wall of friction before any edge shows."
+  },
+  {
+   "title": "Leverage multiplies everything",
+   "detail": "Leverage scales gains, losses, AND the speed of ruin. Liquidation math does not care about your analysis being eventually right."
+  },
+  {
+   "title": "Correlation is hidden size",
+   "detail": "Five positions that all move together are one big position. Cap total open risk, not just per-trade risk."
+  },
+  {
+   "title": "Drawdowns are the real exam",
+   "detail": "Every strategy in this atlas has losing stretches. If a -20% equity dip would make you abandon or revenge-trade, the size was already too big."
+  },
+  {
+   "title": "Journal or it didn't happen",
+   "detail": "Memory edits history. A written journal (setup, size, exit reason, screenshot) is how 'experience' becomes measurable instead of anecdotal."
+  }
+ ],
+ "glossary": [
+  {
+   "term": "ATR",
+   "definition": "Average True Range — typical bar size over N periods; used to set volatility-aware stops and sizes."
+  },
+  {
+   "term": "Backtest",
+   "definition": "Applying fixed rules to historical data to see how they would have behaved — then distrusting the result appropriately."
+  },
+  {
+   "term": "Bid / Ask / Spread",
+   "definition": "What buyers offer / sellers ask / the gap between them — the first cost of every trade."
+  },
+  {
+   "term": "Drawdown",
+   "definition": "Peak-to-trough decline of an account or strategy; the pain metric that ends most trading careers."
+  },
+  {
+   "term": "Expectancy",
+   "definition": "Average profit per trade over many trades: (win% × avg win) − (loss% × avg loss). Positive or the rest is decoration."
+  },
+  {
+   "term": "Liquidity",
+   "definition": "How easily size trades without moving the price. Illiquid = wide spreads and exits that vanish in stress."
+  },
+  {
+   "term": "R (R-multiple)",
+   "definition": "Profit/loss measured in units of initial risk. A +2R win made twice what was risked."
+  },
+  {
+   "term": "Risk:Reward",
+   "definition": "Distance to stop vs distance to target. 1:2 means risking 1 to aim for 2 — before costs and reality."
+  },
+  {
+   "term": "Slippage",
+   "definition": "Difference between expected and actual fill price, worst in fast markets and around news."
+  },
+  {
+   "term": "Stop-loss",
+   "definition": "A predefined exit that limits loss when the idea is wrong. Gaps can jump through stops — they limit, not guarantee."
+  },
+  {
+   "term": "Support / Resistance",
+   "definition": "Zones where price previously paused or reversed and where resting orders cluster."
+  },
+  {
+   "term": "Volatility",
+   "definition": "How much price moves. High volatility = opportunity and danger in equal measure; position size must shrink as it rises."
+  }
+ ],
+ "project_goals": {
+  "version": "17.0",
+  "updated": "2026-10-21 — v17 Evolution Revolution",
+  "goals": [
+   {
+    "id": "minute_timeframe_focus",
+    "title": "Focus research and the bot on 1m/5m/15m bars",
+    "status": "implemented_in_v14",
+    "primary_timeframe": "1m",
+    "evidence": "Seven minute engines, a 1/3/5/15/30-bar hidden-future race, minute bot defaults and 1m public-data presets."
+   },
+   {
+    "id": "accuracy_80",
+    "title": "Reach at least 80% out-of-sample direction accuracy",
+    "status": "active_target_not_reached",
+    "target_pct": 80.0,
+    "gates": {
+     "target_direction_accuracy_pct": 80.0,
+     "minimum_hidden_future_attempts_per_candidate": 1000,
+     "minimum_selective_coverage_pct": 20.0,
+     "wilson_95_lower_bound_for_strong_claim_pct": 80.0,
+     "mean_net_after_10bps_must_be_positive": true,
+     "requires_multiple_symbols_and_days": true,
+     "requires_fresh_unseen_validation": true,
+     "current_status": "not_reached_or_established"
+    },
+    "current_real_evidence": "v13 real daily/monthly samples reached 68% on one AAPL test and 63.077% pooled; no bundled real minute sample establishes a minute rate."
+   },
+   {
+    "id": "integrated_real_bot",
+    "title": "Become a complete real trading bot",
+    "status": "manual_external_account_companion_only",
+    "implemented": "Minute paper bot, risk halts, Start/Resume/Pause/STOP/flatten workflow and manual external execution tickets.",
+    "not_implemented": "No exchange/broker credentials, API-key storage, automatic order routing, leverage or shorting in TradeAtlas.",
+    "next_gate": "A separately reviewed testnet integration in the user's own licensed account would require security, legal, venue and halal-form review before any live automation."
+   },
+   {
+    "id": "usdt_btc_funding",
+    "title": "Let the user fund trading with USDT or BTC",
+    "status": "user_own_exchange_account_only",
+    "rule": "USDT/BTC remain in the user's own licensed exchange account. TradeAtlas has no deposit address and must never receive or custody crypto.",
+    "implemented": "External-account balance mirror and paper conversion/transfer simulations; the mirror is user-reported and is not added to paper equity."
+   },
+   {
+    "id": "autonomous_data",
+    "title": "Collect and store lawful market data by itself",
+    "status": "implemented_in_v16",
+    "evidence": "Allowlisted public-venue collector (server CLI and browser), incremental SQLite storage with provenance, holdout reservation with a recorded access count, pooled evidence and a gate-by-gate goal report.",
+    "not_claimed": "Automation increases sample size and honesty, not accuracy. goal_established stays false in every code path."
+   },
+   {
+    "id": "failure_memory",
+    "title": "Learn from every failed test instead of repeating it",
+    "status": "implemented_in_v17_expanded_to_35",
+    "evidence": "A cause library of 35 named failure modes (21 original + 14 new deep causes: autocorrelation_trap, volatility_regime_shift, liquidity_illusion, overparameterized_signal, multiple_testing_bias, non_stationary_drift, microstructure_noise, asymmetric_payoff_trap, tail_risk_hidden, correlation_breakdown, concept_drift, horizon_mismatch, threshold_overfit, sample_contamination), an avoid-rule and an implemented remedy per cause, a three-stage loop (screen -> apply lessons -> validate), resolved/recurred/retired lesson states, bilingual diagnostics, and a SQLite failure memory that makes later runs skip already-proven dead candidates and predicts failure before the next test.",
+    "not_claimed": "The failure memory improves the *research process*, not the market. It cannot create an edge that the sample does not contain, and it never lowers the 80% gates."
+   },
+   {
+    "id": "evolution",
+    "title": "Evolve forever — every failure teaches the next test (v17)",
+    "status": "implemented_in_v17",
+    "evidence": "Evolution Tracker with generation-over-generation metrics, failure clustering, predictive failure scoring (92% confidence for proven dead candidates), Deep Diagnostics bilingual (AR/EN), Advanced Stats toolkit (bootstrap, permutation, Bonferroni/FDR, Deflated Sharpe, tail risk, autocorr, vol regime, liquidity, PBO), Pipeline Health monitoring, SQLite v4 with evolution/cluster/verification/diagnostics tables, 10 new API endpoints, and 143 tests that prove self-healing — every failure is diagnosed, avoided, and verified in the next round.",
+    "not_claimed": "Evolution improves the search process, not the market. goal_established stays false forever; the strongest status remains goal_evidence_ready_for_independent_review."
+   },
+   {
+    "id": "halal_gate",
+    "title": "Keep bot entries behind current halal evidence",
+    "status": "implemented_rule_gate_not_fatwa",
+    "rule": "Only registered assets whose current screen is exactly pass may enter even a paper/manual-ticket workflow."
+   }
+  ],
+  "real_money_execution_enabled": false,
+  "tradeatlas_deposit_address": null,
+  "accepts_real_crypto": false,
+  "warning": "Goals are not performance claims. Do not send money or crypto to TradeAtlas."
+ },
+ "market_lab": {
+  "name": "TradeAtlas Market Lab",
+  "version": "16.0",
+  "timeframes": {
+   "1m": 60,
+   "5m": 300,
+   "15m": 900,
+   "1h": 3600,
+   "4h": 14400,
+   "1d": 86400,
+   "1w": 604800
+  },
+  "strategies": {
+   "ma_cross": {
+    "name": "EMA 20/50 cross",
+    "atlas_strategy": "Moving-average cross / trend following",
+    "long_rule": "EMA20 crosses above EMA50 at bar close.",
+    "short_rule": "EMA20 crosses below EMA50 at bar close."
+   },
+   "macd_cross": {
+    "name": "MACD signal cross",
+    "atlas_strategy": "MACD crossover & histogram",
+    "long_rule": "MACD (12,26) crosses above its 9-period signal line.",
+    "short_rule": "MACD crosses below its signal line."
+   },
+   "breakout_20": {
+    "name": "20-bar breakout",
+    "atlas_strategy": "Breakout trading",
+    "long_rule": "Close breaks above the highest high of the prior 20 bars.",
+    "short_rule": "Close breaks below the lowest low of the prior 20 bars."
+   },
+   "rsi_reversal": {
+    "name": "RSI extreme reversal",
+    "atlas_strategy": "RSI momentum & extremes",
+    "long_rule": "RSI(14) crosses back above 30 after being oversold.",
+    "short_rule": "RSI(14) crosses back below 70 after being overbought."
+   },
+   "bollinger_mean_reversion": {
+    "name": "Bollinger mean reversion",
+    "atlas_strategy": "Range trading & mean reversion / Bollinger Bands",
+    "long_rule": "Close returns inside the lower Bollinger Band after closing below it.",
+    "short_rule": "Close returns inside the upper Bollinger Band after closing above it."
+   },
+   "trend_pullback_rsi": {
+    "name": "Trend pullback + RSI reset",
+    "atlas_strategy": "Pullback / retest entries + RSI",
+    "long_rule": "Close is above SMA50 and RSI crosses upward through 45.",
+    "short_rule": "Close is below SMA50 and RSI crosses downward through 55."
+   },
+   "consensus": {
+    "name": "Multi-indicator consensus",
+    "atlas_strategy": "Trend + MACD + RSI + moving-average confluence",
+    "long_rule": "Consensus score rises to +3 or higher (EMA trend, MACD, RSI, price vs SMA50).",
+    "short_rule": "Consensus score falls to -3 or lower."
+   },
+   "stochastic_reversal": {
+    "name": "Stochastic zone reversal",
+    "atlas_strategy": "Stochastic oscillator & momentum extremes",
+    "long_rule": "Stochastic %K crosses above %D while %D is in the oversold zone (<= 30).",
+    "short_rule": "Stochastic %K crosses below %D while %D is in the overbought zone (>= 70)."
+   },
+   "adx_trend_strength": {
+    "name": "ADX trend-strength onset",
+    "atlas_strategy": "ADX / directional movement trend confirmation",
+    "long_rule": "ADX(14) crosses above 25 while +DI is above -DI (a measurable uptrend is starting).",
+    "short_rule": "ADX(14) crosses above 25 while -DI is above +DI (a measurable downtrend is starting)."
+   },
+   "schaff_cycle": {
+    "name": "Schaff Trend Cycle turn",
+    "atlas_strategy": "Schaff Trend Cycle (MACD stochastic, double-smoothed)",
+    "long_rule": "STC crosses upward through 25 after a cycle washout.",
+    "short_rule": "STC crosses downward through 75 after a cycle peak."
+   },
+   "vortex_trend": {
+    "name": "Vortex trend cross",
+    "atlas_strategy": "Vortex Indicator (+VI / -VI)",
+    "long_rule": "+VI(14) crosses above -VI(14).",
+    "short_rule": "-VI(14) crosses above +VI(14)."
+   },
+   "fisher_reversal": {
+    "name": "Fisher Transform reversal",
+    "atlas_strategy": "Ehlers Fisher Transform",
+    "long_rule": "Fisher crosses above its one-bar trigger while still below zero (turning up from the low side).",
+    "short_rule": "Fisher crosses below its one-bar trigger while still above zero (turning down from the high side)."
+   },
+   "kst_momentum": {
+    "name": "KST momentum cross",
+    "atlas_strategy": "Know Sure Thing (weighted multi-horizon ROC)",
+    "long_rule": "KST crosses above its 9-bar signal average.",
+    "short_rule": "KST crosses below its 9-bar signal average."
+   },
+   "entropy_trend": {
+    "name": "Entropy-gated multiscale trend (TradeAtlas research rule)",
+    "atlas_strategy": "Invented v10 Entropy-Weighted Trend: vol-normalized 3/5/10/20/60/120-bar momentum, gated by permutation entropy of smoothed log price",
+    "long_rule": "Entropy-Weighted Trend crosses above +0.10 while 60-bar permutation entropy is <= 0.80 (ordered, not noise-dominated).",
+    "short_rule": "Entropy-Weighted Trend crosses below -0.10 while 60-bar permutation entropy is <= 0.80."
+   },
+   "cci_reversal": {
+    "name": "CCI extreme reversal",
+    "atlas_strategy": "Commodity Channel Index mean-reversion",
+    "long_rule": "CCI(20) crosses back above -100 after an downside extreme.",
+    "short_rule": "CCI(20) crosses back below +100 after an upside extreme."
+   },
+   "williams_reversal": {
+    "name": "Williams %R reversal",
+    "atlas_strategy": "Williams %R close-location oscillator",
+    "long_rule": "Williams %R(14) crosses back above -80.",
+    "short_rule": "Williams %R(14) crosses back below -20."
+   },
+   "parabolic_sar_trend": {
+    "name": "Parabolic SAR flip",
+    "atlas_strategy": "Wilder Parabolic SAR trend/stop flip",
+    "long_rule": "Parabolic SAR flips from above price to below price.",
+    "short_rule": "Parabolic SAR flips from below price to above price."
+   },
+   "ichimoku_cloud": {
+    "name": "Ichimoku cloud state",
+    "atlas_strategy": "Ichimoku Tenkan/Kijun plus the cloud projected from past bars",
+    "long_rule": "Ichimoku score crosses above +1/3 (price/cloud/Tenkan-Kijun confluence turns positive).",
+    "short_rule": "Ichimoku score crosses below -1/3."
+   },
+   "kalman_trend": {
+    "name": "Kalman local-trend slope",
+    "atlas_strategy": "Causal alpha-beta/Kalman-style local linear trend filter on log price",
+    "long_rule": "Bounded Kalman log-price slope crosses above +0.15.",
+    "short_rule": "Bounded Kalman log-price slope crosses below -0.15."
+   },
+   "omni_consensus": {
+    "name": "Omni direct consensus (TradeAtlas v11)",
+    "atlas_strategy": "Fixed weighted fusion of multiscale trend, Kalman slope, horizon-matched trend, Parabolic SAR and an oscillator basket",
+    "long_rule": "Omni direct score crosses above +0.20.",
+    "short_rule": "Omni direct score crosses below -0.20."
+   },
+   "hull_trend": {
+    "name": "Hull moving-average trend",
+    "atlas_strategy": "Alan Hull moving average (low-lag weighted MA combination)",
+    "long_rule": "ATR-normalized Hull trend score crosses above +0.20.",
+    "short_rule": "ATR-normalized Hull trend score crosses below -0.20."
+   },
+   "supertrend_flip": {
+    "name": "Supertrend flip",
+    "atlas_strategy": "ATR-band Supertrend (10,3) direction flip",
+    "long_rule": "Supertrend flips from above price to below price.",
+    "short_rule": "Supertrend flips from below price to above price."
+   },
+   "kaufman_trend": {
+    "name": "Kaufman adaptive trend",
+    "atlas_strategy": "Kaufman Adaptive Moving Average efficiency-ratio trend",
+    "long_rule": "ATR-normalized price-plus-KAMA-slope score crosses above +0.20.",
+    "short_rule": "ATR-normalized price-plus-KAMA-slope score crosses below -0.20."
+   },
+   "haar_wavelet": {
+    "name": "Haar wavelet multiscale trend",
+    "atlas_strategy": "Haar block-average wavelet decomposition over 4/8/16/32/64 bars",
+    "long_rule": "Volatility-normalized Haar trend score crosses above +0.20.",
+    "short_rule": "Volatility-normalized Haar trend score crosses below -0.20."
+   },
+   "aroon_trend": {
+    "name": "Aroon oscillator trend",
+    "atlas_strategy": "Aroon(25) recency of highs versus lows",
+    "long_rule": "Aroon oscillator score crosses above +0.25.",
+    "short_rule": "Aroon oscillator score crosses below -0.25."
+   },
+   "tsi_momentum": {
+    "name": "TSI signal momentum",
+    "atlas_strategy": "True Strength Index double-smoothed momentum versus its signal",
+    "long_rule": "Bounded TSI-minus-signal score crosses above +0.20.",
+    "short_rule": "Bounded TSI-minus-signal score crosses below -0.20."
+   },
+   "trix_momentum": {
+    "name": "TRIX zero-cross momentum",
+    "atlas_strategy": "Triple-smoothed EMA rate of change",
+    "long_rule": "Bounded TRIX score crosses above zero.",
+    "short_rule": "Bounded TRIX score crosses below zero."
+   },
+   "cmo_momentum": {
+    "name": "Chande Momentum trend",
+    "atlas_strategy": "Chande Momentum Oscillator(14) gains-versus-losses balance",
+    "long_rule": "CMO score crosses above +0.25.",
+    "short_rule": "CMO score crosses below -0.25."
+   },
+   "ultimate_reversal": {
+    "name": "Ultimate Oscillator reversal",
+    "atlas_strategy": "Larry Williams Ultimate Oscillator 7/14/28 buying pressure",
+    "long_rule": "Ultimate Oscillator crosses back above 30 after an oversold reading.",
+    "short_rule": "Ultimate Oscillator crosses back below 70 after an overbought reading."
+   },
+   "rvi_trend": {
+    "name": "Relative Vigor trend",
+    "atlas_strategy": "Relative Vigor Index body/range pressure versus its signal",
+    "long_rule": "Bounded RVI-minus-signal score crosses above +0.20.",
+    "short_rule": "Bounded RVI-minus-signal score crosses below -0.20."
+   },
+   "regression_trend": {
+    "name": "Log-regression trend fusion",
+    "atlas_strategy": "20/60-bar least-squares log-price slopes scaled by residual noise",
+    "long_rule": "Fused regression trend score crosses above +0.20.",
+    "short_rule": "Fused regression trend score crosses below -0.20."
+   },
+   "donchian_trend": {
+    "name": "Donchian channel state",
+    "atlas_strategy": "Prior-20-bar Donchian breakout/midpoint state",
+    "long_rule": "Donchian state flips from negative to positive.",
+    "short_rule": "Donchian state flips from positive to negative."
+   },
+   "obv_flow_trend": {
+    "name": "OBV flow trend",
+    "atlas_strategy": "20-bar On-Balance-Volume change normalized by real traded volume",
+    "long_rule": "Bounded OBV-flow score crosses above +0.20.",
+    "short_rule": "Bounded OBV-flow score crosses below -0.20."
+   },
+   "coppock_trend": {
+    "name": "Coppock cycle trend",
+    "atlas_strategy": "Coppock Curve weighted 11/14-bar rate-of-change cycle",
+    "long_rule": "Bounded Coppock score crosses above +0.20.",
+    "short_rule": "Bounded Coppock score crosses below -0.20."
+   },
+   "atlas_pressure_wave": {
+    "name": "Atlas Pressure Wave (TradeAtlas v13)",
+    "atlas_strategy": "Invented exponentially weighted candle close/body pressure scaled by ATR range and relative real volume, fused with 3/10-bar volatility-normalized momentum",
+    "long_rule": "Atlas Pressure Wave crosses above +0.20.",
+    "short_rule": "Atlas Pressure Wave crosses below -0.20."
+   },
+   "atlas_regime_compass": {
+    "name": "Atlas Regime Compass (TradeAtlas v13)",
+    "atlas_strategy": "Invented smooth regime switch: ADX/permutation-entropy decide how much Hull/multiscale trend to trust versus Bollinger/RSI range reversion",
+    "long_rule": "Atlas Regime Compass crosses above +0.20.",
+    "short_rule": "Atlas Regime Compass crosses below -0.20."
+   },
+   "atlas_phoenix_fusion": {
+    "name": "Atlas Phoenix Fusion (TradeAtlas v13)",
+    "atlas_strategy": "Invented family-balanced fusion of trend filters, momentum oscillators, price structure, OHLCV flow proxies and the Regime Compass; families are averaged before fusion so correlated cousins cannot outvote whole evidence types",
+    "long_rule": "Atlas Phoenix Fusion crosses above +0.20.",
+    "short_rule": "Atlas Phoenix Fusion crosses below -0.20."
+   },
+   "minute_vwap_reversion": {
+    "name": "Minute VWAP reversion (60-bar)",
+    "atlas_strategy": "Intraday VWAP deviation / mean reversion on completed minute bars",
+    "long_rule": "Bounded negative VWAP-deviation score crosses above +0.25 (price stretched below rolling VWAP).",
+    "short_rule": "Bounded negative VWAP-deviation score crosses below -0.25 (price stretched above rolling VWAP).",
+    "focus_timeframes": [
+     "1m",
+     "5m",
+     "15m"
+    ]
+   },
+   "minute_ema_ribbon": {
+    "name": "Minute EMA ribbon trend",
+    "atlas_strategy": "EMA 5/13/34 ribbon alignment and volatility-normalized ribbon spread",
+    "long_rule": "EMA-ribbon score crosses above +0.25.",
+    "short_rule": "EMA-ribbon score crosses below -0.25.",
+    "focus_timeframes": [
+     "1m",
+     "5m",
+     "15m"
+    ]
+   },
+   "minute_rsi2_snapback": {
+    "name": "Minute RSI-2 snapback",
+    "atlas_strategy": "Larry Connors-style RSI(2) extreme with an SMA50 trend filter",
+    "long_rule": "RSI(2) falls to 10 or below while close remains above SMA50.",
+    "short_rule": "RSI(2) rises to 90 or above while close remains below SMA50.",
+    "focus_timeframes": [
+     "1m",
+     "5m",
+     "15m"
+    ]
+   },
+   "minute_orb_breakout": {
+    "name": "Minute opening-range breakout",
+    "atlas_strategy": "First-15-minute UTC opening range breakout (session proxy; verify the real venue session)",
+    "long_rule": "Close breaks above the completed first-15-minute UTC range high.",
+    "short_rule": "Close breaks below the completed first-15-minute UTC range low.",
+    "focus_timeframes": [
+     "1m",
+     "5m",
+     "15m"
+    ]
+   },
+   "minute_squeeze_breakout": {
+    "name": "Minute Bollinger squeeze release",
+    "atlas_strategy": "Low trailing Bollinger-bandwidth percentile followed by 5-bar volatility-normalized momentum",
+    "long_rule": "Squeeze-release score crosses above +0.20.",
+    "short_rule": "Squeeze-release score crosses below -0.20.",
+    "focus_timeframes": [
+     "1m",
+     "5m",
+     "15m"
+    ]
+   },
+   "minute_volume_surge": {
+    "name": "Minute volume-surge pressure",
+    "atlas_strategy": "Real relative-volume surge multiplied by completed-candle close-location pressure",
+    "long_rule": "Volume-surge pressure score crosses above +0.35.",
+    "short_rule": "Volume-surge pressure score crosses below -0.35.",
+    "focus_timeframes": [
+     "1m",
+     "5m",
+     "15m"
+    ]
+   },
+   "atlas_minute_pulse": {
+    "name": "Atlas Minute Pulse (TradeAtlas v14)",
+    "atlas_strategy": "Invented minute-first fusion of EMA ribbon, Atlas Pressure Wave, VWAP trend side, UTC opening-range state, volume surge and squeeze release, damped when permutation entropy says the path is noise-dominated",
+    "long_rule": "Atlas Minute Pulse crosses above +0.25.",
+    "short_rule": "Atlas Minute Pulse crosses below -0.25.",
+    "focus_timeframes": [
+     "1m",
+     "5m",
+     "15m"
+    ]
+   }
+  },
+  "indicators": [
+   "SMA20/50/200",
+   "EMA20/50",
+   "RSI(14)",
+   "MACD(12,26,9)",
+   "Bollinger Bands(20,2)",
+   "ATR(14)",
+   "Stochastic %K/%D (14,3)",
+   "ADX(14) with +DI/-DI",
+   "Aroon(25)",
+   "Vortex(14)",
+   "Chande Momentum(14)",
+   "Fisher Transform(10)",
+   "RVI(10)",
+   "Schaff Trend Cycle",
+   "KST",
+   "Coppock",
+   "Chaikin Money Flow(20)",
+   "Money Flow Index(14)",
+   "Elder Force Index(13)",
+   "Ulcer Index(14)",
+   "Ehlers SuperSmoother",
+   "permutation entropy",
+   "multiscale trend score",
+   "Signed Path Pressure (TradeAtlas)",
+   "Entropy-Weighted Trend (TradeAtlas)",
+   "CCI(20)",
+   "Williams %R(14)",
+   "True Strength Index",
+   "TRIX(15)",
+   "Ultimate Oscillator",
+   "Parabolic SAR",
+   "Ichimoku score",
+   "OBV slope",
+   "log-regression trend",
+   "Kalman local trend",
+   "Omni direct consensus (TradeAtlas)",
+   "Hull MA(20)",
+   "Supertrend(10,3)",
+   "Kaufman AMA",
+   "Haar wavelet trend",
+   "Donchian state",
+   "Atlas Pressure Wave (TradeAtlas)",
+   "Atlas Regime Compass (TradeAtlas)",
+   "Atlas Phoenix Fusion (TradeAtlas)",
+   "Atlas Meta Hedge (online, delayed labels)",
+   "Atlas Online Logistic (online SGD, delayed labels)",
+   "rolling VWAP(60)",
+   "EMA ribbon 5/13/34",
+   "RSI(2)",
+   "UTC opening range",
+   "Bollinger bandwidth squeeze percentile",
+   "relative-volume surge",
+   "Atlas Minute Pulse (TradeAtlas v14)"
+  ],
+  "market_presets": {
+   "crypto_spot": {
+    "label": "Crypto spot (24/7)",
+    "examples": "BTC, ETH and other exchange pairs — exported from your own exchange account/tools",
+    "typical_base_intervals": [
+     "1m",
+     "5m",
+     "15m",
+     "1h"
+    ],
+    "starting_cost_bps_to_research": "10-30 round-trip (fees + spread + slippage vary wildly by venue/pair)",
+    "data_notes": "Trades around the clock; exchange outages and wick anomalies are common — sanity-check bars."
+   },
+   "us_stocks_etfs": {
+    "label": "US stocks & ETFs",
+    "examples": "Single names and index ETFs via your broker/data vendor export",
+    "typical_base_intervals": [
+     "1m",
+     "5m",
+     "1d"
+    ],
+    "starting_cost_bps_to_research": "1-10 for liquid names (plus borrow costs for shorts, which this lab does not model)",
+    "data_notes": "Mind splits/dividends (adjusted vs raw), halts, and pre/post-market thin bars."
+   },
+   "fx_majors": {
+    "label": "FX majors",
+    "examples": "EUR/USD, USD/JPY class pairs from your broker export",
+    "typical_base_intervals": [
+     "5m",
+     "15m",
+     "1h"
+    ],
+    "starting_cost_bps_to_research": "1-5 spread on majors at liquid hours (swap/rollover not modelled here)",
+    "data_notes": "Broker feeds differ; weekend gaps and news spikes dominate short-horizon results."
+   },
+   "futures_commodities": {
+    "label": "Futures & commodities",
+    "examples": "Index, energy and metals futures continuous or single-contract exports",
+    "typical_base_intervals": [
+     "5m",
+     "15m",
+     "1h",
+     "1d"
+    ],
+    "starting_cost_bps_to_research": "Convert per-contract commissions/ticks to bps yourself; roll gaps distort backtests",
+    "data_notes": "Continuous-contract joins create fake jumps; prefer testing single contracts or adjusted series you trust."
+   },
+   "indices_global": {
+    "label": "Global indices (cash/CFD exports)",
+    "examples": "Regional index series exported from a vendor you subscribe to",
+    "typical_base_intervals": [
+     "15m",
+     "1h",
+     "1d"
+    ],
+    "starting_cost_bps_to_research": "Vendor/CFD spreads vary; dividend and financing adjustments are not modelled here",
+    "data_notes": "Confirm timezone/session alignment before comparing timeframes across regions."
+   }
+  },
+  "features": [
+   "per-timeframe latest mechanical long/short condition",
+   "100-signal historical validation (next-bar entry, cost-adjusted, no overlaps)",
+   "all-engine strategy tournament per timeframe",
+   "70/30 walk-forward robustness split",
+   "equity curve points per backtest",
+   "multi-symbol watchlist heatmap (POST /api/lab/watchlist)",
+   "Forecast Lab: historical-analog distributions for the latest setup (POST /api/lab/forecast) — what followed look-alike setups, never a price call",
+   "rolling out-of-sample forecast evaluation (100 hidden-future attempts vs always-up/momentum/mean-reversion baselines, Brier skill)",
+   "multi-horizon evaluation (1/3/5/10/20 bars) — single-horizon 'edges' exposed",
+   "regime-split accuracy (trend vs causal SMA-20; volatility vs trailing median)",
+   "analog path simulation: bootstrap over REAL look-alike paths with terminal and max-drawdown percentiles (dispersion picture, not a forecast)",
+   "ensemble evaluation: analog median vs distance-weighted analogs vs momentum vs majority vote vs agreement-only filter (accuracy WITH coverage)",
+   "cost-aware re-scoring: win rate and mean net per trade after 10/25 bps round-trip costs vs always-long — direction accuracy alone is half the truth",
+   "candle-structure analog race: gap/range/body/wicks/close-location/volume neighbours tested beside return analogs under the same no-lookahead rule; close-only series are marked unavailable instead of inventing candle anatomy",
+   "indicator-regime analog race (v8): RSI slope, ATR-normalized MACD, Bollinger %B/bandwidth, SMA distance/slope, Donchian/Stochastic position, ADX balance, volatility regime and volume surprise matched under j + horizon <= origin; majority_vote_v3 and a coverage-labelled consensus_3plus subset join the race",
+   "path-geometry analog race + causal adaptive selector (v9): travel efficiency, volatility-normalized trend slopes, variance ratio, autocorrelation, skew, 60-bar excursion/drawdown position, volatility/range compression, streaks and real up/down volume balance; majority_vote_v4 joins the race and adaptive_selector follows only candidates proven on fully revealed prior attempts (old_origin + horizon <= current origin), never unfinished windows",
+   "cycle/flow analog race + direct multiscale trend (v10): Aroon/Vortex/CMO/Fisher/RVI/Schaff/KST/Coppock/CMF/MFI/Force/rolling-VWAP/Ulcer/SuperSmoother/permutation-entropy neighbours, TradeAtlas Signed Path Pressure and Entropy-Weighted Trend, majority_vote_v5, a fixed 3/5/10/20/60/120-bar volatility-normalized trend contestant, its multi-horizon hidden-future rows, and coverage-labelled confidence diagnostics that cannot win best-method",
+   "five new signal engines on every honest timeframe (Schaff cycle, Vortex, Fisher reversal, KST and entropy-gated multiscale trend) — 14 engines total",
+   "v11 direct forecast race: causal Kalman local-trend slope, fixed Omni direct consensus (multiscale + Kalman + horizon-matched trend + Parabolic SAR + CCI/Williams/TSI/TRIX/Ultimate/CMO/Fisher/Schaff basket), rank-fusion neighbours across all five analog families, majority_vote_v6 and direct-method rows at neighbouring horizons",
+   "six additional signal engines in v11 (CCI, Williams %R, Parabolic SAR, Ichimoku, Kalman trend, Omni consensus) — 20 engines total",
+   "halal-stock paper bot: registered user-supplied Shariah-screen profiles (pass/needs_review/fail, never a certification), stocks-only long spot paper entries, ATR risk sizing, stop/target/trailing exits, daily/drawdown halts, Start/Pause/STOP and duplicate-bar protection",
+   "v12 direct/statistical race: Hull trend, Supertrend, Kaufman AMA, Haar wavelet trend, causal Markov trend/volatility/RSI regime outcomes, Atlas Fusion v12 and majority_vote_v7 — 24 signal engines at that version",
+   "v13 forecast race: Aroon/TSI/TRIX/CMO/Ultimate/RVI/log-regression/Donchian/OBV/Coppock direct signs, invented Atlas Pressure Wave + Regime Compass + family-balanced Phoenix Fusion, majority_vote_v8, and two delayed-label online learners (Meta Hedge exponential weights and L2 online logistic SGD) — all under old_origin + horizon <= current origin",
+   "thirteen additional v13 signal engines on every honest timeframe (Aroon, TSI, TRIX, CMO, Ultimate reversal, RVI, regression, Donchian, OBV flow, Coppock, Pressure Wave, Regime Compass, Phoenix) — 37 engines at v13",
+   "v14 minute-first layer: seven additional engines (rolling-VWAP reversion, EMA ribbon, RSI-2 snapback, UTC opening-range breakout, Bollinger squeeze release, volume-surge pressure and invented Atlas Minute Pulse) — 44 engines total",
+   "v14 minute hidden-future race at 1/3/5/15/30 bars with coverage, Wilson intervals and 5/10/25-bps costs, plus an explicit 80% goal gate requiring 1000+ attempts and external multi-symbol/day validation before any strong claim",
+   "v16 automation: a guarded collector fetches completed bars by itself from a fixed allowlist of public venues (Binance spot, Kraken public OHLC — no keys, no arbitrary URLs), stores them incrementally in SQLite, reserves the newest 20% of every series as a counted holdout the tuning loop never sees, pools hidden-future evidence across all stored series with Wilson intervals, and reports the honest distance to the 80% target gate by gate; goal_established remains false because a local database cannot prove a universal rate",
+   "v15 failure memory (Atlas self-correction): every failed method x horizon is diagnosed against an explicit cause library (sample too small, coverage too low, baseline not beaten, cost-eaten edge, single-horizon overfit, walk-forward decay, regime dependence, drawdown, selection bias, missing volume, remedy-starved sample...), each cause carries an avoid-rule plus an implemented remedy, the next round re-tests only what can still be saved with that remedy applied, resolved causes are kept as reusable lessons, recurring causes retire the candidate with its reason, and later runs skip candidates their stored lessons already proved hopeless — the 80% goal is still never claimed",
+   "POST /api/lab/self-correct runs the loop over one or two series and GET /api/lessons returns the persisted lesson ledger with resolved/recurred/retired status",
+   "v14 minute bot profile: 1m/Atlas Minute Pulse defaults, simulated slippage, entries-per-day cap, maximum holding bars, cooldown, minimum-ATR filter, external-account balance mirror and manual execution checklist tickets; live routing remains disabled",
+   "v12 all-asset halal gate: stocks use financial ratios; crypto/currency/commodity/ETF/fund profiles require explicit user-reviewed spot/no-interest/no-leverage/no-short evidence and can expire to needs_review; missing evidence never passes",
+   "SQLite market database in the web app: instruments, OHLCV bars, halal profiles/screens, imports and pooled hidden-future research runs with method leaderboards",
+   "bundled real historical samples with provenance notice (real-data/)",
+   "browser-polled bring-your-own live feed and browser-direct public real-market adapters",
+   "demo e-wallet simulation: imaginary crypto balances, balance-to-PAPER_USD conversion at a user-typed rate, imaginary withdrawal accounting, PAPER_USD internal transfer to/from the halal paper bot, spot long-only paper positions, Follow/Pause/Resume/STOP controls and duplicate-bar protection — no real deposits, custody, withdrawals, leverage or broker execution"
+  ],
+  "data_guide": [
+   {
+    "step": "1. Export real bars you already have a right to use",
+    "detail": "Broker/exchange history export, TradingView chart data export (paid plans), or your data vendor's CSV download. TradeAtlas ships no licensed live feed."
+   },
+   {
+    "step": "2. Match the canonical columns",
+    "detail": "timestamp,open,high,low,close,volume (aliases like Date/AAPL.Close are converted by you before upload; UNIX seconds or ISO dates both parse)."
+   },
+   {
+    "step": "3. Decide adjusted vs raw — and write it down",
+    "detail": "Splits/dividends make raw series jump. State which you used; results from mixed series are not comparable."
+   },
+   {
+    "step": "4. Intraday claims need intraday files",
+    "detail": "Daily bars honestly support only 1d/1w here. Nobody can reconstruct 5-minute history from daily bars; anyone who claims otherwise is fabricating data."
+   },
+   {
+    "step": "5. Judge forecasters out-of-sample or not at all",
+    "detail": "Use the Forecast Lab's rolling evaluation: hide the future, forecast, check, repeat 100 times, and demand it beat always-up/momentum baselines before believing any 'edge' — then re-test on a second symbol and era."
+   }
+  ],
+  "feed": {
+   "purpose": "Bring-your-own real market data. TradeAtlas does not bundle or resell a licensed live feed.",
+   "accepted_json": {
+    "bars": [
+     {
+      "t": 1767225600,
+      "o": 100.0,
+      "h": 101.2,
+      "l": 99.8,
+      "c": 100.7,
+      "v": 12345
+     }
+    ]
+   },
+   "accepted_csv_header": "timestamp,open,high,low,close,volume",
+   "timestamp": "Unix seconds, Unix milliseconds, or ISO-8601 datetime.",
+   "browser_live_feed": "The web UI can poll a CORS-enabled JSON/CSV endpoint directly from the user's browser and re-analyze the newest bars. The TradeAtlas server never fetches the feed URL, avoiding server-side request forgery and credential leakage.",
+   "real_market_adapters": "See REAL_MARKET_FEEDS / lab_spec.real_market_feeds. Public adapters are browser-direct market-data connections, not broker/exchange order routing."
+  },
+  "real_market_feeds": {
+   "binance_public": {
+    "label": "Binance public spot klines (browser-direct, no key entered here)",
+    "markets": "Crypto spot pairs offered by that public endpoint (for example BTCUSDT, ETHUSDT)",
+    "endpoint_shape": "GET https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=1000",
+    "intervals": [
+     "1m",
+     "5m",
+     "15m",
+     "1h",
+     "4h",
+     "1d",
+     "1w"
+    ],
+    "browser_direct": true,
+    "credentials_in_tradeatlas": false,
+    "notes": "The browser drops the still-forming last kline before analysis. Availability, regional access, CORS and terms are the venue's; this is market data only, never order routing."
+   },
+   "kraken_public": {
+    "label": "Kraken public OHLC (browser-direct, no key entered here)",
+    "markets": "Crypto pairs offered by that public endpoint (for example XBTUSD, ETHUSD)",
+    "endpoint_shape": "GET https://api.kraken.com/0/public/OHLC?pair=XBTUSD&interval=60",
+    "intervals": [
+     "1m",
+     "5m",
+     "15m",
+     "1h",
+     "4h",
+     "1d",
+     "1w"
+    ],
+    "browser_direct": true,
+    "credentials_in_tradeatlas": false,
+    "notes": "The browser drops the still-forming last candle before analysis. Pair naming and history depth are venue-specific; market data only."
+   },
+   "stooq_daily": {
+    "label": "Stooq daily CSV (browser-direct)",
+    "markets": "Daily symbols offered by Stooq's public CSV (for example aapl.us); availability/adjustments must be verified",
+    "endpoint_shape": "GET https://stooq.com/q/d/l/?s=aapl.us&i=d",
+    "intervals": [
+     "1d",
+     "1w via resampling"
+    ],
+    "browser_direct": true,
+    "credentials_in_tradeatlas": false,
+    "notes": "Daily history cannot create intraday bars. Check symbol suffix, split/dividend adjustment and data rights before believing a test."
+   },
+   "custom_cors": {
+    "label": "Your own CORS-enabled JSON/CSV endpoint",
+    "markets": "Any market for which you lawfully supply OHLCV bars",
+    "endpoint_shape": "A URL returning bars[] JSON or timestamp,open,high,low,close,volume CSV",
+    "intervals": [
+     "source interval and every honest coarser resample"
+    ],
+    "browser_direct": true,
+    "credentials_in_tradeatlas": false,
+    "notes": "TradeAtlas server never fetches the URL and never receives feed credentials; paid/key/CORS gates are not bypassed."
+   }
+  },
+  "paper_wallet": {
+   "mode": "paper_simulation_only",
+   "currency": "PAPER_USD",
+   "demo_crypto_balances": "The v13 demo e-wallet can hold imaginary USDT/USDC/BTC/ETH/SOL quantities, convert those imaginary balances to PAPER_USD at a user-typed rate, simulate a withdrawal by deleting imaginary units, and move PAPER_USD internally to/from the paper bot. None of those actions touches a blockchain, bank, exchange or real asset.",
+   "external_account_mirror": "v14 can record balances that the user says are held in the user's OWN licensed exchange/broker account. This is an unverified accounting mirror only: TradeAtlas cannot access, verify, receive, convert, withdraw or trade those assets, and mirrored balances are excluded from paper equity.",
+   "accepts_real_money_or_crypto": false,
+   "deposit_address": null,
+   "blockchain_transfer": false,
+   "broker_or_exchange_execution": false,
+   "what_simulated_conversion_means": "A user types a hypothetical crypto amount and a hypothetical USD rate; TradeAtlas adds the product to an imaginary PAPER_USD balance. Nothing is received, converted, custodied, withdrawn or traded for real.",
+   "follow_mode": "When following is ON, one follow-step may create a simulated spot position from the latest completed supplied bar. STOP sets a hard halt that blocks new paper-follow actions. Spot paper wallet is long-only: a short condition exits a simulated holding; it never opens a real or leveraged short.",
+   "risk_caps": {
+    "max_follow_allocation_pct_per_step": 25.0,
+    "leverage": "none",
+    "margin": "none"
+   },
+   "warning": "Never send cryptocurrency or money to TradeAtlas. It has no deposit address and cannot convert or trade real assets."
+  },
+  "halal_screen": {
+   "purpose": "A transparent, user-configurable stock screen for the paper bot. It is software arithmetic on data the user supplies, NOT a fatwa and NOT a certification that any security is halal.",
+   "bot_rule": "The bot may open a paper position only when asset_type is stock and the registered screen status is exactly pass. Missing data is needs_review, never pass.",
+   "presets": {
+    "strict": {
+     "interest_bearing_debt_max_pct": 30.0,
+     "interest_bearing_cash_securities_max_pct": 30.0,
+     "receivables_max_pct": 30.0,
+     "non_compliant_income_max_pct": 5.0
+    },
+    "balanced": {
+     "interest_bearing_debt_max_pct": 33.0,
+     "interest_bearing_cash_securities_max_pct": 33.0,
+     "receivables_max_pct": 49.0,
+     "non_compliant_income_max_pct": 5.0
+    }
+   },
+   "required_profile_fields": [
+    "symbol",
+    "asset_type=stock",
+    "core_business_prohibited (true/false)",
+    "activities_reviewed=true",
+    "interest_bearing_debt_pct_of_market_cap",
+    "interest_bearing_cash_securities_pct_of_market_cap",
+    "receivables_pct_of_market_cap",
+    "non_compliant_income_pct_of_revenue"
+   ],
+   "prohibited_core_activities_examples": [
+    "adult_entertainment",
+    "alcohol",
+    "casino",
+    "conventional_banking",
+    "conventional_insurance",
+    "gambling",
+    "interest_lending",
+    "non_halal_meat",
+    "pork",
+    "pornography",
+    "riba_lending",
+    "tobacco"
+   ],
+   "important_limits": [
+    "Standards differ between scholars, indices and jurisdictions; choose the preset/thresholds you personally follow.",
+    "TradeAtlas does not fetch or verify company accounts. Wrong or stale user inputs produce a wrong screen.",
+    "A pass can expire when newer financial statements arrive; re-screen periodically.",
+    "Dividend purification methods differ; any estimate shown must be checked with your chosen standard."
+   ]
+  },
+  "halal_paper_bot": {
+   "mode": "halal_paper_bot_only",
+   "universe": "registered assets whose current user-supplied halal screen status is pass (stocks use financial ratios; other classes require explicit spot/no-interest/no-leverage evidence)",
+   "execution": "paper fills only; optional manual external-account checklist tickets are generated but never sent. No broker/exchange credentials, automatic real order, leverage, margin or short selling exists in TradeAtlas.",
+   "controls": [
+    "start",
+    "resume",
+    "pause",
+    "stop",
+    "reset_risk",
+    "close_all_paper_positions"
+   ],
+   "risk_controls": [
+    "risk-per-trade position sizing from ATR stop distance",
+    "allocation cap and maximum open positions",
+    "stop-loss, take-profit and ATR trailing stop",
+    "daily-loss and peak-equity drawdown halts for new entries",
+    "minute-profile maximum entries per UTC day, maximum holding bars and post-exit cooldown",
+    "simulated slippage and a minimum-ATR filter so tiny minute moves are not mistaken for cost-free trades",
+    "duplicate-bar protection per symbol/strategy/timeframe"
+   ],
+   "automation_boundary": "The browser fetches market data and calls one bot cycle per interval while the page is open. The TradeAtlas server does not fetch arbitrary market URLs or hold trading credentials.",
+   "real_money": false,
+   "accepts_real_money_or_crypto": false,
+   "deposit_address": null
+  },
+  "project_goals": {
+   "version": "17.0",
+   "updated": "2026-10-21 — v17 Evolution Revolution",
+   "goals": [
+    {
+     "id": "minute_timeframe_focus",
+     "title": "Focus research and the bot on 1m/5m/15m bars",
+     "status": "implemented_in_v14",
+     "primary_timeframe": "1m",
+     "evidence": "Seven minute engines, a 1/3/5/15/30-bar hidden-future race, minute bot defaults and 1m public-data presets."
+    },
+    {
+     "id": "accuracy_80",
+     "title": "Reach at least 80% out-of-sample direction accuracy",
+     "status": "active_target_not_reached",
+     "target_pct": 80.0,
+     "gates": {
+      "target_direction_accuracy_pct": 80.0,
+      "minimum_hidden_future_attempts_per_candidate": 1000,
+      "minimum_selective_coverage_pct": 20.0,
+      "wilson_95_lower_bound_for_strong_claim_pct": 80.0,
+      "mean_net_after_10bps_must_be_positive": true,
+      "requires_multiple_symbols_and_days": true,
+      "requires_fresh_unseen_validation": true,
+      "current_status": "not_reached_or_established"
+     },
+     "current_real_evidence": "v13 real daily/monthly samples reached 68% on one AAPL test and 63.077% pooled; no bundled real minute sample establishes a minute rate."
+    },
+    {
+     "id": "integrated_real_bot",
+     "title": "Become a complete real trading bot",
+     "status": "manual_external_account_companion_only",
+     "implemented": "Minute paper bot, risk halts, Start/Resume/Pause/STOP/flatten workflow and manual external execution tickets.",
+     "not_implemented": "No exchange/broker credentials, API-key storage, automatic order routing, leverage or shorting in TradeAtlas.",
+     "next_gate": "A separately reviewed testnet integration in the user's own licensed account would require security, legal, venue and halal-form review before any live automation."
+    },
+    {
+     "id": "usdt_btc_funding",
+     "title": "Let the user fund trading with USDT or BTC",
+     "status": "user_own_exchange_account_only",
+     "rule": "USDT/BTC remain in the user's own licensed exchange account. TradeAtlas has no deposit address and must never receive or custody crypto.",
+     "implemented": "External-account balance mirror and paper conversion/transfer simulations; the mirror is user-reported and is not added to paper equity."
+    },
+    {
+     "id": "autonomous_data",
+     "title": "Collect and store lawful market data by itself",
+     "status": "implemented_in_v16",
+     "evidence": "Allowlisted public-venue collector (server CLI and browser), incremental SQLite storage with provenance, holdout reservation with a recorded access count, pooled evidence and a gate-by-gate goal report.",
+     "not_claimed": "Automation increases sample size and honesty, not accuracy. goal_established stays false in every code path."
+    },
+    {
+     "id": "failure_memory",
+     "title": "Learn from every failed test instead of repeating it",
+     "status": "implemented_in_v17_expanded_to_35",
+     "evidence": "A cause library of 35 named failure modes (21 original + 14 new deep causes: autocorrelation_trap, volatility_regime_shift, liquidity_illusion, overparameterized_signal, multiple_testing_bias, non_stationary_drift, microstructure_noise, asymmetric_payoff_trap, tail_risk_hidden, correlation_breakdown, concept_drift, horizon_mismatch, threshold_overfit, sample_contamination), an avoid-rule and an implemented remedy per cause, a three-stage loop (screen -> apply lessons -> validate), resolved/recurred/retired lesson states, bilingual diagnostics, and a SQLite failure memory that makes later runs skip already-proven dead candidates and predicts failure before the next test.",
+     "not_claimed": "The failure memory improves the *research process*, not the market. It cannot create an edge that the sample does not contain, and it never lowers the 80% gates."
+    },
+    {
+     "id": "evolution",
+     "title": "Evolve forever — every failure teaches the next test (v17)",
+     "status": "implemented_in_v17",
+     "evidence": "Evolution Tracker with generation-over-generation metrics, failure clustering, predictive failure scoring (92% confidence for proven dead candidates), Deep Diagnostics bilingual (AR/EN), Advanced Stats toolkit (bootstrap, permutation, Bonferroni/FDR, Deflated Sharpe, tail risk, autocorr, vol regime, liquidity, PBO), Pipeline Health monitoring, SQLite v4 with evolution/cluster/verification/diagnostics tables, 10 new API endpoints, and 143 tests that prove self-healing — every failure is diagnosed, avoided, and verified in the next round.",
+     "not_claimed": "Evolution improves the search process, not the market. goal_established stays false forever; the strongest status remains goal_evidence_ready_for_independent_review."
+    },
+    {
+     "id": "halal_gate",
+     "title": "Keep bot entries behind current halal evidence",
+     "status": "implemented_rule_gate_not_fatwa",
+     "rule": "Only registered assets whose current screen is exactly pass may enter even a paper/manual-ticket workflow."
+    }
+   ],
+   "real_money_execution_enabled": false,
+   "tradeatlas_deposit_address": null,
+   "accepts_real_crypto": false,
+   "warning": "Goals are not performance claims. Do not send money or crypto to TradeAtlas."
+  },
+  "validation_defaults": {
+   "max_signals": 100,
+   "horizon_bars": 5,
+   "round_trip_cost_bps": 10,
+   "primary_timeframe": "1m",
+   "minute_timeframes": [
+    "1m",
+    "5m",
+    "15m"
+   ],
+   "minute_horizons_bars": [
+    1,
+    3,
+    5,
+    15,
+    30
+   ],
+   "accuracy_target_pct": 80.0,
+   "accuracy_goal_established": false
+  },
+  "disclaimer": "Educational/research output only — not financial advice and not a recommendation. Mechanical indicator conditions can be wrong, historical accuracy does not predict future results, and most short-term traders lose money. Verify data rights, costs, liquidity, taxes and broker rules independently; consider paper trading first."
+ },
+ "failure_memory": {
+  "name": "Atlas Failure Memory — self-correcting research loop",
+  "version": "17.0",
+  "loop": [
+   "screen every method x horizon on completed bars",
+   "diagnose each failure against an explicit cause library",
+   "turn every cause into an avoid-rule plus an implemented remedy",
+   "re-test only what can still be saved, with the avoid-rules applied",
+   "resolved -> keep the fix; recurred -> retire and remember",
+   "validate survivors on the recent slice and a second symbol"
+  ],
+  "cause_library": [
+   {
+    "id": "no_evaluable_origins",
+    "title": "Not enough history to place any test origin",
+    "severity": "blocker",
+    "meaning": "The series is shorter than the warm-up plus the horizon, so nothing could be scored.",
+    "avoid": "Never report a rate from a series that cannot produce at least 20 separated origins.",
+    "remedy": "Import a longer lawful series; do not lower the warm-up to manufacture attempts.",
+    "remedy_kind": "retire",
+    "patch": {}
+   },
+   {
+    "id": "all_scores_abstained",
+    "title": "The method abstained on every origin",
+    "severity": "blocker",
+    "meaning": "Every origin score was zero/missing, so the method made no call to evaluate.",
+    "avoid": "A method that never speaks must not be ranked as if it were accurate.",
+    "remedy": "Relax the abstention threshold (threshold scale 0) once, and retire the method if it still never speaks.",
+    "remedy_kind": "filter",
+    "patch": {
+     "threshold_scale": 0.0
+    }
+   },
+   {
+    "id": "insufficient_attempts",
+    "title": "Too few attempts for the verdict",
+    "severity": "blocker",
+    "meaning": "Fewer attempts than the configured screen minimum were produced.",
+    "avoid": "Do not generalise from a handful of attempts; small samples swing by chance alone.",
+    "remedy": "Raise the attempt budget (more separated origins), and retire the candidate if the series cannot supply them.",
+    "remedy_kind": "sample",
+    "patch": {
+     "attempts_factor": 2
+    }
+   },
+   {
+    "id": "coverage_too_low",
+    "title": "Too selective to be useful",
+    "severity": "blocker",
+    "meaning": "The method spoke on too small a share of origins; a high rate on a tiny slice is not a strategy.",
+    "avoid": "Always publish accuracy next to coverage; a filtered subset is not a full-coverage claim.",
+    "remedy": "Lower the score threshold (threshold scale 0) and re-test coverage before believing the rate.",
+    "remedy_kind": "filter",
+    "patch": {
+     "threshold_scale": 0.0
+    }
+   },
+   {
+    "id": "below_accuracy_target",
+    "title": "Below the 80% project target",
+    "severity": "goal_gap",
+    "meaning": "Direction accuracy is below the project's stated 80% target.",
+    "avoid": "Never present a below-target number as if the target had been reached.",
+    "remedy": "Keep the honest gap visible; the target is a research goal, not a parameter to tune.",
+    "remedy_kind": "gate",
+    "patch": {}
+   },
+   {
+    "id": "no_directional_edge",
+    "title": "No directional edge at all",
+    "severity": "blocker",
+    "meaning": "Accuracy is at or below a coin flip on this sample.",
+    "avoid": "Do not dress up a coin flip with extra indicators or a new name.",
+    "remedy": "Retire this candidate on this series; an ensemble of its cousins is not a fix.",
+    "remedy_kind": "retire",
+    "patch": {}
+   },
+   {
+    "id": "baseline_not_beaten",
+    "title": "A naive baseline is at least as good",
+    "severity": "blocker",
+    "meaning": "Always-up or 5-bar momentum matched or beat the method.",
+    "avoid": "Always print the naive baselines in the same table; a method must beat them to matter.",
+    "remedy": "Retire the candidate and keep the baseline as the reference: if always-up/momentum wins, the method adds nothing here.",
+    "remedy_kind": "retire",
+    "patch": {}
+   },
+   {
+    "id": "cost_eaten_edge",
+    "title": "Gross edge disappeared after costs",
+    "severity": "blocker",
+    "meaning": "The mean gross move was positive but the net after round-trip cost was not.",
+    "avoid": "Never quote gross accuracy or gross return as tradable; costs are part of the result.",
+    "remedy": "Trade only when the causal expected move is at least 2x the round-trip cost, then re-test.",
+    "remedy_kind": "filter",
+    "patch": {
+     "cost_multiple": 2.0
+    }
+   },
+   {
+    "id": "cost_filter_starved_sample",
+    "title": "The cost filter removed too much of the sample",
+    "severity": "blocker",
+    "meaning": "The cost-aware filter skipped most origins, leaving too few attempts to judge anything.",
+    "avoid": "A remedy that starves its own sample is not a fix; check coverage after every filter.",
+    "remedy": "Relax the filter one step (>= 1.0x cost) and re-measure; retire if even that starves coverage.",
+    "remedy_kind": "filter",
+    "patch": {
+     "cost_multiple_relax": 1.0
+    }
+   },
+   {
+    "id": "negative_net_after_costs",
+    "title": "Negative expectancy after costs",
+    "severity": "blocker",
+    "meaning": "The mean net result per attempt is negative after the configured cost.",
+    "avoid": "A negative-expectancy method is not made positive by describing it better.",
+    "remedy": "Retire the candidate; report the loss instead of hiding it.",
+    "remedy_kind": "retire",
+    "patch": {}
+   },
+   {
+    "id": "overfit_single_horizon",
+    "title": "Edge lives in one horizon cell only",
+    "severity": "blocker",
+    "meaning": "Neighbouring horizons collapsed, which is the classic signature of a cherry-picked cell.",
+    "avoid": "Test neighbouring horizons in the same run and demand agreement before calling anything an edge.",
+    "remedy": "Require the neighbouring horizons to stay within 8 points, then re-test.",
+    "remedy_kind": "gate",
+    "patch": {
+     "require_neighbor_support": true
+    }
+   },
+   {
+    "id": "walk_forward_degraded",
+    "title": "The later slice is worse than the earlier slice",
+    "severity": "warning",
+    "meaning": "Accuracy dropped sharply between the earlier and later part of the sample.",
+    "avoid": "A single pooled number hides decay; always split early vs late.",
+    "remedy": "Judge the candidate on the recent slice only and require a positive recent edge.",
+    "remedy_kind": "gate",
+    "patch": {
+     "require_walk_forward_ok": true,
+     "late_slice_only": true
+    }
+   },
+   {
+    "id": "regime_dependence",
+    "title": "Edge depends on one market regime",
+    "severity": "warning",
+    "meaning": "One causal regime carried the result while another lost money.",
+    "avoid": "Do not pool regimes silently, and never pick the winning regime after seeing the result.",
+    "remedy": "Require both regimes to be non-losing and report them separately, then re-test.",
+    "remedy_kind": "gate",
+    "patch": {
+     "require_regime_stability": true
+    }
+   },
+   {
+    "id": "drawdown_too_deep",
+    "title": "Path drawdown beyond the limit",
+    "severity": "blocker",
+    "meaning": "The cumulative net path fell further than the allowed drawdown.",
+    "avoid": "Accuracy without a drawdown number is half a result.",
+    "remedy": "Skip thin-edge trades (expected move >= 1.5x cost) and re-measure the path.",
+    "remedy_kind": "filter",
+    "patch": {
+     "cost_multiple": 1.5
+    }
+   },
+   {
+    "id": "wide_confidence_interval",
+    "title": "Confidence interval too wide to conclude anything",
+    "severity": "warning",
+    "meaning": "The Wilson 95% interval is wide enough to contain both an edge and its opposite.",
+    "avoid": "Never call a point estimate significant while its interval spans 50%.",
+    "remedy": "Increase attempts; if the sample cannot grow, keep the label unproven.",
+    "remedy_kind": "sample",
+    "patch": {
+     "attempts_factor": 2
+    }
+   },
+   {
+    "id": "single_symbol_only",
+    "title": "Only one symbol was supplied",
+    "severity": "warning",
+    "meaning": "The result comes from a single series and cannot be generalised.",
+    "avoid": "One symbol is a case study, never a market law.",
+    "remedy": "Validate on a second lawful series before upgrading the label.",
+    "remedy_kind": "gate",
+    "patch": {
+     "require_second_symbol": true
+    }
+   },
+   {
+    "id": "short_history",
+    "title": "Series too short for a stable estimate",
+    "severity": "blocker",
+    "meaning": "The bar count cannot support the warm-up, horizon and attempt budget together.",
+    "avoid": "Do not shrink the warm-up to make a short series look evaluable.",
+    "remedy": "Supply more history; otherwise keep the candidate retired.",
+    "remedy_kind": "retire",
+    "patch": {}
+   },
+   {
+    "id": "selection_bias",
+    "title": "Winner chosen among many contestants",
+    "severity": "warning",
+    "meaning": "This candidate is the best of several raced in the same round, so its number is inflated by selection.",
+    "avoid": "The top row of a tournament is the most over-fitted row; label it as such.",
+    "remedy": "Confirm on a held-out slice and a second symbol before any claim.",
+    "remedy_kind": "gate",
+    "patch": {
+     "require_second_symbol": true
+    }
+   },
+   {
+    "id": "volume_missing",
+    "title": "Volume-based method on a volume-less series",
+    "severity": "blocker",
+    "meaning": "The method needs real traded volume but every bar reports zero.",
+    "avoid": "Never invent volume to satisfy an indicator.",
+    "remedy": "Retire the volume method for this series; use a price-only method instead.",
+    "remedy_kind": "retire",
+    "patch": {}
+   },
+   {
+    "id": "cost_below_floor",
+    "title": "Cost assumption below the research floor",
+    "severity": "warning",
+    "meaning": "The configured round-trip cost is below the minimum floor used for research.",
+    "avoid": "Zero-cost tests flatter every high-frequency idea; assume at least the floor.",
+    "remedy": "Raise the cost assumption to the floor and re-score.",
+    "remedy_kind": "gate",
+    "patch": {
+     "cost_bps": 10.0
+    }
+   },
+   {
+    "id": "remedy_failed_twice",
+    "title": "The remedy was applied and the cause returned",
+    "severity": "blocker",
+    "meaning": "The candidate failed again for the same reason after its remedy was applied.",
+    "avoid": "Do not retry a proven-failing candidate with cosmetic changes; remember and exclude it.",
+    "remedy": "Retire the candidate and keep the lesson as a permanent avoid rule for later runs.",
+    "remedy_kind": "retire",
+    "patch": {}
+   },
+   {
+    "id": "autocorrelation_trap",
+    "title": "Serial autocorrelation fools direction count",
+    "severity": "warning",
+    "meaning": "Returns are autocorrelated; naive hit-count overstates independence.",
+    "avoid": "Test autocorrelation at lag 1 and bootstrap the p-value before trusting accuracy.",
+    "remedy": "Apply autocorrelation correction and require bootstrap p < 0.05.",
+    "remedy_kind": "gate",
+    "patch": {
+     "require_bootstrap_pvalue": true
+    }
+   },
+   {
+    "id": "volatility_regime_shift",
+    "title": "Volatility regime shifted mid-sample",
+    "severity": "warning",
+    "meaning": "Early vs late volatility differs by >80%; threshold calibrated to one regime fails in another.",
+    "avoid": "Split sample by volatility regime and demand stability.",
+    "remedy": "Normalize by rolling volatility and re-test; require low/high vol both non-losing.",
+    "remedy_kind": "gate",
+    "patch": {
+     "volatility_normalize": true,
+     "require_regime_stability": true
+    }
+   },
+   {
+    "id": "liquidity_illusion",
+    "title": "Low-liquidity periods counted as edge",
+    "severity": "blocker",
+    "meaning": "Most hits came from ultra-low dollar-volume bars that are not tradable.",
+    "avoid": "Check dollar volume; ignore periods below median*0.2.",
+    "remedy": "Filter to bars with dollar volume above threshold and re-score.",
+    "remedy_kind": "filter",
+    "patch": {
+     "min_volume_filter": true
+    }
+   },
+   {
+    "id": "overparameterized_signal",
+    "title": "Too many parameters for the sample size",
+    "severity": "warning",
+    "meaning": "Effective parameters / observations ratio is too high; memorization risk.",
+    "avoid": "Keep parameter count < sqrt(n)/2; prefer simpler signals.",
+    "remedy": "Simplify threshold and cap lookback windows.",
+    "remedy_kind": "gate",
+    "patch": {
+     "simplify_threshold": true
+    }
+   },
+   {
+    "id": "multiple_testing_bias",
+    "title": "Multiple testing without correction (p-hacking)",
+    "severity": "warning",
+    "meaning": "Best of many candidates; unadjusted p-value is inflated.",
+    "avoid": "Apply Bonferroni or FDR correction to p-values.",
+    "remedy": "Require Bonferroni-adjusted p < 0.05 before claiming significance.",
+    "remedy_kind": "gate",
+    "patch": {
+     "bonferroni_adjust": true
+    }
+   },
+   {
+    "id": "non_stationary_drift",
+    "title": "Drift changed over time (non-stationary)",
+    "severity": "warning",
+    "meaning": "Mean return drifted between halves; pooled accuracy mixes two regimes.",
+    "avoid": "Detrend and test stationarity; split chronologically.",
+    "remedy": "Detrend series and require drift stability.",
+    "remedy_kind": "gate",
+    "patch": {
+     "detrend_required": true,
+     "require_walk_forward_ok": true
+    }
+   },
+   {
+    "id": "microstructure_noise",
+    "title": "Microstructure noise dominates at horizon 1",
+    "severity": "warning",
+    "meaning": "Bid-ask bounce at 1-bar horizon hides true signal; 1-bar hits are microstructure artifacts.",
+    "avoid": "Ignore horizon 1 for noisy minute bars; use 3+ bars.",
+    "remedy": "Require horizon >= 3 for minute data.",
+    "remedy_kind": "gate",
+    "patch": {
+     "min_horizon_filter": 3
+    }
+   },
+   {
+    "id": "asymmetric_payoff_trap",
+    "title": "High win rate but negative expectancy (payoff asymmetry)",
+    "severity": "blocker",
+    "meaning": "Wins are frequent but small; losses rare but large — expectancy negative despite >50% accuracy.",
+    "avoid": "Always publish expectancy next to accuracy; win rate alone is not edge.",
+    "remedy": "Require positive expectancy after costs, not just accuracy > 50%.",
+    "remedy_kind": "gate",
+    "patch": {
+     "require_expectancy_positive": true
+    }
+   },
+   {
+    "id": "tail_risk_hidden",
+    "title": "Fat tail / hidden tail risk",
+    "severity": "warning",
+    "meaning": "Extreme losses hide in tail; CVaR much worse than mean suggests.",
+    "avoid": "Report VaR/CVaR and tail metrics; a good mean can hide a catastrophic tail.",
+    "remedy": "Require tail-robust metrics: CVaR and max loss within limits.",
+    "remedy_kind": "gate",
+    "patch": {
+     "require_tail_robust": true
+    }
+   },
+   {
+    "id": "correlation_breakdown",
+    "title": "Correlation between methods broke the ensemble",
+    "severity": "warning",
+    "meaning": "Methods that were correlated in-sample diverged out-of-sample; ensemble counted one bet many times.",
+    "avoid": "Check inter-method correlation; diverse ensembles only.",
+    "remedy": "Require ensemble diversity: pairwise correlation < 0.7.",
+    "remedy_kind": "gate",
+    "patch": {
+     "require_ensemble_diversity": true
+    }
+   },
+   {
+    "id": "concept_drift",
+    "title": "Concept drift across long sample",
+    "severity": "warning",
+    "meaning": "Market rules changed over long horizon; early patterns no longer apply late.",
+    "avoid": "Test temporal stability; early vs late must agree within 10 pts.",
+    "remedy": "Require temporal stability and judge recent slice only.",
+    "remedy_kind": "gate",
+    "patch": {
+     "require_temporal_stability": true,
+     "late_slice_only": true
+    }
+   },
+   {
+    "id": "horizon_mismatch",
+    "title": "Signal calibrated for different horizon than tested",
+    "severity": "warning",
+    "meaning": "Signal optimized for one horizon but evaluated on another; apparent edge is calibration artifact.",
+    "avoid": "Match calibration and evaluation horizon; test neighbouring horizons.",
+    "remedy": "Require neighbouring horizon agreement.",
+    "remedy_kind": "gate",
+    "patch": {
+     "require_neighbor_support": true
+    }
+   },
+   {
+    "id": "threshold_overfit",
+    "title": "Threshold tuned to sample noise",
+    "severity": "warning",
+    "meaning": "Threshold was cherry-picked to maximize in-sample hits.",
+    "avoid": "Cross-validate threshold; do not pick optimum ex-post.",
+    "remedy": "Cross-validate threshold across folds.",
+    "remedy_kind": "gate",
+    "patch": {
+     "threshold_cross_validate": true
+    }
+   },
+   {
+    "id": "sample_contamination",
+    "title": "Overlapping windows leak future (sample contamination)",
+    "severity": "warning",
+    "meaning": "Origins too close; overlapping forward windows share future bars, leaking information.",
+    "avoid": "Enforce minimum separation >= horizon between origins.",
+    "remedy": "Increase separation to 2x horizon and re-test.",
+    "remedy_kind": "sample",
+    "patch": {
+     "increase_separation": 2
+    }
+   }
+  ],
+  "config_keys": [
+   "attempts",
+   "bonferroni_adjust",
+   "cost_bps",
+   "cost_multiple",
+   "detrend_required",
+   "increase_separation",
+   "late_slice_only",
+   "max_drawdown_pct",
+   "min_attempts",
+   "min_baseline_margin_pct",
+   "min_coverage_pct",
+   "min_history",
+   "min_horizon_filter",
+   "min_volume_filter",
+   "require_bootstrap_pvalue",
+   "require_ensemble_diversity",
+   "require_expectancy_positive",
+   "require_neighbor_support",
+   "require_regime_stability",
+   "require_second_symbol",
+   "require_tail_robust",
+   "require_temporal_stability",
+   "require_walk_forward_ok",
+   "simplify_threshold",
+   "target_accuracy_pct",
+   "threshold_cross_validate",
+   "threshold_scale",
+   "volatility_normalize"
+  ],
+  "verdicts": {
+   "validated_on_supplied_data_still_needs_fresh_unseen_validation": "survived the supplied screen, recent slice and second symbol (if any)",
+   "survived_the_recent_slice_but_a_second_symbol_is_required": "held up on the recent slice of one symbol only — still a case study, not a law",
+   "all_candidates_excluded_by_prior_lessons": "stored lessons already retired every requested candidate for this symbol",
+   "no_candidate_survived_validation": "nothing held up out of sample on the supplied data",
+   "promising_but_unvalidated": "no validation round was run",
+   "no_candidate_survived_the_failure_gates": "every candidate failed a blocker cause and was retired with a reason"
+  },
+  "limits": [
+   "Research only; not financial advice and not a live execution path.",
+   "The 80% target can never be established by this module alone.",
+   "A retired candidate is a measured negative result, not a bug."
+  ]
+ },
+ "data_pipeline": {
+  "name": "Atlas Auto-Collect + Goal Tracker",
+  "version": "17.0",
+  "venues": {
+   "binance": {
+    "label": "Binance spot public klines",
+    "hosts": [
+     "api.binance.com",
+     "data-api.binance.vision"
+    ],
+    "intervals": [
+     "1m",
+     "5m",
+     "15m",
+     "1h",
+     "4h",
+     "1d"
+    ],
+    "default_symbols": [
+     "BTCUSDT",
+     "ETHUSDT",
+     "BNBUSDT",
+     "SOLUSDT"
+    ]
+   },
+   "kraken": {
+    "label": "Kraken public OHLC",
+    "hosts": [
+     "api.kraken.com"
+    ],
+    "intervals": [
+     "1m",
+     "5m",
+     "15m",
+     "1h",
+     "4h",
+     "1d"
+    ],
+    "default_symbols": [
+     "XBTUSD",
+     "ETHUSD",
+     "SOLUSD"
+    ]
+   }
+  },
+  "security": [
+   "fixed host allowlist; no arbitrary URLs",
+   "no API keys, logins or credentials",
+   "public keyless endpoints only",
+   "read-only market data; no order routing"
+  ],
+  "collection": {
+   "incremental": true,
+   "holdout_fraction": 0.2,
+   "max_bars_per_request": 1000
+  },
+  "goal_gates": [
+   {
+    "id": "attempts",
+    "requirement": "at least 1000 hidden-future attempts per candidate"
+   },
+   {
+    "id": "accuracy",
+    "requirement": "pooled direction accuracy at least 80%"
+   },
+   {
+    "id": "wilson_lower",
+    "requirement": "Wilson 95% lower bound at least 80%"
+   },
+   {
+    "id": "costs",
+    "requirement": "positive mean net per attempt after 10 bps"
+   },
+   {
+    "id": "coverage",
+    "requirement": "coverage at least 20% when the method can abstain"
+   },
+   {
+    "id": "symbols",
+    "requirement": "at least 3 symbols"
+   },
+   {
+    "id": "days",
+    "requirement": "at least 30 distinct UTC days"
+   },
+   {
+    "id": "holdout",
+    "requirement": "a recorded holdout evaluation on the reserved slice"
+   },
+   {
+    "id": "external",
+    "requirement": "fresh unseen validation outside this local database"
+   }
+  ],
+  "goal_established_ever": false
+ },
+ "market_database": {
+  "engine": "SQLite local file (tradeatlas.db)",
+  "tables": [
+   "instruments",
+   "bars",
+   "data_imports",
+   "halal_profiles",
+   "halal_screen_history",
+   "research_runs",
+   "method_scores",
+   "bot_events",
+   "self_correction_runs",
+   "research_trials",
+   "research_lessons"
+  ],
+  "seed": "bundled real AAPL daily + five monthly samples; expand only with data you have the right to use",
+  "private_access": "Set TRADEATLAS_ACCESS_TOKEN to require X-TradeAtlas-Token on paper/bot/halal/database APIs; bind to localhost for a private local platform",
+  "contains_broker_credentials": false,
+  "contains_payment_instruments": false
+ }
+}
