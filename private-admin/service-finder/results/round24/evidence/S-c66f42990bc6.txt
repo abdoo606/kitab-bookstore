@@ -1,0 +1,44 @@
+Round 24 hunt excerpts — captured 2026-10-21 (verdicts in sources.json)
+
+--- 1) International Professional Development Association (IPDA, UK) — Website review & redesign tender
+URL: https://ipda.org.uk/invitation-to-tender-for-website-review-and-redesign/
+Excerpt (original page fetched): "...invites tenders from suitably experienced and qualified
+individuals or small companies to undertake a review of its current website... Applicants
+should include: CV, outline of proposed review, outline of potential changes and new design,
+timeline, costings... the closing date is Friday 28 April 2017... email treasurer@ipda.org.uk."
+Verdict: the tender closed 28 April 2017 — a nine-and-a-half-year-old zombie page that still
+ranks in search. Interesting shape (individuals welcomed) but long dead → screened out,
+not contacted.
+
+--- 2) Westminster Foundation for Democracy (WFD, UK) — Website hosting & support tender
+URL: https://www.wfd.org/vacancy-supplier/invitation-tender-website-services
+Also: UK Find a Tender Notice 040540-2025 ("Tenders must be submitted by email to
+procurement@wfd.org by the stated deadline").
+Excerpt: the original WFD tender page now returns "403: Access denied / moved, deleted,
+does not exist"; the Find-a-Tender notice is a 2025 proceeding.
+Verdict: an email-submission web-services tender existed in 2025 but the live page is gone
+and the notice is from 2025 — no live deadline to answer → screened out, not contacted.
+
+--- 3) Friendship Public Charter School (Washington DC, USA) — Website Design Services RFP
+URL: https://www.friendshipschools.org/wp-content/uploads/2026/07/RFP-Website-Design-Services.pdf
+Excerpt: "Interested parties shall email the response to this RFP to
+procurementinquiry@friendshipschools.org... By no later than 4pm, Friday, July 31st, 2026...
+a qualified partner to lead a comprehensive redesign... network of nine campuses serving
+nearly 5,000 students."
+Verdict: public email existed, but the deadline passed July 31, 2026 (almost three months
+before this round) → screened out, not contacted.
+
+--- 4) San Francisco Unified School District (USA) — RFP SFUSD-PD-FY26#81 Website Redesign & Maintenance
+URL: https://media.governmentnavigator.com/media/bid/1774465887_03-23-2026_SFUSD-PD-FY26-81.pdf
+Excerpt: "EMAIL PROPOSALS TO martirp@sfusd.edu... PROPOSAL DUE DATE Friday, April 24, 2026
+by 5:00 p.m. (PDT)... Cost Proposal must be submitted as a separate attachment."
+Verdict: deadline passed April 24, 2026; large public-school-district procurement with the
+usual formal vendor-compliance apparatus → screened out, not contacted.
+
+Notes: also seen this round without full excerpts — Warwickshire Wildlife Trust website
+tender (deadline July 1, 2023; in-person meetings at Brandon Marsh, UK); Achievement First
+website RFP re-issued Oct 2026 (organization already screened out in an earlier round;
+finalist-presentation vendor process; not re-hunted per standing rules); Government of
+Meghalaya (India) sports website/GMS tender (₹45 lakh completed-project pre-qualification);
+UK Find-a-Tender 090011-2026 (already screened in Round 23); Corrymeela (Round 23). None
+contacted. Qualified this round: 0. Emailed: 0.

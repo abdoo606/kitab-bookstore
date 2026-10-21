@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://ipda.org.uk/invitation-to-tender-for-website-review-and-redesign/",
+    "organization": "International Professional Development Association (UK) - Website review & redesign tender, treasurer@ipda.org.uk",
+    "source_kind": "official_page_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "Website review and potential redesign for a professional association (WordPress, member login, conference ticket e-commerce); individuals/small companies invited; CV + costings requested; closing date Friday 28 April 2017.",
+    "outreach_status": "not_sent_screened_out: tender closed in April 2017 (zombie page still indexed)"
+  },
+  {
+    "url": "https://www.wfd.org/vacancy-supplier/invitation-tender-website-services",
+    "organization": "Westminster Foundation for Democracy (UK) - Website hosting & support services tender, procurement@wfd.org",
+    "source_kind": "official_page_and_find_a_tender_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "Website hosting/support services tender with email submission (Find a Tender Notice 040540-2025); the original WFD page now returns 403/moved-deleted.",
+    "outreach_status": "not_sent_screened_out: 2025 proceeding; original tender page no longer exists, no live deadline"
+  },
+  {
+    "url": "https://www.friendshipschools.org/wp-content/uploads/2026/07/RFP-Website-Design-Services.pdf",
+    "organization": "Friendship Public Charter School (Washington DC, USA) - Website Design Services RFP, procurementinquiry@friendshipschools.org",
+    "source_kind": "official_pdf_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "Comprehensive website redesign for a 9-campus charter network (~5,000 students); email responses due 4pm Friday July 31, 2026.",
+    "outreach_status": "not_sent_screened_out: deadline passed (Jul 31, 2026)"
+  },
+  {
+    "url": "https://media.governmentnavigator.com/media/bid/1774465887_03-23-2026_SFUSD-PD-FY26-81.pdf",
+    "organization": "San Francisco Unified School District (USA) - RFP SFUSD-PD-FY26#81 Website Redesign and Maintenance, martirp@sfusd.edu",
+    "source_kind": "official_pdf_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "District-wide website redesign + maintenance; PDF proposals by email with separate cost proposal; due Friday April 24, 2026.",
+    "outreach_status": "not_sent_screened_out: deadline passed (Apr 24, 2026); formal public-district vendor procurement"
+  }
+]
