@@ -1,0 +1,46 @@
+Round 25 hunt excerpts — captured 2026-10-21 (verdicts in sources.json)
+
+--- 1) South Shore Public Libraries (Nova Scotia, Canada) — Library Website Redesign/Development RFP
+URL: https://www.southshorepubliclibraries.ca/wp-content/uploads/2026/05/Website-Project.pdf
+Excerpt (original RFP document): "Issue Date: May 8, 2026. Proposal Due Date: June 4, 2026.
+Contact Person: Christina Pottie, cpottie@ssplibraries.ca... Submit proposals electronically
+to: info@ssplibraries.ca by June 4, 2026. Subject line: Library Website Proposal... seeking
+qualified web design/development firms... integrate with BiblioCommons, Libby/OverDrive,
+event registration, LibraryAware."
+Verdict: a genuinely email-submitted website RFP from a small library system — but the due
+date passed 4.5 months before this round, and it asks for firms with library-platform
+integrations → screened out, not contacted.
+
+--- 2) City of Vernon (British Columbia, Canada) — RFP 26-55-COM Corporate Website Redesign
+URL: https://www.civicinfo.bc.ca/bids?bidid=10950
+Excerpt: "Any questions regarding the project are to be directed through the Procurement
+Portal – Bonfire in the Messages section... The City of Vernon invites qualified and
+experienced Proponents to submit proposals for the redesign, development, implementation,
+and post-launch support of a new corporate website (www.vernon.ca)." (original listing
+fetched 2026-10-21: "A Bid and Tender could not be found that matches the search.")
+Verdict: submission is via the Bonfire procurement portal (no public submission email),
+and the listing itself has already been removed → screened out, not contacted.
+
+--- 3) Christchurch City Council (New Zealand) — "Working with the Council" tenders page
+URL: https://ccc.govt.nz/the-council/tenders-and-contracts
+Excerpt (original page fetched): "Our requests for tenders and proposals are advertised on
+the Government Electronic Tendering Service (GETS) online portal. You'll need to register
+with GETS if you want to receive notifications... You can register online for free, but you
+will need a RealMe account."
+Verdict: the whole NZ council/sports angle runs through the GETS portal and a RealMe
+(NZ government identity) account — there is no public-email submission route to answer
+honestly → structural screen-out for this angle, nobody contacted.
+
+--- 4) Grampians Community Health (Victoria, Australia) — Website Redesign Project tender
+URL: https://www.australiantenders.com.au/tenders/410703/website-redesign-project-grampians-community-health/
+Excerpt: "Grampians Community Health invite suitable web development companies to present
+their proposals to redesign our website... Previous experience working with not-for-profit
+organisations will be highly regarded. Submissions must be received by the 16th of February
+2020 5pm... contact via email: tenders@gch.org.au."
+Verdict: closed in February 2020 and asked for companies with NFP track record → screened
+out, not contacted.
+
+Notes: also seen this round without full excerpts — Sport NZ customer-research RFP (2022,
+not web work), Hamilton Library detailed-design tender (construction design, portal-only,
+closed Oct 2025), Australian/NZ community GRANT programs (funding for local nonprofits, not
+purchasable website services). None contacted. Qualified this round: 0. Emailed: 0.

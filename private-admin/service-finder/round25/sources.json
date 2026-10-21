@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://www.southshorepubliclibraries.ca/wp-content/uploads/2026/05/Website-Project.pdf",
+    "organization": "South Shore Public Libraries (Nova Scotia, Canada) - Library Website Redesign RFP, info@ssplibraries.ca",
+    "source_kind": "official_pdf_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "Refresh or rebuild the library system website (5 branches + bookmobile, ~70,000 residents); integrations with BiblioCommons, Libby/OverDrive, event registration, LibraryAware; proposals by email due June 4, 2026.",
+    "outreach_status": "not_sent_screened_out: deadline passed (Jun 4, 2026); firms/library-platform integration profile"
+  },
+  {
+    "url": "https://www.civicinfo.bc.ca/bids?bidid=10950",
+    "organization": "City of Vernon (British Columbia, Canada) - RFP 26-55-COM Corporate Website Redesign and Implementation Services",
+    "source_kind": "official_listing_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "Corporate website redesign, development, implementation and post-launch support; questions/submission through the Bonfire procurement portal; the CivicInfo listing itself returns 'could not be found' when fetched 2026-10-21.",
+    "outreach_status": "not_sent_screened_out: portal-only submission, no public email route; listing already removed"
+  },
+  {
+    "url": "https://ccc.govt.nz/the-council/tenders-and-contracts",
+    "organization": "Christchurch City Council (New Zealand) - tenders & contracts gateway (GETS portal)",
+    "source_kind": "official_page_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "All council tenders/proposals run through the NZ Government Electronic Tendering Service (GETS); registration requires a RealMe (NZ government identity) account; supplier minimum standards and sustainability questionnaires apply.",
+    "outreach_status": "not_sent_screened_out: portal + RealMe registration regime, no public-email submission route (structural screen for the NZ council angle)"
+  },
+  {
+    "url": "https://www.australiantenders.com.au/tenders/410703/website-redesign-project-grampians-community-health/",
+    "organization": "Grampians Community Health (Victoria, Australia) - Website Redesign Project, tenders@gch.org.au",
+    "source_kind": "tender_listing_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "Website redesign for a community health nonprofit; companies with not-for-profit experience preferred; submissions due February 16, 2020.",
+    "outreach_status": "not_sent_screened_out: closed February 2020"
+  }
+]
