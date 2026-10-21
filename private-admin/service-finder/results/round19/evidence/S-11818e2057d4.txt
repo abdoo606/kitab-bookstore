@@ -1,0 +1,37 @@
+Round 19 hunt excerpts — captured 2026-10-21 (verdicts in sources.json)
+NOTE: the sandbox was reset at the start of this round; the repo was restored from
+GitHub origin (e2287ec) and all 12 genius products from their Drive zips before hunting.
+
+--- 1) Yolo-Solano Air Quality Management District (CA, USA) — Website Redesign RFP
+URL: https://www.ysaqmd.org/wp-content/uploads/2026/05/YSAQMD-Website-RFP.pdf
+Excerpt: "Proposal Responses Due: 4 pm Pacific, June 1, 2026. The required method of
+submitting your proposal is electronically through email. Proposals should be sent to
+procurement@ysaqmd.org."
+Verdict: public email YES, but deadline June 1, 2026 has passed → screened out, not contacted.
+
+--- 2) Oregon & Washington Academies of Nutrition and Dietetics (USA) — Multi-State Website RFP 2026
+URLs: https://www.eatrightoregon.org/events/view/594 ;
+      https://www.eatrightwashington.org/page/or-wa-state-academy-website-rfp-2026
+Excerpt: "The Washington State Academy of Nutrition and Dietetics (WSAND) and the Oregon
+Academy of Nutrition and Dietetics (OAND) seek a vendor to develop, launch, and maintain
+their respective website platforms. Contact: oandeatright@gmail.com. Proposal Submission
+Deadline: August 10, 2026. Vendor Selection & Contract Award: August 31, 2026.
+Questions? Email wsandeatright@gmail.com."
+Verdict: public emails YES, but deadline August 10, 2026 has passed → screened out, not contacted.
+
+--- 3) Greeley Creative District (CO, USA) — Rebrand & Website Redesign RFP ($10,000-$15,000)
+URL: https://greeleycreativeartscenter.org/news/rebrand-and-website-rfp (READ IN FULL)
+Excerpt: "RFP CLOSED: Brand Identity & Website Redesign. The Greeley Creative District is
+no longer accepting rebrand proposals. ... Submission Deadline: Friday, April 24 ...
+Budget $10,000-$15,000 ... Submit single PDF to Becca Vaclavik, becca@greeleycreativedistrict.org.
+Submission requirements include 3-5 relevant projects and 2-3 client references; preference
+for firms based in Northern Colorado or the Front Range."
+Verdict: CLOSED April 24, 2026, plus client-reference and local-presence gates we cannot
+meet honestly → screened out, not contacted.
+
+--- Also seen and rejected without individual records:
+LA Zoo website (city RAMP portal, 2025); City of Hidden Hills (staff@hiddenhillscity.org,
+due May 15, 2026 — passed); SFUSD (martirp@sfusd.edu, Apr 24, 2026 — passed); Hawaii DAR/PUC
+(HIePRO sealed portal); Ferncliff Camp (screened round 10-13; May 25, 2026 passed);
+Cloverdale, CWPD, Marine Sanctuary, Hunger Task Force, Achievement First, Boulder Film,
+NM Voices, Alliance — previously screened, not re-hunted.
