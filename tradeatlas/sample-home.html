@@ -151,6 +151,23 @@ what each idea is, its classic textbook rules, how it fails, and the risk notes 
 <label><input id="sc_use_saved" type="checkbox" checked> Avoid candidates my stored lessons already retired</label>
 <button class="go" onclick="runSelfCorrection()">Run the self-correcting loop on current/pasted bars</button>
 <button class="go" onclick="runSelfCorrectionDemo()">Run it on synthetic 1m demo bars (software check only)</button>
+<h4>Real market test for today (your browser fetches, never this server)</h4>
+<p class="sub">This sandbox cannot reach exchanges, and TradeAtlas deliberately never proxies arbitrary URLs. Your browser can reach these public endpoints directly, so it fetches the completed bars and posts them here. The still-forming candle is dropped. Two symbols are fetched so the validation round has an independent sample. Every run stores its provenance (venue, endpoint, bar times, fetch time) and its lessons in SQLite.</p>
+<label>Public venue (no key, no login)</label><select id="today_venue">
+<option value="binance" selected>Binance spot public klines</option>
+<option value="kraken">Kraken public OHLC</option>
+</select>
+<label>Primary symbol (e.g. BTCUSDT on Binance, XBTUSD on Kraken)</label><input id="today_symbol" type="text" value="BTCUSDT">
+<label>Validation symbol, same venue (e.g. ETHUSDT / ETHUSD)</label><input id="today_symbol2" type="text" value="ETHUSDT">
+<label>Interval</label><select id="today_interval">
+<option value="1m" selected>1m</option><option value="5m">5m</option><option value="15m">15m</option>
+<option value="1h">1h</option><option value="4h">4h</option><option value="1d">1d</option>
+</select>
+<label>Completed bars requested (405–1000)</label><input id="today_limit" type="number" min="405" max="1000" step="5" value="1000">
+<label>Round-trip cost assumed (bps) — Binance spot taker ≈ 7.5–10 bps per side depending on tier</label><input id="today_cost" type="number" min="1" max="500" step="0.5" value="12">
+<button class="go" onclick="runTodayMarketTest()">Fetch today's completed bars in my browser → run the failure loop</button>
+<p id="today_status" class="status"></p>
+<div id="today_provenance" class="out" style="display:none"></div>
 <button class="go" onclick="loadLessons()">Load the saved lesson ledger</button>
 <button class="go" onclick="clearLessons()">Forget all stored lessons (asks first)</button>
 <p id="sc_status" class="status"></p>
@@ -1297,6 +1314,158 @@ async function loadLessons() {
     status.textContent = 'Failure memory loaded.';
   } catch (e) { status.textContent = 'Lesson ledger error: ' + e.message; }
 }
+function todayUtc(seconds) {
+  if (!seconds) return '—';
+  return new Date(seconds * 1000).toISOString().replace('.000Z', 'Z');
+}
+function todayIntervalMinutes(interval) {
+  return {'1m': 1, '5m': 5, '15m': 15, '1h': 60, '4h': 240, '1d': 1440, '1w': 10080}[interval] || 60;
+}
+async function fetchBinanceToday(symbol, interval, limit) {
+  const hosts = ['https://data-api.binance.vision', 'https://api.binance.com'];
+  let lastError = null;
+  for (const host of hosts) {
+    try {
+      const url = host + '/api/v3/klines?symbol=' + encodeURIComponent(symbol.toUpperCase()) +
+        '&interval=' + encodeURIComponent(interval) + '&limit=' + Math.max(200, Math.min(1000, limit));
+      const response = await fetch(url, {cache: 'no-store'});
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const rows = await response.json();
+      // barsFromBinance keeps only rows whose closeTime is already past (completed bars)
+      const bars = barsFromBinance(rows);
+      if (bars.length < 200) throw new Error('only ' + bars.length + ' completed bars');
+      return {bars: bars, host: host, url: url, venue: 'Binance spot public klines'};
+    } catch (e) { lastError = e; }
+  }
+  throw lastError || new Error('Binance fetch failed');
+}
+async function fetchKrakenToday(symbol, interval, limit) {
+  const minutes = todayIntervalMinutes(interval);
+  const url = 'https://api.kraken.com/0/public/OHLC?pair=' + encodeURIComponent(symbol.toUpperCase()) +
+    '&interval=' + minutes;
+  const response = await fetch(url, {cache: 'no-store'});
+  if (!response.ok) throw new Error('Kraken returned HTTP ' + response.status);
+  const converted = barsFromKraken(await response.json());
+  const bars = converted.bars.slice(-Math.max(200, Math.min(720, limit)));
+  if (bars.length < 200) throw new Error('only ' + bars.length + ' completed bars');
+  return {bars: bars, host: 'api.kraken.com', url: url, venue: 'Kraken public OHLC',
+          symbol: converted.pair};
+}
+function showTodayProvenance(provenance) {
+  const box = document.getElementById('today_provenance');
+  box.style.display = 'block';
+  box.textContent = '';
+  const rows = [['Field', 'Value'],
+    ['Venue', provenance.venue],
+    ['Primary symbol', provenance.primary_symbol],
+    ['Validation symbol', provenance.validation_symbol || 'not supplied'],
+    ['Interval', provenance.interval],
+    ['Completed bars (primary / validation)', provenance.primary_bars + ' / ' + (provenance.validation_bars ?? '—')],
+    ['First bar (UTC)', provenance.first_bar_utc],
+    ['Last completed bar (UTC)', provenance.last_bar_utc],
+    ['Fetched at (UTC)', provenance.fetched_at_utc],
+    ['Forming candle dropped', String(provenance.forming_candle_dropped)],
+    ['Primary endpoint', provenance.primary_url]];
+  rows.forEach(function(cells, index) {
+    const tr = document.createElement('tr');
+    cells.forEach(function(text) {
+      if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+      else { const td = document.createElement('td'); td.textContent = String(text); tr.appendChild(td); }
+    });
+    box.appendChild(tr);
+  });
+}
+async function runTodayMarketTest() {
+  const status = document.getElementById('today_status');
+  const verdict = document.getElementById('sc_verdict');
+  const out = document.getElementById('sc_out');
+  const venue = document.getElementById('today_venue').value;
+  const symbol = (document.getElementById('today_symbol').value || '').trim();
+  const symbol2 = (document.getElementById('today_symbol2').value || '').trim();
+  const interval = document.getElementById('today_interval').value;
+  const limit = Math.max(405, Math.min(1000, parseInt(document.getElementById('today_limit').value || '1000', 10)));
+  const costBps = parseFloat(document.getElementById('today_cost').value || '12');
+  if (!symbol) { status.textContent = 'Enter a primary symbol first.'; return; }
+  const fetchedAt = new Date().toISOString();
+  try {
+    status.textContent = 'Fetching completed ' + interval + ' bars directly from ' + venue + ' in your browser…';
+    const fetcher = venue === 'kraken' ? fetchKrakenToday : fetchBinanceToday;
+    const primary = await fetcher(symbol, interval, limit);
+    let secondary = null;
+    let secondaryError = '';
+    if (symbol2) {
+      try {
+        secondary = await fetcher(symbol2, interval, limit);
+      } catch (e) { secondaryError = e.message; }
+    }
+    if (primary.bars.length < 405) throw new Error('primary returned only ' + primary.bars.length + ' completed bars; ask for more or use a coarser interval');
+    const lastBar = primary.bars[primary.bars.length - 1].t;
+    const firstBar = primary.bars[0].t;
+    const provenance = {
+      venue: primary.venue,
+      primary_symbol: primary.symbol || symbol.toUpperCase(),
+      validation_symbol: secondary ? (secondary.symbol || symbol2.toUpperCase()) : null,
+      interval: interval,
+      primary_bars: primary.bars.length,
+      validation_bars: secondary ? secondary.bars.length : null,
+      first_bar_utc: todayUtc(firstBar),
+      last_bar_utc: todayUtc(lastBar),
+      fetched_at_utc: fetchedAt,
+      forming_candle_dropped: true,
+      primary_url: primary.url,
+      validation_url: secondary ? secondary.url : null,
+      validation_error: secondaryError || null,
+      requested_bars: limit
+    };
+    showTodayProvenance(provenance);
+    const series = [{
+      symbol: (venue === 'kraken' ? 'KRAKEN-' : 'BINANCE-') + (primary.symbol || symbol.toUpperCase()) + '@' + interval,
+      bars: primary.bars
+    }];
+    if (secondary) {
+      series.push({
+        symbol: (venue === 'kraken' ? 'KRAKEN-' : 'BINANCE-') + (secondary.symbol || symbol2.toUpperCase()) + '@' + interval,
+        bars: secondary.bars
+      });
+    }
+    status.textContent = 'Fetched ' + primary.bars.length + (secondary ? ' + ' + secondary.bars.length : '') +
+      ' completed bars. Running the diagnosis / remedy / validation loop with ' + costBps + ' bps costs…';
+    const payload = {
+      bars: primary.bars,
+      symbol: series[0].symbol,
+      second_bars: secondary ? secondary.bars : null,
+      second_symbol: secondary ? series[1].symbol : null,
+      horizons: [3, 5, 15],
+      attempts: 150,
+      cost_bps: costBps,
+      remember: true,
+      use_saved_lessons: true,
+      provenance: provenance,
+      source_label: provenance.venue + ' via browser — ' + provenance.primary_symbol +
+        (provenance.validation_symbol ? ' + ' + provenance.validation_symbol : '') +
+        ' ' + interval + ' completed bars, fetched ' + fetchedAt
+    };
+    const response = await fetch('/api/lab/self-correct', {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    scShowResult(data);
+    const sources = (data.sources || []).length;
+    verdict.textContent = 'TODAY · ' + provenance.venue + ' · ' + provenance.primary_symbol +
+      (provenance.validation_symbol ? ' + ' + provenance.validation_symbol : '') + ' · ' + interval +
+      ' · last completed bar ' + provenance.last_bar_utc + ' · verdict: ' + data.verdict +
+      ' · 80% goal established: ' + ((data.goal_80 || {}).goal_established) +
+      ' · lessons ' + (data.lessons || []).length + ' · retired ' + (data.retired_candidates || []).length +
+      ' · series ' + sources;
+    status.textContent = 'Done. ' + ((data.memory || {}).lessons_saved ? 'Saved ' + data.memory.lessons_saved +
+      ' lessons to the local failure memory.' : 'Lesson ledger not saved.') +
+      ' Historical measurement on completed bars only — not a prediction and not advice.';
+  } catch (e) {
+    status.textContent = 'Today-market test error (' + (venue === 'kraken' ? 'Kraken' : 'Binance') +
+      ' may be blocked by your region, browser extension or CORS): ' + e.message +
+      ' — you can still paste/upload a CSV of today\'s bars in the Market Lab and run card 5C on it.';
+  }
+}
 async function clearLessons() {
   const status = document.getElementById('sc_status');
   if (!confirm('Delete every stored lesson? They record measured failures, not signals. Clear only with genuinely new data or methods.')) return;
@@ -1439,4 +1608,9 @@ loadGoals();
 loadPaperWallet();
 loadBot();
 loadDb();
+if (new URLSearchParams(location.search).get('today') === '1') {
+  // explicit opt-in: https://<preview>/?today=1 fetches today's public bars in
+  // the browser and runs the failure loop immediately.
+  setTimeout(function() { if (document.getElementById('today_status')) runTodayMarketTest(); }, 900);
+}
 </script></body></html>

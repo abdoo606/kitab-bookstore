@@ -121,6 +121,42 @@ the project target: that needs ≥ 1,000 real hidden-future attempts per
 candidate, positive net after 10 bps, a Wilson lower bound at the target, and
 fresh validation on unseen symbols and days (see `GOALS.md`).
 
+## Running it on today's real market
+
+The failure loop is only as honest as its data. Two facts decide the design:
+
+1. **This server never fetches an exchange.** TradeAtlas ships no feed proxy
+   on purpose: no SSRF surface, no API keys, no hidden data licensing.
+2. **Your browser fetches the bars**, from public keyless endpoints, and posts
+   them to `/api/lab/self-correct`.
+
+Card **5C · Failure Memory** therefore has a *Real market test for today*
+block:
+
+| Step | What happens |
+|---|---|
+| Venue | Binance spot public klines (`data-api.binance.vision` first, then `api.binance.com`) or Kraken public OHLC |
+| Symbols | primary **and** a second symbol, so the validation round has an independent sample |
+| Bars | 405–1000 most recent **completed** bars (the still-forming candle is dropped, for Binance by `closeTime <= now`, for Kraken by `slice(0, -1)`) |
+| Costs | default **12 bps** round trip (Binance spot taker is roughly 7.5–10 bps per side depending on tier — raise it, never lower it to make a result look better) |
+| Loop | screen → apply lessons → validate, `attempts = 150`, horizons 3/5/15 |
+| Provenance | venue, endpoint URL, primary/validation symbols, bar counts, first and last **completed** bar in UTC, fetch time, `forming_candle_dropped: true`, and the server receipt time |
+| Storage | the run, its trials and its lessons go to SQLite; `GET /api/lessons` shows the latest run with its provenance |
+
+Opening the app with `?today=1` runs the same test automatically.
+
+If the venue is blocked in your region or a browser extension breaks CORS, the
+UI says so. Export the bars yourself and use the paste/upload path in card 5C —
+the analysis is identical, and the provenance then becomes *your* file.
+
+**What a same-day run can and cannot say.** A single day of 1m bars is a very
+short sample: the loop will usually retire most candidates for `baseline_not_beaten`
+or `cost_eaten_edge`, and it may find one that survives the recent slice. Even
+a two-symbol survivor is labelled
+`validated_on_supplied_data_still_needs_fresh_unseen_validation` — days, not
+minutes, are needed before anything resembles an edge. `goal_80_established`
+stays false, always.
+
 ## Worked example — bundled real AAPL daily
 
 `real-data/aapl-daily-2015-2017.plotly.csv`, 506 real daily bars, 100 attempts,
@@ -153,7 +189,7 @@ market evidence. The file is `sample-self-correction.json`.
 
 | Endpoint | Purpose |
 |---|---|
-| `POST /api/lab/self-correct` | run the loop (`bars`/`csv_text`; optional `second_bars`/`second_csv_text`) |
+| `POST /api/lab/self-correct` | run the loop (`bars`/`csv_text`; optional `second_bars`/`second_csv_text`; optional `provenance` object echoed and stored) |
 | `GET /api/lessons?symbol=&status=` | the persisted lesson ledger + cause tally + cause library |
 | `GET /api/failure-memory` | tally, latest run, recent lessons, loop spec |
 | `POST /api/lessons/clear` | forget lessons (`{symbol}` optional) — only with genuinely new data or methods |
@@ -175,13 +211,15 @@ No broker credentials, payment instruments, deposits or orders are stored.
 
 ## Tests
 
-`test_tradeatlas.py` grows from 49 to **65** tests; the v15 block covers the
+`test_tradeatlas.py` grows from 49 to **67** tests; the v15 block covers the
 cause library, causal score arrays, each diagnosis family, severity gating,
 lesson stability and avoid-rules, patch application and relaxation, the
 resolution path, retirement reasons, carry-over avoidance, pre-applied
 resolved patches, the single-symbol honesty rule, the two-symbol validation
 path, determinism, input rejection, SQLite persistence/deduplication/
-clearing, HTTP endpoints and the "no shortcut to 80%" rule.
+clearing, HTTP endpoints, the browser-fetched today-market payload with its
+provenance round-trip, the provenance-aware UI wiring, and the "no shortcut to
+80%" rule.
 
 ## Limits
 

@@ -127,6 +127,10 @@ and remember the outcome so later runs avoid it.
 market. It cannot create an edge the sample does not contain, it never lowers
 the 80% gates below, and `goal_80_established` stays false in every run.
 
+**Today's market:** the UI fetches completed bars browser-direct (Binance spot
+with a `data-api.binance.vision` fallback, or Kraken), drops the forming candle,
+records provenance and stores the run. One day is never evidence of an edge.
+
 **Bundled evidence:** real AAPL daily (506 bars, 100 attempts, 10 bps, 35
 candidates) → 33 retired because a naive baseline matched or beat them, 8 with
 no directional edge, 6 negative after costs, 21 over the drawdown limit, 3

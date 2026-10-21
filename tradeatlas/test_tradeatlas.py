@@ -1914,5 +1914,89 @@ class TestTradeAtlas(unittest.TestCase):
         self.assertIn(result["verdict"], allowed)
 
 
+
+    def test_v15_today_market_browser_payload_records_provenance(self):
+        import tempfile
+        from platformdb import MarketDatabase
+
+        def post(path, body):
+            req = urllib.request.Request(
+                self.base + path, data=json.dumps(body).encode("utf-8"),
+                headers={"Content-Type": "application/json"}, method="POST")
+            with urllib.request.urlopen(req, timeout=120) as response:
+                self.assertEqual(response.status, 200)
+                return json.loads(response.read().decode("utf-8"))
+
+        primary = ml.generate_demo_bars("1m", count=700, seed=41)
+        second = ml.generate_demo_bars("1m", count=600, seed=42)
+        provenance = {
+            "venue": "Binance spot public klines",
+            "primary_symbol": "BTCUSDT", "validation_symbol": "ETHUSDT",
+            "interval": "1m", "primary_bars": len(primary), "validation_bars": len(second),
+            "first_bar_utc": "2026-10-20T12:00:00Z",
+            "last_bar_utc": "2026-10-21T16:39:00Z",
+            "fetched_at_utc": "2026-10-21T16:40:05Z",
+            "forming_candle_dropped": True,
+            "primary_url": "https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=1m&limit=1000",
+            "validation_url": "https://data-api.binance.vision/api/v3/klines?symbol=ETHUSDT&interval=1m&limit=1000",
+        }
+        old_path, old_db = ta.MARKET_DB_PATH, ta.MARKET_DB
+        with tempfile.TemporaryDirectory() as folder:
+            try:
+                ta.MARKET_DB_PATH = str(Path(folder) / "today.db")
+                ta.MARKET_DB = None
+                result = post("/api/lab/self-correct", {
+                    "bars": primary, "symbol": "BINANCE-BTCUSDT@1m",
+                    "second_bars": second, "second_symbol": "BINANCE-ETHUSDT@1m",
+                    "horizons": [3, 5], "attempts": 100, "cost_bps": 12,
+                    "remember": True, "use_saved_lessons": False,
+                    "provenance": provenance, "source_label": "browser-fetched today test",
+                })
+                self.assertEqual(result["symbol"], "BINANCE-BTCUSDT@1m")
+                self.assertEqual(result["sources"][0]["symbol"], "BINANCE-BTCUSDT@1m")
+                self.assertEqual(len(result["sources"]), 2)
+                echoed = result["provenance"]
+                self.assertEqual(echoed["venue"], provenance["venue"])
+                self.assertEqual(echoed["last_bar_utc"], provenance["last_bar_utc"])
+                self.assertTrue(echoed["forming_candle_dropped"])
+                self.assertIn("server_received_at_utc", echoed)
+                self.assertEqual(echoed["primary_symbol"], "BTCUSDT")
+                self.assertFalse(result["goal_80"]["goal_established"])
+                # provenance and lessons are persisted together
+                with ta.MARKET_DB_LOCK:
+                    db = ta._market_db()
+                    latest = db.latest_self_correction()
+                    stored = db.self_correction_lessons(symbol="BINANCE-BTCUSDT@1m")
+                self.assertIsNotNone(latest)
+                self.assertEqual(latest["symbol"], "BINANCE-BTCUSDT@1m")
+                self.assertEqual(latest["summary"]["provenance"]["venue"], provenance["venue"])
+                self.assertEqual(latest["summary"]["provenance"]["last_bar_utc"],
+                                 provenance["last_bar_utc"])
+                self.assertEqual(latest["summary"]["source_label"], "browser-fetched today test")
+                self.assertGreaterEqual(len(stored), len(result["lessons"]))
+
+                # the same browser flow must reject a payload with no bars
+                with self.assertRaises(urllib.error.HTTPError) as caught:
+                    post("/api/lab/self-correct", {"bars": [], "provenance": provenance})
+                self.assertEqual(caught.exception.code, 400)
+            finally:
+                if ta.MARKET_DB is not None:
+                    ta.MARKET_DB.close()
+                ta.MARKET_DB_PATH, ta.MARKET_DB = old_path, old_db
+
+    def test_v15_today_market_ui_is_wired(self):
+        home = ta.render_home()
+        for needle in ("Real market test for today", "runTodayMarketTest",
+                       "data-api.binance.vision", "api.kraken.com",
+                       "forming candle", "today_provenance", "today_venue",
+                       "BINANCE-", "KRAKEN-"):
+            self.assertIn(needle, home, needle)
+        lowered = home.lower()
+        for banned in ("guaranteed profit", "sure win", "risk-free returns"):
+            self.assertNotIn(banned, lowered)
+        # the UI must say the server itself never fetches the exchange
+        self.assertIn("your browser fetches", home)
+
+
 if __name__ == "__main__":
     unittest.main()

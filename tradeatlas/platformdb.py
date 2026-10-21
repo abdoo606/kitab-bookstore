@@ -594,6 +594,8 @@ class MarketDatabase:
             "goal_80": result.get("goal_80") or {},
             "next_actions": result.get("next_actions") or [],
             "sources": result.get("sources") or [],
+            "provenance": result.get("provenance"),
+            "source_label": result.get("source_label"),
             "warning": result.get("warning") or "",
         }
         created = _now()

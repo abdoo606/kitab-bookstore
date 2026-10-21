@@ -181,6 +181,14 @@ for the next one (nothing in the 80% claim changes):**
   bars (optional second-symbol file), shows each round's candidates, causes,
   applied remedies, retirements and resolved fixes, and loads/clears the
   stored ledger.
+- **Real market test for today (browser-direct):** one button fetches the most
+  recent **completed** bars of two symbols from Binance spot (with
+  `data-api.binance.vision` fallback) or Kraken, drops the still-forming
+  candle, records provenance (venue, endpoint, first/last bar UTC, fetch time)
+  and runs screen → remedies → validation with 12 bps costs. The server itself
+  still fetches nothing; your browser does. Opening the app with
+  `?today=1` runs it automatically. Results and lessons persist in SQLite, and
+  `GET /api/lessons` returns the provenance of the last run.
 - **Docs:** `FAILURE-MEMORY.md` explains the taxonomy, the remedy table, the
   resolution/retirement rules and the worked AAPL example.
 - Tests: **65/65**, including causal score arrays, every diagnosis family,
@@ -732,7 +740,8 @@ actually tested.
   whose `goal_established` is always false. `{"demo": true}` runs the
   synthetic software check.
 - `GET /api/lessons?symbol=&status=` — the persisted failure memory: lesson
-  ledger, cause tally, cause library and the latest run.
+  ledger, cause tally, cause library and the latest run **including its
+  provenance** (venue, endpoint, first/last completed bar in UTC, fetch time).
 - `GET /api/failure-memory` — tally + recent lessons + loop specification.
 - `POST /api/lessons/clear` — forget lessons (`{"symbol": "..."}` optional);
   only sensible with genuinely new data or methods.
