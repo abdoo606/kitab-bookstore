@@ -43,3 +43,10 @@ coverage
 # Misc
 *.pem
 Thumbs.db
+
+# TradeAtlas local runtime artefacts (never commit user data/state)
+tradeatlas/tradeatlas.db
+tradeatlas/tradeatlas.db-shm
+tradeatlas/tradeatlas.db-wal
+tradeatlas/tradeatlas-bot-state.json
+tradeatlas/__pycache__
