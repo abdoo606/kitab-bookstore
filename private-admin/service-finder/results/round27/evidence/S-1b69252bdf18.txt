@@ -1,0 +1,53 @@
+Round 27 hunt excerpts — captured 2026-10-21 (verdicts in sources.json)
+
+--- 1) Ghana Chamber of Mines — Request for Proposals: Redesign of Website
+URL: https://ghanachamberofmines.org/storage/2026/01/Request-for-Proposals-Redesign-of-Website.pdf
+Excerpt (original PDF fetched): "The Ghana Chamber of Mines (GCM) is inviting qualified
+digital agencies and web development firms to submit proposals for the redesign and
+redevelopment of its corporate website... Scope includes UX research & strategy, website
+design & development, membership portal, media & publications hub, events & resource
+management, SEO/accessibility/performance optimization, CMS configuration & content
+migration... Deadline: 31st January 2026. Submissions & Enquiries:
+Chamber@GhanaChamberOfMines.Org."
+Verdict: the public email exists, but the deadline passed on Jan 31, 2026 and the request is
+for an agency/firm to deliver a member portal and full corporate platform -> screened out,
+not contacted.
+
+--- 2) Jamaica Athletics Administrative Association (JAAA) — Website Redesign RFP
+URL: https://athleticsja.org/2026/01/jaaa-announces-major-digital-transformation-request-for-proposals-issued-for-website-redesign/
+Excerpt (original page fetched): "The JAAA invites qualified vendors to submit proposals...
+Response Deadline: February 16, 2026. Project Kickoff: March 9, 2026. Target Launch Date:
+June 26, 2026... full RFP requirements... including company background, team bios, and
+project management approach... Proposals must be submitted in PDF format to
+JAAAWebRFP@gmail.com... Personalized Athlete Dashboards... Secure User Portals...
+registration and secure payment systems."
+Verdict: deadline passed on Feb 16, 2026; the scope includes athlete/member portals and
+payment/registration infrastructure and asks for company/team evidence -> screened out,
+not contacted.
+
+--- 3) Southern Nevada Health District — 27RFP002 Website Redesign
+URL: https://media.southernnevadahealthdistrict.org/download/27RFP002-rfp.pdf
+Excerpt (original PDF fetched): "Deadline to Submit Proposals: 2:00 PM PDT on 08/24/2026...
+Proposal documents... must be emailed to procurement@snhd.org... Contractor must have been
+providing services like those outlined regularly and continuously for at least five (5)
+years... demonstrated experience implementing WCAG-compliant websites for public sector
+entities... minimum of three (3) client references, preferably government agencies...
+Migrate more than 4,000 pages... Docker... Kubernetes... CI/CD... Project Budget: $100,000."
+Verdict: expired Aug 24, 2026 and the five-year/public-sector/reference gates cannot be met
+honestly; it is also a 4,000-page public-health platform migration -> screened out, not
+contacted.
+
+--- 4) C40 Cities — 2026-2028 Website Development and Ongoing Support RfP
+URL: https://www.c40.org/wp-content/uploads/2026/01/FINAL-2026-2028-Web-development-and-ongoing-support-RfP.pdf
+Excerpt (original PDF fetched): "Deadline for receiving Offers: 20 February 2026, 5pm GMT /
+12pm EST... submit one copy... to digital.comms@c40.org... At least three examples of
+similar projects... References from comparable clients... Candidates must demonstrate
+adequate insurance... three-year contract term... WordPress, Kinsta, Google Analytics and
+Search Console... ongoing technical stability, security and performance."
+Verdict: expired Feb 20, 2026 and requires comparable long-term support examples,
+references, personnel and insurance for a three-year global platform contract -> screened
+out, not contacted.
+
+Notes: searches also resurfaced live-looking Achievement First and Wave Transit pages, but
+both organizations were already screened in earlier rounds and were not re-hunted. Qualified
+this round: 0. Emailed: 0.
