@@ -1,0 +1,50 @@
+Round 23 hunt excerpts — captured 2026-10-21 (verdicts in sources.json)
+
+--- 1) Queens Botanical Garden (New York, USA) — Website Redesign RFP
+URL: https://queensbotanical.org/rfpwebsiteredesign/
+Excerpt (original page fetched): "Queens Botanical Garden is seeking a qualified vendor to
+conduct a comprehensive website redesign... Deadline to apply: November 16." Page dated
+October 24, 2025; linked RFP PDF is QBG_FY26_Marketing_WebsiteRFP.pdf (2025/10 upload path).
+Scope includes full content migration, e-commerce/membership/registration integrations.
+Verdict: the deadline "November 16" belongs to the October 2025 posting (FY26) — expired
+roughly eleven months before this round. No live deadline and no public submission email on
+the page → screened out, not contacted.
+
+--- 2) UK Find a Tender — "Website redesign and redevelopment" Notice 090011-2026 (London)
+URL: https://www.find-tender.service.gov.uk/Notice/090011-2026?p=1
+Excerpt: "Tender submission deadline 27 October 2026, 12:00pm... Tender submission will require
+a CDP code to be provided. Please ensure all tender documents are uploaded to
+https://supplier.in-tend.co.uk/educationportal/home in advance of the deadline."
+Verdict: deadline is live, but submission is portal-only through the UK In-tend procurement
+portal and requires a Central Digital Platform (CDP) supplier code — no public submission
+email, and UK public-procurement registration/compliance gates are outside the plain-email
+rule for this hunt → screened out, not contacted.
+
+--- 3) SPREP (Samoa) — Integrated Environmental GIS Web Platform consultancy, RFT 2026/015
+URL: https://www.developmentaid.org/tenders/view/1627131/development-of-spreps-integrated-environmental-gis-web-platform-consultancy
+Excerpt: "Request for Tender: Development of SPREP's Integrated Environmental GIS Web
+Platform – Consultancy... Due Date Wednesday, April 15, 2026 - 23:59... Status: Awarded...
+Eligible applicants are qualified GIS consultants (individuals) or GIS consulting firms...
+technical proposal, detailed financial proposal, completed SPREP tender application form."
+Verdict: a genuine Pacific web-platform tender with an email route existed, but it closed
+April 15, 2026 and is already awarded; it also required demonstrated GIS consultancy delivery
+statements against each criterion → screened out, not contacted. SPREP's live tender board
+(checked the same day) lists only invasive-species, lawn and security services — no web work.
+
+--- 4) Sur Futuro / IDRC FutureWORKS (Latin America & Caribbean) — Call for Proposals 2026
+URL: https://www.sur-futuro.org/call-proposals-2026
+Excerpt (original page fetched): grant call (not a services purchase) for NGOs, think tanks,
+research centres and private organizations working in Latin America & the Caribbean, in
+three components (policy technical cooperation; generative-AI worker training; evidence
+mobilization). Submission by email to equipo@sur-futuro.org; "new deadline 31 Jul 2026
+11:59 PM EDT"; applicants must be institutions operating in the region (technical-cooperation
+projects "in partnership with a public institution").
+Verdict: deadline passed July 31, 2026; it is a regional grant for established institutions,
+not a website service a solo external developer can take → screened out, not contacted.
+
+Notes: also reviewed without recording full excerpts — National Trust for Canada website RFP
+(already screened in Round 21, closed Apr 6, 2026), Guelph Humane Society RFP (already
+screened, closed Apr 20, 2026), City of Galax website RFP (closed Jun 26, 2026), Corrymeela
+website tender via Blume platform (closed Aug 24, 2026), Understanding Patient Data web
+redevelopment ITT (UK, closed Jan 9, 2026), SPREP RFT 2026-001 climate services (closed
+Feb 10, 2026). None contacted. Qualified this round: 0. Emailed: 0.

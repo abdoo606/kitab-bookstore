@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://queensbotanical.org/rfpwebsiteredesign/",
+    "organization": "Queens Botanical Garden (New York, USA) - Website Redesign RFP (FY26)",
+    "source_kind": "official_page_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "Comprehensive website redesign with content migration, memberships, donations and program registrations; page posted Oct 24, 2025 with 'Deadline to apply: November 16' (2025) — expired before this round; no public submission email on the page.",
+    "outreach_status": "not_sent_screened_out: deadline passed (Nov 2025 posting); no live public-email submission route"
+  },
+  {
+    "url": "https://www.find-tender.service.gov.uk/Notice/090011-2026?p=1",
+    "organization": "UK public sector (London) via Find a Tender - Website redesign and redevelopment, Notice 090011-2026",
+    "source_kind": "official_tender_notice_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "Website redesign/redevelopment tender; submission deadline 27 October 2026; tenders must be uploaded to the In-tend education portal and require a Central Digital Platform (CDP) supplier code.",
+    "outreach_status": "not_sent_screened_out: live deadline but portal-only submission with UK CDP supplier registration; no public submission email"
+  },
+  {
+    "url": "https://www.developmentaid.org/tenders/view/1627131/development-of-spreps-integrated-environmental-gis-web-platform-consultancy",
+    "organization": "SPREP (Samoa) - Integrated Environmental GIS Web Platform consultancy, RFT 2026/015",
+    "source_kind": "tender_republication_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "GIS web platform consultancy for the Pacific Regional Environment Programme; due April 15, 2026; status Awarded; required criterion-by-criterion delivery statements from qualified GIS consultants/firms.",
+    "outreach_status": "not_sent_screened_out: closed and awarded (Apr 15, 2026); specialist GIS delivery-history gate not meetable honestly"
+  },
+  {
+    "url": "https://www.sur-futuro.org/call-proposals-2026",
+    "organization": "Sur Futuro / IDRC FutureWORKS (Latin America & Caribbean) - Call for Proposals 2026, equipo@sur-futuro.org",
+    "source_kind": "official_page_excerpt",
+    "snapshot": "excerpts.txt",
+    "captured_on": "2026-10-21",
+    "content_scope": "Regional grant call (CAD 17k-55k) for NGOs/think tanks/research centres/private organizations in Latin America & the Caribbean across policy cooperation, generative-AI worker training and evidence mobilization; deadline Jul 31, 2026.",
+    "outreach_status": "not_sent_screened_out: deadline passed (Jul 31, 2026); institutional regional grant, not a purchasable website service for a solo external developer"
+  }
+]
