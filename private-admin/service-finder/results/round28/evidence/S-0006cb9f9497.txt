@@ -1,0 +1,23 @@
+Round 28 hunt excerpts — captured 2026-10-21 (verdicts in sources.json)
+
+--- 1) Regional Water Authority / Sacramento Groundwater Authority — Website Redesign and ADA Compliance
+URL: https://rwah2o.org/wp-content/uploads/2026/08/RFP-for-Website-Redesign-and-ADA-Compliance.pdf
+Excerpt (original PDF fetched): "Proposal Responses Due: 3:00 PM Pacific Time September 15, 2026... RFP Coordinator: Ashley Flores, aflores@rwah2o.org... redesign and develop two public-facing websites... 54 pages and approximately 500 posted PDF documents... 48 pages and approximately 162 posted PDFs... contractor with experience designing websites for public agencies or organizations with similar regulatory, informational, and public engagement functions."
+Verdict: public submission/coordinator email exists, but the deadline passed on Sep 15, 2026. The two-site public-authority migration also includes 662 PDFs, ADA remediation, possible employee intranet and public-agency experience expectations -> screened out, not contacted.
+
+--- 2) Bellingham Housing Authority — Website Development and Design Services RFP-BHA-2026-04-IT
+URL: https://bellinghamhousing.org/request-for-proposals-website-development-and-design-services/2026/04/20/
+Excerpt (original page fetched): "[CLOSED] REQUEST FOR PROPOSALS... All project inquiries and final proposal submissions must be sent via email to procurement@bellinghamhousing.org... final proposals are due no later than May 27, 2026, at 5:00 PM PST... full project lifecycle—including discovery, strategy, rebranding with a new logo, development of a unified property directory, and a minimum 12-month post-launch support period."
+Verdict: explicitly closed on the original page and expired May 27, 2026; also a full rebrand/property-directory/12-month support procurement for firms -> screened out, not contacted.
+
+--- 3) Dayton Area Chamber of Commerce EPI Foundation — Website Design & Development Services
+URL: https://daytonchamber.org/rfp-website-design-development-services/
+Excerpt (original page fetched): "Proposal Submission Deadline: April 13, 2026... Contact Email: daytonexperience@dacc.org... approximately 40 pages... events calendar, market comparison tool, and CRM-connected lead forms... Company background... Relevant experience with regional branding, economic development, or tourism sites... Team bios and roles... Comparable websites... Case studies... References."
+Verdict: deadline passed Apr 13, 2026. It also requires vendor hosting/monitoring/backups and scores comparable regional-branding experience, team evidence, case studies and references that cannot be invented or promised honestly -> screened out, not contacted.
+
+--- 4) College of Massage Therapists of Ontario (CMTO) — New Website Design, Development and Maintenance
+URL: https://www.cmto.com/request-for-proposal-new-website-design-development-and-maintenance/
+Excerpt (original page fetched): "Budget guide... $70,000... Intent to Submit: July 7, 2026... (deadline to submit an intention for proposal has now closed and we are no longer accepting further submissions)... Proposal Submission Deadline: August 11, 2026... Contact communications@cmto.com... full bilingual (English and French) functionality... fully design, develop, and maintain a new website."
+Verdict: intent gate and proposal deadline both passed; original explicitly says no further submissions. It is also a regulated bilingual public-protection college platform, not a modest build-first website service -> screened out, not contacted.
+
+Notes: searches resurfaced previously screened Achievement First, Ferncliff, Cloverdale, OR/WA Nutrition Academies, Buellton, Hunger Task Force, CWPD, Union Square, Future Generations, JAAA and Southern Nevada Health District. They were not re-hunted. Qualified this round: 0. Emailed: 0.
