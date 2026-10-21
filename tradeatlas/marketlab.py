@@ -2020,7 +2020,7 @@ def atlas_minute_pulse_now(bars: list[dict]) -> dict:
 def project_goals() -> dict:
     """Machine-readable v14 goals; status fields deliberately separate target from proof."""
     return {
-        "version": "15.0", "updated": "2026-10-21",
+        "version": "16.0", "updated": "2026-10-21",
         "goals": [
             {"id": "minute_timeframe_focus", "title": "Focus research and the bot on 1m/5m/15m bars",
              "status": "implemented_in_v14", "primary_timeframe": "1m",
@@ -2038,6 +2038,13 @@ def project_goals() -> dict:
              "status": "user_own_exchange_account_only",
              "rule": "USDT/BTC remain in the user's own licensed exchange account. TradeAtlas has no deposit address and must never receive or custody crypto.",
              "implemented": "External-account balance mirror and paper conversion/transfer simulations; the mirror is user-reported and is not added to paper equity."},
+            {"id": "autonomous_data", "title": "Collect and store lawful market data by itself",
+             "status": "implemented_in_v16",
+             "evidence": ("Allowlisted public-venue collector (server CLI and browser), incremental "
+                          "SQLite storage with provenance, holdout reservation with a recorded "
+                          "access count, pooled evidence and a gate-by-gate goal report."),
+             "not_claimed": ("Automation increases sample size and honesty, not accuracy. "
+                             "goal_established stays false in every code path.")},
             {"id": "failure_memory", "title": "Learn from every failed test instead of repeating it",
              "status": "implemented_in_v15",
              "evidence": ("A cause library of 20 named failure modes, an avoid-rule and an implemented "
@@ -6672,7 +6679,7 @@ DATA_GUIDE = [
 def lab_spec() -> dict:
     return {
         "name": "TradeAtlas Market Lab",
-        "version": "15.0",
+        "version": "16.0",
         "timeframes": TIMEFRAMES,
         "strategies": STRATEGY_ENGINES,
         "indicators": ["SMA20/50/200", "EMA20/50", "RSI(14)", "MACD(12,26,9)",
@@ -6742,6 +6749,13 @@ def lab_spec() -> dict:
                      "thirteen additional v13 signal engines on every honest timeframe (Aroon, TSI, TRIX, CMO, Ultimate reversal, RVI, regression, Donchian, OBV flow, Coppock, Pressure Wave, Regime Compass, Phoenix) — 37 engines at v13",
                      "v14 minute-first layer: seven additional engines (rolling-VWAP reversion, EMA ribbon, RSI-2 snapback, UTC opening-range breakout, Bollinger squeeze release, volume-surge pressure and invented Atlas Minute Pulse) — 44 engines total",
                      "v14 minute hidden-future race at 1/3/5/15/30 bars with coverage, Wilson intervals and 5/10/25-bps costs, plus an explicit 80% goal gate requiring 1000+ attempts and external multi-symbol/day validation before any strong claim",
+                     "v16 automation: a guarded collector fetches completed bars by itself from a "
+                     "fixed allowlist of public venues (Binance spot, Kraken public OHLC — no keys, "
+                     "no arbitrary URLs), stores them incrementally in SQLite, reserves the newest "
+                     "20% of every series as a counted holdout the tuning loop never sees, pools "
+                     "hidden-future evidence across all stored series with Wilson intervals, and "
+                     "reports the honest distance to the 80% target gate by gate; goal_established "
+                     "remains false because a local database cannot prove a universal rate",
                      "v15 failure memory (Atlas self-correction): every failed method x horizon is "
                      "diagnosed against an explicit cause library (sample too small, coverage too low, "
                      "baseline not beaten, cost-eaten edge, single-horizon overfit, walk-forward decay, "

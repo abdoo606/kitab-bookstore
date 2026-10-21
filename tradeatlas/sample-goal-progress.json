@@ -1,0 +1,311 @@
+{
+ "mode": "honest_goal_progress",
+ "version": "16.0",
+ "target_accuracy_pct": 80.0,
+ "goal_established": false,
+ "status": "below_target_on_local_data",
+ "best_pooled_candidate": {
+  "method": "minute_ema_ribbon",
+  "horizon_bars": 5,
+  "attempts": 360,
+  "hits": 218,
+  "accuracy_pct": 60.556,
+  "wilson_95_ci_pct": [
+   55.421,
+   65.467
+  ],
+  "mean_net_pct": -0.0421,
+  "mean_gross_pct": 0.0579,
+  "coverage_pct": 100.0,
+  "series_count": 3,
+  "series_positive": 0
+ },
+ "distance_to_target_points": 19.444,
+ "gates_passed": 2,
+ "gates_total": 9,
+ "checks": [
+  {
+   "gate": "attempts",
+   "requirement": "at least 1000 hidden-future attempts per candidate",
+   "value": 360,
+   "passed": false
+  },
+  {
+   "gate": "accuracy",
+   "requirement": "pooled direction accuracy at least 80%",
+   "value": 60.556,
+   "passed": false
+  },
+  {
+   "gate": "wilson_lower",
+   "requirement": "Wilson 95% lower bound at least 80%",
+   "value": 55.421,
+   "passed": false
+  },
+  {
+   "gate": "costs",
+   "requirement": "positive mean net per attempt after 10 bps",
+   "value": -0.0421,
+   "passed": false
+  },
+  {
+   "gate": "coverage",
+   "requirement": "coverage at least 20% when the method can abstain",
+   "value": 100.0,
+   "passed": true
+  },
+  {
+   "gate": "symbols",
+   "requirement": "at least 3 symbols",
+   "value": 3,
+   "passed": true
+  },
+  {
+   "gate": "days",
+   "requirement": "at least 30 distinct UTC days",
+   "value": 1,
+   "passed": false
+  },
+  {
+   "gate": "holdout",
+   "requirement": "a recorded holdout evaluation on the reserved slice",
+   "value": 0,
+   "passed": false
+  },
+  {
+   "gate": "external",
+   "requirement": "fresh unseen validation outside this local database",
+   "value": "not available inside one local database",
+   "passed": false
+  }
+ ],
+ "evidence": {
+  "series_used": 3,
+  "symbols": [
+   "SYNTH.BTCUSDT.1M",
+   "SYNTH.ETHUSDT.1M",
+   "SYNTH.SOLUSDT.1M"
+  ],
+  "distinct_days": 1,
+  "holdout_evaluations": 0,
+  "config": {
+   "methods": [
+    "atlas_minute_pulse",
+    "minute_ema_ribbon"
+   ],
+   "horizons": [
+    3,
+    5,
+    15
+   ],
+   "cost_bps": 10.0,
+   "attempts": 120,
+   "holdout_reserved_fraction": 0.2
+  }
+ },
+ "pooled": [
+  {
+   "method": "minute_ema_ribbon",
+   "horizon_bars": 5,
+   "attempts": 360,
+   "hits": 218,
+   "accuracy_pct": 60.556,
+   "wilson_95_ci_pct": [
+    55.421,
+    65.467
+   ],
+   "mean_net_pct": -0.0421,
+   "mean_gross_pct": 0.0579,
+   "coverage_pct": 100.0,
+   "series_count": 3,
+   "series_positive": 0
+  },
+  {
+   "method": "atlas_minute_pulse",
+   "horizon_bars": 5,
+   "attempts": 360,
+   "hits": 218,
+   "accuracy_pct": 60.556,
+   "wilson_95_ci_pct": [
+    55.421,
+    65.467
+   ],
+   "mean_net_pct": -0.0468,
+   "mean_gross_pct": 0.0532,
+   "coverage_pct": 100.0,
+   "series_count": 3,
+   "series_positive": 0
+  },
+  {
+   "method": "atlas_minute_pulse",
+   "horizon_bars": 15,
+   "attempts": 360,
+   "hits": 210,
+   "accuracy_pct": 58.333,
+   "wilson_95_ci_pct": [
+    53.179,
+    63.312
+   ],
+   "mean_net_pct": 0.0073,
+   "mean_gross_pct": 0.1073,
+   "coverage_pct": 100.0,
+   "series_count": 3,
+   "series_positive": 2
+  },
+  {
+   "method": "minute_ema_ribbon",
+   "horizon_bars": 15,
+   "attempts": 360,
+   "hits": 209,
+   "accuracy_pct": 58.056,
+   "wilson_95_ci_pct": [
+    52.899,
+    63.042
+   ],
+   "mean_net_pct": 0.0168,
+   "mean_gross_pct": 0.1168,
+   "coverage_pct": 100.0,
+   "series_count": 3,
+   "series_positive": 1
+  },
+  {
+   "method": "minute_ema_ribbon",
+   "horizon_bars": 3,
+   "attempts": 360,
+   "hits": 198,
+   "accuracy_pct": 55.0,
+   "wilson_95_ci_pct": [
+    49.835,
+    60.059
+   ],
+   "mean_net_pct": -0.0696,
+   "mean_gross_pct": 0.0304,
+   "coverage_pct": 100.0,
+   "series_count": 3,
+   "series_positive": 0
+  },
+  {
+   "method": "atlas_minute_pulse",
+   "horizon_bars": 3,
+   "attempts": 360,
+   "hits": 196,
+   "accuracy_pct": 54.444,
+   "wilson_95_ci_pct": [
+    49.28,
+    59.515
+   ],
+   "mean_net_pct": -0.0766,
+   "mean_gross_pct": 0.0234,
+   "coverage_pct": 100.0,
+   "series_count": 3,
+   "series_positive": 0
+  }
+ ],
+ "how_to_move_forward": [
+  "Collect more lawful bars (more symbols, more days) — attempts and coverage gates.",
+  "Run the failure loop so dead candidates are retired instead of re-tested.",
+  "Evaluate candidates only on the reserved holdout, once, and record it.",
+  "Validate survivors on symbols/days that were never used for tuning."
+ ],
+ "why_it_is_not_established": "A local database can show a candidate that passes every measurable gate; it cannot prove a universal 80% edge. goal_established therefore stays false and the strongest status is goal_evidence_ready_for_independent_review.",
+ "warning": "Research measurement only. Not financial advice and not an order path.",
+ "source": "deterministic SYNTHETIC bars — a software check of the gate arithmetic, never market evidence",
+ "source_is_synthetic": true,
+ "spec": {
+  "name": "Atlas Auto-Collect + Goal Tracker",
+  "version": "16.0",
+  "venues": {
+   "binance": {
+    "label": "Binance spot public klines",
+    "hosts": [
+     "api.binance.com",
+     "data-api.binance.vision"
+    ],
+    "intervals": [
+     "1m",
+     "5m",
+     "15m",
+     "1h",
+     "4h",
+     "1d"
+    ],
+    "default_symbols": [
+     "BTCUSDT",
+     "ETHUSDT",
+     "BNBUSDT",
+     "SOLUSDT"
+    ]
+   },
+   "kraken": {
+    "label": "Kraken public OHLC",
+    "hosts": [
+     "api.kraken.com"
+    ],
+    "intervals": [
+     "1m",
+     "5m",
+     "15m",
+     "1h",
+     "4h",
+     "1d"
+    ],
+    "default_symbols": [
+     "XBTUSD",
+     "ETHUSD",
+     "SOLUSD"
+    ]
+   }
+  },
+  "security": [
+   "fixed host allowlist; no arbitrary URLs",
+   "no API keys, logins or credentials",
+   "public keyless endpoints only",
+   "read-only market data; no order routing"
+  ],
+  "collection": {
+   "incremental": true,
+   "holdout_fraction": 0.2,
+   "max_bars_per_request": 1000
+  },
+  "goal_gates": [
+   {
+    "id": "attempts",
+    "requirement": "at least 1000 hidden-future attempts per candidate"
+   },
+   {
+    "id": "accuracy",
+    "requirement": "pooled direction accuracy at least 80%"
+   },
+   {
+    "id": "wilson_lower",
+    "requirement": "Wilson 95% lower bound at least 80%"
+   },
+   {
+    "id": "costs",
+    "requirement": "positive mean net per attempt after 10 bps"
+   },
+   {
+    "id": "coverage",
+    "requirement": "coverage at least 20% when the method can abstain"
+   },
+   {
+    "id": "symbols",
+    "requirement": "at least 3 symbols"
+   },
+   {
+    "id": "days",
+    "requirement": "at least 30 distinct UTC days"
+   },
+   {
+    "id": "holdout",
+    "requirement": "a recorded holdout evaluation on the reserved slice"
+   },
+   {
+    "id": "external",
+    "requirement": "fresh unseen validation outside this local database"
+   }
+  ],
+  "goal_established_ever": false
+ },
+ "disclaimer": "TradeAtlas is educational/research software only. It is NOT financial advice. Market Lab long/short (buy/sell-condition) labels are mechanical indicator states, not recommendations. TradeAtlas bundles no licensed live market data; real-market tracking uses only OHLCV data or a feed endpoint that you supply and have the right to use. Its wallet is a paper simulation only: never send money or cryptocurrency to TradeAtlas; it has no deposit address, custody, conversion, withdrawal or broker execution. Its halal-stock screen is transparent arithmetic on evidence you supply, not a fatwa or certification, and its bot is paper-only. It makes no profit promises. Most short-term traders lose money. Study the ideas, paper-trade first, risk only money you can afford to lose, and consult a licensed financial professional for personal decisions."
+}

@@ -35,15 +35,18 @@ import datetime as dt
 import html
 import json
 import os
+import sys
+import time
 import threading
 import urllib.parse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import marketlab as ml
+import pipeline as pl
 import selfcorrect as sc
 from platformdb import MarketDatabase
 
-VERSION = "15.0"
+VERSION = "16.0"
 PAPER_WALLET = ml.new_paper_wallet()
 PAPER_WALLET_LOCK = threading.Lock()
 BOT_STATE_PATH = os.environ.get(
@@ -1637,6 +1640,227 @@ async function runTodayMarketTest() {
       ' — you can still paste/upload a CSV of today\'s bars in the Market Lab and run card 5C on it.';
   }
 }
+function pipelinePlanValues() {
+  const symbols = (document.getElementById('pl_symbols').value || '')
+    .split(',').map(function(x) { return x.trim(); }).filter(Boolean);
+  return {
+    venue: document.getElementById('pl_venue').value,
+    symbols: symbols,
+    interval: document.getElementById('pl_interval').value,
+    target_bars: parseInt(document.getElementById('pl_target').value || '3000', 10),
+    cost_bps: parseFloat(document.getElementById('pl_cost').value || '12')
+  };
+}
+function plStatus(text) { const el = document.getElementById('pl_status'); if (el) el.textContent = text; }
+function plRenderProgress(data) {
+  const box = document.getElementById('pl_progress');
+  if (!box) return;
+  box.textContent = '';
+  const best = data.best_pooled_candidate || {};
+  const accuracy = typeof best.accuracy_pct === 'number' ? best.accuracy_pct : 0;
+  const wrap = document.createElement('div');
+  wrap.style.background = '#0b1220';
+  wrap.style.border = '1px solid #334155';
+  wrap.style.borderRadius = '10px';
+  wrap.style.padding = '10px';
+  const label = document.createElement('p');
+  label.className = 'sub';
+  label.textContent = 'Best pooled candidate: ' +
+    (best.method ? best.method + ' @' + best.horizon_bars + ' bars' : 'none yet') +
+    ' · accuracy ' + (best.accuracy_pct ?? '—') + '% · Wilson ' +
+    (best.wilson_95_ci_pct ? '[' + best.wilson_95_ci_pct.join(', ') + ']' : '—') +
+    ' · attempts ' + (best.attempts ?? 0) +
+    ' · distance to 80%: ' + (data.distance_to_target_points ?? '—') + ' points';
+  wrap.appendChild(label);
+  const track = document.createElement('div');
+  track.style.height = '14px'; track.style.background = '#1e293b';
+  track.style.borderRadius = '999px'; track.style.overflow = 'hidden';
+  const fill = document.createElement('div');
+  fill.style.height = '100%';
+  fill.style.width = Math.max(2, Math.min(100, accuracy)) + '%';
+  fill.style.background = accuracy >= 80 ? '#22c55e' : accuracy >= 60 ? '#f59e0b' : '#ef4444';
+  track.appendChild(fill); wrap.appendChild(track);
+  const gates = document.createElement('p');
+  gates.className = 'warn';
+  gates.textContent = 'Gates passed: ' + data.gates_passed + '/' + data.gates_total +
+    ' · status ' + data.status + ' · goal established: ' + data.goal_established;
+  wrap.appendChild(gates);
+  const rows = [['Gate', 'Requirement', 'Measured', 'Passed']];
+  (data.checks || []).forEach(function(check) {
+    rows.push([check.gate, check.requirement, String(check.value), check.passed ? 'yes' : 'no']);
+  });
+  const table = document.createElement('table');
+  rows.forEach(function(cells, index) {
+    const tr = document.createElement('tr');
+    cells.forEach(function(text) {
+      if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+      else { const td = document.createElement('td'); td.textContent = text; tr.appendChild(td); }
+    });
+    table.appendChild(tr);
+  });
+  wrap.appendChild(table);
+  box.appendChild(wrap);
+}
+async function loadGoalProgress() {
+  try {
+    plStatus('Measuring pooled evidence across every stored series (tuning slices only)…');
+    const response = await fetch('/api/goal-progress?cost_bps=' +
+      encodeURIComponent(document.getElementById('pl_cost').value || '12'));
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    plRenderProgress(data);
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const details = document.createElement('details');
+    const sm = document.createElement('summary'); sm.textContent = 'Full goal-progress JSON'; details.appendChild(sm);
+    const pre = document.createElement('pre'); pre.textContent = JSON.stringify(data, null, 2); details.appendChild(pre);
+    out.appendChild(details);
+    plStatus('Evidence: ' + data.evidence.series_used + ' series · ' +
+      data.evidence.symbols.length + ' symbols · ' + data.evidence.distinct_days +
+      ' distinct days · holdout evaluations ' + data.evidence.holdout_evaluations + '.');
+  } catch (e) { plStatus('Goal progress error: ' + e.message); }
+}
+async function pipelineCollectServer() {
+  try {
+    const plan = pipelinePlanValues();
+    plStatus('Server is fetching ' + plan.symbols.join(', ') + ' from ' + plan.venue +
+      ' — it only contacts the allowlisted public hosts…');
+    const response = await fetch('/api/pipeline/collect', {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(plan)});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const rows = [['Stored symbol', 'New bars', 'Total bars', 'First bar', 'Last bar', 'Errors']];
+    (data.series || []).forEach(function(item) {
+      rows.push([item.symbol, item.inserted, item.stored_total, item.first_bar || '—',
+                 item.last_bar || '—', (item.errors || []).join('; ') || 'none']);
+    });
+    const table = document.createElement('table');
+    rows.forEach(function(cells, index) {
+      const tr = document.createElement('tr');
+      cells.forEach(function(text) {
+        if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+        else { const td = document.createElement('td'); td.textContent = String(text); tr.appendChild(td); }
+      });
+      table.appendChild(tr);
+    });
+    out.appendChild(table);
+    plStatus('Collected ' + data.inserted_total + ' new bars. ' +
+      (data.inserted_total ? 'Now grade them, then refresh goal progress.' :
+       'No new bars: your server may have no outbound network — use the browser collector.'));
+  } catch (e) { plStatus('Server collection error: ' + e.message); }
+}
+async function pipelineCollectBrowser() {
+  try {
+    const plan = pipelinePlanValues();
+    if (!plan.symbols.length) throw new Error('Add at least one symbol');
+    const fetcher = plan.venue === 'kraken' ? fetchKrakenToday : fetchBinanceToday;
+    const series = [];
+    for (const symbol of plan.symbols) {
+      plStatus('Fetching ' + symbol + ' ' + plan.interval + ' in your browser…');
+      try {
+        const page = await fetcher(symbol, plan.interval, 1000);
+        series.push({symbol: symbol.toUpperCase(), interval: plan.interval,
+                     bars: page.bars, endpoint: page.url,
+                     source_label: page.venue + ' via browser (allowlisted venue)'});
+      } catch (e) { plStatus('Skipped ' + symbol + ': ' + e.message); }
+    }
+    if (!series.length) throw new Error('No series could be fetched — venue blocked, or symbol unknown');
+    plStatus('Posting ' + series.length + ' fetched series to be stored in SQLite…');
+    const response = await fetch('/api/pipeline/import', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({venue: plan.venue, series: series,
+                            provenance: {venue: plan.venue, interval: plan.interval,
+                                         fetched_at_utc: new Date().toISOString(),
+                                         forming_candle_dropped: true,
+                                         symbols: series.map(function(x) { return x.symbol; })}})});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const rows = [['Stored symbol', 'Bars', 'First bar', 'Last bar']];
+    (data.series || []).forEach(function(item) {
+      rows.push([item.symbol, item.stored_total, item.first_bar || '—', item.last_bar || '—']);
+    });
+    const table = document.createElement('table');
+    rows.forEach(function(cells, index) {
+      const tr = document.createElement('tr');
+      cells.forEach(function(text) {
+        if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+        else { const td = document.createElement('td'); td.textContent = String(text); tr.appendChild(td); }
+      });
+      table.appendChild(tr);
+    });
+    out.appendChild(table);
+    plStatus('Stored ' + data.series.length + ' series. Now grade everything stored.');
+  } catch (e) { plStatus('Browser collection error: ' + e.message); }
+}
+async function runAutoResearch() {
+  try {
+    plStatus('Grading every stored series on its tuning slice (holdout untouched)…');
+    const plan = pipelinePlanValues();
+    const response = await fetch('/api/lab/auto-research', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({horizons: [3, 5, 15], attempts: 150, cost_bps: plan.cost_bps})});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    plRenderProgress(data);
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const rows = [['Method', 'Horizon', 'Attempts', 'Accuracy', 'Wilson low', 'Net @cost', 'Symbols']];
+    (data.pooled || []).forEach(function(row) {
+      rows.push([row.method, row.horizon_bars, row.attempts, row.accuracy_pct,
+                 (row.wilson_95_ci_pct || [])[0], row.mean_net_pct, row.series_count]);
+    });
+    if (rows.length > 1) {
+      const table = document.createElement('table');
+      rows.forEach(function(cells, index) {
+        const tr = document.createElement('tr');
+        cells.forEach(function(text) {
+          if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+          else { const td = document.createElement('td'); td.textContent = String(text); tr.appendChild(td); }
+        });
+        table.appendChild(tr);
+      });
+      out.appendChild(table);
+    }
+    plStatus('Graded ' + data.evidence.series_used + ' series. Top row is the selection maximum — read the Wilson interval, not the point estimate.');
+  } catch (e) { plStatus('Auto-research error: ' + e.message); }
+}
+async function runHoldout() {
+  try {
+    const symbol = (document.getElementById('pl_holdout_symbol').value || '').trim();
+    if (!symbol) throw new Error('Enter a stored symbol');
+    plStatus('Reading the reserved holdout for ' + symbol + ' (this read is recorded)…');
+    const response = await fetch('/api/lab/holdout', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({symbol: symbol, horizons: [3, 5, 15],
+                            cost_bps: parseFloat(document.getElementById('pl_cost').value || '12')})});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const rows = [['Method', 'Horizon', 'Attempts', 'Accuracy', 'Wilson low', 'Net']];
+    (data.rows || []).forEach(function(row) {
+      rows.push([row.method, row.horizon_bars, row.attempts_made, row.direction_accuracy_pct,
+                 (row.wilson_95_ci_pct || [])[0], row.mean_net_pct]);
+    });
+    const table = document.createElement('table');
+    rows.forEach(function(cells, index) {
+      const tr = document.createElement('tr');
+      cells.forEach(function(text) {
+        if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+        else { const td = document.createElement('td'); td.textContent = String(text); tr.appendChild(td); }
+      });
+      table.appendChild(tr);
+    });
+    out.appendChild(table);
+    plStatus('Holdout: ' + data.holdout_bars + ' reserved bars (' + data.holdout_first_bar +
+      ' → ' + data.holdout_last_bar + '). Reads so far: ' + data.holdout_uses_total +
+      '. Repeating this turns the holdout into tuning data.');
+  } catch (e) { plStatus('Holdout error: ' + e.message); }
+}
 async function clearLessons() {
   const status = document.getElementById('sc_status');
   if (!confirm('Delete every stored lesson? They record measured failures, not signals. Clear only with genuinely new data or methods.')) return;
@@ -1996,6 +2220,24 @@ what each idea is, its classic textbook rules, how it fails, and the risk notes 
 <p id="sc_verdict" class="warn"></p>
 <div id="sc_out" style="overflow:auto"></div>
 </div>
+<div class="card labwide" id="auto-pipeline"><h3>6 · Auto-Collect &amp; Goal Progress — the site fetches and stores by itself</h3>
+<p class="warn">Automation changes how much lawful data exists and how honestly it is measured. It cannot change the market: no button here makes a losing candidate win, and <b>goal_established stays false</b>.</p>
+<p class="sub">Two collectors feed one SQLite database. <b>(a) Server collector:</b> the TradeAtlas process fetches from a <i>fixed allowlist</i> of public venues — no arbitrary URLs, no keys, no logins — walking backwards page by page until the target bar count is stored. <b>(b) Browser collector:</b> your browser fetches the same public endpoints and posts the bars back, which is what you need when the server has no network. Both store incrementally: later runs add only new bars. The newest <b>20%</b> of every series is reserved as a <b>holdout</b> that the tuning loop never sees; only the holdout button reads it, and every read is counted. The goal tracker then reports the honest distance to 80% gate by gate.</p>
+<label>Venue</label><select id="pl_venue"><option value="binance" selected>Binance spot public klines</option><option value="kraken">Kraken public OHLC</option></select>
+<label>Symbols (comma-separated)</label><input id="pl_symbols" type="text" value="BTCUSDT,ETHUSDT,BNBUSDT,SOLUSDT">
+<label>Interval</label><select id="pl_interval"><option value="1m" selected>1m</option><option>5m</option><option>15m</option><option>1h</option><option>4h</option><option>1d</option></select>
+<label>Target bars per symbol</label><input id="pl_target" type="number" min="300" max="20000" step="100" value="3000">
+<label>Round-trip cost assumed (bps)</label><input id="pl_cost" type="number" min="1" max="500" step="0.5" value="12">
+<button class="go" onclick="pipelineCollectServer()">Collect on the server (needs outbound network)</button>
+<button class="go" onclick="pipelineCollectBrowser()">Collect in my browser, then store in SQLite</button>
+<button class="go" onclick="runAutoResearch()">Grade everything stored (pooled evidence)</button>
+<label>Stored symbol for the one-shot holdout test (e.g. BINANCE.BTCUSDT.1m)</label><input id="pl_holdout_symbol" type="text" value="BINANCE.BTCUSDT.1m">
+<button class="go" onclick="runHoldout()">Evaluate the reserved holdout (recorded)</button>
+<button class="go" onclick="loadGoalProgress()">Refresh 80% goal progress</button>
+<p id="pl_status" class="status"></p>
+<div id="pl_progress" style="margin-top:10px"></div>
+<div id="pl_out" style="overflow:auto"></div>
+</div>
 <div class="card"><h3>6 · Demo e-wallet — simulated crypto balances, conversion, bot transfer + Follow / STOP</h3>
 <p class="warn"><b>DO NOT SEND MONEY OR CRYPTOCURRENCY.</b> TradeAtlas has no deposit address, custody, real conversion, real withdrawal, leverage or broker/exchange execution. The demo e-wallet records imaginary balances and local PAPER_USD movements. <b>v14 adds an external-account mirror:</b> if your real USDT/BTC is in your own licensed exchange account, you may record that balance for accounting/checklists; TradeAtlas cannot access or verify it and does not add it to paper equity. Fund only through the exchange's own official deposit screen — never an address from TradeAtlas.</p>
 <label>Reset starting PAPER_USD</label><input id="paper_start" type="number" min="1" step="any" value="10000">
@@ -2176,6 +2418,7 @@ def atlas_json() -> dict:
             "project_goals": ml.project_goals(),
             "market_lab": ml.lab_spec(),
             "failure_memory": sc.self_correction_spec(),
+            "data_pipeline": pl.pipeline_spec(),
             "market_database": {
                 "engine": "SQLite local file (tradeatlas.db)",
                 "tables": ["instruments", "bars", "data_imports", "halal_profiles",
@@ -2305,6 +2548,43 @@ class Handler(BaseHTTPRequestHandler):
                 result = ml.paper_wallet_view(PAPER_WALLET)
             result["disclaimer"] = DISCLAIMER
             self._json(200, result)
+        elif path == "/api/goal-progress":
+            query = urllib.parse.parse_qs(parsed.query)
+            def _num(name, default):
+                try:
+                    return float((query.get(name) or [default])[0])
+                except (TypeError, ValueError):
+                    return default
+            with MARKET_DB_LOCK:
+                db = _market_db()
+                result = pl.goal_progress(
+                    db, cost_bps=_num("cost_bps", 10.0), attempts=int(_num("attempts", 150)))
+                result["history"] = db.goal_history(limit=10)
+                result["stored_report_id"] = db.record_goal_report(result)["id"]
+            result["disclaimer"] = DISCLAIMER
+            self._json(200, result)
+            return
+        elif path == "/api/pipeline/status":
+            with MARKET_DB_LOCK:
+                db = _market_db()
+                result = {
+                    "mode": "pipeline_status",
+                    "spec": pl.pipeline_spec(),
+                    "collections": db.list_collections(limit=20),
+                    "holdout_evaluations": db.holdout_use_count(),
+                    "recent_holdouts": db.list_holdouts(limit=5),
+                    "goal_history": db.goal_history(limit=10),
+                    "stats": db.stats(),
+                    "next_steps": [
+                        "POST /api/pipeline/collect to fetch new bars from the allowlist (server needs network), or use the browser collector in card 6.",
+                        "POST /api/lab/auto-research to grade everything stored.",
+                        "POST /api/lab/holdout once to test the reserved slice.",
+                        "GET /api/goal-progress for the honest distance to 80%.",
+                    ],
+                }
+            result["disclaimer"] = DISCLAIMER
+            self._json(200, result)
+            return
         elif path == "/api/lessons":
             query = urllib.parse.parse_qs(parsed.query)
             symbol = (query.get("symbol") or [None])[0]
@@ -2369,6 +2649,8 @@ class Handler(BaseHTTPRequestHandler):
             return
         if parsed.path not in ("/api/lab/analyze", "/api/lab/watchlist", "/api/lab/forecast", "/api/lab/minute-forecast",
                                "/api/lab/self-correct", "/api/lessons/clear",
+                               "/api/pipeline/collect", "/api/pipeline/import",
+                               "/api/lab/auto-research", "/api/lab/holdout",
                                "/api/paper/reset", "/api/paper/external-balance", "/api/paper/deposit-simulated",
                                "/api/paper/deposit-balance-simulated", "/api/paper/convert-balance-simulated",
                                "/api/paper/withdraw-simulated", "/api/paper/transfer-bot-simulated",
@@ -2589,6 +2871,123 @@ class Handler(BaseHTTPRequestHandler):
                 result["disclaimer"] = DISCLAIMER
                 self._json(200, result)
                 return
+            if parsed.path == "/api/pipeline/import":
+                series = payload.get("series")
+                if not isinstance(series, list) or not series:
+                    raise ValueError("supply series[] with {symbol, interval, bars}")
+                if len(series) > 12:
+                    raise ValueError("at most 12 series per import")
+                venue = str(payload.get("venue") or "browser")
+                stored, inserted = [], 0
+                with MARKET_DB_LOCK:
+                    db = _market_db()
+                    for item in series:
+                        if not isinstance(item, dict) or not item.get("bars"):
+                            raise ValueError("each series needs a bars[] list")
+                        symbol = str(item.get("symbol") or "browser.series")
+                        interval = str(item.get("interval") or "source")
+                        if interval not in pl.INTERVAL_MINUTES:
+                            interval = "source"
+                        key = pl.storage_symbol(venue, symbol, interval)
+                        duplicate = pl.find_duplicate_series(db, item["bars"])
+                        if duplicate:
+                            stored.append({"symbol": key, "interval": interval,
+                                           "stored_total": 0, "duplicate_of": duplicate,
+                                           "skipped": True})
+                            continue
+                        result = db.import_bars(
+                            symbol=key, timeframe=interval, bars=item["bars"],
+                            source=str(item.get("source_label")
+                                       or f"{venue} public API via browser (allowlisted venue)")[:300],
+                            instrument={"symbol": key, "asset_type": "crypto",
+                                        "exchange": venue if venue in pl.VENUES else "browser",
+                                        "source": str(item.get("endpoint") or "")[:300]})
+                        run = db.record_collection({
+                            "venue": venue, "symbol": key, "timeframe": interval,
+                            "requested": len(item["bars"]),
+                            "inserted": int(result.get("bars_imported_or_updated") or 0),
+                            "previously_stored": 0,
+                            "stored_total": len(db.get_bars(key, interval)),
+                            "first_bar_time": result.get("first_bar_time"),
+                            "last_bar_time": result.get("last_bar_time"),
+                            "endpoints": [item.get("endpoint")] if item.get("endpoint") else [],
+                            "errors": [], "requests": 1})
+                        inserted += int(result.get("bars_imported_or_updated") or 0)
+                        stored.append({"symbol": key, "interval": interval,
+                                       "stored_total": len(db.get_bars(key, interval)),
+                                       "collection_run_id": run["id"],
+                                       "first_bar": result.get("first_bar_time"),
+                                       "last_bar": result.get("last_bar_time")})
+                result = {"mode": "browser_import", "venue": venue, "series": stored,
+                          "inserted_total": inserted,
+                          "provenance": payload.get("provenance"),
+                          "server_received_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(
+                              timespec="seconds").replace("+00:00", "Z"),
+                          "next_step": "POST /api/lab/auto-research then GET /api/goal-progress"}
+                result["disclaimer"] = DISCLAIMER
+                self._json(200, result)
+                return
+            if parsed.path == "/api/pipeline/collect":
+                plan = pl.plan_collection(
+                    payload.get("symbols"), payload.get("interval", "1m"),
+                    payload.get("target_bars", 3000), payload.get("venue", "binance"))
+                with MARKET_DB_LOCK:
+                    result = pl.collect_plan(_market_db(), plan)
+                result["mode"] = "server_collection"
+                result["network_note"] = ("The server fetches only these allowlisted hosts. "
+                                          "If your environment blocks them, use browser collection.")
+                result["disclaimer"] = DISCLAIMER
+                self._json(200, result)
+                return
+            if parsed.path == "/api/lab/auto-research":
+                methods = payload.get("methods")
+                if isinstance(methods, str):
+                    methods = [m.strip() for m in methods.split(",") if m.strip()]
+                raw_horizons = payload.get("horizons", [3, 5, 15])
+                if isinstance(raw_horizons, str):
+                    raw_horizons = [int(x) for x in raw_horizons.split(",") if x.strip()]
+                with MARKET_DB_LOCK:
+                    db = _market_db()
+                    progress = pl.goal_progress(
+                        db, methods=methods, horizons=tuple(int(h) for h in raw_horizons),
+                        cost_bps=float(payload.get("cost_bps") or 10.0),
+                        attempts=int(payload.get("attempts") or 150))
+                    progress["stored_report_id"] = db.record_goal_report(progress)["id"]
+                    progress["pipeline_stats"] = db.stats()["pipeline"]
+                progress["mode"] = "auto_research"
+                progress["disclaimer"] = DISCLAIMER
+                self._json(200, progress)
+                return
+            if parsed.path == "/api/lab/holdout":
+                symbol = str(payload.get("symbol") or "").strip()
+                if not symbol:
+                    raise ValueError("supply the stored symbol, e.g. BINANCE.BTCUSDT.1m")
+                interval = str(payload.get("interval") or "").strip()
+                if not interval:
+                    parts = symbol.split(".")
+                    interval = parts[-1] if len(parts) >= 3 else "1m"
+                methods = payload.get("methods")
+                if isinstance(methods, str):
+                    methods = [m.strip() for m in methods.split(",") if m.strip()]
+                raw_horizons = payload.get("horizons", [3, 5, 15])
+                if isinstance(raw_horizons, str):
+                    raw_horizons = [int(x) for x in raw_horizons.split(",") if x.strip()]
+                with MARKET_DB_LOCK:
+                    db = _market_db()
+                    if not db.get_bars(symbol, interval):
+                        raise ValueError(f"no stored bars for '{symbol}' at '{interval}'")
+                    result = pl.holdout_evaluation(
+                        db, venue=str(payload.get("venue") or symbol.split(".")[0].lower()),
+                        symbol=symbol.split(".")[1] if symbol.count(".") >= 2 else symbol,
+                        interval=interval, methods=methods,
+                        horizons=tuple(int(h) for h in raw_horizons),
+                        cost_bps=float(payload.get("cost_bps") or 10.0),
+                        attempts=int(payload.get("attempts") or 150))
+                    result["holdout_uses_total"] = db.holdout_use_count()
+                result["mode"] = "holdout_evaluation"
+                result["disclaimer"] = DISCLAIMER
+                self._json(200, result)
+                return
             if parsed.path == "/api/lessons/clear":
                 symbol = payload.get("symbol")
                 with MARKET_DB_LOCK:
@@ -2717,7 +3116,41 @@ def main() -> int:
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=8820)
     ap.add_argument("--demo", action="store_true", help="write sample-home.html, sample-atlas.json and synthetic Market Lab validation")
+    ap.add_argument("--collect", action="store_true",
+                    help="fetch bars by itself from an allowlisted public venue into SQLite")
+    ap.add_argument("--auto", action="store_true",
+                    help="collect + measure repeatedly (needs network); honest 80%% progress report each cycle")
+    ap.add_argument("--venue", default="binance", choices=sorted(pl.VENUES))
+    ap.add_argument("--symbols", default="", help="comma-separated symbols (venue defaults if empty)")
+    ap.add_argument("--interval", default="1m", choices=sorted(pl.INTERVAL_MINUTES))
+    ap.add_argument("--target-bars", type=int, default=3000)
+    ap.add_argument("--cycles", type=int, default=1)
+    ap.add_argument("--sleep", type=float, default=60.0)
+    ap.add_argument("--db", default=os.environ.get("TRADEATLAS_DB", "tradeatlas.db"))
     args = ap.parse_args()
+    if args.collect or args.auto:
+        db = MarketDatabase(args.db)
+        try:
+            plan = pl.plan_collection(args.symbols, args.interval, args.target_bars, args.venue)
+            cycles = max(1, args.cycles) if args.auto else 1
+            for cycle in range(1, cycles + 1):
+                print(f"[cycle {cycle}/{cycles}] collecting {plan['symbols']} "
+                      f"{plan['interval']} from {plan['venue']} …", flush=True)
+                collected = pl.collect_plan(db, plan)
+                print(json.dumps(collected, ensure_ascii=False,
+                                 default=str)[:4000], flush=True)
+                progress = pl.goal_progress(db)
+                db.record_goal_report(progress)
+                print(json.dumps({key: progress[key] for key in (
+                    "status", "goal_established", "gates_passed", "gates_total",
+                    "distance_to_target_points", "evidence")}, ensure_ascii=False), flush=True)
+                print("NOTE: goal_established is always false — a local database "
+                      "cannot prove a universal 80%.", flush=True)
+                if cycle < cycles:
+                    time.sleep(max(0.0, args.sleep))
+        finally:
+            db.close()
+        return 0
     if args.demo:
         open("sample-home.html", "w", encoding="utf-8").write(render_home())
         open("sample-atlas.json", "w", encoding="utf-8").write(

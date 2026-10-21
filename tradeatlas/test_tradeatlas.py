@@ -1,4 +1,5 @@
 import json
+import sys
 import threading
 import unittest
 import urllib.request
@@ -7,6 +8,59 @@ from pathlib import Path
 
 import marketlab as ml
 import tradeatlas as ta
+
+
+
+class _FakeVenue:
+    """A local stand-in for a public venue, so the collector is testable offline."""
+
+    def __init__(self, bars, *, venue="binance"):
+        import socketserver
+        from http.server import BaseHTTPRequestHandler
+
+        state = {"bars": bars}
+        self.state = state
+
+        class Handler(BaseHTTPRequestHandler):
+            def log_message(self, *args):
+                pass
+
+            def do_GET(self):
+                from urllib.parse import urlparse, parse_qs
+                parsed = urlparse(self.path)
+                query = parse_qs(parsed.query)
+                if venue == "kraken":
+                    rows = [[b["t"], str(b["o"]), str(b["h"]), str(b["l"]),
+                             str(b["c"]), str(b["vw"]), str(b["v"]), 0]
+                            for b in state["bars"]]
+                    body = json.dumps({"error": [], "result": {"XXBTZUSD": rows, "last": 0}}).encode()
+                else:
+                    limit = int(query.get("limit", ["500"])[0])
+                    end = query.get("endTime")
+                    end_s = int(end[0]) // 1000 if end else None
+                    rows, cursor = [], len(state["bars"]) - 1
+                    while cursor >= 0 and len(rows) < limit:
+                        bar = state["bars"][cursor]
+                        if end_s is None or bar["t"] < end_s:
+                            rows.append([bar["t"] * 1000, str(bar["o"]), str(bar["h"]),
+                                         str(bar["l"]), str(bar["c"]), str(bar["v"]),
+                                         (bar["t"] + 60) * 1000 - 1])
+                        cursor -= 1
+                    rows.reverse()
+                    body = json.dumps(rows).encode()
+                self.send_response(200)
+                self.send_header("Content-Type", "application/json")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+
+        self.server = socketserver.ThreadingTCPServer(("127.0.0.1", 0), Handler)
+        threading.Thread(target=self.server.serve_forever, daemon=True).start()
+        self.host = f"127.0.0.1:{self.server.server_address[1]}"
+
+    def stop(self):
+        self.server.shutdown()
+        self.server.server_close()
 
 
 class TestTradeAtlas(unittest.TestCase):
@@ -199,7 +253,7 @@ class TestTradeAtlas(unittest.TestCase):
         self.assertEqual(len(demo["timeframes"]), 7)
 
     def test_marketlab_home_and_version_honesty(self):
-        self.assertEqual(ta.VERSION, "15.0")
+        self.assertEqual(ta.VERSION, "16.0")
         home = ta.render_home()
         self.assertIn("Market Lab", home)
         self.assertIn("100-signal validation", home)
@@ -262,7 +316,7 @@ class TestTradeAtlas(unittest.TestCase):
         self.assertEqual(cells["1m"]["status"], "finer_than_source")
         self.assertEqual(cells["1h"]["status"], "ok")
         self.assertIn("crypto_spot", ml.lab_spec()["market_presets"])
-        self.assertEqual(ml.lab_spec()["version"], "15.0")
+        self.assertEqual(ml.lab_spec()["version"], "16.0")
         payload = {"symbols": {"AAA": bars}, "strategy": "adx_trend_strength"}
         req = urllib.request.Request(
             self.base + "/api/lab/watchlist",
@@ -340,7 +394,7 @@ class TestTradeAtlas(unittest.TestCase):
         self.assertIn("analog_now", result)
         self.assertIn("rolling_eval", result)
         spec = ml.lab_spec()
-        self.assertEqual(spec["version"], "15.0")
+        self.assertEqual(spec["version"], "16.0")
         self.assertTrue(any("Forecast Lab" in f for f in spec["features"]))
         self.assertGreaterEqual(len(spec["data_guide"]), 5)
         home = ta.render_home()
@@ -350,7 +404,7 @@ class TestTradeAtlas(unittest.TestCase):
     # ---- v5: multi-horizon, regimes, path simulation, perf cache ----
     def test_v5_forecast_lab_new_sections(self):
         import tradeatlas as ta
-        self.assertEqual(ta.VERSION, "15.0")
+        self.assertEqual(ta.VERSION, "16.0")
         bars = ml.generate_demo_bars("1d", count=1500, seed=7)
         lab = ml.forecast_lab(bars, attempts=60, horizon=5)
         mh = lab["multi_horizon_eval"]
@@ -394,7 +448,7 @@ class TestTradeAtlas(unittest.TestCase):
     # ---- v6: ensemble race + cost-aware scoring ----
     def test_v6_ensemble_structure_and_coverage(self):
         import tradeatlas as ta
-        self.assertEqual(ta.VERSION, "15.0")
+        self.assertEqual(ta.VERSION, "16.0")
         bars = ml.generate_demo_bars("1d", count=1500, seed=7)
         lab = ml.forecast_lab(bars, attempts=60, horizon=5)
         ens = lab["ensemble_eval"]
@@ -425,7 +479,7 @@ class TestTradeAtlas(unittest.TestCase):
         ev = ml.rolling_forecast_eval(bars, attempts=100, horizon=5)
         self.assertEqual(ev["analog_direction_accuracy_pct"], 44.0)
         spec = ml.lab_spec()
-        self.assertEqual(spec["version"], "15.0")
+        self.assertEqual(spec["version"], "16.0")
 
 
     # ---- v7: candle-structure analog contestant ----
@@ -482,7 +536,7 @@ class TestTradeAtlas(unittest.TestCase):
         self.assertEqual(dear["majority_vote_v2"]["mean_net_pct_per_trade"], 0.008)
         self.assertLess(cheap["candle_analog_weighted"]["mean_net_pct_per_trade"], 0)
         self.assertLess(dear["candle_analog_median"]["mean_net_pct_per_trade"], 0)
-        self.assertEqual(ml.lab_spec()["version"], "15.0")
+        self.assertEqual(ml.lab_spec()["version"], "16.0")
 
 
     # ---- v8: indicator-regime analog contestant + consensus subset ----
@@ -512,7 +566,7 @@ class TestTradeAtlas(unittest.TestCase):
         for method in ("indicator_analog_median", "indicator_analog_weighted", "majority_vote_v3"):
             self.assertEqual(ens["method_attempts"][method], ens["attempts_made"])
             self.assertIsNotNone(ens["direction_accuracy_pct"][method])
-        self.assertEqual(ml.lab_spec()["version"], "15.0")
+        self.assertEqual(ml.lab_spec()["version"], "16.0")
         self.assertTrue(any("indicator-regime" in f for f in ml.lab_spec()["features"]))
 
     def test_v8_close_only_indicator_runs_but_candle_stays_unavailable(self):
@@ -563,7 +617,7 @@ class TestTradeAtlas(unittest.TestCase):
     def test_v9_path_features_and_no_lookahead(self):
         import copy, math
         import tradeatlas as ta
-        self.assertEqual(ta.VERSION, "15.0")
+        self.assertEqual(ta.VERSION, "16.0")
         bars = ml.generate_demo_bars("1d", count=700, seed=19)
         ctx = ml._forecast_context(bars)
         vec = ml._path_feature_vector(ctx, 300)
@@ -1520,6 +1574,8 @@ class TestTradeAtlas(unittest.TestCase):
             if item["remedy_kind"] == "retire":
                 self.assertEqual(item["patch"], {}, item["id"])
         spec = sc.self_correction_spec()
+        # the failure-memory module keeps its own spec version so stored
+        # lesson identities (which hash it) stay stable across releases
         self.assertEqual(spec["version"], "15.0")
         self.assertIn("resolved -> keep the fix; recurred -> retire and remember", spec["loop"])
 
@@ -1885,7 +1941,7 @@ class TestTradeAtlas(unittest.TestCase):
         for banned in ("guaranteed profit", "sure win", "risk-free returns"):
             self.assertNotIn(banned, lowered)
         spec = ml.lab_spec()
-        self.assertEqual(spec["version"], "15.0")
+        self.assertEqual(spec["version"], "16.0")
         joined = " ".join(spec["features"])
         self.assertIn("failure memory", joined)
         self.assertIn("self-correct", joined)
@@ -1996,6 +2052,344 @@ class TestTradeAtlas(unittest.TestCase):
             self.assertNotIn(banned, lowered)
         # the UI must say the server itself never fetches the exchange
         self.assertIn("your browser fetches", home)
+
+
+
+    # ---------------------------------------------------------------
+    # v16 — autonomous collection, holdout protection, honest goal tracker
+    # ---------------------------------------------------------------
+    def _bars_ending(self, count, end_epoch, seed=1):
+        base = ml.generate_demo_bars("1m", count=count, seed=seed)
+        shift = int(end_epoch) - base[-1]["t"]
+        return [{**bar, "t": bar["t"] + shift} for bar in base]
+
+    def test_v16_allowlist_guard_blocks_arbitrary_hosts(self):
+        import pipeline as pl
+        with self.assertRaises(pl.FetchError):
+            pl.check_url("https://evil.example.com/api/v3/klines?symbol=BTCUSDT", "binance")
+        with self.assertRaises(pl.FetchError):
+            pl.check_url("https://api.binance.com/../../etc/passwd", "kraken")
+        with self.assertRaises(pl.FetchError):
+            pl.check_url("ftp://api.binance.com/x", "binance")
+        self.assertTrue(pl.check_url("https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT",
+                                     "binance"))
+        # private hosts only when the caller explicitly opts in (tests)
+        with self.assertRaises(pl.FetchError):
+            pl.check_url("http://127.0.0.1:9999/api/v3/klines", "binance")
+        self.assertTrue(pl.check_url("http://127.0.0.1:9999/api/v3/klines", "binance",
+                                     allow_private=True))
+        spec = pl.pipeline_spec()
+        self.assertEqual(spec["venues"]["binance"]["hosts"],
+                         ["api.binance.com", "data-api.binance.vision"])
+        self.assertFalse(spec["goal_established_ever"])
+        with self.assertRaises(pl.FetchError):
+            pl.plan_collection(["BTCUSDT"], "1m", 500, "not_a_venue")
+
+    def test_v16_parsers_drop_the_forming_candle(self):
+        import pipeline as pl
+        now = 1_700_000_000
+        rows = [
+            [now * 1000 - 120_000, "1", "2", "0.5", "1.5", "10", (now - 60) * 1000 - 1],
+            [now * 1000 - 60_000, "1", "2", "0.5", "1.8", "11", now * 1000 - 1],
+            [now * 1000, "1", "2", "0.5", "1.9", "12", (now + 60) * 1000 - 1],  # still forming
+        ]
+        bars = pl.parse_binance(rows, now=now)
+        self.assertEqual(len(bars), 2)
+        self.assertEqual(bars[-1]["c"], 1.8)
+        self.assertTrue(all(bar["t"] <= now - 60 for bar in bars))
+        with self.assertRaises(pl.FetchError):
+            pl.parse_binance({"not": "a list"})
+        kraken = {"error": [], "result": {"XXBTZUSD": [
+            [1, "1", "2", "0.5", "1.5", "1", "9", 3],
+            [2, "1", "2", "0.5", "1.6", "1", "9", 3],
+            [3, "1", "2", "0.5", "1.7", "1", "9", 3]], "last": 3}}
+        pair, kbars = pl.parse_kraken(kraken)
+        self.assertEqual(pair, "XXBTZUSD")
+        self.assertEqual(len(kbars), 2)  # last candle dropped
+        with self.assertRaises(pl.FetchError):
+            pl.parse_kraken({"error": ["EQuery:Unknown asset pair"]})
+        with self.assertRaises(pl.FetchError):
+            pl.parse_kraken({"error": [], "result": {"last": 1}})
+
+    def test_v16_collector_backfills_then_grows_incrementally(self):
+        import pipeline as pl
+        from platformdb import MarketDatabase
+        bars = self._bars_ending(900, 1_767_225_600, seed=77)
+        venue = _FakeVenue(bars)
+        db = MarketDatabase(":memory:")
+        try:
+            first = pl.collect_series(db, venue="binance", symbol="btcusdt", interval="1m",
+                                      target_bars=600, host=venue.host, scheme="http",
+                                      allow_private=True)
+            self.assertEqual(first["symbol"], "BINANCE.BTCUSDT.1m")
+            self.assertEqual(first["stored_total"], 600)
+            self.assertGreater(first["requests"], 0)
+            self.assertEqual(first["errors"], [])
+            self.assertTrue(first["endpoints"])
+            stored = db.get_bars("BINANCE.BTCUSDT.1m", "1m")
+            self.assertEqual(len(stored), 600)
+            self.assertEqual(len({bar["t"] for bar in stored}), 600)  # no duplicates
+
+            # a second run with no new bars must be cheap and add nothing
+            second = pl.collect_series(db, venue="binance", symbol="BTCUSDT", interval="1m",
+                                       target_bars=600, host=venue.host, scheme="http",
+                                       allow_private=True)
+            self.assertEqual(second["inserted"], 0)
+            self.assertLessEqual(second["requests"], first["requests"])
+
+            # fresh bars arrive -> only those are added
+            more = self._bars_ending(1000, 1_767_225_600 + 100 * 60, seed=77)
+            venue.state["bars"] = more
+            third = pl.collect_series(db, venue="binance", symbol="BTCUSDT", interval="1m",
+                                      target_bars=600, host=venue.host, scheme="http",
+                                      allow_private=True)
+            self.assertEqual(third["inserted"], 100)
+            self.assertEqual(third["stored_total"], 700)
+            self.assertEqual(len(db.list_collections()), 3)
+            newest = db.get_bars("BINANCE.BTCUSDT.1m", "1m")[-1]["t"]
+            self.assertEqual(newest, more[-1]["t"])
+
+            # venue failure is recorded, not raised, and does not corrupt storage
+            broken = pl.collect_series(db, venue="binance", symbol="ETHUSDT", interval="1m",
+                                       target_bars=300, host="127.0.0.1:9", scheme="http",
+                                       allow_private=True, max_requests=1)
+            self.assertEqual(broken["inserted"], 0)
+            self.assertTrue(broken["errors"])
+            self.assertEqual(len(db.get_bars("BINANCE.ETHUSDT.1m", "1m")), 0)
+        finally:
+            db.close()
+            venue.stop()
+
+    def test_v16_collect_plan_fetches_several_symbols_from_one_plan(self):
+        import pipeline as pl
+        from platformdb import MarketDatabase
+        venue = _FakeVenue(self._bars_ending(600, 1_767_225_600, seed=5))
+        db = MarketDatabase(":memory:")
+        try:
+            plan = pl.plan_collection("BTCUSDT, ETHUSDT", "1m", 400, "binance")
+            result = pl.collect_plan(db, plan, host=venue.host, scheme="http", allow_private=True)
+            self.assertEqual(len(result["series"]), 2)
+            self.assertEqual({item["symbol"] for item in result["series"]},
+                             {"BINANCE.BTCUSDT.1m", "BINANCE.ETHUSDT.1m"})
+            self.assertGreater(result["inserted_total"], 0)
+            self.assertEqual(len(db.list_series()), 2)
+        finally:
+            db.close()
+            venue.stop()
+
+    def test_v16_holdout_is_reserved_and_every_read_is_counted(self):
+        import pipeline as pl
+        from platformdb import MarketDatabase
+        bars = self._bars_ending(800, 1_767_225_600, seed=11)
+        tuning, holdout = pl.split_holdout(bars, 0.2)
+        self.assertEqual(len(tuning) + len(holdout), 800)
+        self.assertEqual(len(holdout), 160)
+        self.assertLess(max(b["t"] for b in tuning), min(b["t"] for b in holdout))
+        with self.assertRaises(ValueError):
+            pl.split_holdout(bars[:80])
+        db = MarketDatabase(":memory:")
+        try:
+            db.import_bars(symbol="BINANCE.BTCUSDT.1m", timeframe="1m", bars=bars,
+                           source="unit-test bars")
+            self.assertEqual(db.holdout_use_count(), 0)
+            result = pl.holdout_evaluation(db, venue="binance", symbol="BTCUSDT", interval="1m",
+                                           methods=["atlas_minute_pulse"], horizons=(5,))
+            self.assertEqual(result["tuning_bars"], 640)
+            self.assertEqual(result["holdout_bars"], 160)
+            self.assertEqual(db.holdout_use_count(), 1)
+            again = pl.holdout_evaluation(db, venue="binance", symbol="BTCUSDT", interval="1m",
+                                          methods=["atlas_minute_pulse"], horizons=(5,))
+            self.assertEqual(db.holdout_use_count(), 2)
+            self.assertEqual(again["holdout_use_id"], 2)
+            for row in result["rows"]:
+                self.assertIn("direction_accuracy_pct", row)
+                low, high = row["wilson_95_ci_pct"]
+                if row["direction_accuracy_pct"] is not None:
+                    self.assertLessEqual(low, row["direction_accuracy_pct"])
+                    self.assertLessEqual(row["direction_accuracy_pct"], high)
+            self.assertIn("reserved slice", result["warning"].lower())
+        finally:
+            db.close()
+
+    def test_v16_pooled_evidence_and_goal_gates_stay_honest(self):
+        import pipeline as pl
+        from platformdb import MarketDatabase
+        db = MarketDatabase(":memory:")
+        try:
+            for seed, symbol in ((1, "A"), (2, "B"), (3, "C")):
+                db.import_bars(symbol=f"BINANCE.{symbol}.1m", timeframe="1m",
+                               bars=self._bars_ending(700, 1_767_225_600, seed=seed),
+                               source="unit-test bars")
+            evidence = pl.pooled_evidence(db, methods=["atlas_minute_pulse", "minute_ema_ribbon"],
+                                          horizons=(3, 5), attempts=80)
+            self.assertEqual(evidence["series_used"], 3)
+            self.assertEqual(len(evidence["symbols"]), 3)
+            self.assertTrue(evidence["pooled"])
+            for row in evidence["pooled"]:
+                self.assertEqual(row["attempts"], row["hits"] + (row["attempts"] - row["hits"]))
+                low, high = row["wilson_95_ci_pct"]
+                self.assertLessEqual(low, row["accuracy_pct"])
+                self.assertLessEqual(row["accuracy_pct"], high)
+                self.assertGreaterEqual(row["coverage_pct"], 0.0)
+            progress = pl.goal_progress(db, methods=["atlas_minute_pulse"], horizons=(5,),
+                                        attempts=80)
+            self.assertFalse(progress["goal_established"])
+            self.assertEqual(progress["target_accuracy_pct"], 80.0)
+            self.assertEqual(progress["gates_total"], 9)
+            self.assertLess(progress["gates_passed"], progress["gates_total"])
+            gates = {check["gate"]: check for check in progress["checks"]}
+            self.assertFalse(gates["external"]["passed"])  # never inside one local DB
+            self.assertFalse(gates["holdout"]["passed"])   # nothing evaluated yet
+            self.assertIn(progress["status"], ("below_target_on_local_data", "no_evidence_yet"))
+            if progress["best_pooled_candidate"]:
+                self.assertIsNotNone(progress["distance_to_target_points"])
+            # an empty database is honest too
+            empty = MarketDatabase(":memory:")
+            try:
+                blank = pl.goal_progress(empty)
+                self.assertEqual(blank["status"], "no_evidence_yet")
+                self.assertFalse(blank["goal_established"])
+            finally:
+                empty.close()
+        finally:
+            db.close()
+
+    def test_v16_pipeline_http_collect_import_research_holdout(self):
+        import pipeline as pl
+        import tempfile
+
+        def post(path, body):
+            req = urllib.request.Request(
+                self.base + path, data=json.dumps(body).encode("utf-8"),
+                headers={"Content-Type": "application/json"}, method="POST")
+            with urllib.request.urlopen(req, timeout=180) as response:
+                self.assertEqual(response.status, 200)
+                return json.loads(response.read().decode("utf-8"))
+
+        old_path, old_db = ta.MARKET_DB_PATH, ta.MARKET_DB
+        with tempfile.TemporaryDirectory() as folder:
+            try:
+                ta.MARKET_DB_PATH = str(Path(folder) / "pipeline.db")
+                ta.MARKET_DB = None
+                series = []
+                for seed, symbol in ((21, "BTCUSDT"), (22, "ETHUSDT"), (23, "BNBUSDT")):
+                    bars = self._bars_ending(700, 1_767_225_600, seed=seed)
+                    series.append({"symbol": symbol, "interval": "1m", "bars": bars,
+                                   "endpoint": "https://data-api.binance.vision/api/v3/klines",
+                                   "source_label": "browser-fetched unit-test bars"})
+                imported = post("/api/pipeline/import", {
+                    "venue": "binance", "series": series,
+                    "provenance": {"venue": "binance", "interval": "1m",
+                                   "forming_candle_dropped": True,
+                                   "fetched_at_utc": "2026-10-21T17:00:00Z"}})
+                self.assertEqual(imported["mode"], "browser_import")
+                self.assertEqual(len(imported["series"]), 3)
+                self.assertTrue(all(item["stored_total"] >= 700 for item in imported["series"]))
+                status, body = self._get("/api/pipeline/status")
+                self.assertEqual(status, 200)
+                pipeline_status = json.loads(body)
+                self.assertGreaterEqual(len(pipeline_status["collections"]), 3)
+                self.assertIn("venues", pipeline_status["spec"])
+                self.assertFalse(pipeline_status["spec"]["goal_established_ever"])
+
+                research = post("/api/lab/auto-research", {"horizons": [3, 5], "attempts": 80,
+                                                           "cost_bps": 12})
+                self.assertEqual(research["mode"], "auto_research")
+                self.assertFalse(research["goal_established"])
+                self.assertGreaterEqual(research["evidence"]["series_used"], 3)
+                self.assertEqual(research["gates_total"], 9)
+
+                progress = json.loads(self._get("/api/goal-progress?cost_bps=12")[1])
+                self.assertEqual(progress["mode"], "honest_goal_progress")
+                self.assertFalse(progress["goal_established"])
+                self.assertIn("history", progress)
+
+                holdout = post("/api/lab/holdout", {
+                    "symbol": "BINANCE.BTCUSDT.1m", "horizons": [5],
+                    "methods": ["atlas_minute_pulse"], "cost_bps": 12})
+                self.assertEqual(holdout["mode"], "holdout_evaluation")
+                self.assertGreater(holdout["holdout_bars"], 0)
+                self.assertEqual(holdout["holdout_uses_total"], 1)
+                with self.assertRaises(urllib.error.HTTPError) as caught:
+                    post("/api/lab/holdout", {"symbol": "BINANCE.DOESNOTEXIST.1m"})
+                self.assertEqual(caught.exception.code, 400)
+                with self.assertRaises(urllib.error.HTTPError) as caught:
+                    post("/api/pipeline/import", {"series": []})
+                self.assertEqual(caught.exception.code, 400)
+            finally:
+                if ta.MARKET_DB is not None:
+                    ta.MARKET_DB.close()
+                ta.MARKET_DB_PATH, ta.MARKET_DB = old_path, old_db
+
+    def test_v16_ui_and_spec_expose_the_automation(self):
+        home = ta.render_home()
+        for needle in ("Auto-Collect", "pipelineCollectServer", "pipelineCollectBrowser",
+                       "runAutoResearch", "runHoldout", "loadGoalProgress",
+                       "goal_established", "holdout", "allowlist",
+                       "reserved as a", "SQLite"):
+            self.assertIn(needle, home, needle)
+        lowered = home.lower()
+        for banned in ("guaranteed profit", "sure win", "risk-free returns"):
+            self.assertNotIn(banned, lowered)
+        spec = ml.lab_spec()
+        self.assertEqual(spec["version"], "16.0")
+        self.assertIn("guarded collector", " ".join(spec["features"]))
+        goals = {g["id"]: g for g in ml.project_goals()["goals"]}
+        self.assertEqual(goals["autonomous_data"]["status"], "implemented_in_v16")
+        self.assertEqual(goals["accuracy_80"]["status"], "active_target_not_reached")
+        atlas = ta.atlas_json()
+        self.assertIn("data_pipeline", atlas)
+        self.assertFalse(atlas["data_pipeline"]["goal_established_ever"])
+
+    def test_v16_cli_collect_help_and_offline_failure_is_reported(self):
+        import subprocess
+        completed = subprocess.run(
+            [sys.executable, "tradeatlas.py", "--help"], capture_output=True, text=True,
+            cwd=str(Path(__file__).parent), timeout=60)
+        self.assertEqual(completed.returncode, 0)
+        for flag in ("--collect", "--auto", "--symbols", "--interval", "--cycles"):
+            self.assertIn(flag, completed.stdout)
+        import pipeline as pl
+        from platformdb import MarketDatabase
+        db = MarketDatabase(":memory:")
+        try:
+            result = pl.collect_series(db, venue="binance", symbol="NOPE", interval="1m",
+                                       target_bars=300, host="127.0.0.1:9", scheme="http",
+                                       allow_private=True, max_requests=1)
+            self.assertTrue(result["errors"])
+            self.assertEqual(result["inserted"], 0)
+            self.assertEqual(len(db.list_collections()), 1)
+            self.assertTrue(db.list_collections()[0]["errors"])
+        finally:
+            db.close()
+
+
+
+    def test_v16_duplicate_series_are_not_double_counted(self):
+        import pipeline as pl
+        from platformdb import MarketDatabase
+        bars = self._bars_ending(600, 1_767_225_600, seed=31)
+        db = MarketDatabase(":memory:")
+        try:
+            db.import_bars(symbol="BINANCE.BTCUSDT.1m", timeframe="1m", bars=bars,
+                           source="unit-test bars")
+            # the same content under a second name must be detected
+            self.assertEqual(pl.find_duplicate_series(db, bars),
+                             "BINANCE.BTCUSDT.1M|1m")
+            # a genuinely different series is not a duplicate
+            other = self._bars_ending(600, 1_767_225_600, seed=32)
+            self.assertIsNone(pl.find_duplicate_series(db, other))
+            db.import_bars(symbol="COPY.BTCUSDT.1m", timeframe="1m", bars=bars,
+                           source="unit-test duplicate")
+            evidence = pl.pooled_evidence(db, methods=["atlas_minute_pulse"],
+                                          horizons=(5,), attempts=60)
+            self.assertEqual(evidence["series_used"], 1)
+            self.assertEqual(len(evidence["duplicates_skipped"]), 1)
+            self.assertEqual(evidence["duplicates_skipped"][0]["duplicate_of"],
+                             "BINANCE.BTCUSDT.1M|1m")
+            self.assertIn("duplicates_skipped", evidence)
+        finally:
+            db.close()
 
 
 if __name__ == "__main__":

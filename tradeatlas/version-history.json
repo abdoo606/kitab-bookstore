@@ -2,7 +2,7 @@
  "product": "TradeAtlas",
  "schema_version": "1.0",
  "last_updated": "2026-10-21",
- "current_version": "15.0",
+ "current_version": "16.0",
  "universal_80pct_direction_claim_established": false,
  "methodology": {
   "attempt": "Hide future bars after an origin, forecast using only origin-time data, reveal later bars only for scoring.",
@@ -46,6 +46,21 @@
    ],
    "starved_sample_rule": "fewer attempts/coverage than the screen minimum stops the diagnosis at sample quality; no direction rate is reported",
    "goal_guard": "goal_80_established is false in every code path"
+  },
+  "automation": {
+   "allowlist": {
+    "binance": [
+     "api.binance.com",
+     "data-api.binance.vision"
+    ],
+    "kraken": [
+     "api.kraken.com"
+    ]
+   },
+   "storage": "incremental, primary key (symbol,timeframe,t), provenance in collection_runs",
+   "holdout": "newest 20% reserved; every read recorded in holdout_runs",
+   "goal_gates": 9,
+   "goal_established_ever": false
   }
  },
  "samples": {
@@ -1927,6 +1942,43 @@
     "goal_established": false,
     "note": "v15 adds process learning, not accuracy evidence; no new accuracy headline is claimed."
    }
+  },
+  {
+   "version": "16.0",
+   "tests_passing": 77,
+   "signal_engines": 44,
+   "failure_causes": 21,
+   "new_capabilities": [
+    "guarded collector with a fixed public-venue allowlist (server CLI and browser)",
+    "incremental, duplicate-free SQLite storage with a collection provenance ledger",
+    "counted holdout: newest 20% reserved, every read recorded",
+    "nine-gate 80% tracker with Wilson intervals, pooled across stored series",
+    "goal_established false in every code path; strongest status is evidence ready for independent review",
+    "CLI --collect / --auto --cycles/--sleep for unattended growth",
+    "card 6 Auto-Collect & Goal Progress with a gate table and progress bar",
+    "GET /api/goal-progress, POST /api/pipeline/collect, /api/pipeline/import, /api/lab/auto-research, /api/lab/holdout"
+   ],
+   "honesty_rules": [
+    "Automation increases sample size and honesty, not accuracy.",
+    "No tuning on the holdout; holdout reads are counted and reported.",
+    "Costs are always subtracted before any accuracy is quoted as tradable.",
+    "A naive baseline must be beaten in the same table.",
+    "External validation can never be produced by this local database."
+   ],
+   "synthetic_gate_report": {
+    "note": "deterministic synthetic bars; software check of the gate arithmetic only",
+    "status": "below_target_on_local_data",
+    "gates_passed": 2,
+    "gates_total": 9,
+    "goal_established": false,
+    "best_pooled_accuracy_pct": 60.556
+   },
+   "accuracy_goal": {
+    "target_pct": 80.0,
+    "status": "active_target_not_reached",
+    "goal_established": false,
+    "note": "v16 automates data collection and measurement; it adds no accuracy claim."
+   }
   }
  ],
  "safety_boundary": {
@@ -1941,7 +1993,7 @@
   "manual_tickets": "Checklists only; never transmitted by TradeAtlas."
  },
  "project_goals": {
-  "version": "15.0",
+  "version": "16.0",
   "updated": "2026-10-21",
   "goals": [
    {
@@ -1982,6 +2034,13 @@
     "status": "user_own_exchange_account_only",
     "rule": "USDT/BTC remain in the user's own licensed exchange account. TradeAtlas has no deposit address and must never receive or custody crypto.",
     "implemented": "External-account balance mirror and paper conversion/transfer simulations; the mirror is user-reported and is not added to paper equity."
+   },
+   {
+    "id": "autonomous_data",
+    "title": "Collect and store lawful market data by itself",
+    "status": "implemented_in_v16",
+    "evidence": "Allowlisted public-venue collector (server CLI and browser), incremental SQLite storage with provenance, holdout reservation with a recorded access count, pooled evidence and a gate-by-gate goal report.",
+    "not_claimed": "Automation increases sample size and honesty, not accuracy. goal_established stays false in every code path."
    },
    {
     "id": "failure_memory",

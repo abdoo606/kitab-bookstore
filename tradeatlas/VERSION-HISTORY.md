@@ -5,7 +5,7 @@ methods that failed. A method is not called “better” merely because a later
 version added it; the table records what the same hidden-future tests
 actually measured.
 
-**Last updated:** 2026-10-21, TradeAtlas v15.0.
+**Last updated:** 2026-10-21, TradeAtlas v16.0.
 
 > **No version reached or proved a universal 80% direction rate.** The
 > strongest current evidence is much narrower: 68% for one method on one
@@ -444,6 +444,59 @@ remembered", which is the honest result the 80% target always needed.
 
 - **Tests:** 65/65. Signal engines: **44** (unchanged); failure causes: **21**.
 
+
+### v16.0 — autonomous collector, counted holdout and the honest 80% tracker
+
+#### What was added
+
+1. **Guarded collector (`pipeline.py`).** Fetches completed bars from a fixed
+   allowlist (`api.binance.com`, `data-api.binance.vision`, `api.kraken.com`).
+   Arbitrary hosts, other schemes and unapproved private addresses are refused;
+   there are no keys, logins or credentials, and the still-forming candle is
+   dropped. Usable from the server CLI (`--collect`, `--auto`) or the browser
+   (card 6), which matters when the server is sandboxed.
+2. **Incremental, duplicate-free storage.** Series are keyed
+   `VENUE.SYMBOL.interval`; the newest page is fetched first and only bars newer
+   than the newest stored bar are kept, then older history is backfilled to the
+   target. `(symbol,timeframe,t)` makes duplicates impossible, and every run
+   writes a `collection_runs` provenance row (venue, counts, first/last bar UTC,
+   requests, endpoints, errors).
+3. **Counted holdout.** The newest 20% of every series is reserved and never
+   used for tuning; every read goes to `holdout_runs` and is reported.
+4. **Nine-gate goal tracker.** `GET /api/goal-progress` pools hidden-future
+   attempts across stored series and checks attempts, pooled accuracy, Wilson
+   lower bound, net after 10 bps, coverage, symbols, distinct days, a recorded
+   holdout and fresh external validation. Each gate reports its measured value
+   and the report stores a history row.
+5. **Unattended loop.** `--auto --cycles N --sleep S` collects, grades and stores
+   a goal report per cycle, so multi-week sample growth is one background
+   command.
+6. **UI card 6** — Auto-Collect & Goal Progress: collect (server or browser),
+   grade everything stored, run the recorded holdout, and read a progress bar
+   with a pass/fail gate table.
+
+#### Results
+
+- **Synthetic gate report** (`sample-goal-progress.json`; three deterministic
+  1m series): best pooled candidate **60.556%**, **2/9 gates**,
+  `goal_established=false`, `below_target_on_local_data`. A software check of
+  the arithmetic, never market evidence.
+- **Offline collector proof:** against a local fake venue, the collector
+  backfilled 600 bars in one run, added **0** on a repeat run, appended exactly
+  the **100** genuinely new bars on a later run, and left storage untouched when
+  the venue was unreachable (the failure was recorded as an error).
+- **No accuracy claim is added.** Automation raises sample size and honesty; it
+  cannot raise the measured rate.
+
+#### Lesson
+
+The temptation with "make it fetch data and store it" is to imply the stored
+volume itself is progress. It is not: a bigger sample mostly makes the honest
+number *worse*, because it shrinks the confidence interval around a mediocre
+rate. The gates and the counted holdout are what make the larger sample useful
+rather than flattering.
+
+- **Tests:** 77/77. Signal engines: **44**; failure causes: **21**; goal gates: **9**.
 
 ## Retrospective “best full-coverage label” on AAPL
 

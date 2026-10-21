@@ -1,4 +1,4 @@
-# TradeAtlas project goals — v15.0
+# TradeAtlas project goals — v16.0
 
 **Last updated:** 2026-10-21
 
@@ -103,7 +103,27 @@ exchange/broker account.
 - v14 can record an **external-account balance mirror** from numbers the user
   reports. The mirror is unverified and excluded from paper equity.
 
-## 5. Learn from every failure — implemented in v15
+## 5. Collect and store data automatically — implemented in v16
+
+**Goal:** let the software fetch its own lawful market data, store it
+reproducibly, and measure progress toward the 80% target without deceiving
+itself.
+
+**Implemented in v16**
+
+- Fixed allowlist collector (Binance spot, Kraken public OHLC) usable from the
+  server CLI (`--collect`, `--auto`) or the browser (card 6). No arbitrary
+  URLs, no keys, no accounts, read-only.
+- Incremental SQLite storage with provenance (`collection_runs`), duplicate-free
+  primary keys, and forming-candle rejection.
+- A counted holdout (newest 20%) that the tuning loop never sees.
+- Nine-gate goal tracking with Wilson intervals and a stored report history.
+
+**What is not claimed:** automation increases sample size and honesty, not
+accuracy. `goal_established` is false in every path; the strongest local
+status is `goal_evidence_ready_for_independent_review`.
+
+## 6. Learn from every failure — implemented in v15
 
 **Goal:** never repeat a measured research mistake. Every failed test must
 name its cause, produce a rule that the next test honours, try a real remedy,
@@ -137,7 +157,7 @@ no directional edge, 6 negative after costs, 21 over the drawdown limit, 3
 cost-eaten; one survivor reached validation and is labelled **single-symbol
 only**. Synthetic demo → 38 lessons, 3 resolved remedies, 16 retirements.
 
-## 6. Halal gate — implemented rule database, not a fatwa
+## 7. Halal gate — implemented rule database, not a fatwa
 
 Bot entries require a registered asset whose current evidence screen is
 exactly `pass`. Missing, failed or expired evidence blocks entry. The screen
@@ -149,4 +169,5 @@ halal certification.
 - `GET /api/goals`
 - `sample-project-goals.json` after `python3 tradeatlas.py --demo`
 - `sample-self-correction.json` — the v15 failure-memory software check
+- `sample-goal-progress.json` — the v16 gate report (goal never established)
 - `project_goals` in `GET /api/lab/spec` and `GET /api/strategies`

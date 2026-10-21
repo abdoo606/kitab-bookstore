@@ -1,5 +1,5 @@
 {
- "version": "15.0",
+ "version": "16.0",
  "updated": "2026-10-21",
  "goals": [
   {
@@ -40,6 +40,13 @@
    "status": "user_own_exchange_account_only",
    "rule": "USDT/BTC remain in the user's own licensed exchange account. TradeAtlas has no deposit address and must never receive or custody crypto.",
    "implemented": "External-account balance mirror and paper conversion/transfer simulations; the mirror is user-reported and is not added to paper equity."
+  },
+  {
+   "id": "autonomous_data",
+   "title": "Collect and store lawful market data by itself",
+   "status": "implemented_in_v16",
+   "evidence": "Allowlisted public-venue collector (server CLI and browser), incremental SQLite storage with provenance, holdout reservation with a recorded access count, pooled evidence and a gate-by-gate goal report.",
+   "not_claimed": "Automation increases sample size and honesty, not accuracy. goal_established stays false in every code path."
   },
   {
    "id": "failure_memory",

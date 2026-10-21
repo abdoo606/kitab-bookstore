@@ -27,7 +27,7 @@ button.go{margin-top:12px;background:var(--acc);color:#082f49;font-weight:700;bo
 table{width:100%;border-collapse:collapse}td{border-bottom:1px solid #334155;padding:8px;vertical-align:top}
 .foot{color:var(--mut);font-size:13px;margin-top:26px}
 </style></head><body><div class="wrap">
-<h1>🗺️ TradeAtlas <small style="font-size:14px;color:var(--mut)">v15.0 · Genius Idea #14</small></h1>
+<h1>🗺️ TradeAtlas <small style="font-size:14px;color:var(--mut)">v16.0 · Genius Idea #14</small></h1>
 <p class="sub">An educational atlas of the world's best-known trading <b>strategies</b> and <b>analysis methods</b> —
 what each idea is, its classic textbook rules, how it fails, and the risk notes nobody should skip.</p>
 <div class="banner">⚠️ <b>Education only — not financial advice.</b> TradeAtlas is educational/research software only. It is NOT financial advice. Market Lab long/short (buy/sell-condition) labels are mechanical indicator states, not recommendations. TradeAtlas bundles no licensed live market data; real-market tracking uses only OHLCV data or a feed endpoint that you supply and have the right to use. Its wallet is a paper simulation only: never send money or cryptocurrency to TradeAtlas; it has no deposit address, custody, conversion, withdrawal or broker execution. Its halal-stock screen is transparent arithmetic on evidence you supply, not a fatwa or certification, and its bot is paper-only. It makes no profit promises. Most short-term traders lose money. Study the ideas, paper-trade first, risk only money you can afford to lose, and consult a licensed financial professional for personal decisions.</div>
@@ -173,6 +173,24 @@ what each idea is, its classic textbook rules, how it fails, and the risk notes 
 <p id="sc_status" class="status"></p>
 <p id="sc_verdict" class="warn"></p>
 <div id="sc_out" style="overflow:auto"></div>
+</div>
+<div class="card labwide" id="auto-pipeline"><h3>6 · Auto-Collect &amp; Goal Progress — the site fetches and stores by itself</h3>
+<p class="warn">Automation changes how much lawful data exists and how honestly it is measured. It cannot change the market: no button here makes a losing candidate win, and <b>goal_established stays false</b>.</p>
+<p class="sub">Two collectors feed one SQLite database. <b>(a) Server collector:</b> the TradeAtlas process fetches from a <i>fixed allowlist</i> of public venues — no arbitrary URLs, no keys, no logins — walking backwards page by page until the target bar count is stored. <b>(b) Browser collector:</b> your browser fetches the same public endpoints and posts the bars back, which is what you need when the server has no network. Both store incrementally: later runs add only new bars. The newest <b>20%</b> of every series is reserved as a <b>holdout</b> that the tuning loop never sees; only the holdout button reads it, and every read is counted. The goal tracker then reports the honest distance to 80% gate by gate.</p>
+<label>Venue</label><select id="pl_venue"><option value="binance" selected>Binance spot public klines</option><option value="kraken">Kraken public OHLC</option></select>
+<label>Symbols (comma-separated)</label><input id="pl_symbols" type="text" value="BTCUSDT,ETHUSDT,BNBUSDT,SOLUSDT">
+<label>Interval</label><select id="pl_interval"><option value="1m" selected>1m</option><option>5m</option><option>15m</option><option>1h</option><option>4h</option><option>1d</option></select>
+<label>Target bars per symbol</label><input id="pl_target" type="number" min="300" max="20000" step="100" value="3000">
+<label>Round-trip cost assumed (bps)</label><input id="pl_cost" type="number" min="1" max="500" step="0.5" value="12">
+<button class="go" onclick="pipelineCollectServer()">Collect on the server (needs outbound network)</button>
+<button class="go" onclick="pipelineCollectBrowser()">Collect in my browser, then store in SQLite</button>
+<button class="go" onclick="runAutoResearch()">Grade everything stored (pooled evidence)</button>
+<label>Stored symbol for the one-shot holdout test (e.g. BINANCE.BTCUSDT.1m)</label><input id="pl_holdout_symbol" type="text" value="BINANCE.BTCUSDT.1m">
+<button class="go" onclick="runHoldout()">Evaluate the reserved holdout (recorded)</button>
+<button class="go" onclick="loadGoalProgress()">Refresh 80% goal progress</button>
+<p id="pl_status" class="status"></p>
+<div id="pl_progress" style="margin-top:10px"></div>
+<div id="pl_out" style="overflow:auto"></div>
 </div>
 <div class="card"><h3>6 · Demo e-wallet — simulated crypto balances, conversion, bot transfer + Follow / STOP</h3>
 <p class="warn"><b>DO NOT SEND MONEY OR CRYPTOCURRENCY.</b> TradeAtlas has no deposit address, custody, real conversion, real withdrawal, leverage or broker/exchange execution. The demo e-wallet records imaginary balances and local PAPER_USD movements. <b>v14 adds an external-account mirror:</b> if your real USDT/BTC is in your own licensed exchange account, you may record that balance for accounting/checklists; TradeAtlas cannot access or verify it and does not add it to paper equity. Fund only through the exchange's own official deposit screen — never an address from TradeAtlas.</p>
@@ -327,7 +345,7 @@ what each idea is, its classic textbook rules, how it fails, and the risk notes 
 <section id="risk" class="pane"><h2>Risk rules every textbook repeats</h2><div class="grid"><article class="card"><h3>Risk a tiny fixed fraction per trade</h3><p>Textbooks suggest risking about 0.5-2% of the account per idea, so a losing streak is survivable math, not ruin. Position size is derived FROM the stop distance — never the other way around.</p></article><article class="card"><h3>The stop is part of the idea</h3><p>Decide before entry where you are proven wrong. A stop that gets moved &#x27;just a bit further&#x27; is not risk management; it is hope with extra steps.</p></article><article class="card"><h3>Expectancy over win-rate</h3><p>A system can win 40% of the time and profit (big wins, small losses) or win 80% and lose (tiny wins, rare disasters). Track expectancy in R: (win% × avg win) − (loss% × avg loss).</p></article><article class="card"><h3>Costs are a strategy filter</h3><p>Spread + commission + slippage tax every trade. Hyperactive strategies must overcome a wall of friction before any edge shows.</p></article><article class="card"><h3>Leverage multiplies everything</h3><p>Leverage scales gains, losses, AND the speed of ruin. Liquidation math does not care about your analysis being eventually right.</p></article><article class="card"><h3>Correlation is hidden size</h3><p>Five positions that all move together are one big position. Cap total open risk, not just per-trade risk.</p></article><article class="card"><h3>Drawdowns are the real exam</h3><p>Every strategy in this atlas has losing stretches. If a -20% equity dip would make you abandon or revenge-trade, the size was already too big.</p></article><article class="card"><h3>Journal or it didn&#x27;t happen</h3><p>Memory edits history. A written journal (setup, size, exit reason, screenshot) is how &#x27;experience&#x27; becomes measurable instead of anecdotal.</p></article></div>
 <h2 style="margin-top:22px">Glossary</h2><div class="card"><table><tr><td><b>ATR</b></td><td>Average True Range — typical bar size over N periods; used to set volatility-aware stops and sizes.</td></tr><tr><td><b>Backtest</b></td><td>Applying fixed rules to historical data to see how they would have behaved — then distrusting the result appropriately.</td></tr><tr><td><b>Bid / Ask / Spread</b></td><td>What buyers offer / sellers ask / the gap between them — the first cost of every trade.</td></tr><tr><td><b>Drawdown</b></td><td>Peak-to-trough decline of an account or strategy; the pain metric that ends most trading careers.</td></tr><tr><td><b>Expectancy</b></td><td>Average profit per trade over many trades: (win% × avg win) − (loss% × avg loss). Positive or the rest is decoration.</td></tr><tr><td><b>Liquidity</b></td><td>How easily size trades without moving the price. Illiquid = wide spreads and exits that vanish in stress.</td></tr><tr><td><b>R (R-multiple)</b></td><td>Profit/loss measured in units of initial risk. A +2R win made twice what was risked.</td></tr><tr><td><b>Risk:Reward</b></td><td>Distance to stop vs distance to target. 1:2 means risking 1 to aim for 2 — before costs and reality.</td></tr><tr><td><b>Slippage</b></td><td>Difference between expected and actual fill price, worst in fast markets and around news.</td></tr><tr><td><b>Stop-loss</b></td><td>A predefined exit that limits loss when the idea is wrong. Gaps can jump through stops — they limit, not guarantee.</td></tr><tr><td><b>Support / Resistance</b></td><td>Zones where price previously paused or reversed and where resting orders cluster.</td></tr><tr><td><b>Volatility</b></td><td>How much price moves. High volatility = opportunity and danger in equal measure; position size must shrink as it rises.</td></tr></table></div></section>
 
-<p class="foot">TradeAtlas v15.0 · educational/research reference · no bundled licensed live feed · mechanical conditions only · no broker links ·
+<p class="foot">TradeAtlas v16.0 · educational/research reference · no bundled licensed live feed · mechanical conditions only · no broker links ·
 data API: <code>/api/strategies</code> · Market Lab: <code>GET /api/lab/spec</code>, <code>GET /api/lab/demo</code>, <code>POST /api/lab/analyze</code>, <code>POST /api/lab/watchlist</code>, <code>POST /api/lab/forecast</code> · goals: <code>GET /api/goals</code> · minute race: <code>POST /api/lab/minute-forecast</code> · per timeframe: snapshot (+minute/VWAP/ORB state), latest condition, 100-signal validation, walk-forward split, 44-engine tournament, equity curve · demo e-wallet: <code>GET /api/paper/wallet</code>, <code>POST /api/paper/deposit-simulated</code>, <code>POST /api/paper/deposit-balance-simulated</code>, <code>POST /api/paper/convert-balance-simulated</code>, <code>POST /api/paper/withdraw-simulated</code>, <code>POST /api/paper/external-balance</code> (user-reported own-account mirror only), <code>POST /api/paper/transfer-bot-simulated</code>, <code>POST /api/paper/follow</code>, <code>POST /api/paper/stop</code>, <code>POST /api/paper/follow-step</code> (simulation only; no real deposit/withdrawal) · halal paper bot: <code>GET /api/bot</code>, <code>POST /api/halal/screen</code>, <code>POST /api/bot/register-stock</code>, <code>POST /api/bot/status</code>, <code>POST /api/bot/step</code>, <code>POST /api/bot/stop</code> · database: <code>GET /api/db/stats</code>, <code>POST /api/db/import-current</code>, <code>POST /api/db/research</code>, <code>GET /api/db/leaderboard</code>, <code>POST /api/db/halal-profile</code> · Forecast Lab: analog history + 100-attempt hidden-future evaluation vs naive baselines (history, never prophecy) · calculator API: <code>/api/calc?kind=position&amp;account=10000&amp;risk_pct=1&amp;entry=50&amp;stop=47.5</code><br>
 TradeAtlas is educational/research software only. It is NOT financial advice. Market Lab long/short (buy/sell-condition) labels are mechanical indicator states, not recommendations. TradeAtlas bundles no licensed live market data; real-market tracking uses only OHLCV data or a feed endpoint that you supply and have the right to use. Its wallet is a paper simulation only: never send money or cryptocurrency to TradeAtlas; it has no deposit address, custody, conversion, withdrawal or broker execution. Its halal-stock screen is transparent arithmetic on evidence you supply, not a fatwa or certification, and its bot is paper-only. It makes no profit promises. Most short-term traders lose money. Study the ideas, paper-trade first, risk only money you can afford to lose, and consult a licensed financial professional for personal decisions.</p>
 </div>
@@ -1465,6 +1483,227 @@ async function runTodayMarketTest() {
       ' may be blocked by your region, browser extension or CORS): ' + e.message +
       ' — you can still paste/upload a CSV of today\'s bars in the Market Lab and run card 5C on it.';
   }
+}
+function pipelinePlanValues() {
+  const symbols = (document.getElementById('pl_symbols').value || '')
+    .split(',').map(function(x) { return x.trim(); }).filter(Boolean);
+  return {
+    venue: document.getElementById('pl_venue').value,
+    symbols: symbols,
+    interval: document.getElementById('pl_interval').value,
+    target_bars: parseInt(document.getElementById('pl_target').value || '3000', 10),
+    cost_bps: parseFloat(document.getElementById('pl_cost').value || '12')
+  };
+}
+function plStatus(text) { const el = document.getElementById('pl_status'); if (el) el.textContent = text; }
+function plRenderProgress(data) {
+  const box = document.getElementById('pl_progress');
+  if (!box) return;
+  box.textContent = '';
+  const best = data.best_pooled_candidate || {};
+  const accuracy = typeof best.accuracy_pct === 'number' ? best.accuracy_pct : 0;
+  const wrap = document.createElement('div');
+  wrap.style.background = '#0b1220';
+  wrap.style.border = '1px solid #334155';
+  wrap.style.borderRadius = '10px';
+  wrap.style.padding = '10px';
+  const label = document.createElement('p');
+  label.className = 'sub';
+  label.textContent = 'Best pooled candidate: ' +
+    (best.method ? best.method + ' @' + best.horizon_bars + ' bars' : 'none yet') +
+    ' · accuracy ' + (best.accuracy_pct ?? '—') + '% · Wilson ' +
+    (best.wilson_95_ci_pct ? '[' + best.wilson_95_ci_pct.join(', ') + ']' : '—') +
+    ' · attempts ' + (best.attempts ?? 0) +
+    ' · distance to 80%: ' + (data.distance_to_target_points ?? '—') + ' points';
+  wrap.appendChild(label);
+  const track = document.createElement('div');
+  track.style.height = '14px'; track.style.background = '#1e293b';
+  track.style.borderRadius = '999px'; track.style.overflow = 'hidden';
+  const fill = document.createElement('div');
+  fill.style.height = '100%';
+  fill.style.width = Math.max(2, Math.min(100, accuracy)) + '%';
+  fill.style.background = accuracy >= 80 ? '#22c55e' : accuracy >= 60 ? '#f59e0b' : '#ef4444';
+  track.appendChild(fill); wrap.appendChild(track);
+  const gates = document.createElement('p');
+  gates.className = 'warn';
+  gates.textContent = 'Gates passed: ' + data.gates_passed + '/' + data.gates_total +
+    ' · status ' + data.status + ' · goal established: ' + data.goal_established;
+  wrap.appendChild(gates);
+  const rows = [['Gate', 'Requirement', 'Measured', 'Passed']];
+  (data.checks || []).forEach(function(check) {
+    rows.push([check.gate, check.requirement, String(check.value), check.passed ? 'yes' : 'no']);
+  });
+  const table = document.createElement('table');
+  rows.forEach(function(cells, index) {
+    const tr = document.createElement('tr');
+    cells.forEach(function(text) {
+      if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+      else { const td = document.createElement('td'); td.textContent = text; tr.appendChild(td); }
+    });
+    table.appendChild(tr);
+  });
+  wrap.appendChild(table);
+  box.appendChild(wrap);
+}
+async function loadGoalProgress() {
+  try {
+    plStatus('Measuring pooled evidence across every stored series (tuning slices only)…');
+    const response = await fetch('/api/goal-progress?cost_bps=' +
+      encodeURIComponent(document.getElementById('pl_cost').value || '12'));
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    plRenderProgress(data);
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const details = document.createElement('details');
+    const sm = document.createElement('summary'); sm.textContent = 'Full goal-progress JSON'; details.appendChild(sm);
+    const pre = document.createElement('pre'); pre.textContent = JSON.stringify(data, null, 2); details.appendChild(pre);
+    out.appendChild(details);
+    plStatus('Evidence: ' + data.evidence.series_used + ' series · ' +
+      data.evidence.symbols.length + ' symbols · ' + data.evidence.distinct_days +
+      ' distinct days · holdout evaluations ' + data.evidence.holdout_evaluations + '.');
+  } catch (e) { plStatus('Goal progress error: ' + e.message); }
+}
+async function pipelineCollectServer() {
+  try {
+    const plan = pipelinePlanValues();
+    plStatus('Server is fetching ' + plan.symbols.join(', ') + ' from ' + plan.venue +
+      ' — it only contacts the allowlisted public hosts…');
+    const response = await fetch('/api/pipeline/collect', {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(plan)});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const rows = [['Stored symbol', 'New bars', 'Total bars', 'First bar', 'Last bar', 'Errors']];
+    (data.series || []).forEach(function(item) {
+      rows.push([item.symbol, item.inserted, item.stored_total, item.first_bar || '—',
+                 item.last_bar || '—', (item.errors || []).join('; ') || 'none']);
+    });
+    const table = document.createElement('table');
+    rows.forEach(function(cells, index) {
+      const tr = document.createElement('tr');
+      cells.forEach(function(text) {
+        if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+        else { const td = document.createElement('td'); td.textContent = String(text); tr.appendChild(td); }
+      });
+      table.appendChild(tr);
+    });
+    out.appendChild(table);
+    plStatus('Collected ' + data.inserted_total + ' new bars. ' +
+      (data.inserted_total ? 'Now grade them, then refresh goal progress.' :
+       'No new bars: your server may have no outbound network — use the browser collector.'));
+  } catch (e) { plStatus('Server collection error: ' + e.message); }
+}
+async function pipelineCollectBrowser() {
+  try {
+    const plan = pipelinePlanValues();
+    if (!plan.symbols.length) throw new Error('Add at least one symbol');
+    const fetcher = plan.venue === 'kraken' ? fetchKrakenToday : fetchBinanceToday;
+    const series = [];
+    for (const symbol of plan.symbols) {
+      plStatus('Fetching ' + symbol + ' ' + plan.interval + ' in your browser…');
+      try {
+        const page = await fetcher(symbol, plan.interval, 1000);
+        series.push({symbol: symbol.toUpperCase(), interval: plan.interval,
+                     bars: page.bars, endpoint: page.url,
+                     source_label: page.venue + ' via browser (allowlisted venue)'});
+      } catch (e) { plStatus('Skipped ' + symbol + ': ' + e.message); }
+    }
+    if (!series.length) throw new Error('No series could be fetched — venue blocked, or symbol unknown');
+    plStatus('Posting ' + series.length + ' fetched series to be stored in SQLite…');
+    const response = await fetch('/api/pipeline/import', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({venue: plan.venue, series: series,
+                            provenance: {venue: plan.venue, interval: plan.interval,
+                                         fetched_at_utc: new Date().toISOString(),
+                                         forming_candle_dropped: true,
+                                         symbols: series.map(function(x) { return x.symbol; })}})});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const rows = [['Stored symbol', 'Bars', 'First bar', 'Last bar']];
+    (data.series || []).forEach(function(item) {
+      rows.push([item.symbol, item.stored_total, item.first_bar || '—', item.last_bar || '—']);
+    });
+    const table = document.createElement('table');
+    rows.forEach(function(cells, index) {
+      const tr = document.createElement('tr');
+      cells.forEach(function(text) {
+        if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+        else { const td = document.createElement('td'); td.textContent = String(text); tr.appendChild(td); }
+      });
+      table.appendChild(tr);
+    });
+    out.appendChild(table);
+    plStatus('Stored ' + data.series.length + ' series. Now grade everything stored.');
+  } catch (e) { plStatus('Browser collection error: ' + e.message); }
+}
+async function runAutoResearch() {
+  try {
+    plStatus('Grading every stored series on its tuning slice (holdout untouched)…');
+    const plan = pipelinePlanValues();
+    const response = await fetch('/api/lab/auto-research', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({horizons: [3, 5, 15], attempts: 150, cost_bps: plan.cost_bps})});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    plRenderProgress(data);
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const rows = [['Method', 'Horizon', 'Attempts', 'Accuracy', 'Wilson low', 'Net @cost', 'Symbols']];
+    (data.pooled || []).forEach(function(row) {
+      rows.push([row.method, row.horizon_bars, row.attempts, row.accuracy_pct,
+                 (row.wilson_95_ci_pct || [])[0], row.mean_net_pct, row.series_count]);
+    });
+    if (rows.length > 1) {
+      const table = document.createElement('table');
+      rows.forEach(function(cells, index) {
+        const tr = document.createElement('tr');
+        cells.forEach(function(text) {
+          if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+          else { const td = document.createElement('td'); td.textContent = String(text); tr.appendChild(td); }
+        });
+        table.appendChild(tr);
+      });
+      out.appendChild(table);
+    }
+    plStatus('Graded ' + data.evidence.series_used + ' series. Top row is the selection maximum — read the Wilson interval, not the point estimate.');
+  } catch (e) { plStatus('Auto-research error: ' + e.message); }
+}
+async function runHoldout() {
+  try {
+    const symbol = (document.getElementById('pl_holdout_symbol').value || '').trim();
+    if (!symbol) throw new Error('Enter a stored symbol');
+    plStatus('Reading the reserved holdout for ' + symbol + ' (this read is recorded)…');
+    const response = await fetch('/api/lab/holdout', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({symbol: symbol, horizons: [3, 5, 15],
+                            cost_bps: parseFloat(document.getElementById('pl_cost').value || '12')})});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const rows = [['Method', 'Horizon', 'Attempts', 'Accuracy', 'Wilson low', 'Net']];
+    (data.rows || []).forEach(function(row) {
+      rows.push([row.method, row.horizon_bars, row.attempts_made, row.direction_accuracy_pct,
+                 (row.wilson_95_ci_pct || [])[0], row.mean_net_pct]);
+    });
+    const table = document.createElement('table');
+    rows.forEach(function(cells, index) {
+      const tr = document.createElement('tr');
+      cells.forEach(function(text) {
+        if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+        else { const td = document.createElement('td'); td.textContent = String(text); tr.appendChild(td); }
+      });
+      table.appendChild(tr);
+    });
+    out.appendChild(table);
+    plStatus('Holdout: ' + data.holdout_bars + ' reserved bars (' + data.holdout_first_bar +
+      ' → ' + data.holdout_last_bar + '). Reads so far: ' + data.holdout_uses_total +
+      '. Repeating this turns the holdout into tuning data.');
+  } catch (e) { plStatus('Holdout error: ' + e.message); }
 }
 async function clearLessons() {
   const status = document.getElementById('sc_status');

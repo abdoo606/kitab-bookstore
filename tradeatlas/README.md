@@ -1,10 +1,12 @@
-# TradeAtlas — Genius Idea #14 (v15.0)
+# TradeAtlas — Genius Idea #14 (v16.0)
 
 An **educational/research atlas** of the world's best-known trading strategies
 and market-analysis methods, plus a bring-your-own-data **Market Lab**.
 **v14 is minute-first:** its default research/bot path is the invented
-**Atlas Minute Pulse** on real completed **1m** bars. **v15 adds a failure
-memory:** every failed candidate is diagnosed, given an avoid-rule and an
+**Atlas Minute Pulse** on real completed **1m** bars. **v16 adds an
+autonomous data pipeline** (allowlisted public-venue collector, incremental
+SQLite storage, a counted holdout and a gate-by-gate 80% tracker). **v15 adds
+a failure memory:** every failed candidate is diagnosed, given an avoid-rule and an
 implemented remedy, re-tested with that remedy, and either fixed (`resolved`),
 retired with its reason (`retired`) or remembered so later runs skip it.
 Python standard library only; zero subscriptions.
@@ -128,6 +130,48 @@ prove that the timeframe pipelines can produce and score test cases. It is
 the exact counts generated for the selected engine; tournament winners can
 differ per timeframe, which is itself the lesson: the "best" engine is
 sample-dependent.
+
+**New in v16.0 — the site collects and stores data by itself, and measures the
+honest distance to 80% (it does not fake it):**
+
+- **Guarded collector.** `pipeline.py` fetches completed bars from a *fixed
+  host allowlist* (`api.binance.com`, `data-api.binance.vision`,
+  `api.kraken.com`) — no arbitrary URLs, no keys, no logins, read-only. The
+  still-forming candle is always dropped.
+- **Two run locations.** The server can collect (`python3 tradeatlas.py
+  --collect/--auto`) when it has network; card 6 can collect in your browser
+  and post the bars back when it does not. Same allowlist, same parsers.
+- **Incremental storage.** Each series is keyed `VENUE.SYMBOL.interval`
+  (e.g. `BINANCE.BTCUSDT.1m`), primary key `(symbol,timeframe,t)` makes
+  duplicates impossible, and later runs fetch the newest page first and only
+  add what is genuinely new, then backfill older history to the target.
+- **Provenance ledger.** `collection_runs` records venue, requested/inserted/
+  stored counts, first/last bar UTC, request count, endpoints and errors. A
+  blocked venue is recorded as an error — never as silent success.
+- **Counted holdout.** The newest 20% of every series is reserved; the tuning
+  loop and the failure memory never see it, and every holdout read is written
+  to `holdout_runs` (`holdout_uses_total`). Re-reading a holdout turns it into
+  tuning data — the counter makes that visible.
+- **Gate-by-gate 80% tracker.** `GET /api/goal-progress` pools hidden-future
+  attempts across all stored series and checks nine gates: attempts ≥ 1000,
+  pooled accuracy ≥ 80%, Wilson lower bound ≥ 80%, positive net after 10 bps,
+  coverage ≥ 20%, ≥ 3 symbols, ≥ 30 distinct days, a recorded holdout, and
+  fresh external validation. It reports each measured value, the distance in
+  points, and `goal_established=false` — always.
+- **Automation loop.** `--auto --cycles N --sleep S` collects, grades and
+  stores a goal report each cycle, so slow multi-week data growth is a
+  one-command background job rather than a manual chore.
+- **UI card 6 · Auto-Collect & Goal Progress:** collect (server or browser),
+  grade everything stored, run the recorded holdout, and see a progress bar
+  with a pass/fail gate table.
+- **Docs:** `AUTOMATION.md` explains the allowlist, incremental storage,
+  holdout discipline, the nine gates and a realistic expectation table.
+- Tests: **77/77**, including an offline fake venue that proves backfill,
+  incremental growth, duplicate-free storage, allowlist rejection, forming-
+  candle dropping, holdout counting and the full HTTP pipeline.
+- **What this does not do:** it does not raise accuracy by design. Automation
+  increases sample size and honesty; only new out-of-sample evidence can move
+  the number, and 80% remains unreached.
 
 **New in v15.0 — a failure memory that turns every failed test into a rule
 for the next one (nothing in the 80% claim changes):**
@@ -739,6 +783,15 @@ actually tested.
   `resolved_lessons`, `retired_candidates`, `verdict` and a `goal_80` block
   whose `goal_established` is always false. `{"demo": true}` runs the
   synthetic software check.
+- `POST /api/pipeline/collect` — server-side allowlisted collection
+  (`venue`, `symbols`, `interval`, `target_bars`); `POST /api/pipeline/import`
+  stores browser-fetched `series[]` with provenance.
+- `POST /api/lab/auto-research` — pooled evidence over every stored series.
+- `POST /api/lab/holdout` — evaluate (and record) the reserved slice of one
+  stored symbol.
+- `GET /api/goal-progress` — the nine-gate honest distance to 80%, stored in
+  `goal_reports`; `GET /api/pipeline/status` — collections, holdout reads,
+  goal history and the pipeline spec.
 - `GET /api/lessons?symbol=&status=` — the persisted failure memory: lesson
   ledger, cause tally, cause library and the latest run **including its
   provenance** (venue, endpoint, first/last completed bar in UTC, fetch time).
@@ -799,7 +852,22 @@ python3 tradeatlas.py --demo   # samples incl. sample-database-research.json
 python3 -m unittest test_tradeatlas                        # 49 tests
 ```
 
-Tests: **65/65 passing**. No dependencies beyond Python 3 standard library.
+Tests: **76/76 passing**. No dependencies beyond Python 3 standard library.
+
+### Collect real data automatically
+
+```bash
+# one incremental collection, then an honest goal report
+python3 tradeatlas.py --collect --symbols BTCUSDT,ETHUSDT,BNBUSDT \
+    --interval 1m --target-bars 5000
+
+# keep growing the sample (6 cycles, 10 minutes apart)
+python3 tradeatlas.py --auto --symbols BTCUSDT,ETHUSDT,SOLUSDT \
+    --interval 1m --cycles 6 --sleep 600
+```
+
+If your machine blocks exchanges, use card 6's browser collector — same
+allowlist, same storage, and the app works identically.
 Private runtime files `tradeatlas.db` and `tradeatlas-bot-state.json` are
 created beside the code (or at `TRADEATLAS_DB` / `TRADEATLAS_BOT_STATE`);
 they are user data, not source samples.

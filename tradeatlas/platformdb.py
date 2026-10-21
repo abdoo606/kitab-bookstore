@@ -1,4 +1,4 @@
-"""SQLite market/research database for TradeAtlas v15.
+"""SQLite market/research database for TradeAtlas v16.
 
 The database stores market bars the user lawfully imports, transparent
 halal-screen evidence, pooled hidden-future research results, and — new in
@@ -18,7 +18,7 @@ from pathlib import Path
 
 import marketlab as ml
 
-DB_VERSION = 2
+DB_VERSION = 3
 TIMEFRAME_LABELS = tuple(ml.TIMEFRAMES) + ("1mo", "source")
 
 
@@ -173,6 +173,46 @@ class MarketDatabase:
             );
             CREATE INDEX IF NOT EXISTS idx_lessons_symbol ON research_lessons(symbol_key, status);
             CREATE INDEX IF NOT EXISTS idx_lessons_cause ON research_lessons(cause);
+            CREATE TABLE IF NOT EXISTS collection_runs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                created_at TEXT NOT NULL,
+                venue TEXT NOT NULL,
+                symbol TEXT NOT NULL,
+                timeframe TEXT NOT NULL,
+                requested INTEGER NOT NULL,
+                inserted INTEGER NOT NULL,
+                previously_stored INTEGER NOT NULL,
+                stored_total INTEGER NOT NULL,
+                first_bar_time TEXT,
+                last_bar_time TEXT,
+                requests INTEGER NOT NULL DEFAULT 0,
+                endpoints_json TEXT NOT NULL DEFAULT '[]',
+                errors_json TEXT NOT NULL DEFAULT '[]',
+                source TEXT NOT NULL DEFAULT 'allowlisted public venue'
+            );
+            CREATE INDEX IF NOT EXISTS idx_collection_symbol ON collection_runs(symbol, timeframe, created_at);
+            CREATE TABLE IF NOT EXISTS holdout_runs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                created_at TEXT NOT NULL,
+                venue TEXT NOT NULL DEFAULT '',
+                symbol TEXT NOT NULL,
+                timeframe TEXT NOT NULL,
+                tuning_bars INTEGER NOT NULL,
+                holdout_bars INTEGER NOT NULL,
+                methods_json TEXT NOT NULL DEFAULT '[]',
+                horizons_json TEXT NOT NULL DEFAULT '[]',
+                cost_bps REAL NOT NULL DEFAULT 10,
+                rows_json TEXT NOT NULL DEFAULT '[]'
+            );
+            CREATE INDEX IF NOT EXISTS idx_holdout_symbol ON holdout_runs(symbol, timeframe, created_at);
+            CREATE TABLE IF NOT EXISTS goal_reports (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                created_at TEXT NOT NULL,
+                status TEXT NOT NULL,
+                gates_passed INTEGER NOT NULL,
+                gates_total INTEGER NOT NULL,
+                payload_json TEXT NOT NULL
+            );
             CREATE TABLE IF NOT EXISTS bot_events (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 created_at TEXT NOT NULL,
@@ -313,7 +353,8 @@ class MarketDatabase:
             counts = {}
             for table in ("instruments", "bars", "data_imports", "halal_profiles",
                           "halal_screen_history", "research_runs", "method_scores", "bot_events",
-                          "self_correction_runs", "research_trials", "research_lessons"):
+                          "self_correction_runs", "research_trials", "research_lessons",
+                          "collection_runs", "holdout_runs", "goal_reports"):
                 counts[table] = int(self.conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0])
             by_asset = [dict(r) for r in self.conn.execute(
                 "SELECT asset_type,COUNT(*) AS instruments FROM instruments GROUP BY asset_type ORDER BY asset_type")]
@@ -338,6 +379,14 @@ class MarketDatabase:
             "by_asset_type": by_asset,
             "by_timeframe": by_timeframe,
             "halal_by_status": halal,
+            "pipeline": {
+                "collections": counts.get("collection_runs", 0),
+                "holdout_evaluations": counts.get("holdout_runs", 0),
+                "goal_reports": counts.get("goal_reports", 0),
+                "venues": [dict(r) for r in self.conn.execute(
+                    "SELECT venue,COUNT(*) AS runs,SUM(inserted) AS inserted FROM collection_runs "
+                    "GROUP BY venue ORDER BY venue")],
+            },
             "failure_memory": {
                 "lessons": counts.get("research_lessons", 0),
                 "runs": counts.get("self_correction_runs", 0),
@@ -716,6 +765,111 @@ class MarketDatabase:
     def lessons_for_carry_over(self, symbol: str) -> list[dict]:
         """Only the lesson states that must change the next test on this symbol."""
         return self.self_correction_lessons(symbol=symbol, limit=2000)
+
+    # ---------------- v16 autonomous pipeline ----------------
+
+    def record_collection(self, data: dict) -> dict:
+        with self.lock, self.conn:
+            cursor = self.conn.execute(
+                """INSERT INTO collection_runs
+                   (created_at,venue,symbol,timeframe,requested,inserted,previously_stored,
+                    stored_total,first_bar_time,last_bar_time,requests,endpoints_json,errors_json)
+                   VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+                (_now(), str(data.get("venue") or ""), str(data.get("symbol") or ""),
+                 str(data.get("timeframe") or ""), int(data.get("requested") or 0),
+                 int(data.get("inserted") or 0), int(data.get("previously_stored") or 0),
+                 int(data.get("stored_total") or 0), data.get("first_bar_time"),
+                 data.get("last_bar_time"), int(data.get("requests") or 0),
+                 json.dumps(data.get("endpoints") or [], ensure_ascii=False),
+                 json.dumps(data.get("errors") or [], ensure_ascii=False)),
+            )
+        return {"id": int(cursor.lastrowid)}
+
+    def list_collections(self, *, limit: int = 50) -> list[dict]:
+        with self.lock:
+            rows = self.conn.execute(
+                """SELECT id,created_at,venue,symbol,timeframe,requested,inserted,
+                          previously_stored,stored_total,first_bar_time,last_bar_time,
+                          requests,endpoints_json,errors_json
+                   FROM collection_runs ORDER BY id DESC LIMIT ?""",
+                (max(1, min(500, int(limit))),)).fetchall()
+        out = []
+        for row in rows:
+            item = dict(row)
+            item["endpoints"] = json.loads(item.pop("endpoints_json") or "[]")
+            item["errors"] = json.loads(item.pop("errors_json") or "[]")
+            out.append(item)
+        return out
+
+    def record_holdout(self, data: dict) -> dict:
+        with self.lock, self.conn:
+            cursor = self.conn.execute(
+                """INSERT INTO holdout_runs
+                   (created_at,venue,symbol,timeframe,tuning_bars,holdout_bars,
+                    methods_json,horizons_json,cost_bps,rows_json)
+                   VALUES(?,?,?,?,?,?,?,?,?,?)""",
+                (_now(), str(data.get("venue") or ""), str(data.get("symbol") or ""),
+                 str(data.get("timeframe") or ""), int(data.get("tuning_bars") or 0),
+                 int(data.get("holdout_bars") or 0),
+                 json.dumps(data.get("methods") or [], ensure_ascii=False),
+                 json.dumps(data.get("horizons") or [], ensure_ascii=False),
+                 float(data.get("cost_bps") or 10.0),
+                 json.dumps(data.get("rows") or [], ensure_ascii=False)),
+            )
+        return {"id": int(cursor.lastrowid)}
+
+    def list_holdouts(self, *, limit: int = 25) -> list[dict]:
+        with self.lock:
+            rows = self.conn.execute(
+                """SELECT id,created_at,venue,symbol,timeframe,tuning_bars,holdout_bars,
+                          methods_json,horizons_json,cost_bps,rows_json
+                   FROM holdout_runs ORDER BY id DESC LIMIT ?""",
+                (max(1, min(200, int(limit))),)).fetchall()
+        out = []
+        for row in rows:
+            item = dict(row)
+            item["methods"] = json.loads(item.pop("methods_json") or "[]")
+            item["horizons"] = json.loads(item.pop("horizons_json") or "[]")
+            item["rows"] = json.loads(item.pop("rows_json") or "[]")
+            out.append(item)
+        return out
+
+    def holdout_use_count(self, *, symbol: str | None = None) -> int:
+        with self.lock:
+            if symbol:
+                row = self.conn.execute(
+                    "SELECT COUNT(*) FROM holdout_runs WHERE symbol=?", (str(symbol),)).fetchone()
+            else:
+                row = self.conn.execute("SELECT COUNT(*) FROM holdout_runs").fetchone()
+        return int(row[0] or 0)
+
+    def record_goal_report(self, payload: dict) -> dict:
+        with self.lock, self.conn:
+            cursor = self.conn.execute(
+                """INSERT INTO goal_reports(created_at,status,gates_passed,gates_total,payload_json)
+                   VALUES(?,?,?,?,?)""",
+                (_now(), str(payload.get("status") or ""),
+                 int(payload.get("gates_passed") or 0), int(payload.get("gates_total") or 0),
+                 json.dumps(payload, ensure_ascii=False)),
+            )
+        return {"id": int(cursor.lastrowid)}
+
+    def goal_history(self, *, limit: int = 20) -> list[dict]:
+        with self.lock:
+            rows = self.conn.execute(
+                """SELECT id,created_at,status,gates_passed,gates_total,payload_json
+                   FROM goal_reports ORDER BY id DESC LIMIT ?""",
+                (max(1, min(200, int(limit))),)).fetchall()
+        out = []
+        for row in rows:
+            item = dict(row)
+            payload = json.loads(item.pop("payload_json") or "{}")
+            item["accuracy_pct"] = (payload.get("best_pooled_candidate") or {}).get("accuracy_pct")
+            item["attempts"] = (payload.get("best_pooled_candidate") or {}).get("attempts")
+            item["symbols"] = len((payload.get("evidence") or {}).get("symbols") or [])
+            item["distinct_days"] = (payload.get("evidence") or {}).get("distinct_days")
+            out.append(item)
+        return out
 
     def latest_research(self) -> dict | None:
         with self.lock:
