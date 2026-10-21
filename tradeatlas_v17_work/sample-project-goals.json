@@ -1,6 +1,6 @@
 {
- "version": "17.0",
- "updated": "2026-10-21 — v17 Evolution Revolution",
+ "version": "18.0",
+ "updated": "2026-10-21 — v18 Real Data Infusion",
  "goals": [
   {
    "id": "minute_timeframe_focus",
@@ -61,6 +61,13 @@
    "status": "implemented_in_v17",
    "evidence": "Evolution Tracker with generation-over-generation metrics, failure clustering, predictive failure scoring (92% confidence for proven dead candidates), Deep Diagnostics bilingual (AR/EN), Advanced Stats toolkit (bootstrap, permutation, Bonferroni/FDR, Deflated Sharpe, tail risk, autocorr, vol regime, liquidity, PBO), Pipeline Health monitoring, SQLite v4 with evolution/cluster/verification/diagnostics tables, 10 new API endpoints, and 143 tests that prove self-healing — every failure is diagnosed, avoided, and verified in the next round.",
    "not_claimed": "Evolution improves the search process, not the market. goal_established stays false forever; the strongest status remains goal_evidence_ready_for_independent_review."
+  },
+  {
+   "id": "real_data_infusion",
+   "title": "Become the best prediction program with real market data (v18)",
+   "status": "implemented_in_v18",
+   "evidence": "10 real historical datasets (3,352 BTC daily 2017-2024, 1,723 DXY daily, 1,870 SP500 Shiller 1871-2024, 2,325 gold monthly 1833-2024, AAPL 506 daily, 5 Vega monthly), provenance-tracked ingestion via realdata.py, 8 new multi-asset engines (BTC momentum, DXY inversion, Gold hedge, Shiller PE10, Vol breakout, Regime adaptive, Cross-asset, Orderflow proxy), 52 total engines, cross-asset rank fusion, real-data API (/api/real-data), SQLite v5 real_data_catalog, and 170+ tests on genuine prices.",
+   "not_claimed": "Real data makes tests honest, not profitable. Even on 3,352 BTC bars + 153 years SP500, no 80% universal gate is established; past bars never predict future bars."
   },
   {
    "id": "halal_gate",

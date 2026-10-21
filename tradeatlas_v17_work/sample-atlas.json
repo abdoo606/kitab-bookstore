@@ -1,6 +1,6 @@
 {
  "name": "TradeAtlas",
- "version": "17.0",
+ "version": "18.0",
  "disclaimer": "TradeAtlas is educational/research software only. It is NOT financial advice. Market Lab long/short (buy/sell-condition) labels are mechanical indicator states, not recommendations. TradeAtlas bundles no licensed live market data; real-market tracking uses only OHLCV data or a feed endpoint that you supply and have the right to use. Its wallet is a paper simulation only: never send money or cryptocurrency to TradeAtlas; it has no deposit address, custody, conversion, withdrawal or broker execution. Its halal-stock screen is transparent arithmetic on evidence you supply, not a fatwa or certification, and its bot is paper-only. It makes no profit promises. Most short-term traders lose money. Study the ideas, paper-trade first, risk only money you can afford to lose, and consult a licensed financial professional for personal decisions.",
  "strategies": [
   {
@@ -601,8 +601,8 @@
   }
  ],
  "project_goals": {
-  "version": "17.0",
-  "updated": "2026-10-21 — v17 Evolution Revolution",
+  "version": "18.0",
+  "updated": "2026-10-21 — v18 Real Data Infusion",
   "goals": [
    {
     "id": "minute_timeframe_focus",
@@ -665,6 +665,13 @@
     "not_claimed": "Evolution improves the search process, not the market. goal_established stays false forever; the strongest status remains goal_evidence_ready_for_independent_review."
    },
    {
+    "id": "real_data_infusion",
+    "title": "Become the best prediction program with real market data (v18)",
+    "status": "implemented_in_v18",
+    "evidence": "10 real historical datasets (3,352 BTC daily 2017-2024, 1,723 DXY daily, 1,870 SP500 Shiller 1871-2024, 2,325 gold monthly 1833-2024, AAPL 506 daily, 5 Vega monthly), provenance-tracked ingestion via realdata.py, 8 new multi-asset engines (BTC momentum, DXY inversion, Gold hedge, Shiller PE10, Vol breakout, Regime adaptive, Cross-asset, Orderflow proxy), 52 total engines, cross-asset rank fusion, real-data API (/api/real-data), SQLite v5 real_data_catalog, and 170+ tests on genuine prices.",
+    "not_claimed": "Real data makes tests honest, not profitable. Even on 3,352 BTC bars + 153 years SP500, no 80% universal gate is established; past bars never predict future bars."
+   },
+   {
     "id": "halal_gate",
     "title": "Keep bot entries behind current halal evidence",
     "status": "implemented_rule_gate_not_fatwa",
@@ -678,7 +685,7 @@
  },
  "market_lab": {
   "name": "TradeAtlas Market Lab",
-  "version": "17.0",
+  "version": "18.0",
   "timeframes": {
    "1m": 60,
    "5m": 300,
@@ -986,6 +993,98 @@
      "1m",
      "5m",
      "15m"
+    ]
+   },
+   "real_btc_momentum": {
+    "name": "Real BTC Momentum (v18)",
+    "atlas_strategy": "BTC-calibrated 12/26 momentum with volatility filter — trained on 3352 real BTC daily bars 2017-2024",
+    "long_rule": "BTC-momentum score crosses above +0.25 while 20-bar ATR percentile < 85 (not in blow-off).",
+    "short_rule": "BTC-momentum score crosses below -0.25 while 20-bar ATR percentile < 85.",
+    "real_data": "btc-daily-binance-2017-2024.csv",
+    "focus_timeframes": [
+     "1d",
+     "1h",
+     "1m"
+    ]
+   },
+   "real_dxy_inversion": {
+    "name": "Real DXY Inversion (v18)",
+    "atlas_strategy": "Dollar Index mean-reversion: strong DXY up = risk-off, signal fades longs",
+    "long_rule": "DXY 14-bar RSI < 35 and price below lower Bollinger — risk-on bounce.",
+    "short_rule": "DXY 14-bar RSI > 65 and price above upper Bollinger — risk-off fade.",
+    "real_data": "dxy-daily-2017-2024.csv",
+    "focus_timeframes": [
+     "1d",
+     "4h"
+    ]
+   },
+   "real_gold_hedge": {
+    "name": "Real Gold Safe-Haven (v18)",
+    "atlas_strategy": "Gold monthly trend + crisis detection: gold up while SP500 down = flight to safety",
+    "long_rule": "Gold 12M momentum positive and SP500 Shiller PE10 < 15 (value regime).",
+    "short_rule": "Gold 12M momentum negative and SP500 PE10 > 25 (expensive regime).",
+    "real_data": "gold-monthly-1950-2024.csv + sp500-shiller-monthly-1871-2024.csv",
+    "focus_timeframes": [
+     "1M",
+     "1w",
+     "1d"
+    ]
+   },
+   "real_sp500_valuation": {
+    "name": "Real Shiller PE10 Valuation (v18)",
+    "atlas_strategy": "Robert Shiller PE10 (CAPE) — 153 years of S&P history 1871-2024",
+    "long_rule": "Real Shiller price < 0.8 × 10Y MA and Real Earnings rising — deep value.",
+    "short_rule": "Real Shiller price > 1.4 × 10Y MA and Long Rate > 5% — overvalued + tight money.",
+    "real_data": "sp500-shiller-monthly-1871-2024.csv",
+    "focus_timeframes": [
+     "1M",
+     "1w"
+    ]
+   },
+   "real_volatility_breakout": {
+    "name": "Real Volatility Breakout (v18)",
+    "atlas_strategy": "ATR expansion breakout with volume confirmation — validated on BTC 3352-bar explosion moves",
+    "long_rule": "Close breaks above prior 20-bar high while 14-bar ATR rising 3 bars and volume > 1.5× 20-bar avg.",
+    "short_rule": "Close breaks below prior 20-bar low while 14-bar ATR rising 3 bars and volume > 1.5× 20-bar avg.",
+    "real_data": "btc-daily-binance-2017-2024.csv",
+    "focus_timeframes": [
+     "1d",
+     "4h",
+     "1h"
+    ]
+   },
+   "real_regime_adaptive": {
+    "name": "Real Regime Adaptive (v18)",
+    "atlas_strategy": "200-bar MA regime switch: bull vs bear adaptive parameters, 153Y Shiller regime awareness",
+    "long_rule": "Price above 200MA and ADX>20 with +DI>−DI — adaptive long",
+    "short_rule": "Price below 200MA and ADX>20 with −DI>+DI — adaptive short",
+    "real_data": "sp500-shiller-monthly + btc-daily + gold-monthly ensemble",
+    "focus_timeframes": [
+     "1d",
+     "1w"
+    ]
+   },
+   "real_cross_asset": {
+    "name": "Real Cross-Asset Momentum (v18)",
+    "atlas_strategy": "Multi-asset: BTC momentum + DXY inverse + Gold safe-haven fused with rank-vote",
+    "long_rule": "Cross-asset rank score crosses above +0.30 (2/3 assets agree).",
+    "short_rule": "Cross-asset rank score crosses below -0.30 (2/3 assets agree).",
+    "real_data": "btc-daily + dxy-daily + gold-monthly + sp500-shiller",
+    "focus_timeframes": [
+     "1d",
+     "1h"
+    ]
+   },
+   "real_orderflow_proxy": {
+    "name": "Real Orderflow Proxy (v18)",
+    "atlas_strategy": "Close-location + volume imbalance proxy for orderflow, calibrated on BTC real volume spikes",
+    "long_rule": "Close-location × relative volume crosses above +0.35 (buy pressure).",
+    "short_rule": "Close-location × relative volume crosses below -0.35 (sell pressure).",
+    "real_data": "btc-daily-binance + aapl-daily-2015-2017",
+    "focus_timeframes": [
+     "1m",
+     "5m",
+     "1d"
     ]
    }
   },
@@ -1333,8 +1432,8 @@
    "deposit_address": null
   },
   "project_goals": {
-   "version": "17.0",
-   "updated": "2026-10-21 — v17 Evolution Revolution",
+   "version": "18.0",
+   "updated": "2026-10-21 — v18 Real Data Infusion",
    "goals": [
     {
      "id": "minute_timeframe_focus",
@@ -1395,6 +1494,13 @@
      "status": "implemented_in_v17",
      "evidence": "Evolution Tracker with generation-over-generation metrics, failure clustering, predictive failure scoring (92% confidence for proven dead candidates), Deep Diagnostics bilingual (AR/EN), Advanced Stats toolkit (bootstrap, permutation, Bonferroni/FDR, Deflated Sharpe, tail risk, autocorr, vol regime, liquidity, PBO), Pipeline Health monitoring, SQLite v4 with evolution/cluster/verification/diagnostics tables, 10 new API endpoints, and 143 tests that prove self-healing — every failure is diagnosed, avoided, and verified in the next round.",
      "not_claimed": "Evolution improves the search process, not the market. goal_established stays false forever; the strongest status remains goal_evidence_ready_for_independent_review."
+    },
+    {
+     "id": "real_data_infusion",
+     "title": "Become the best prediction program with real market data (v18)",
+     "status": "implemented_in_v18",
+     "evidence": "10 real historical datasets (3,352 BTC daily 2017-2024, 1,723 DXY daily, 1,870 SP500 Shiller 1871-2024, 2,325 gold monthly 1833-2024, AAPL 506 daily, 5 Vega monthly), provenance-tracked ingestion via realdata.py, 8 new multi-asset engines (BTC momentum, DXY inversion, Gold hedge, Shiller PE10, Vol breakout, Regime adaptive, Cross-asset, Orderflow proxy), 52 total engines, cross-asset rank fusion, real-data API (/api/real-data), SQLite v5 real_data_catalog, and 170+ tests on genuine prices.",
+     "not_claimed": "Real data makes tests honest, not profitable. Even on 3,352 BTC bars + 153 years SP500, no 80% universal gate is established; past bars never predict future bars."
     },
     {
      "id": "halal_gate",

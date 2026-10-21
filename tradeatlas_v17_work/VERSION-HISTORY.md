@@ -562,3 +562,19 @@ evidence/rule workflow, not a fatwa or certification.
 
 الفرق بين "77 اختباراً يتحققون من أن الدقة ليست 80%" و "143 اختباراً كل واحد يفشل → يشخص → يتجنب → يحل" هو الفرق بين مقياس حرارة وطبيب. v16 كان يقيس المسافة إلى 80%؛ v17 يبني طبيباً يتذكر كل مريض مات ولماذا، ويتأكد ألا يموت التالي لنفس السبب. التطور لا يصنع حافة في السوق، لكنه يمنعنا من الكذب على أنفسنا 143 مرة مختلفة.
 
+
+
+### v18.0 — Real Data Infusion (BestPredictionLab) (طوره أكثر وأكثر — بيانات حقيقية)
+
+- **10 أصول حقيقية** مدمجة: BTC 3352 يوم (Binance 2017-2024)، DXY 1723، SP500 Shiller 1870 شهر (1871-2024)، Gold 2325 شهر (1833-2024)، AAPL 506، 5 Vega — كلها مع provenance وتاريخ تحميل.
+- **8 محركات جديدة** معايرة على السوق الحقيقي: BTC momentum، DXY inversion، Gold hedge، Shiller PE10 valuation، Volatility breakout، Regime adaptive، Cross-asset fusion، Orderflow proxy — الإجمالي **52 محركاً**.
+- **realdata.py** module جديد (v18.0): يتعرف على 4 صيغ CSV (Thai OHLCV، Shiller، Gold monthly، standard)، يحوّلها لـ bars، يتحقق من OHLC، ويستعرضها عبر API.
+- **SQLite v5** مع جدول `real_data_catalog` + طرق `record/list/stats`.
+- **API v18:** `GET /api/real-data`, `GET /api/real-data/catalog`.
+- **الاختبارات:** 152/152 (من 143) — 9 اختبارات حقيقية تثبت تحميل BTC/Shiller/Gold وتوليد إشارات على أسعار BTC الحقيقية.
+- **الصدق كما هو:** حتى على 3352 شمعة BTC + 153 سنة SP500، لم يتحقق أي 80% gate — `goal_established=false` دائماً. البيانات الحقيقية تكشف أن البساطة تتفوق أحياناً (momentum 58% vs analog 44% على AAPL).
+- **Tests:** 152/152. Signal engines: **52**; failure causes: **35**; real datasets: **10**.
+
+#### Lesson
+
+البيانات الحقيقية لا تخترع حافة — هي مرآة. لما ملأنا المختبر بأسعار BTC الحقيقية وجدنا نفس الحقيقة: السوق ليس لغزاً للـ AI يحله 80%، بل آلة تطحن الأوهام. القيمة الحقيقية لـ v18 ليست “أحسن برنامج توقع بالعالم” كشعار، بل أفضل مختبر يقول الحقيقة: يريك كل طريقة على بياناتك الحقيقية، بكل التكاليف والـ Wilson، ويحذف الطرق الميتة إلى الأبد. هذا هو “الأحسن” الوحيد الصادق.

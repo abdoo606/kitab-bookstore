@@ -46,9 +46,10 @@ import pipeline as pl
 import selfcorrect as sc
 import evolution as evo
 import diagnostics as diag
+import realdata
 from platformdb import MarketDatabase
 
-VERSION = "17.0"
+VERSION = "18.0"
 PAPER_WALLET = ml.new_paper_wallet()
 PAPER_WALLET_LOCK = threading.Lock()
 BOT_STATE_PATH = os.environ.get(
@@ -2075,7 +2076,7 @@ button.go{{margin-top:12px;background:var(--acc);color:#082f49;font-weight:700;b
 table{{width:100%;border-collapse:collapse}}td{{border-bottom:1px solid #334155;padding:8px;vertical-align:top}}
 .foot{{color:var(--mut);font-size:13px;margin-top:26px}}
 </style></head><body><div class="wrap">
-<h1>🗺️ TradeAtlas <small style="font-size:14px;color:var(--mut)">v{VERSION} · Genius Idea #14</small></h1>
+<h1>🗺️ TradeAtlas <small style="font-size:14px;color:var(--mut)">v{VERSION} · Real Data Infusion · 52 engines · 10 real datasets</small></h1>
 <p class="sub">An educational atlas of the world's best-known trading <b>strategies</b> and <b>analysis methods</b> —
 what each idea is, its classic textbook rules, how it fails, and the risk notes nobody should skip.</p>
 <div class="banner">⚠️ <b>Education only — not financial advice.</b> {html.escape(DISCLAIMER)}</div>
@@ -2394,7 +2395,7 @@ what each idea is, its classic textbook rules, how it fails, and the risk notes 
 <h2 style="margin-top:22px">Glossary</h2><div class="card"><table>{glossary}</table></div></section>
 
 <p class="foot">TradeAtlas v{VERSION} · educational/research reference · no bundled licensed live feed · mechanical conditions only · no broker links ·
-data API: <code>/api/strategies</code> · Market Lab: <code>GET /api/lab/spec</code>, <code>GET /api/lab/demo</code>, <code>POST /api/lab/analyze</code>, <code>POST /api/lab/watchlist</code>, <code>POST /api/lab/forecast</code> · goals: <code>GET /api/goals</code> · minute race: <code>POST /api/lab/minute-forecast</code> · per timeframe: snapshot (+minute/VWAP/ORB state), latest condition, 100-signal validation, walk-forward split, 44-engine tournament, equity curve · demo e-wallet: <code>GET /api/paper/wallet</code>, <code>POST /api/paper/deposit-simulated</code>, <code>POST /api/paper/deposit-balance-simulated</code>, <code>POST /api/paper/convert-balance-simulated</code>, <code>POST /api/paper/withdraw-simulated</code>, <code>POST /api/paper/external-balance</code> (user-reported own-account mirror only), <code>POST /api/paper/transfer-bot-simulated</code>, <code>POST /api/paper/follow</code>, <code>POST /api/paper/stop</code>, <code>POST /api/paper/follow-step</code> (simulation only; no real deposit/withdrawal) · halal paper bot: <code>GET /api/bot</code>, <code>POST /api/halal/screen</code>, <code>POST /api/bot/register-stock</code>, <code>POST /api/bot/status</code>, <code>POST /api/bot/step</code>, <code>POST /api/bot/stop</code> · database: <code>GET /api/db/stats</code>, <code>POST /api/db/import-current</code>, <code>POST /api/db/research</code>, <code>GET /api/db/leaderboard</code>, <code>POST /api/db/halal-profile</code> · Forecast Lab: analog history + 100-attempt hidden-future evaluation vs naive baselines (history, never prophecy) · calculator API: <code>/api/calc?kind=position&amp;account=10000&amp;risk_pct=1&amp;entry=50&amp;stop=47.5</code><br>
+data API: <code>/api/strategies</code> · Market Lab: <code>GET /api/lab/spec</code>, <code>GET /api/lab/demo</code>, <code>POST /api/lab/analyze</code>, <code>POST /api/lab/watchlist</code>, <code>POST /api/lab/forecast</code> · goals: <code>GET /api/goals</code> · minute race: <code>POST /api/lab/minute-forecast</code> · per timeframe: snapshot (+minute/VWAP/ORB state), latest condition, 100-signal validation, walk-forward split, 52-engine tournament, equity curve · demo e-wallet: <code>GET /api/paper/wallet</code>, <code>POST /api/paper/deposit-simulated</code>, <code>POST /api/paper/deposit-balance-simulated</code>, <code>POST /api/paper/convert-balance-simulated</code>, <code>POST /api/paper/withdraw-simulated</code>, <code>POST /api/paper/external-balance</code> (user-reported own-account mirror only), <code>POST /api/paper/transfer-bot-simulated</code>, <code>POST /api/paper/follow</code>, <code>POST /api/paper/stop</code>, <code>POST /api/paper/follow-step</code> (simulation only; no real deposit/withdrawal) · halal paper bot: <code>GET /api/bot</code>, <code>POST /api/halal/screen</code>, <code>POST /api/bot/register-stock</code>, <code>POST /api/bot/status</code>, <code>POST /api/bot/step</code>, <code>POST /api/bot/stop</code> · database: <code>GET /api/db/stats</code>, <code>POST /api/db/import-current</code>, <code>POST /api/db/research</code>, <code>GET /api/db/leaderboard</code>, <code>POST /api/db/halal-profile</code> · Forecast Lab: analog history + 100-attempt hidden-future evaluation vs naive baselines (history, never prophecy) · calculator API: <code>/api/calc?kind=position&amp;account=10000&amp;risk_pct=1&amp;entry=50&amp;stop=47.5</code><br>
 {html.escape(DISCLAIMER)}</p>
 </div>
 <script>
@@ -2621,6 +2622,15 @@ class Handler(BaseHTTPRequestHandler):
                 "disclaimer": DISCLAIMER,
             })
             return
+        elif path == "/api/real-data":
+            self._json(200, {"version": VERSION, "datasets": realdata.list_real_datasets(), "spec": realdata.realdata_spec()})
+        elif path == "/api/real-data/catalog":
+            try:
+                from platformdb import MarketDatabase
+                db = MarketDatabase(_db_path())
+                self._json(200, {"catalog": db.list_real_datasets(), "stats": db.real_data_stats()})
+            except Exception as e:
+                self._json(200, {"catalog": realdata.list_real_datasets(), "error": str(e)})
         elif path == "/api/evolution":
             # v17 evolution tracker
             with MARKET_DB_LOCK:

@@ -638,7 +638,7 @@
    },
    "strategy_tournament": {
     "ranked_by": "historical expectancy_pct_per_trade (descending), after the selected cost",
-    "engines_tested": 44,
+    "engines_tested": 52,
     "max_signals_each": 100,
     "engines": [
      {
@@ -655,6 +655,19 @@
       "historical_rank": 1
      },
      {
+      "strategy": "real_regime_adaptive",
+      "strategy_name": "Real Regime Adaptive (v18)",
+      "signals_tested": 5,
+      "accuracy_pct": 60.0,
+      "expectancy_pct_per_trade": 0.1416,
+      "average_net_return_pct": 0.1416,
+      "profit_factor": 1.6082,
+      "max_drawdown_pct": 0.9578,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 761,
+      "historical_rank": 2
+     },
+     {
       "strategy": "breakout_20",
       "strategy_name": "20-bar breakout",
       "signals_tested": 100,
@@ -665,7 +678,7 @@
       "max_drawdown_pct": 3.3452,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 35,
-      "historical_rank": 2
+      "historical_rank": 3
      },
      {
       "strategy": "coppock_trend",
@@ -678,7 +691,7 @@
       "max_drawdown_pct": 2.0628,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 37,
-      "historical_rank": 3
+      "historical_rank": 4
      },
      {
       "strategy": "adx_trend_strength",
@@ -691,7 +704,7 @@
       "max_drawdown_pct": 3.5783,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 43,
-      "historical_rank": 4
+      "historical_rank": 5
      },
      {
       "strategy": "aroon_trend",
@@ -704,7 +717,7 @@
       "max_drawdown_pct": 5.5337,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 57,
-      "historical_rank": 5
+      "historical_rank": 6
      },
      {
       "strategy": "omni_consensus",
@@ -717,7 +730,7 @@
       "max_drawdown_pct": 4.8231,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 5,
-      "historical_rank": 6
+      "historical_rank": 7
      },
      {
       "strategy": "trix_momentum",
@@ -730,7 +743,20 @@
       "max_drawdown_pct": 3.8108,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 56,
-      "historical_rank": 7
+      "historical_rank": 8
+     },
+     {
+      "strategy": "real_cross_asset",
+      "strategy_name": "Real Cross-Asset Momentum (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 50.0,
+      "expectancy_pct_per_trade": -0.006,
+      "average_net_return_pct": -0.006,
+      "profit_factor": 0.9651,
+      "max_drawdown_pct": 5.1435,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 5,
+      "historical_rank": 9
      },
      {
       "strategy": "cmo_momentum",
@@ -743,7 +769,7 @@
       "max_drawdown_pct": 5.4926,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 8
+      "historical_rank": 10
      },
      {
       "strategy": "ichimoku_cloud",
@@ -756,7 +782,7 @@
       "max_drawdown_pct": 7.8908,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 6,
-      "historical_rank": 9
+      "historical_rank": 11
      },
      {
       "strategy": "consensus",
@@ -769,7 +795,7 @@
       "max_drawdown_pct": 6.646,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 51,
-      "historical_rank": 10
+      "historical_rank": 12
      },
      {
       "strategy": "donchian_trend",
@@ -782,7 +808,7 @@
       "max_drawdown_pct": 5.8513,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 11
+      "historical_rank": 13
      },
      {
       "strategy": "ma_cross",
@@ -795,7 +821,20 @@
       "max_drawdown_pct": 4.701,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 51,
-      "historical_rank": 12
+      "historical_rank": 14
+     },
+     {
+      "strategy": "real_dxy_inversion",
+      "strategy_name": "Real DXY Inversion (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 45.0,
+      "expectancy_pct_per_trade": -0.0524,
+      "average_net_return_pct": -0.0524,
+      "profit_factor": 0.764,
+      "max_drawdown_pct": 8.5865,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 5,
+      "historical_rank": 15
      },
      {
       "strategy": "kaufman_trend",
@@ -808,7 +847,7 @@
       "max_drawdown_pct": 8.3794,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 13
+      "historical_rank": 16
      },
      {
       "strategy": "vortex_trend",
@@ -821,7 +860,7 @@
       "max_drawdown_pct": 8.07,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 14
+      "historical_rank": 17
      },
      {
       "strategy": "supertrend_flip",
@@ -834,7 +873,7 @@
       "max_drawdown_pct": 7.4411,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 61,
-      "historical_rank": 15
+      "historical_rank": 18
      },
      {
       "strategy": "minute_orb_breakout",
@@ -847,7 +886,7 @@
       "max_drawdown_pct": 8.151,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 225,
-      "historical_rank": 16
+      "historical_rank": 19
      },
      {
       "strategy": "atlas_phoenix_fusion",
@@ -860,7 +899,7 @@
       "max_drawdown_pct": 8.9585,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 6,
-      "historical_rank": 17
+      "historical_rank": 20
      },
      {
       "strategy": "regression_trend",
@@ -873,7 +912,7 @@
       "max_drawdown_pct": 10.6065,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 55,
-      "historical_rank": 18
+      "historical_rank": 21
      },
      {
       "strategy": "minute_volume_surge",
@@ -886,7 +925,20 @@
       "max_drawdown_pct": 9.9037,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 19
+      "historical_rank": 22
+     },
+     {
+      "strategy": "real_orderflow_proxy",
+      "strategy_name": "Real Orderflow Proxy (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 40.0,
+      "expectancy_pct_per_trade": -0.0874,
+      "average_net_return_pct": -0.0874,
+      "profit_factor": 0.6025,
+      "max_drawdown_pct": 9.9037,
+      "latest_condition": "long_condition",
+      "last_event_bars_ago": 2,
+      "historical_rank": 23
      },
      {
       "strategy": "atlas_pressure_wave",
@@ -899,7 +951,7 @@
       "max_drawdown_pct": 9.6278,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 20
+      "historical_rank": 24
      },
      {
       "strategy": "obv_flow_trend",
@@ -912,7 +964,20 @@
       "max_drawdown_pct": 9.9304,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 0,
-      "historical_rank": 21
+      "historical_rank": 25
+     },
+     {
+      "strategy": "real_sp500_valuation",
+      "strategy_name": "Real Shiller PE10 Valuation (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 42.0,
+      "expectancy_pct_per_trade": -0.1002,
+      "average_net_return_pct": -0.1002,
+      "profit_factor": 0.5871,
+      "max_drawdown_pct": 11.4095,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 54,
+      "historical_rank": 26
      },
      {
       "strategy": "minute_ema_ribbon",
@@ -925,7 +990,20 @@
       "max_drawdown_pct": 10.7245,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 58,
-      "historical_rank": 22
+      "historical_rank": 27
+     },
+     {
+      "strategy": "real_btc_momentum",
+      "strategy_name": "Real BTC Momentum (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 40.0,
+      "expectancy_pct_per_trade": -0.1006,
+      "average_net_return_pct": -0.1006,
+      "profit_factor": 0.5589,
+      "max_drawdown_pct": 10.7245,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 58,
+      "historical_rank": 28
      },
      {
       "strategy": "atlas_minute_pulse",
@@ -938,7 +1016,7 @@
       "max_drawdown_pct": 10.5994,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 6,
-      "historical_rank": 23
+      "historical_rank": 29
      },
      {
       "strategy": "entropy_trend",
@@ -951,7 +1029,7 @@
       "max_drawdown_pct": 12.0602,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 6,
-      "historical_rank": 24
+      "historical_rank": 30
      },
      {
       "strategy": "minute_squeeze_breakout",
@@ -964,7 +1042,20 @@
       "max_drawdown_pct": 10.9306,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 25
+      "historical_rank": 31
+     },
+     {
+      "strategy": "real_volatility_breakout",
+      "strategy_name": "Real Volatility Breakout (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 37.0,
+      "expectancy_pct_per_trade": -0.1063,
+      "average_net_return_pct": -0.1063,
+      "profit_factor": 0.5213,
+      "max_drawdown_pct": 10.9306,
+      "latest_condition": "long_condition",
+      "last_event_bars_ago": 1,
+      "historical_rank": 32
      },
      {
       "strategy": "rvi_trend",
@@ -977,7 +1068,7 @@
       "max_drawdown_pct": 10.5305,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 26
+      "historical_rank": 33
      },
      {
       "strategy": "hull_trend",
@@ -990,7 +1081,20 @@
       "max_drawdown_pct": 11.9719,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 27
+      "historical_rank": 34
+     },
+     {
+      "strategy": "real_gold_hedge",
+      "strategy_name": "Real Gold Safe-Haven (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 38.0,
+      "expectancy_pct_per_trade": -0.1204,
+      "average_net_return_pct": -0.1204,
+      "profit_factor": 0.5015,
+      "max_drawdown_pct": 11.9719,
+      "latest_condition": "long_condition",
+      "last_event_bars_ago": 2,
+      "historical_rank": 35
      },
      {
       "strategy": "atlas_regime_compass",
@@ -1003,7 +1107,7 @@
       "max_drawdown_pct": 11.599,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 28
+      "historical_rank": 36
      },
      {
       "strategy": "minute_rsi2_snapback",
@@ -1016,7 +1120,7 @@
       "max_drawdown_pct": 13.6691,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 29
+      "historical_rank": 37
      },
      {
       "strategy": "haar_wavelet",
@@ -1029,7 +1133,7 @@
       "max_drawdown_pct": 13.6222,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 44,
-      "historical_rank": 30
+      "historical_rank": 38
      },
      {
       "strategy": "tsi_momentum",
@@ -1042,7 +1146,7 @@
       "max_drawdown_pct": 12.8929,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 31
+      "historical_rank": 39
      },
      {
       "strategy": "minute_vwap_reversion",
@@ -1055,7 +1159,7 @@
       "max_drawdown_pct": 13.9459,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 61,
-      "historical_rank": 32
+      "historical_rank": 40
      },
      {
       "strategy": "macd_cross",
@@ -1068,7 +1172,7 @@
       "max_drawdown_pct": 15.2996,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 26,
-      "historical_rank": 33
+      "historical_rank": 41
      },
      {
       "strategy": "kst_momentum",
@@ -1081,7 +1185,7 @@
       "max_drawdown_pct": 14.1347,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 24,
-      "historical_rank": 34
+      "historical_rank": 42
      },
      {
       "strategy": "bollinger_mean_reversion",
@@ -1094,7 +1198,7 @@
       "max_drawdown_pct": 17.1143,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 33,
-      "historical_rank": 35
+      "historical_rank": 43
      },
      {
       "strategy": "schaff_cycle",
@@ -1107,7 +1211,7 @@
       "max_drawdown_pct": 18.1366,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 12,
-      "historical_rank": 36
+      "historical_rank": 44
      },
      {
       "strategy": "parabolic_sar_trend",
@@ -1120,7 +1224,7 @@
       "max_drawdown_pct": 17.1408,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 37
+      "historical_rank": 45
      },
      {
       "strategy": "williams_reversal",
@@ -1133,7 +1237,7 @@
       "max_drawdown_pct": 17.6412,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 38
+      "historical_rank": 46
      },
      {
       "strategy": "cci_reversal",
@@ -1146,7 +1250,7 @@
       "max_drawdown_pct": 17.8214,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 4,
-      "historical_rank": 39
+      "historical_rank": 47
      },
      {
       "strategy": "stochastic_reversal",
@@ -1159,7 +1263,7 @@
       "max_drawdown_pct": 19.5263,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 0,
-      "historical_rank": 40
+      "historical_rank": 48
      },
      {
       "strategy": "trend_pullback_rsi",
@@ -1172,7 +1276,7 @@
       "max_drawdown_pct": 14.0501,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 62,
-      "historical_rank": 41
+      "historical_rank": 49
      },
      {
       "strategy": "fisher_reversal",
@@ -1185,7 +1289,7 @@
       "max_drawdown_pct": 19.8141,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 42
+      "historical_rank": 50
      },
      {
       "strategy": "rsi_reversal",
@@ -1198,7 +1302,7 @@
       "max_drawdown_pct": 23.7521,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 28,
-      "historical_rank": 43
+      "historical_rank": 51
      },
      {
       "strategy": "ultimate_reversal",
@@ -1211,7 +1315,7 @@
       "max_drawdown_pct": 23.9266,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 56,
-      "historical_rank": 44
+      "historical_rank": 52
      }
     ],
     "warning": "The #1 row is the best fit to THIS sample and the most likely to be over-fit. Prefer engines that also survive the walk-forward split and fresh paper tracking."
@@ -1838,7 +1942,7 @@
    },
    "strategy_tournament": {
     "ranked_by": "historical expectancy_pct_per_trade (descending), after the selected cost",
-    "engines_tested": 44,
+    "engines_tested": 52,
     "max_signals_each": 100,
     "engines": [
      {
@@ -1855,6 +1959,19 @@
       "historical_rank": 1
      },
      {
+      "strategy": "real_regime_adaptive",
+      "strategy_name": "Real Regime Adaptive (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 63.0,
+      "expectancy_pct_per_trade": 0.2912,
+      "average_net_return_pct": 0.2912,
+      "profit_factor": 2.0883,
+      "max_drawdown_pct": 3.0822,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 15,
+      "historical_rank": 2
+     },
+     {
       "strategy": "ma_cross",
       "strategy_name": "EMA 20/50 cross",
       "signals_tested": 71,
@@ -1865,7 +1982,7 @@
       "max_drawdown_pct": 4.8387,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 25,
-      "historical_rank": 2
+      "historical_rank": 3
      },
      {
       "strategy": "breakout_20",
@@ -1878,7 +1995,20 @@
       "max_drawdown_pct": 3.7996,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 9,
-      "historical_rank": 3
+      "historical_rank": 4
+     },
+     {
+      "strategy": "real_sp500_valuation",
+      "strategy_name": "Real Shiller PE10 Valuation (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 53.0,
+      "expectancy_pct_per_trade": 0.1674,
+      "average_net_return_pct": 0.1674,
+      "profit_factor": 1.5677,
+      "max_drawdown_pct": 4.2343,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 19,
+      "historical_rank": 5
      },
      {
       "strategy": "haar_wavelet",
@@ -1891,7 +2021,7 @@
       "max_drawdown_pct": 5.8171,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 19,
-      "historical_rank": 4
+      "historical_rank": 6
      },
      {
       "strategy": "atlas_pressure_wave",
@@ -1904,7 +2034,7 @@
       "max_drawdown_pct": 5.7698,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 5
+      "historical_rank": 7
      },
      {
       "strategy": "atlas_regime_compass",
@@ -1917,7 +2047,7 @@
       "max_drawdown_pct": 5.8499,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 6
+      "historical_rank": 8
      },
      {
       "strategy": "entropy_trend",
@@ -1930,7 +2060,20 @@
       "max_drawdown_pct": 7.5607,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 7
+      "historical_rank": 9
+     },
+     {
+      "strategy": "real_dxy_inversion",
+      "strategy_name": "Real DXY Inversion (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 53.0,
+      "expectancy_pct_per_trade": 0.0838,
+      "average_net_return_pct": 0.0838,
+      "profit_factor": 1.2645,
+      "max_drawdown_pct": 4.9585,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 20,
+      "historical_rank": 10
      },
      {
       "strategy": "omni_consensus",
@@ -1943,7 +2086,20 @@
       "max_drawdown_pct": 7.8181,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 8
+      "historical_rank": 11
+     },
+     {
+      "strategy": "real_cross_asset",
+      "strategy_name": "Real Cross-Asset Momentum (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 51.0,
+      "expectancy_pct_per_trade": 0.0667,
+      "average_net_return_pct": 0.0667,
+      "profit_factor": 1.2054,
+      "max_drawdown_pct": 5.7296,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 20,
+      "historical_rank": 12
      },
      {
       "strategy": "consensus",
@@ -1956,7 +2112,7 @@
       "max_drawdown_pct": 7.1579,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 25,
-      "historical_rank": 9
+      "historical_rank": 13
      },
      {
       "strategy": "cmo_momentum",
@@ -1969,7 +2125,7 @@
       "max_drawdown_pct": 7.5596,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 20,
-      "historical_rank": 10
+      "historical_rank": 14
      },
      {
       "strategy": "minute_orb_breakout",
@@ -1982,7 +2138,7 @@
       "max_drawdown_pct": 8.4891,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 224,
-      "historical_rank": 11
+      "historical_rank": 15
      },
      {
       "strategy": "minute_ema_ribbon",
@@ -1995,7 +2151,20 @@
       "max_drawdown_pct": 8.0457,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 27,
-      "historical_rank": 12
+      "historical_rank": 16
+     },
+     {
+      "strategy": "real_btc_momentum",
+      "strategy_name": "Real BTC Momentum (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 48.0,
+      "expectancy_pct_per_trade": 0.0324,
+      "average_net_return_pct": 0.0324,
+      "profit_factor": 1.0908,
+      "max_drawdown_pct": 8.0457,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 27,
+      "historical_rank": 17
      },
      {
       "strategy": "coppock_trend",
@@ -2008,7 +2177,7 @@
       "max_drawdown_pct": 5.1791,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 20,
-      "historical_rank": 13
+      "historical_rank": 18
      },
      {
       "strategy": "atlas_phoenix_fusion",
@@ -2021,7 +2190,7 @@
       "max_drawdown_pct": 11.2188,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 22,
-      "historical_rank": 14
+      "historical_rank": 19
      },
      {
       "strategy": "adx_trend_strength",
@@ -2034,7 +2203,7 @@
       "max_drawdown_pct": 9.5115,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 16,
-      "historical_rank": 15
+      "historical_rank": 20
      },
      {
       "strategy": "trix_momentum",
@@ -2047,7 +2216,7 @@
       "max_drawdown_pct": 6.7411,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 39,
-      "historical_rank": 16
+      "historical_rank": 21
      },
      {
       "strategy": "regression_trend",
@@ -2060,7 +2229,7 @@
       "max_drawdown_pct": 5.2735,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 20,
-      "historical_rank": 17
+      "historical_rank": 22
      },
      {
       "strategy": "minute_volume_surge",
@@ -2073,7 +2242,20 @@
       "max_drawdown_pct": 7.8649,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 9,
-      "historical_rank": 18
+      "historical_rank": 23
+     },
+     {
+      "strategy": "real_orderflow_proxy",
+      "strategy_name": "Real Orderflow Proxy (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 56.0,
+      "expectancy_pct_per_trade": 0.019,
+      "average_net_return_pct": 0.019,
+      "profit_factor": 1.056,
+      "max_drawdown_pct": 7.8649,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 9,
+      "historical_rank": 24
      },
      {
       "strategy": "trend_pullback_rsi",
@@ -2086,7 +2268,7 @@
       "max_drawdown_pct": 5.7717,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 158,
-      "historical_rank": 19
+      "historical_rank": 25
      },
      {
       "strategy": "minute_rsi2_snapback",
@@ -2099,7 +2281,7 @@
       "max_drawdown_pct": 8.2218,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 51,
-      "historical_rank": 20
+      "historical_rank": 26
      },
      {
       "strategy": "supertrend_flip",
@@ -2112,7 +2294,7 @@
       "max_drawdown_pct": 13.0803,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 41,
-      "historical_rank": 21
+      "historical_rank": 27
      },
      {
       "strategy": "atlas_minute_pulse",
@@ -2125,7 +2307,7 @@
       "max_drawdown_pct": 10.5727,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 22
+      "historical_rank": 28
      },
      {
       "strategy": "minute_squeeze_breakout",
@@ -2138,7 +2320,20 @@
       "max_drawdown_pct": 8.4385,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 68,
-      "historical_rank": 23
+      "historical_rank": 29
+     },
+     {
+      "strategy": "real_volatility_breakout",
+      "strategy_name": "Real Volatility Breakout (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 53.0,
+      "expectancy_pct_per_trade": -0.0251,
+      "average_net_return_pct": -0.0251,
+      "profit_factor": 0.9268,
+      "max_drawdown_pct": 8.4385,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 68,
+      "historical_rank": 30
      },
      {
       "strategy": "aroon_trend",
@@ -2151,7 +2346,7 @@
       "max_drawdown_pct": 8.3891,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 20,
-      "historical_rank": 24
+      "historical_rank": 31
      },
      {
       "strategy": "ichimoku_cloud",
@@ -2164,7 +2359,7 @@
       "max_drawdown_pct": 11.7053,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 20,
-      "historical_rank": 25
+      "historical_rank": 32
      },
      {
       "strategy": "obv_flow_trend",
@@ -2177,7 +2372,7 @@
       "max_drawdown_pct": 14.294,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 20,
-      "historical_rank": 26
+      "historical_rank": 33
      },
      {
       "strategy": "kaufman_trend",
@@ -2190,7 +2385,7 @@
       "max_drawdown_pct": 17.6114,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 28,
-      "historical_rank": 27
+      "historical_rank": 34
      },
      {
       "strategy": "rvi_trend",
@@ -2203,7 +2398,7 @@
       "max_drawdown_pct": 12.8023,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 28
+      "historical_rank": 35
      },
      {
       "strategy": "minute_vwap_reversion",
@@ -2216,7 +2411,7 @@
       "max_drawdown_pct": 13.0235,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 28,
-      "historical_rank": 29
+      "historical_rank": 36
      },
      {
       "strategy": "parabolic_sar_trend",
@@ -2229,7 +2424,7 @@
       "max_drawdown_pct": 15.3752,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 30
+      "historical_rank": 37
      },
      {
       "strategy": "vortex_trend",
@@ -2242,7 +2437,7 @@
       "max_drawdown_pct": 19.2315,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 26,
-      "historical_rank": 31
+      "historical_rank": 38
      },
      {
       "strategy": "donchian_trend",
@@ -2255,7 +2450,7 @@
       "max_drawdown_pct": 21.9175,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 28,
-      "historical_rank": 32
+      "historical_rank": 39
      },
      {
       "strategy": "kst_momentum",
@@ -2268,7 +2463,7 @@
       "max_drawdown_pct": 20.8754,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 26,
-      "historical_rank": 33
+      "historical_rank": 40
      },
      {
       "strategy": "cci_reversal",
@@ -2281,7 +2476,7 @@
       "max_drawdown_pct": 19.8917,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 4,
-      "historical_rank": 34
+      "historical_rank": 41
      },
      {
       "strategy": "hull_trend",
@@ -2294,7 +2489,20 @@
       "max_drawdown_pct": 25.759,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 35
+      "historical_rank": 42
+     },
+     {
+      "strategy": "real_gold_hedge",
+      "strategy_name": "Real Gold Safe-Haven (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 42.0,
+      "expectancy_pct_per_trade": -0.2379,
+      "average_net_return_pct": -0.2379,
+      "profit_factor": 0.5208,
+      "max_drawdown_pct": 25.759,
+      "latest_condition": "long_condition",
+      "last_event_bars_ago": 3,
+      "historical_rank": 43
      },
      {
       "strategy": "stochastic_reversal",
@@ -2307,7 +2515,7 @@
       "max_drawdown_pct": 23.2437,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 5,
-      "historical_rank": 36
+      "historical_rank": 44
      },
      {
       "strategy": "schaff_cycle",
@@ -2320,7 +2528,7 @@
       "max_drawdown_pct": 27.7735,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 0,
-      "historical_rank": 37
+      "historical_rank": 45
      },
      {
       "strategy": "tsi_momentum",
@@ -2333,7 +2541,7 @@
       "max_drawdown_pct": 27.3751,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 22,
-      "historical_rank": 38
+      "historical_rank": 46
      },
      {
       "strategy": "williams_reversal",
@@ -2346,7 +2554,7 @@
       "max_drawdown_pct": 25.4293,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 4,
-      "historical_rank": 39
+      "historical_rank": 47
      },
      {
       "strategy": "macd_cross",
@@ -2359,7 +2567,7 @@
       "max_drawdown_pct": 27.4556,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 40
+      "historical_rank": 48
      },
      {
       "strategy": "bollinger_mean_reversion",
@@ -2372,7 +2580,7 @@
       "max_drawdown_pct": 27.1543,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 18,
-      "historical_rank": 41
+      "historical_rank": 49
      },
      {
       "strategy": "fisher_reversal",
@@ -2385,7 +2593,7 @@
       "max_drawdown_pct": 29.2017,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 4,
-      "historical_rank": 42
+      "historical_rank": 50
      },
      {
       "strategy": "ultimate_reversal",
@@ -2398,7 +2606,7 @@
       "max_drawdown_pct": 33.6308,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 15,
-      "historical_rank": 43
+      "historical_rank": 51
      },
      {
       "strategy": "rsi_reversal",
@@ -2411,7 +2619,7 @@
       "max_drawdown_pct": 38.361,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 4,
-      "historical_rank": 44
+      "historical_rank": 52
      }
     ],
     "warning": "The #1 row is the best fit to THIS sample and the most likely to be over-fit. Prefer engines that also survive the walk-forward split and fresh paper tracking."
@@ -3037,7 +3245,7 @@
    },
    "strategy_tournament": {
     "ranked_by": "historical expectancy_pct_per_trade (descending), after the selected cost",
-    "engines_tested": 44,
+    "engines_tested": 52,
     "max_signals_each": 100,
     "engines": [
      {
@@ -3054,6 +3262,19 @@
       "historical_rank": 1
      },
      {
+      "strategy": "real_regime_adaptive",
+      "strategy_name": "Real Regime Adaptive (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 57.0,
+      "expectancy_pct_per_trade": 0.2201,
+      "average_net_return_pct": 0.2201,
+      "profit_factor": 1.5633,
+      "max_drawdown_pct": 6.8673,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 23,
+      "historical_rank": 2
+     },
+     {
       "strategy": "atlas_pressure_wave",
       "strategy_name": "Atlas Pressure Wave (TradeAtlas v13)",
       "signals_tested": 100,
@@ -3064,7 +3285,7 @@
       "max_drawdown_pct": 7.3022,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 2
+      "historical_rank": 3
      },
      {
       "strategy": "coppock_trend",
@@ -3077,7 +3298,7 @@
       "max_drawdown_pct": 8.6077,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 19,
-      "historical_rank": 3
+      "historical_rank": 4
      },
      {
       "strategy": "minute_vwap_reversion",
@@ -3090,7 +3311,20 @@
       "max_drawdown_pct": 8.4474,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 74,
-      "historical_rank": 4
+      "historical_rank": 5
+     },
+     {
+      "strategy": "real_dxy_inversion",
+      "strategy_name": "Real DXY Inversion (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 51.0,
+      "expectancy_pct_per_trade": 0.0606,
+      "average_net_return_pct": 0.0606,
+      "profit_factor": 1.1368,
+      "max_drawdown_pct": 8.6835,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 62,
+      "historical_rank": 6
      },
      {
       "strategy": "regression_trend",
@@ -3103,7 +3337,7 @@
       "max_drawdown_pct": 12.4909,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 5,
-      "historical_rank": 5
+      "historical_rank": 7
      },
      {
       "strategy": "consensus",
@@ -3116,7 +3350,7 @@
       "max_drawdown_pct": 13.1292,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 66,
-      "historical_rank": 6
+      "historical_rank": 8
      },
      {
       "strategy": "breakout_20",
@@ -3129,7 +3363,7 @@
       "max_drawdown_pct": 14.7705,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 21,
-      "historical_rank": 7
+      "historical_rank": 9
      },
      {
       "strategy": "cmo_momentum",
@@ -3142,7 +3376,7 @@
       "max_drawdown_pct": 14.7774,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 8
+      "historical_rank": 10
      },
      {
       "strategy": "trend_pullback_rsi",
@@ -3155,7 +3389,7 @@
       "max_drawdown_pct": 18.152,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 14,
-      "historical_rank": 9
+      "historical_rank": 11
      },
      {
       "strategy": "tsi_momentum",
@@ -3168,7 +3402,7 @@
       "max_drawdown_pct": 11.0877,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 10
+      "historical_rank": 12
      },
      {
       "strategy": "adx_trend_strength",
@@ -3181,7 +3415,7 @@
       "max_drawdown_pct": 14.2278,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 51,
-      "historical_rank": 11
+      "historical_rank": 13
      },
      {
       "strategy": "supertrend_flip",
@@ -3194,7 +3428,7 @@
       "max_drawdown_pct": 9.3533,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 23,
-      "historical_rank": 12
+      "historical_rank": 14
      },
      {
       "strategy": "donchian_trend",
@@ -3207,7 +3441,7 @@
       "max_drawdown_pct": 14.58,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 6,
-      "historical_rank": 13
+      "historical_rank": 15
      },
      {
       "strategy": "kst_momentum",
@@ -3220,7 +3454,7 @@
       "max_drawdown_pct": 12.7392,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 29,
-      "historical_rank": 14
+      "historical_rank": 16
      },
      {
       "strategy": "aroon_trend",
@@ -3233,7 +3467,7 @@
       "max_drawdown_pct": 13.1543,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 18,
-      "historical_rank": 15
+      "historical_rank": 17
      },
      {
       "strategy": "ma_cross",
@@ -3246,7 +3480,7 @@
       "max_drawdown_pct": 21.1317,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 66,
-      "historical_rank": 16
+      "historical_rank": 18
      },
      {
       "strategy": "vortex_trend",
@@ -3259,7 +3493,7 @@
       "max_drawdown_pct": 9.9539,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 17
+      "historical_rank": 19
      },
      {
       "strategy": "kaufman_trend",
@@ -3272,7 +3506,7 @@
       "max_drawdown_pct": 14.7961,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 18
+      "historical_rank": 20
      },
      {
       "strategy": "trix_momentum",
@@ -3285,7 +3519,7 @@
       "max_drawdown_pct": 18.5866,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 85,
-      "historical_rank": 19
+      "historical_rank": 21
      },
      {
       "strategy": "minute_squeeze_breakout",
@@ -3298,7 +3532,20 @@
       "max_drawdown_pct": 18.1434,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 20
+      "historical_rank": 22
+     },
+     {
+      "strategy": "real_volatility_breakout",
+      "strategy_name": "Real Volatility Breakout (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 44.0,
+      "expectancy_pct_per_trade": -0.1059,
+      "average_net_return_pct": -0.1059,
+      "profit_factor": 0.8146,
+      "max_drawdown_pct": 18.1434,
+      "latest_condition": "long_condition",
+      "last_event_bars_ago": 3,
+      "historical_rank": 23
      },
      {
       "strategy": "omni_consensus",
@@ -3311,7 +3558,7 @@
       "max_drawdown_pct": 26.9174,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 10,
-      "historical_rank": 21
+      "historical_rank": 24
      },
      {
       "strategy": "ichimoku_cloud",
@@ -3324,7 +3571,7 @@
       "max_drawdown_pct": 14.8927,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 22
+      "historical_rank": 25
      },
      {
       "strategy": "obv_flow_trend",
@@ -3337,7 +3584,7 @@
       "max_drawdown_pct": 23.1028,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 16,
-      "historical_rank": 23
+      "historical_rank": 26
      },
      {
       "strategy": "atlas_regime_compass",
@@ -3350,7 +3597,7 @@
       "max_drawdown_pct": 18.9234,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 24
+      "historical_rank": 27
      },
      {
       "strategy": "atlas_phoenix_fusion",
@@ -3363,7 +3610,20 @@
       "max_drawdown_pct": 14.0031,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 25
+      "historical_rank": 28
+     },
+     {
+      "strategy": "real_sp500_valuation",
+      "strategy_name": "Real Shiller PE10 Valuation (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 41.0,
+      "expectancy_pct_per_trade": -0.1373,
+      "average_net_return_pct": -0.1373,
+      "profit_factor": 0.7834,
+      "max_drawdown_pct": 22.456,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 5,
+      "historical_rank": 29
      },
      {
       "strategy": "entropy_trend",
@@ -3376,7 +3636,7 @@
       "max_drawdown_pct": 22.3936,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 13,
-      "historical_rank": 26
+      "historical_rank": 30
      },
      {
       "strategy": "rvi_trend",
@@ -3389,7 +3649,7 @@
       "max_drawdown_pct": 20.1671,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 0,
-      "historical_rank": 27
+      "historical_rank": 31
      },
      {
       "strategy": "hull_trend",
@@ -3402,7 +3662,20 @@
       "max_drawdown_pct": 16.6809,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 28
+      "historical_rank": 32
+     },
+     {
+      "strategy": "real_gold_hedge",
+      "strategy_name": "Real Gold Safe-Haven (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 45.0,
+      "expectancy_pct_per_trade": -0.1522,
+      "average_net_return_pct": -0.1522,
+      "profit_factor": 0.7442,
+      "max_drawdown_pct": 16.6809,
+      "latest_condition": "long_condition",
+      "last_event_bars_ago": 3,
+      "historical_rank": 33
      },
      {
       "strategy": "fisher_reversal",
@@ -3415,7 +3688,7 @@
       "max_drawdown_pct": 18.6468,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 4,
-      "historical_rank": 29
+      "historical_rank": 34
      },
      {
       "strategy": "haar_wavelet",
@@ -3428,7 +3701,7 @@
       "max_drawdown_pct": 25.7993,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 10,
-      "historical_rank": 30
+      "historical_rank": 35
      },
      {
       "strategy": "minute_rsi2_snapback",
@@ -3441,7 +3714,20 @@
       "max_drawdown_pct": 28.4129,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 24,
-      "historical_rank": 31
+      "historical_rank": 36
+     },
+     {
+      "strategy": "real_cross_asset",
+      "strategy_name": "Real Cross-Asset Momentum (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 48.0,
+      "expectancy_pct_per_trade": -0.1915,
+      "average_net_return_pct": -0.1915,
+      "profit_factor": 0.6913,
+      "max_drawdown_pct": 27.1065,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 7,
+      "historical_rank": 37
      },
      {
       "strategy": "atlas_minute_pulse",
@@ -3454,7 +3740,7 @@
       "max_drawdown_pct": 25.3965,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 14,
-      "historical_rank": 32
+      "historical_rank": 38
      },
      {
       "strategy": "rsi_reversal",
@@ -3467,7 +3753,7 @@
       "max_drawdown_pct": 21.2674,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 27,
-      "historical_rank": 33
+      "historical_rank": 39
      },
      {
       "strategy": "minute_ema_ribbon",
@@ -3480,7 +3766,20 @@
       "max_drawdown_pct": 23.5546,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 13,
-      "historical_rank": 34
+      "historical_rank": 40
+     },
+     {
+      "strategy": "real_btc_momentum",
+      "strategy_name": "Real BTC Momentum (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 43.0,
+      "expectancy_pct_per_trade": -0.2077,
+      "average_net_return_pct": -0.2077,
+      "profit_factor": 0.6758,
+      "max_drawdown_pct": 23.5546,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 13,
+      "historical_rank": 41
      },
      {
       "strategy": "minute_orb_breakout",
@@ -3493,7 +3792,7 @@
       "max_drawdown_pct": 22.8236,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 69,
-      "historical_rank": 35
+      "historical_rank": 42
      },
      {
       "strategy": "macd_cross",
@@ -3506,7 +3805,7 @@
       "max_drawdown_pct": 23.762,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 29,
-      "historical_rank": 36
+      "historical_rank": 43
      },
      {
       "strategy": "schaff_cycle",
@@ -3519,7 +3818,7 @@
       "max_drawdown_pct": 26.541,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 29,
-      "historical_rank": 37
+      "historical_rank": 44
      },
      {
       "strategy": "stochastic_reversal",
@@ -3532,7 +3831,7 @@
       "max_drawdown_pct": 25.5126,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 38
+      "historical_rank": 45
      },
      {
       "strategy": "ultimate_reversal",
@@ -3545,7 +3844,7 @@
       "max_drawdown_pct": 25.6777,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 29,
-      "historical_rank": 39
+      "historical_rank": 46
      },
      {
       "strategy": "williams_reversal",
@@ -3558,7 +3857,7 @@
       "max_drawdown_pct": 28.8819,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 40
+      "historical_rank": 47
      },
      {
       "strategy": "cci_reversal",
@@ -3571,7 +3870,7 @@
       "max_drawdown_pct": 25.7796,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 17,
-      "historical_rank": 41
+      "historical_rank": 48
      },
      {
       "strategy": "parabolic_sar_trend",
@@ -3584,7 +3883,7 @@
       "max_drawdown_pct": 25.7915,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 42
+      "historical_rank": 49
      },
      {
       "strategy": "bollinger_mean_reversion",
@@ -3597,7 +3896,7 @@
       "max_drawdown_pct": 35.7488,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 42,
-      "historical_rank": 43
+      "historical_rank": 50
      },
      {
       "strategy": "minute_volume_surge",
@@ -3610,7 +3909,20 @@
       "max_drawdown_pct": 44.2215,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 6,
-      "historical_rank": 44
+      "historical_rank": 51
+     },
+     {
+      "strategy": "real_orderflow_proxy",
+      "strategy_name": "Real Orderflow Proxy (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 33.0,
+      "expectancy_pct_per_trade": -0.5721,
+      "average_net_return_pct": -0.5721,
+      "profit_factor": 0.3545,
+      "max_drawdown_pct": 44.2215,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 6,
+      "historical_rank": 52
      }
     ],
     "warning": "The #1 row is the best fit to THIS sample and the most likely to be over-fit. Prefer engines that also survive the walk-forward split and fresh paper tracking."
@@ -4237,7 +4549,7 @@
    },
    "strategy_tournament": {
     "ranked_by": "historical expectancy_pct_per_trade (descending), after the selected cost",
-    "engines_tested": 44,
+    "engines_tested": 52,
     "max_signals_each": 100,
     "engines": [
      {
@@ -4280,6 +4592,19 @@
       "historical_rank": 3
      },
      {
+      "strategy": "real_btc_momentum",
+      "strategy_name": "Real BTC Momentum (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 56.0,
+      "expectancy_pct_per_trade": 0.3087,
+      "average_net_return_pct": 0.3087,
+      "profit_factor": 1.3442,
+      "max_drawdown_pct": 13.9306,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 10,
+      "historical_rank": 4
+     },
+     {
       "strategy": "haar_wavelet",
       "strategy_name": "Haar wavelet multiscale trend",
       "signals_tested": 100,
@@ -4290,7 +4615,7 @@
       "max_drawdown_pct": 18.0914,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 4
+      "historical_rank": 5
      },
      {
       "strategy": "minute_rsi2_snapback",
@@ -4303,7 +4628,7 @@
       "max_drawdown_pct": 20.5845,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 12,
-      "historical_rank": 5
+      "historical_rank": 6
      },
      {
       "strategy": "atlas_minute_pulse",
@@ -4316,7 +4641,7 @@
       "max_drawdown_pct": 19.0993,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 6
+      "historical_rank": 7
      },
      {
       "strategy": "aroon_trend",
@@ -4329,7 +4654,7 @@
       "max_drawdown_pct": 16.4211,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 7
+      "historical_rank": 8
      },
      {
       "strategy": "williams_reversal",
@@ -4342,7 +4667,20 @@
       "max_drawdown_pct": 28.4468,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 4,
-      "historical_rank": 8
+      "historical_rank": 9
+     },
+     {
+      "strategy": "real_dxy_inversion",
+      "strategy_name": "Real DXY Inversion (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 52.0,
+      "expectancy_pct_per_trade": 0.1205,
+      "average_net_return_pct": 0.1205,
+      "profit_factor": 1.1166,
+      "max_drawdown_pct": 21.5468,
+      "latest_condition": "short_condition",
+      "last_event_bars_ago": 1,
+      "historical_rank": 10
      },
      {
       "strategy": "ma_cross",
@@ -4355,7 +4693,20 @@
       "max_drawdown_pct": 18.0438,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 38,
-      "historical_rank": 9
+      "historical_rank": 11
+     },
+     {
+      "strategy": "real_sp500_valuation",
+      "strategy_name": "Real Shiller PE10 Valuation (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 52.0,
+      "expectancy_pct_per_trade": 0.1021,
+      "average_net_return_pct": 0.1021,
+      "profit_factor": 1.1068,
+      "max_drawdown_pct": 16.5093,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 5,
+      "historical_rank": 12
      },
      {
       "strategy": "minute_vwap_reversion",
@@ -4368,7 +4719,7 @@
       "max_drawdown_pct": 15.313,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 30,
-      "historical_rank": 10
+      "historical_rank": 13
      },
      {
       "strategy": "minute_squeeze_breakout",
@@ -4381,7 +4732,20 @@
       "max_drawdown_pct": 23.9289,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 11
+      "historical_rank": 14
+     },
+     {
+      "strategy": "real_volatility_breakout",
+      "strategy_name": "Real Volatility Breakout (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 51.0,
+      "expectancy_pct_per_trade": 0.0915,
+      "average_net_return_pct": 0.0915,
+      "profit_factor": 1.0816,
+      "max_drawdown_pct": 23.9289,
+      "latest_condition": "short_condition",
+      "last_event_bars_ago": 1,
+      "historical_rank": 15
      },
      {
       "strategy": "ichimoku_cloud",
@@ -4394,7 +4758,7 @@
       "max_drawdown_pct": 24.059,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 10,
-      "historical_rank": 12
+      "historical_rank": 16
      },
      {
       "strategy": "cci_reversal",
@@ -4407,7 +4771,7 @@
       "max_drawdown_pct": 26.2227,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 13
+      "historical_rank": 17
      },
      {
       "strategy": "coppock_trend",
@@ -4420,7 +4784,7 @@
       "max_drawdown_pct": 23.8291,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 14
+      "historical_rank": 18
      },
      {
       "strategy": "kalman_trend",
@@ -4433,7 +4797,20 @@
       "max_drawdown_pct": 23.3312,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 5,
-      "historical_rank": 15
+      "historical_rank": 19
+     },
+     {
+      "strategy": "real_regime_adaptive",
+      "strategy_name": "Real Regime Adaptive (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 46.0,
+      "expectancy_pct_per_trade": 0.0509,
+      "average_net_return_pct": 0.0509,
+      "profit_factor": 1.0531,
+      "max_drawdown_pct": 23.3312,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 5,
+      "historical_rank": 20
      },
      {
       "strategy": "rvi_trend",
@@ -4446,7 +4823,7 @@
       "max_drawdown_pct": 22.8013,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 16
+      "historical_rank": 21
      },
      {
       "strategy": "trix_momentum",
@@ -4459,7 +4836,7 @@
       "max_drawdown_pct": 27.9688,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 37,
-      "historical_rank": 17
+      "historical_rank": 22
      },
      {
       "strategy": "obv_flow_trend",
@@ -4472,7 +4849,7 @@
       "max_drawdown_pct": 19.9057,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 18
+      "historical_rank": 23
      },
      {
       "strategy": "breakout_20",
@@ -4485,7 +4862,7 @@
       "max_drawdown_pct": 23.2993,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 20,
-      "historical_rank": 19
+      "historical_rank": 24
      },
      {
       "strategy": "schaff_cycle",
@@ -4498,7 +4875,7 @@
       "max_drawdown_pct": 19.6064,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 20
+      "historical_rank": 25
      },
      {
       "strategy": "kst_momentum",
@@ -4511,7 +4888,7 @@
       "max_drawdown_pct": 18.9728,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 13,
-      "historical_rank": 21
+      "historical_rank": 26
      },
      {
       "strategy": "stochastic_reversal",
@@ -4524,7 +4901,7 @@
       "max_drawdown_pct": 40.7415,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 4,
-      "historical_rank": 22
+      "historical_rank": 27
      },
      {
       "strategy": "cmo_momentum",
@@ -4537,7 +4914,7 @@
       "max_drawdown_pct": 35.0467,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 11,
-      "historical_rank": 23
+      "historical_rank": 28
      },
      {
       "strategy": "macd_cross",
@@ -4550,7 +4927,7 @@
       "max_drawdown_pct": 22.8214,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 4,
-      "historical_rank": 24
+      "historical_rank": 29
      },
      {
       "strategy": "hull_trend",
@@ -4563,7 +4940,33 @@
       "max_drawdown_pct": 23.1171,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 25
+      "historical_rank": 30
+     },
+     {
+      "strategy": "real_gold_hedge",
+      "strategy_name": "Real Gold Safe-Haven (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 51.0,
+      "expectancy_pct_per_trade": -0.144,
+      "average_net_return_pct": -0.144,
+      "profit_factor": 0.8787,
+      "max_drawdown_pct": 23.1171,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 7,
+      "historical_rank": 31
+     },
+     {
+      "strategy": "real_cross_asset",
+      "strategy_name": "Real Cross-Asset Momentum (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 50.0,
+      "expectancy_pct_per_trade": -0.1491,
+      "average_net_return_pct": -0.1491,
+      "profit_factor": 0.8748,
+      "max_drawdown_pct": 25.5125,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 7,
+      "historical_rank": 32
      },
      {
       "strategy": "atlas_phoenix_fusion",
@@ -4576,7 +4979,7 @@
       "max_drawdown_pct": 26.6758,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 26
+      "historical_rank": 33
      },
      {
       "strategy": "omni_consensus",
@@ -4589,7 +4992,7 @@
       "max_drawdown_pct": 20.4928,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 27
+      "historical_rank": 34
      },
      {
       "strategy": "entropy_trend",
@@ -4602,7 +5005,7 @@
       "max_drawdown_pct": 29.7504,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 28
+      "historical_rank": 35
      },
      {
       "strategy": "adx_trend_strength",
@@ -4615,7 +5018,7 @@
       "max_drawdown_pct": 32.1586,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 29
+      "historical_rank": 36
      },
      {
       "strategy": "regression_trend",
@@ -4628,7 +5031,7 @@
       "max_drawdown_pct": 32.7232,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 30
+      "historical_rank": 37
      },
      {
       "strategy": "kaufman_trend",
@@ -4641,7 +5044,7 @@
       "max_drawdown_pct": 40.5876,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 9,
-      "historical_rank": 31
+      "historical_rank": 38
      },
      {
       "strategy": "rsi_reversal",
@@ -4654,7 +5057,7 @@
       "max_drawdown_pct": 43.4121,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 149,
-      "historical_rank": 32
+      "historical_rank": 39
      },
      {
       "strategy": "tsi_momentum",
@@ -4667,7 +5070,7 @@
       "max_drawdown_pct": 35.1376,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 0,
-      "historical_rank": 33
+      "historical_rank": 40
      },
      {
       "strategy": "atlas_pressure_wave",
@@ -4680,7 +5083,7 @@
       "max_drawdown_pct": 36.0435,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 34
+      "historical_rank": 41
      },
      {
       "strategy": "fisher_reversal",
@@ -4693,7 +5096,7 @@
       "max_drawdown_pct": 43.9522,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 8,
-      "historical_rank": 35
+      "historical_rank": 42
      },
      {
       "strategy": "atlas_regime_compass",
@@ -4706,7 +5109,7 @@
       "max_drawdown_pct": 40.3502,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 36
+      "historical_rank": 43
      },
      {
       "strategy": "vortex_trend",
@@ -4719,7 +5122,7 @@
       "max_drawdown_pct": 40.5565,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 4,
-      "historical_rank": 37
+      "historical_rank": 44
      },
      {
       "strategy": "bollinger_mean_reversion",
@@ -4732,7 +5135,7 @@
       "max_drawdown_pct": 49.5994,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 10,
-      "historical_rank": 38
+      "historical_rank": 45
      },
      {
       "strategy": "donchian_trend",
@@ -4745,7 +5148,7 @@
       "max_drawdown_pct": 43.4571,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 39
+      "historical_rank": 46
      },
      {
       "strategy": "parabolic_sar_trend",
@@ -4758,7 +5161,7 @@
       "max_drawdown_pct": 54.1864,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 40
+      "historical_rank": 47
      },
      {
       "strategy": "minute_volume_surge",
@@ -4771,7 +5174,20 @@
       "max_drawdown_pct": 45.5993,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 41
+      "historical_rank": 48
+     },
+     {
+      "strategy": "real_orderflow_proxy",
+      "strategy_name": "Real Orderflow Proxy (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 45.0,
+      "expectancy_pct_per_trade": -0.5246,
+      "average_net_return_pct": -0.5246,
+      "profit_factor": 0.6409,
+      "max_drawdown_pct": 45.5993,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 7,
+      "historical_rank": 49
      },
      {
       "strategy": "ultimate_reversal",
@@ -4784,7 +5200,7 @@
       "max_drawdown_pct": 49.4112,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 106,
-      "historical_rank": 42
+      "historical_rank": 50
      },
      {
       "strategy": "supertrend_flip",
@@ -4797,7 +5213,7 @@
       "max_drawdown_pct": 54.2656,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 40,
-      "historical_rank": 43
+      "historical_rank": 51
      },
      {
       "strategy": "minute_orb_breakout",
@@ -4810,7 +5226,7 @@
       "max_drawdown_pct": 0.0,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": null,
-      "historical_rank": 44
+      "historical_rank": 52
      }
     ],
     "warning": "The #1 row is the best fit to THIS sample and the most likely to be over-fit. Prefer engines that also survive the walk-forward split and fresh paper tracking."
@@ -5437,7 +5853,7 @@
    },
    "strategy_tournament": {
     "ranked_by": "historical expectancy_pct_per_trade (descending), after the selected cost",
-    "engines_tested": 44,
+    "engines_tested": 52,
     "max_signals_each": 100,
     "engines": [
      {
@@ -5532,6 +5948,19 @@
       "historical_rank": 7
      },
      {
+      "strategy": "real_sp500_valuation",
+      "strategy_name": "Real Shiller PE10 Valuation (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 58.0,
+      "expectancy_pct_per_trade": 0.7696,
+      "average_net_return_pct": 0.7696,
+      "profit_factor": 1.4125,
+      "max_drawdown_pct": 21.1734,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 32,
+      "historical_rank": 8
+     },
+     {
       "strategy": "ma_cross",
       "strategy_name": "EMA 20/50 cross",
       "signals_tested": 82,
@@ -5542,7 +5971,20 @@
       "max_drawdown_pct": 23.9748,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 77,
-      "historical_rank": 8
+      "historical_rank": 9
+     },
+     {
+      "strategy": "real_dxy_inversion",
+      "strategy_name": "Real DXY Inversion (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 54.0,
+      "expectancy_pct_per_trade": 0.7176,
+      "average_net_return_pct": 0.7176,
+      "profit_factor": 1.4116,
+      "max_drawdown_pct": 26.2667,
+      "latest_condition": "short_condition",
+      "last_event_bars_ago": 3,
+      "historical_rank": 10
      },
      {
       "strategy": "trix_momentum",
@@ -5555,7 +5997,7 @@
       "max_drawdown_pct": 33.3897,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 89,
-      "historical_rank": 9
+      "historical_rank": 11
      },
      {
       "strategy": "minute_ema_ribbon",
@@ -5568,7 +6010,20 @@
       "max_drawdown_pct": 24.9862,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 39,
-      "historical_rank": 10
+      "historical_rank": 12
+     },
+     {
+      "strategy": "real_btc_momentum",
+      "strategy_name": "Real BTC Momentum (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 54.0,
+      "expectancy_pct_per_trade": 0.4611,
+      "average_net_return_pct": 0.4611,
+      "profit_factor": 1.2424,
+      "max_drawdown_pct": 24.9862,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 39,
+      "historical_rank": 13
      },
      {
       "strategy": "cmo_momentum",
@@ -5581,7 +6036,7 @@
       "max_drawdown_pct": 45.0119,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 11
+      "historical_rank": 14
      },
      {
       "strategy": "tsi_momentum",
@@ -5594,7 +6049,7 @@
       "max_drawdown_pct": 38.0419,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 12,
-      "historical_rank": 12
+      "historical_rank": 15
      },
      {
       "strategy": "coppock_trend",
@@ -5607,7 +6062,7 @@
       "max_drawdown_pct": 43.2577,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 32,
-      "historical_rank": 13
+      "historical_rank": 16
      },
      {
       "strategy": "minute_volume_surge",
@@ -5620,7 +6075,20 @@
       "max_drawdown_pct": 26.6732,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 14
+      "historical_rank": 17
+     },
+     {
+      "strategy": "real_orderflow_proxy",
+      "strategy_name": "Real Orderflow Proxy (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 56.0,
+      "expectancy_pct_per_trade": 0.2684,
+      "average_net_return_pct": 0.2684,
+      "profit_factor": 1.133,
+      "max_drawdown_pct": 26.6732,
+      "latest_condition": "short_condition",
+      "last_event_bars_ago": 3,
+      "historical_rank": 18
      },
      {
       "strategy": "haar_wavelet",
@@ -5633,7 +6101,20 @@
       "max_drawdown_pct": 37.5552,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 31,
-      "historical_rank": 15
+      "historical_rank": 19
+     },
+     {
+      "strategy": "real_cross_asset",
+      "strategy_name": "Real Cross-Asset Momentum (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 52.0,
+      "expectancy_pct_per_trade": 0.2091,
+      "average_net_return_pct": 0.2091,
+      "profit_factor": 1.1037,
+      "max_drawdown_pct": 30.6407,
+      "latest_condition": "short_condition",
+      "last_event_bars_ago": 3,
+      "historical_rank": 20
      },
      {
       "strategy": "kaufman_trend",
@@ -5646,7 +6127,7 @@
       "max_drawdown_pct": 47.7384,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 4,
-      "historical_rank": 16
+      "historical_rank": 21
      },
      {
       "strategy": "supertrend_flip",
@@ -5659,7 +6140,7 @@
       "max_drawdown_pct": 44.9126,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 96,
-      "historical_rank": 17
+      "historical_rank": 22
      },
      {
       "strategy": "kst_momentum",
@@ -5672,7 +6153,7 @@
       "max_drawdown_pct": 36.7514,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 8,
-      "historical_rank": 18
+      "historical_rank": 23
      },
      {
       "strategy": "ichimoku_cloud",
@@ -5685,7 +6166,7 @@
       "max_drawdown_pct": 51.0888,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 31,
-      "historical_rank": 19
+      "historical_rank": 24
      },
      {
       "strategy": "vortex_trend",
@@ -5698,7 +6179,7 @@
       "max_drawdown_pct": 38.482,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 20
+      "historical_rank": 25
      },
      {
       "strategy": "consensus",
@@ -5711,7 +6192,7 @@
       "max_drawdown_pct": 55.9643,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 30,
-      "historical_rank": 21
+      "historical_rank": 26
      },
      {
       "strategy": "trend_pullback_rsi",
@@ -5724,7 +6205,7 @@
       "max_drawdown_pct": 29.2442,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 45,
-      "historical_rank": 22
+      "historical_rank": 27
      },
      {
       "strategy": "minute_squeeze_breakout",
@@ -5737,7 +6218,20 @@
       "max_drawdown_pct": 48.8553,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 30,
-      "historical_rank": 23
+      "historical_rank": 28
+     },
+     {
+      "strategy": "real_volatility_breakout",
+      "strategy_name": "Real Volatility Breakout (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 55.0,
+      "expectancy_pct_per_trade": -0.1764,
+      "average_net_return_pct": -0.1764,
+      "profit_factor": 0.9225,
+      "max_drawdown_pct": 48.8553,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 30,
+      "historical_rank": 29
      },
      {
       "strategy": "omni_consensus",
@@ -5750,7 +6244,7 @@
       "max_drawdown_pct": 71.542,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 24
+      "historical_rank": 30
      },
      {
       "strategy": "minute_vwap_reversion",
@@ -5763,7 +6257,7 @@
       "max_drawdown_pct": 47.7985,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 81,
-      "historical_rank": 25
+      "historical_rank": 31
      },
      {
       "strategy": "minute_rsi2_snapback",
@@ -5776,7 +6270,7 @@
       "max_drawdown_pct": 46.1161,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 13,
-      "historical_rank": 26
+      "historical_rank": 32
      },
      {
       "strategy": "atlas_regime_compass",
@@ -5789,7 +6283,7 @@
       "max_drawdown_pct": 69.8226,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 27
+      "historical_rank": 33
      },
      {
       "strategy": "kalman_trend",
@@ -5802,7 +6296,20 @@
       "max_drawdown_pct": 66.4805,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 3,
-      "historical_rank": 28
+      "historical_rank": 34
+     },
+     {
+      "strategy": "real_regime_adaptive",
+      "strategy_name": "Real Regime Adaptive (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 45.0,
+      "expectancy_pct_per_trade": -0.3395,
+      "average_net_return_pct": -0.3395,
+      "profit_factor": 0.8651,
+      "max_drawdown_pct": 66.4805,
+      "latest_condition": "short_condition",
+      "last_event_bars_ago": 3,
+      "historical_rank": 35
      },
      {
       "strategy": "aroon_trend",
@@ -5815,7 +6322,7 @@
       "max_drawdown_pct": 45.3158,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 28,
-      "historical_rank": 29
+      "historical_rank": 36
      },
      {
       "strategy": "donchian_trend",
@@ -5828,7 +6335,7 @@
       "max_drawdown_pct": 55.0852,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 34,
-      "historical_rank": 30
+      "historical_rank": 37
      },
      {
       "strategy": "schaff_cycle",
@@ -5841,7 +6348,7 @@
       "max_drawdown_pct": 62.0213,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 31
+      "historical_rank": 38
      },
      {
       "strategy": "macd_cross",
@@ -5854,7 +6361,7 @@
       "max_drawdown_pct": 55.5049,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 12,
-      "historical_rank": 32
+      "historical_rank": 39
      },
      {
       "strategy": "obv_flow_trend",
@@ -5867,7 +6374,7 @@
       "max_drawdown_pct": 68.1056,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 33
+      "historical_rank": 40
      },
      {
       "strategy": "rvi_trend",
@@ -5880,7 +6387,7 @@
       "max_drawdown_pct": 72.4808,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 0,
-      "historical_rank": 34
+      "historical_rank": 41
      },
      {
       "strategy": "ultimate_reversal",
@@ -5893,7 +6400,7 @@
       "max_drawdown_pct": 77.1295,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 74,
-      "historical_rank": 35
+      "historical_rank": 42
      },
      {
       "strategy": "williams_reversal",
@@ -5906,7 +6413,7 @@
       "max_drawdown_pct": 74.3879,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 5,
-      "historical_rank": 36
+      "historical_rank": 43
      },
      {
       "strategy": "bollinger_mean_reversion",
@@ -5919,7 +6426,7 @@
       "max_drawdown_pct": 76.2816,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 17,
-      "historical_rank": 37
+      "historical_rank": 44
      },
      {
       "strategy": "fisher_reversal",
@@ -5932,7 +6439,7 @@
       "max_drawdown_pct": 75.7101,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 38
+      "historical_rank": 45
      },
      {
       "strategy": "parabolic_sar_trend",
@@ -5945,7 +6452,7 @@
       "max_drawdown_pct": 71.2964,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 39
+      "historical_rank": 46
      },
      {
       "strategy": "stochastic_reversal",
@@ -5958,7 +6465,7 @@
       "max_drawdown_pct": 77.9632,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 40
+      "historical_rank": 47
      },
      {
       "strategy": "hull_trend",
@@ -5971,7 +6478,20 @@
       "max_drawdown_pct": 81.6129,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 4,
-      "historical_rank": 41
+      "historical_rank": 48
+     },
+     {
+      "strategy": "real_gold_hedge",
+      "strategy_name": "Real Gold Safe-Haven (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 38.0,
+      "expectancy_pct_per_trade": -1.3273,
+      "average_net_return_pct": -1.3273,
+      "profit_factor": 0.553,
+      "max_drawdown_pct": 81.6129,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 4,
+      "historical_rank": 49
      },
      {
       "strategy": "rsi_reversal",
@@ -5984,7 +6504,7 @@
       "max_drawdown_pct": 82.1718,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 13,
-      "historical_rank": 42
+      "historical_rank": 50
      },
      {
       "strategy": "cci_reversal",
@@ -5997,7 +6517,7 @@
       "max_drawdown_pct": 86.6406,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 0,
-      "historical_rank": 43
+      "historical_rank": 51
      },
      {
       "strategy": "minute_orb_breakout",
@@ -6010,7 +6530,7 @@
       "max_drawdown_pct": 0.0,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": null,
-      "historical_rank": 44
+      "historical_rank": 52
      }
     ],
     "warning": "The #1 row is the best fit to THIS sample and the most likely to be over-fit. Prefer engines that also survive the walk-forward split and fresh paper tracking."
@@ -6637,7 +7157,7 @@
    },
    "strategy_tournament": {
     "ranked_by": "historical expectancy_pct_per_trade (descending), after the selected cost",
-    "engines_tested": 44,
+    "engines_tested": 52,
     "max_signals_each": 100,
     "engines": [
      {
@@ -6667,6 +7187,19 @@
       "historical_rank": 2
      },
      {
+      "strategy": "real_sp500_valuation",
+      "strategy_name": "Real Shiller PE10 Valuation (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 61.0,
+      "expectancy_pct_per_trade": 0.982,
+      "average_net_return_pct": 0.982,
+      "profit_factor": 1.3879,
+      "max_drawdown_pct": 31.9226,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 9,
+      "historical_rank": 3
+     },
+     {
       "strategy": "minute_squeeze_breakout",
       "strategy_name": "Minute Bollinger squeeze release",
       "signals_tested": 100,
@@ -6677,7 +7210,20 @@
       "max_drawdown_pct": 50.4635,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 14,
-      "historical_rank": 3
+      "historical_rank": 4
+     },
+     {
+      "strategy": "real_volatility_breakout",
+      "strategy_name": "Real Volatility Breakout (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 54.0,
+      "expectancy_pct_per_trade": 0.9462,
+      "average_net_return_pct": 0.9462,
+      "profit_factor": 1.381,
+      "max_drawdown_pct": 50.4635,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 14,
+      "historical_rank": 5
      },
      {
       "strategy": "cmo_momentum",
@@ -6690,7 +7236,7 @@
       "max_drawdown_pct": 39.25,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 8,
-      "historical_rank": 4
+      "historical_rank": 6
      },
      {
       "strategy": "atlas_pressure_wave",
@@ -6703,7 +7249,7 @@
       "max_drawdown_pct": 45.4984,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 10,
-      "historical_rank": 5
+      "historical_rank": 7
      },
      {
       "strategy": "trix_momentum",
@@ -6716,7 +7262,7 @@
       "max_drawdown_pct": 42.9968,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 39,
-      "historical_rank": 6
+      "historical_rank": 8
      },
      {
       "strategy": "minute_rsi2_snapback",
@@ -6729,7 +7275,7 @@
       "max_drawdown_pct": 66.5298,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 15,
-      "historical_rank": 7
+      "historical_rank": 9
      },
      {
       "strategy": "haar_wavelet",
@@ -6742,7 +7288,7 @@
       "max_drawdown_pct": 47.343,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 11,
-      "historical_rank": 8
+      "historical_rank": 10
      },
      {
       "strategy": "aroon_trend",
@@ -6755,7 +7301,20 @@
       "max_drawdown_pct": 49.265,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 8,
-      "historical_rank": 9
+      "historical_rank": 11
+     },
+     {
+      "strategy": "real_dxy_inversion",
+      "strategy_name": "Real DXY Inversion (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 55.0,
+      "expectancy_pct_per_trade": 0.3239,
+      "average_net_return_pct": 0.3239,
+      "profit_factor": 1.1298,
+      "max_drawdown_pct": 48.6377,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 8,
+      "historical_rank": 12
      },
      {
       "strategy": "parabolic_sar_trend",
@@ -6768,7 +7327,7 @@
       "max_drawdown_pct": 34.5795,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 10
+      "historical_rank": 13
      },
      {
       "strategy": "minute_vwap_reversion",
@@ -6781,7 +7340,7 @@
       "max_drawdown_pct": 42.7832,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 38,
-      "historical_rank": 11
+      "historical_rank": 14
      },
      {
       "strategy": "coppock_trend",
@@ -6794,7 +7353,7 @@
       "max_drawdown_pct": 56.1385,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 10,
-      "historical_rank": 12
+      "historical_rank": 15
      },
      {
       "strategy": "minute_volume_surge",
@@ -6807,7 +7366,20 @@
       "max_drawdown_pct": 38.1755,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 13
+      "historical_rank": 16
+     },
+     {
+      "strategy": "real_orderflow_proxy",
+      "strategy_name": "Real Orderflow Proxy (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 48.0,
+      "expectancy_pct_per_trade": 0.2925,
+      "average_net_return_pct": 0.2925,
+      "profit_factor": 1.1183,
+      "max_drawdown_pct": 38.1755,
+      "latest_condition": "long_condition",
+      "last_event_bars_ago": 2,
+      "historical_rank": 17
      },
      {
       "strategy": "hull_trend",
@@ -6820,7 +7392,20 @@
       "max_drawdown_pct": 39.115,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 14
+      "historical_rank": 18
+     },
+     {
+      "strategy": "real_gold_hedge",
+      "strategy_name": "Real Gold Safe-Haven (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 52.0,
+      "expectancy_pct_per_trade": 0.2582,
+      "average_net_return_pct": 0.2582,
+      "profit_factor": 1.1044,
+      "max_drawdown_pct": 39.115,
+      "latest_condition": "long_condition",
+      "last_event_bars_ago": 1,
+      "historical_rank": 19
      },
      {
       "strategy": "ichimoku_cloud",
@@ -6833,7 +7418,20 @@
       "max_drawdown_pct": 50.0482,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 21,
-      "historical_rank": 15
+      "historical_rank": 20
+     },
+     {
+      "strategy": "real_cross_asset",
+      "strategy_name": "Real Cross-Asset Momentum (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 53.0,
+      "expectancy_pct_per_trade": 0.1002,
+      "average_net_return_pct": 0.1002,
+      "profit_factor": 1.038,
+      "max_drawdown_pct": 53.218,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 10,
+      "historical_rank": 21
      },
      {
       "strategy": "trend_pullback_rsi",
@@ -6846,7 +7444,7 @@
       "max_drawdown_pct": 56.4822,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 196,
-      "historical_rank": 16
+      "historical_rank": 22
      },
      {
       "strategy": "atlas_minute_pulse",
@@ -6859,7 +7457,7 @@
       "max_drawdown_pct": 49.9765,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 14,
-      "historical_rank": 17
+      "historical_rank": 23
      },
      {
       "strategy": "regression_trend",
@@ -6872,7 +7470,7 @@
       "max_drawdown_pct": 64.2504,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 10,
-      "historical_rank": 18
+      "historical_rank": 24
      },
      {
       "strategy": "adx_trend_strength",
@@ -6885,7 +7483,7 @@
       "max_drawdown_pct": 43.5465,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 29,
-      "historical_rank": 19
+      "historical_rank": 25
      },
      {
       "strategy": "kaufman_trend",
@@ -6898,7 +7496,7 @@
       "max_drawdown_pct": 54.2916,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 14,
-      "historical_rank": 20
+      "historical_rank": 26
      },
      {
       "strategy": "breakout_20",
@@ -6911,7 +7509,7 @@
       "max_drawdown_pct": 66.1949,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 4,
-      "historical_rank": 21
+      "historical_rank": 27
      },
      {
       "strategy": "tsi_momentum",
@@ -6924,7 +7522,7 @@
       "max_drawdown_pct": 51.719,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 8,
-      "historical_rank": 22
+      "historical_rank": 28
      },
      {
       "strategy": "atlas_phoenix_fusion",
@@ -6937,7 +7535,7 @@
       "max_drawdown_pct": 67.3581,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 14,
-      "historical_rank": 23
+      "historical_rank": 29
      },
      {
       "strategy": "supertrend_flip",
@@ -6950,7 +7548,7 @@
       "max_drawdown_pct": 71.582,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 36,
-      "historical_rank": 24
+      "historical_rank": 30
      },
      {
       "strategy": "minute_ema_ribbon",
@@ -6963,7 +7561,20 @@
       "max_drawdown_pct": 60.6275,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 14,
-      "historical_rank": 25
+      "historical_rank": 31
+     },
+     {
+      "strategy": "real_btc_momentum",
+      "strategy_name": "Real BTC Momentum (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 44.0,
+      "expectancy_pct_per_trade": -0.2741,
+      "average_net_return_pct": -0.2741,
+      "profit_factor": 0.8952,
+      "max_drawdown_pct": 60.6275,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 14,
+      "historical_rank": 32
      },
      {
       "strategy": "kalman_trend",
@@ -6976,7 +7587,20 @@
       "max_drawdown_pct": 56.586,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 13,
-      "historical_rank": 26
+      "historical_rank": 33
+     },
+     {
+      "strategy": "real_regime_adaptive",
+      "strategy_name": "Real Regime Adaptive (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 44.0,
+      "expectancy_pct_per_trade": -0.2924,
+      "average_net_return_pct": -0.2924,
+      "profit_factor": 0.8981,
+      "max_drawdown_pct": 56.586,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 13,
+      "historical_rank": 34
      },
      {
       "strategy": "bollinger_mean_reversion",
@@ -6989,7 +7613,7 @@
       "max_drawdown_pct": 67.2189,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 27
+      "historical_rank": 35
      },
      {
       "strategy": "atlas_regime_compass",
@@ -7002,7 +7626,7 @@
       "max_drawdown_pct": 77.0681,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 14,
-      "historical_rank": 28
+      "historical_rank": 36
      },
      {
       "strategy": "consensus",
@@ -7015,7 +7639,7 @@
       "max_drawdown_pct": 54.9004,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 10,
-      "historical_rank": 29
+      "historical_rank": 37
      },
      {
       "strategy": "stochastic_reversal",
@@ -7028,7 +7652,7 @@
       "max_drawdown_pct": 53.8097,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 30
+      "historical_rank": 38
      },
      {
       "strategy": "entropy_trend",
@@ -7041,7 +7665,7 @@
       "max_drawdown_pct": 68.7085,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 8,
-      "historical_rank": 31
+      "historical_rank": 39
      },
      {
       "strategy": "obv_flow_trend",
@@ -7054,7 +7678,7 @@
       "max_drawdown_pct": 57.5482,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 32
+      "historical_rank": 40
      },
      {
       "strategy": "ultimate_reversal",
@@ -7067,7 +7691,7 @@
       "max_drawdown_pct": 73.1861,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 32,
-      "historical_rank": 33
+      "historical_rank": 41
      },
      {
       "strategy": "kst_momentum",
@@ -7080,7 +7704,7 @@
       "max_drawdown_pct": 63.8697,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 34
+      "historical_rank": 42
      },
      {
       "strategy": "cci_reversal",
@@ -7093,7 +7717,7 @@
       "max_drawdown_pct": 70.5535,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 35
+      "historical_rank": 43
      },
      {
       "strategy": "rvi_trend",
@@ -7106,7 +7730,7 @@
       "max_drawdown_pct": 77.238,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 36
+      "historical_rank": 44
      },
      {
       "strategy": "williams_reversal",
@@ -7119,7 +7743,7 @@
       "max_drawdown_pct": 73.7875,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 37
+      "historical_rank": 45
      },
      {
       "strategy": "rsi_reversal",
@@ -7132,7 +7756,7 @@
       "max_drawdown_pct": 76.1708,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 32,
-      "historical_rank": 38
+      "historical_rank": 46
      },
      {
       "strategy": "schaff_cycle",
@@ -7145,7 +7769,7 @@
       "max_drawdown_pct": 73.64,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 13,
-      "historical_rank": 39
+      "historical_rank": 47
      },
      {
       "strategy": "fisher_reversal",
@@ -7158,7 +7782,7 @@
       "max_drawdown_pct": 77.2004,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 2,
-      "historical_rank": 40
+      "historical_rank": 48
      },
      {
       "strategy": "macd_cross",
@@ -7171,7 +7795,7 @@
       "max_drawdown_pct": 82.1778,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 10,
-      "historical_rank": 41
+      "historical_rank": 49
      },
      {
       "strategy": "vortex_trend",
@@ -7184,7 +7808,7 @@
       "max_drawdown_pct": 87.2189,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 11,
-      "historical_rank": 42
+      "historical_rank": 50
      },
      {
       "strategy": "donchian_trend",
@@ -7197,7 +7821,7 @@
       "max_drawdown_pct": 88.4505,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 14,
-      "historical_rank": 43
+      "historical_rank": 51
      },
      {
       "strategy": "minute_orb_breakout",
@@ -7210,7 +7834,7 @@
       "max_drawdown_pct": 0.0,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": null,
-      "historical_rank": 44
+      "historical_rank": 52
      }
     ],
     "warning": "The #1 row is the best fit to THIS sample and the most likely to be over-fit. Prefer engines that also survive the walk-forward split and fresh paper tracking."
@@ -7836,9 +8460,22 @@
    },
    "strategy_tournament": {
     "ranked_by": "historical expectancy_pct_per_trade (descending), after the selected cost",
-    "engines_tested": 44,
+    "engines_tested": 52,
     "max_signals_each": 100,
     "engines": [
+     {
+      "strategy": "real_sp500_valuation",
+      "strategy_name": "Real Shiller PE10 Valuation (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 57.0,
+      "expectancy_pct_per_trade": 5.7516,
+      "average_net_return_pct": 5.7516,
+      "profit_factor": 2.2264,
+      "max_drawdown_pct": 41.6478,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 46,
+      "historical_rank": 1
+     },
      {
       "strategy": "breakout_20",
       "strategy_name": "20-bar breakout",
@@ -7850,7 +8487,7 @@
       "max_drawdown_pct": 60.5069,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 13,
-      "historical_rank": 1
+      "historical_rank": 2
      },
      {
       "strategy": "ma_cross",
@@ -7863,7 +8500,20 @@
       "max_drawdown_pct": 72.6555,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 48,
-      "historical_rank": 2
+      "historical_rank": 3
+     },
+     {
+      "strategy": "real_dxy_inversion",
+      "strategy_name": "Real DXY Inversion (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 56.0,
+      "expectancy_pct_per_trade": 4.8653,
+      "average_net_return_pct": 4.8653,
+      "profit_factor": 1.9368,
+      "max_drawdown_pct": 70.7709,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 10,
+      "historical_rank": 4
      },
      {
       "strategy": "adx_trend_strength",
@@ -7876,7 +8526,7 @@
       "max_drawdown_pct": 59.7408,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 44,
-      "historical_rank": 3
+      "historical_rank": 5
      },
      {
       "strategy": "trix_momentum",
@@ -7889,7 +8539,7 @@
       "max_drawdown_pct": 77.8473,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 49,
-      "historical_rank": 4
+      "historical_rank": 6
      },
      {
       "strategy": "entropy_trend",
@@ -7902,7 +8552,20 @@
       "max_drawdown_pct": 59.8345,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 0,
-      "historical_rank": 5
+      "historical_rank": 7
+     },
+     {
+      "strategy": "real_cross_asset",
+      "strategy_name": "Real Cross-Asset Momentum (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 53.0,
+      "expectancy_pct_per_trade": 3.0273,
+      "average_net_return_pct": 3.0273,
+      "profit_factor": 1.6097,
+      "max_drawdown_pct": 57.2777,
+      "latest_condition": "long_condition",
+      "last_event_bars_ago": 3,
+      "historical_rank": 8
      },
      {
       "strategy": "regression_trend",
@@ -7915,7 +8578,7 @@
       "max_drawdown_pct": 73.8869,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 50,
-      "historical_rank": 6
+      "historical_rank": 9
      },
      {
       "strategy": "tsi_momentum",
@@ -7928,7 +8591,7 @@
       "max_drawdown_pct": 80.3469,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 11,
-      "historical_rank": 7
+      "historical_rank": 10
      },
      {
       "strategy": "haar_wavelet",
@@ -7941,7 +8604,7 @@
       "max_drawdown_pct": 66.5455,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 47,
-      "historical_rank": 8
+      "historical_rank": 11
      },
      {
       "strategy": "atlas_pressure_wave",
@@ -7954,7 +8617,7 @@
       "max_drawdown_pct": 75.5574,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 9
+      "historical_rank": 12
      },
      {
       "strategy": "omni_consensus",
@@ -7967,7 +8630,7 @@
       "max_drawdown_pct": 63.7416,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 10
+      "historical_rank": 13
      },
      {
       "strategy": "minute_squeeze_breakout",
@@ -7980,7 +8643,20 @@
       "max_drawdown_pct": 75.7025,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 0,
-      "historical_rank": 11
+      "historical_rank": 14
+     },
+     {
+      "strategy": "real_volatility_breakout",
+      "strategy_name": "Real Volatility Breakout (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 50.0,
+      "expectancy_pct_per_trade": 1.3056,
+      "average_net_return_pct": 1.3056,
+      "profit_factor": 1.212,
+      "max_drawdown_pct": 75.7025,
+      "latest_condition": "short_condition",
+      "last_event_bars_ago": 0,
+      "historical_rank": 15
      },
      {
       "strategy": "supertrend_flip",
@@ -7993,7 +8669,7 @@
       "max_drawdown_pct": 93.7932,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 50,
-      "historical_rank": 12
+      "historical_rank": 16
      },
      {
       "strategy": "consensus",
@@ -8006,7 +8682,7 @@
       "max_drawdown_pct": 87.4237,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 48,
-      "historical_rank": 13
+      "historical_rank": 17
      },
      {
       "strategy": "atlas_minute_pulse",
@@ -8019,7 +8695,7 @@
       "max_drawdown_pct": 87.6402,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 14
+      "historical_rank": 18
      },
      {
       "strategy": "minute_ema_ribbon",
@@ -8032,7 +8708,20 @@
       "max_drawdown_pct": 79.484,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 50,
-      "historical_rank": 15
+      "historical_rank": 19
+     },
+     {
+      "strategy": "real_btc_momentum",
+      "strategy_name": "Real BTC Momentum (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 49.0,
+      "expectancy_pct_per_trade": 0.8384,
+      "average_net_return_pct": 0.8384,
+      "profit_factor": 1.1452,
+      "max_drawdown_pct": 79.484,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 50,
+      "historical_rank": 20
      },
      {
       "strategy": "ichimoku_cloud",
@@ -8045,7 +8734,7 @@
       "max_drawdown_pct": 86.6438,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 51,
-      "historical_rank": 16
+      "historical_rank": 21
      },
      {
       "strategy": "minute_rsi2_snapback",
@@ -8058,7 +8747,7 @@
       "max_drawdown_pct": 86.7304,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 17
+      "historical_rank": 22
      },
      {
       "strategy": "donchian_trend",
@@ -8071,7 +8760,7 @@
       "max_drawdown_pct": 75.0181,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 18
+      "historical_rank": 23
      },
      {
       "strategy": "aroon_trend",
@@ -8084,7 +8773,7 @@
       "max_drawdown_pct": 83.7452,
       "latest_condition": "long_condition",
       "last_event_bars_ago": 0,
-      "historical_rank": 19
+      "historical_rank": 24
      },
      {
       "strategy": "cmo_momentum",
@@ -8097,7 +8786,7 @@
       "max_drawdown_pct": 80.4774,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 14,
-      "historical_rank": 20
+      "historical_rank": 25
      },
      {
       "strategy": "rvi_trend",
@@ -8110,7 +8799,7 @@
       "max_drawdown_pct": 87.1517,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 21
+      "historical_rank": 26
      },
      {
       "strategy": "obv_flow_trend",
@@ -8123,7 +8812,7 @@
       "max_drawdown_pct": 94.7891,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 22
+      "historical_rank": 27
      },
      {
       "strategy": "kaufman_trend",
@@ -8136,7 +8825,7 @@
       "max_drawdown_pct": 96.1773,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 23
+      "historical_rank": 28
      },
      {
       "strategy": "atlas_regime_compass",
@@ -8149,7 +8838,7 @@
       "max_drawdown_pct": 90.9137,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 0,
-      "historical_rank": 24
+      "historical_rank": 29
      },
      {
       "strategy": "atlas_phoenix_fusion",
@@ -8162,7 +8851,7 @@
       "max_drawdown_pct": 88.5584,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 5,
-      "historical_rank": 25
+      "historical_rank": 30
      },
      {
       "strategy": "coppock_trend",
@@ -8175,7 +8864,7 @@
       "max_drawdown_pct": 93.6611,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 5,
-      "historical_rank": 26
+      "historical_rank": 31
      },
      {
       "strategy": "kst_momentum",
@@ -8188,7 +8877,7 @@
       "max_drawdown_pct": 92.1397,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 29,
-      "historical_rank": 27
+      "historical_rank": 32
      },
      {
       "strategy": "vortex_trend",
@@ -8201,7 +8890,7 @@
       "max_drawdown_pct": 94.9123,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 6,
-      "historical_rank": 28
+      "historical_rank": 33
      },
      {
       "strategy": "trend_pullback_rsi",
@@ -8214,7 +8903,7 @@
       "max_drawdown_pct": 95.7361,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 78,
-      "historical_rank": 29
+      "historical_rank": 34
      },
      {
       "strategy": "parabolic_sar_trend",
@@ -8227,7 +8916,7 @@
       "max_drawdown_pct": 97.0959,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 30
+      "historical_rank": 35
      },
      {
       "strategy": "kalman_trend",
@@ -8240,7 +8929,20 @@
       "max_drawdown_pct": 95.3953,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 8,
-      "historical_rank": 31
+      "historical_rank": 36
+     },
+     {
+      "strategy": "real_regime_adaptive",
+      "strategy_name": "Real Regime Adaptive (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 43.0,
+      "expectancy_pct_per_trade": -1.2549,
+      "average_net_return_pct": -1.2549,
+      "profit_factor": 0.8104,
+      "max_drawdown_pct": 95.3953,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 8,
+      "historical_rank": 37
      },
      {
       "strategy": "minute_volume_surge",
@@ -8253,7 +8955,20 @@
       "max_drawdown_pct": 98.8958,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 7,
-      "historical_rank": 32
+      "historical_rank": 38
+     },
+     {
+      "strategy": "real_orderflow_proxy",
+      "strategy_name": "Real Orderflow Proxy (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 45.0,
+      "expectancy_pct_per_trade": -1.7049,
+      "average_net_return_pct": -1.7049,
+      "profit_factor": 0.7889,
+      "max_drawdown_pct": 98.8958,
+      "latest_condition": "no_fresh_trigger",
+      "last_event_bars_ago": 7,
+      "historical_rank": 39
      },
      {
       "strategy": "schaff_cycle",
@@ -8266,7 +8981,7 @@
       "max_drawdown_pct": 99.072,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 28,
-      "historical_rank": 33
+      "historical_rank": 40
      },
      {
       "strategy": "rsi_reversal",
@@ -8279,7 +8994,7 @@
       "max_drawdown_pct": 99.6348,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 19,
-      "historical_rank": 34
+      "historical_rank": 41
      },
      {
       "strategy": "stochastic_reversal",
@@ -8292,7 +9007,7 @@
       "max_drawdown_pct": 99.0062,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 35
+      "historical_rank": 42
      },
      {
       "strategy": "ultimate_reversal",
@@ -8305,7 +9020,7 @@
       "max_drawdown_pct": 98.6844,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 36,
-      "historical_rank": 36
+      "historical_rank": 43
      },
      {
       "strategy": "cci_reversal",
@@ -8318,7 +9033,7 @@
       "max_drawdown_pct": 99.8727,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 37
+      "historical_rank": 44
      },
      {
       "strategy": "williams_reversal",
@@ -8331,7 +9046,7 @@
       "max_drawdown_pct": 99.4507,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 38
+      "historical_rank": 45
      },
      {
       "strategy": "fisher_reversal",
@@ -8344,7 +9059,7 @@
       "max_drawdown_pct": 99.6469,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 1,
-      "historical_rank": 39
+      "historical_rank": 46
      },
      {
       "strategy": "hull_trend",
@@ -8357,7 +9072,20 @@
       "max_drawdown_pct": 99.8204,
       "latest_condition": "short_condition",
       "last_event_bars_ago": 0,
-      "historical_rank": 40
+      "historical_rank": 47
+     },
+     {
+      "strategy": "real_gold_hedge",
+      "strategy_name": "Real Gold Safe-Haven (v18)",
+      "signals_tested": 100,
+      "accuracy_pct": 45.0,
+      "expectancy_pct_per_trade": -3.5827,
+      "average_net_return_pct": -3.5827,
+      "profit_factor": 0.59,
+      "max_drawdown_pct": 99.8204,
+      "latest_condition": "short_condition",
+      "last_event_bars_ago": 0,
+      "historical_rank": 48
      },
      {
       "strategy": "bollinger_mean_reversion",
@@ -8370,7 +9098,7 @@
       "max_drawdown_pct": 99.8998,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 19,
-      "historical_rank": 41
+      "historical_rank": 49
      },
      {
       "strategy": "macd_cross",
@@ -8383,7 +9111,7 @@
       "max_drawdown_pct": 99.7362,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 32,
-      "historical_rank": 42
+      "historical_rank": 50
      },
      {
       "strategy": "minute_vwap_reversion",
@@ -8396,7 +9124,7 @@
       "max_drawdown_pct": 99.8715,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": 51,
-      "historical_rank": 43
+      "historical_rank": 51
      },
      {
       "strategy": "minute_orb_breakout",
@@ -8409,7 +9137,7 @@
       "max_drawdown_pct": 0.0,
       "latest_condition": "no_fresh_trigger",
       "last_event_bars_ago": null,
-      "historical_rank": 44
+      "historical_rank": 52
      }
     ],
     "warning": "The #1 row is the best fit to THIS sample and the most likely to be over-fit. Prefer engines that also survive the walk-forward split and fresh paper tracking."

@@ -1,4 +1,4 @@
-"""SQLite market/research database for TradeAtlas v16.
+"""SQLite market/research database for TradeAtlas v18.
 
 The database stores market bars the user lawfully imports, transparent
 halal-screen evidence, pooled hidden-future research results, and — new in
@@ -18,7 +18,7 @@ from pathlib import Path
 
 import marketlab as ml
 
-DB_VERSION = 4
+DB_VERSION = 5
 TIMEFRAME_LABELS = tuple(ml.TIMEFRAMES) + ("1mo", "source")
 
 
@@ -252,7 +252,19 @@ class MarketDatabase:
                 verdict TEXT NOT NULL,
                 confidence REAL NOT NULL DEFAULT 0
             );
-            CREATE TABLE IF NOT EXISTS diagnostic_reports (
+            CREATE TABLE IF NOT EXISTS real_data_catalog (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            file_name TEXT NOT NULL,
+            symbol TEXT,
+            market TEXT,
+            interval TEXT,
+            bars INTEGER,
+            first_bar TEXT,
+            last_bar TEXT,
+            provenance_json TEXT,
+            ingested_at TEXT NOT NULL
+        )""")
+        self.conn.execute("""CREATE TABLE IF NOT EXISTS diagnostic_reports (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 created_at TEXT NOT NULL,
                 symbol TEXT NOT NULL,
@@ -386,6 +398,21 @@ class MarketDatabase:
             out.append(item)
         return out
 
+    def record_real_dataset(self, file_name: str, symbol: str, market: str, interval: str, bars: int, first_bar: str, last_bar: str, provenance: dict) -> int:
+        cur=self.conn.execute("INSERT INTO real_data_catalog (file_name,symbol,market,interval,bars,first_bar,last_bar,provenance_json,ingested_at) VALUES (?,?,?,?,?,?,?,?,?)", (file_name,symbol,market,interval,bars,first_bar,last_bar,json.dumps(provenance, ensure_ascii=False), _now()))
+        self.conn.commit()
+        return int(cur.lastrowid)
+    def list_real_datasets(self) -> list[dict]:
+        cur=self.conn.execute("SELECT file_name,symbol,market,interval,bars,first_bar,last_bar,provenance_json,ingested_at FROM real_data_catalog ORDER BY file_name")
+        out=[]
+        for r in cur.fetchall():
+            out.append({"file":r[0],"symbol":r[1],"market":r[2],"interval":r[3],"bars":r[4],"first":r[5],"last":r[6],"provenance":json.loads(r[7]) if r[7] else {},"ingested":r[8]})
+        return out
+    def real_data_stats(self) -> dict:
+        cur2=self.conn.execute("SELECT COUNT(*), SUM(bars) FROM real_data_catalog")
+        cnt, total = cur2.fetchone()
+        # fetchone already above
+        return {"cataloged_datasets": int(cnt or 0), "total_bars": int(total or 0), "db_version": DB_VERSION}
     def stats(self) -> dict:
         with self.lock:
             counts = {}

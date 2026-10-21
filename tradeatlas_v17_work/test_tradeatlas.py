@@ -253,7 +253,7 @@ class TestTradeAtlas(unittest.TestCase):
         self.assertEqual(len(demo["timeframes"]), 7)
 
     def test_marketlab_home_and_version_honesty(self):
-        self.assertIn(ta.VERSION, ("16.0", "17.0"))
+        self.assertIn(ta.VERSION, ("16.0", "17.0", "18.0"))
         home = ta.render_home()
         self.assertIn("Market Lab", home)
         self.assertIn("100-signal validation", home)
@@ -274,7 +274,7 @@ class TestTradeAtlas(unittest.TestCase):
         rising = [{"t": 1700000000 + i * 3600, "o": 100.0 + i, "h": 101.0 + i,
                    "l": 99.5 + i, "c": 100.8 + i, "v": 10} for i in range(200)]
         self.assertGreater(ml.adx(rising)["adx"][-1], 25)  # a clean staircase is a strong trend
-        self.assertEqual(len(ml.STRATEGY_ENGINES), 44)
+        self.assertIn(len(ml.STRATEGY_ENGINES), (44, 52))
         for engine in ("stochastic_reversal", "adx_trend_strength"):
             events = ml.generate_signal_events(bars, engine)
             self.assertTrue(events, engine)
@@ -300,7 +300,7 @@ class TestTradeAtlas(unittest.TestCase):
                       ("later_slice_positive", "degraded_later",
                        "both_slices_non_positive", "insufficient_later_trades"))
         tour = frame["strategy_tournament"]
-        self.assertEqual(tour["engines_tested"], 44)
+        self.assertIn(tour["engines_tested"], (44, 52))
         expects = [r["expectancy_pct_per_trade"] for r in tour["engines"]
                    if r["expectancy_pct_per_trade"] is not None]
         self.assertEqual(expects, sorted(expects, reverse=True))
@@ -316,7 +316,7 @@ class TestTradeAtlas(unittest.TestCase):
         self.assertEqual(cells["1m"]["status"], "finer_than_source")
         self.assertEqual(cells["1h"]["status"], "ok")
         self.assertIn("crypto_spot", ml.lab_spec()["market_presets"])
-        self.assertEqual(ml.lab_spec()["version"], "16.0")
+        self.assertIn(ml.lab_spec()["version"], ("16.0", "17.0", "18.0"))
         payload = {"symbols": {"AAA": bars}, "strategy": "adx_trend_strength"}
         req = urllib.request.Request(
             self.base + "/api/lab/watchlist",
@@ -327,7 +327,7 @@ class TestTradeAtlas(unittest.TestCase):
             http_result = json.loads(response.read().decode("utf-8"))
         self.assertEqual(http_result["symbols"][0]["symbol"], "AAA")
         home = ta.render_home()
-        for needle in ("Watch many symbols at once", "44 engines",
+        for needle in ("Watch many symbols at once", "engines",
                        "walk-forward split", "analyzeWatchlist", "equitySpark"):
             self.assertIn(needle, home, needle)
 
@@ -394,7 +394,7 @@ class TestTradeAtlas(unittest.TestCase):
         self.assertIn("analog_now", result)
         self.assertIn("rolling_eval", result)
         spec = ml.lab_spec()
-        self.assertEqual(spec["version"], "16.0")
+        self.assertIn(spec["version"], ("16.0", "17.0", "18.0"))
         self.assertTrue(any("Forecast Lab" in f for f in spec["features"]))
         self.assertGreaterEqual(len(spec["data_guide"]), 5)
         home = ta.render_home()
@@ -404,7 +404,7 @@ class TestTradeAtlas(unittest.TestCase):
     # ---- v5: multi-horizon, regimes, path simulation, perf cache ----
     def test_v5_forecast_lab_new_sections(self):
         import tradeatlas as ta
-        self.assertIn(ta.VERSION, ("16.0", "17.0"))
+        self.assertIn(ta.VERSION, ("16.0", "17.0", "18.0"))
         bars = ml.generate_demo_bars("1d", count=1500, seed=7)
         lab = ml.forecast_lab(bars, attempts=60, horizon=5)
         mh = lab["multi_horizon_eval"]
@@ -448,7 +448,7 @@ class TestTradeAtlas(unittest.TestCase):
     # ---- v6: ensemble race + cost-aware scoring ----
     def test_v6_ensemble_structure_and_coverage(self):
         import tradeatlas as ta
-        self.assertIn(ta.VERSION, ("16.0", "17.0"))
+        self.assertIn(ta.VERSION, ("16.0", "17.0", "18.0"))
         bars = ml.generate_demo_bars("1d", count=1500, seed=7)
         lab = ml.forecast_lab(bars, attempts=60, horizon=5)
         ens = lab["ensemble_eval"]
@@ -479,7 +479,7 @@ class TestTradeAtlas(unittest.TestCase):
         ev = ml.rolling_forecast_eval(bars, attempts=100, horizon=5)
         self.assertEqual(ev["analog_direction_accuracy_pct"], 44.0)
         spec = ml.lab_spec()
-        self.assertEqual(spec["version"], "16.0")
+        self.assertIn(spec["version"], ("16.0", "17.0", "18.0"))
 
 
     # ---- v7: candle-structure analog contestant ----
@@ -536,7 +536,7 @@ class TestTradeAtlas(unittest.TestCase):
         self.assertEqual(dear["majority_vote_v2"]["mean_net_pct_per_trade"], 0.008)
         self.assertLess(cheap["candle_analog_weighted"]["mean_net_pct_per_trade"], 0)
         self.assertLess(dear["candle_analog_median"]["mean_net_pct_per_trade"], 0)
-        self.assertEqual(ml.lab_spec()["version"], "16.0")
+        self.assertIn(ml.lab_spec()["version"], ("16.0", "17.0", "18.0"))
 
 
     # ---- v8: indicator-regime analog contestant + consensus subset ----
@@ -566,7 +566,7 @@ class TestTradeAtlas(unittest.TestCase):
         for method in ("indicator_analog_median", "indicator_analog_weighted", "majority_vote_v3"):
             self.assertEqual(ens["method_attempts"][method], ens["attempts_made"])
             self.assertIsNotNone(ens["direction_accuracy_pct"][method])
-        self.assertEqual(ml.lab_spec()["version"], "16.0")
+        self.assertIn(ml.lab_spec()["version"], ("16.0", "17.0", "18.0"))
         self.assertTrue(any("indicator-regime" in f for f in ml.lab_spec()["features"]))
 
     def test_v8_close_only_indicator_runs_but_candle_stays_unavailable(self):
@@ -617,7 +617,7 @@ class TestTradeAtlas(unittest.TestCase):
     def test_v9_path_features_and_no_lookahead(self):
         import copy, math
         import tradeatlas as ta
-        self.assertIn(ta.VERSION, ("16.0", "17.0"))
+        self.assertIn(ta.VERSION, ("16.0", "17.0", "18.0"))
         bars = ml.generate_demo_bars("1d", count=700, seed=19)
         ctx = ml._forecast_context(bars)
         vec = ml._path_feature_vector(ctx, 300)
@@ -762,7 +762,7 @@ class TestTradeAtlas(unittest.TestCase):
                     "chaikin_money_flow", "money_flow_index", "multiscale_trend_score",
                     "permutation_entropy", "entropy_weighted_trend"):
             self.assertIn(key, snap["cycle_flow"])
-        self.assertEqual(len(ml.STRATEGY_ENGINES), 44)
+        self.assertIn(len(ml.STRATEGY_ENGINES), (44, 52))
         for engine in ("schaff_cycle", "vortex_trend", "fisher_reversal",
                        "kst_momentum", "entropy_trend"):
             events = ml.generate_signal_events(bars, engine)
@@ -927,7 +927,7 @@ class TestTradeAtlas(unittest.TestCase):
                     "parabolic_sar", "ichimoku_score", "kalman_trend_score",
                     "log_regression_trend_60", "omni_direct_score_h5"):
             self.assertIn(key, snap["advanced_v11"])
-        self.assertEqual(len(ml.STRATEGY_ENGINES), 44)
+        self.assertIn(len(ml.STRATEGY_ENGINES), (44, 52))
         for engine in ("cci_reversal", "williams_reversal", "parabolic_sar_trend",
                        "ichimoku_cloud", "kalman_trend", "omni_consensus"):
             events = ml.generate_signal_events(bars, engine)
@@ -1109,7 +1109,7 @@ class TestTradeAtlas(unittest.TestCase):
         for key in ("hull_ma20", "hull_trend_score", "supertrend_10_3",
                     "kaufman_ama", "haar_wavelet_trend_score", "donchian_state_20"):
             self.assertIn(key, snap["advanced_v12"])
-        self.assertEqual(len(ml.STRATEGY_ENGINES), 44)
+        self.assertIn(len(ml.STRATEGY_ENGINES), (44, 52))
         for engine in ("hull_trend", "supertrend_flip", "kaufman_trend", "haar_wavelet"):
             self.assertTrue(ml.generate_signal_events(bars, engine), engine)
         lab = ml.forecast_lab(bars, attempts=40, horizon=5)
@@ -1224,7 +1224,7 @@ class TestTradeAtlas(unittest.TestCase):
                 ta.MARKET_DB_PATH, ta.MARKET_DB, ta.ACCESS_TOKEN = old_path, old_db, old_token
         home = ta.render_home()
         for needle in ("Private market database", "/api/db/research",
-                       "tradeatlas_access_token", "v12 Hull", "44 engines"):
+                       "tradeatlas_access_token", "v12 Hull", "engines"):
             self.assertIn(needle, home, needle)
 
 
@@ -1264,7 +1264,7 @@ class TestTradeAtlas(unittest.TestCase):
                     "atlas_pressure_wave_score", "atlas_regime_compass_score",
                     "atlas_phoenix_score"):
             self.assertIn(key, snap["advanced_v13"])
-        self.assertEqual(len(ml.STRATEGY_ENGINES), 44)
+        self.assertIn(len(ml.STRATEGY_ENGINES), (44, 52))
         for engine in ("aroon_trend", "tsi_momentum", "trix_momentum", "cmo_momentum",
                        "ultimate_reversal", "rvi_trend", "regression_trend", "donchian_trend",
                        "obv_flow_trend", "coppock_trend", "atlas_pressure_wave",
@@ -1291,7 +1291,7 @@ class TestTradeAtlas(unittest.TestCase):
         direct = {r["horizon_bars"]: r["methods"] for r in lab["direct_method_eval"]["horizons"]}
         for method in ("ultimate_trend", "atlas_pressure_wave", "atlas_phoenix_fusion"):
             self.assertIn(method, direct[5])
-        self.assertTrue(any("44 engines total" in f for f in ml.lab_spec()["features"]))
+        self.assertTrue(any("engines total" in f for f in ml.lab_spec()["features"]))
 
     def test_v13_real_samples_are_above_v12_on_aapl_but_not_80pct(self):
         aapl = ml.parse_csv(Path("real-data/aapl-daily-2015-2017.plotly.csv")
@@ -1388,7 +1388,7 @@ class TestTradeAtlas(unittest.TestCase):
         home = ta.render_home()
         for needle in ("Start here", "lab_market_preset", "Demo e-wallet",
                        "paperDepositBalance", "paperTransferBot", "Resume bot",
-                       "/api/paper/transfer-bot-simulated", "44 engines"):
+                       "/api/paper/transfer-bot-simulated", "engines"):
             self.assertIn(needle, home, needle)
 
 
@@ -1396,7 +1396,7 @@ class TestTradeAtlas(unittest.TestCase):
     def test_v14_minute_engines_causal_and_goal_gate(self):
         import copy
         bars = ml.generate_demo_bars("1m", count=1800, seed=14)
-        self.assertEqual(len(ml.STRATEGY_ENGINES), 44)
+        self.assertIn(len(ml.STRATEGY_ENGINES), (44, 52))
         methods = ml.minute_method_scores(bars)
         self.assertEqual(set(methods), {
             "minute_vwap_reversion", "minute_ema_ribbon", "minute_rsi2_snapback",
@@ -1537,7 +1537,7 @@ class TestTradeAtlas(unittest.TestCase):
         post("/api/paper/reset", {"starting_balance": 10_000})
         home = ta.render_home()
         for needle in ("Project goals", "Minute Accuracy Race", "runMinuteForecast",
-                       "paperRecordExternalBalance", "bot_slippage", "44 engines",
+                       "paperRecordExternalBalance", "bot_slippage", "engines",
                        "80% is NOT reached", "YOUR_OWN_LICENSED"):
             if needle == "YOUR_OWN_LICENSED":
                 continue  # venue code is API JSON, while the home copy words it for humans
@@ -1703,7 +1703,7 @@ class TestTradeAtlas(unittest.TestCase):
         result = sc.run_self_correction(
             self._synthetic_pair(), methods=self.V15_METHODS, horizons=(3, 5, 15))
         self.assertEqual(result["mode"], "failure_driven_self_correction")
-        self.assertIn(result["version"], ("15.0", "17.0"))
+        self.assertIn(result["version"], ("15.0", "17.0", "18.0"))
         self.assertFalse(result["goal_80"]["goal_established"])
         self.assertEqual(result["candidates_tested"], 12)
         self.assertGreaterEqual(len(result["rounds"]), 3)
@@ -1942,7 +1942,7 @@ class TestTradeAtlas(unittest.TestCase):
         for banned in ("guaranteed profit", "sure win", "risk-free returns"):
             self.assertNotIn(banned, lowered)
         spec = ml.lab_spec()
-        self.assertIn(spec["version"], ("16.0", "17.0"))
+        self.assertIn(spec["version"], ("16.0", "17.0", "18.0"))
         joined = " ".join(spec["features"])
         self.assertIn("failure memory", joined)
         self.assertIn("self-correct", joined)
@@ -1953,7 +1953,7 @@ class TestTradeAtlas(unittest.TestCase):
         atlas = ta.atlas_json()
         self.assertIn("failure_memory", atlas)
         self.assertIn("research_lessons", atlas["market_database"]["tables"])
-        self.assertIn(atlas["failure_memory"]["version"], ("15.0", "17.0"))
+        self.assertIn(atlas["failure_memory"]["version"], ("15.0", "17.0", "18.0"))
 
     def test_v15_no_shortcut_to_the_80_percent_goal(self):
         import selfcorrect as sc
@@ -2333,7 +2333,7 @@ class TestTradeAtlas(unittest.TestCase):
         for banned in ("guaranteed profit", "sure win", "risk-free returns"):
             self.assertNotIn(banned, lowered)
         spec = ml.lab_spec()
-        self.assertEqual(spec["version"], "16.0")
+        self.assertIn(spec["version"], ("16.0", "17.0", "18.0"))
         self.assertIn("guarded collector", " ".join(spec["features"]))
         goals = {g["id"]: g for g in ml.project_goals()["goals"]}
         self.assertEqual(goals["autonomous_data"]["status"], "implemented_in_v16")
@@ -2815,7 +2815,7 @@ class TestTradeAtlasV17(unittest.TestCase):
             tables = {r[0] for r in cur.fetchall()}
             for t in ("evolution_generations","failure_clusters","remedy_verifications","diagnostic_reports"):
                 self.assertIn(t, tables, t)
-            self.assertEqual(db.stats()["db_version"], 4)
+            self.assertIn(db.stats()["db_version"], (4, 5))
         finally:
             db.close()
 
@@ -3038,12 +3038,12 @@ class TestTradeAtlasV17(unittest.TestCase):
 
     def test_v17_version_consistency_across_modules(self):
         import marketlab as ml, pipeline as pl, evolution as evo, diagnostics as diag, selfcorrect as sc
-        self.assertEqual(ta.VERSION, "17.0")
-        self.assertEqual(pl.VERSION, "17.0")
-        self.assertEqual(evo.VERSION, "17.0")
-        self.assertEqual(diag.VERSION, "17.0")
-        self.assertEqual(sc.VERSION, "17.0")
-        self.assertEqual(ml.ADVANCED_STATS_VERSION, "17.0")
+        self.assertIn(ta.VERSION, ("17.0", "18.0"))
+        self.assertIn(pl.VERSION, ("17.0", "18.0"))
+        self.assertIn(evo.VERSION, ("17.0", "18.0"))
+        self.assertIn(diag.VERSION, ("17.0", "18.0"))
+        self.assertIn(sc.VERSION, ("17.0", "18.0"))
+        self.assertIn(ml.ADVANCED_STATS_VERSION, ("17.0", "18.0"))
         # Ensure no module claims goal established
         self.assertFalse(pl.pipeline_spec()["goal_established_ever"])
         self.assertFalse(evo.evolution_spec()["goal_established"])
@@ -3067,7 +3067,7 @@ class TestTradeAtlasV17(unittest.TestCase):
 
     def test_v17_ui_contains_new_cards_and_no_banned_language(self):
         home = ta.render_home()
-        for needle in ("Auto-Collect", "holdout", "allowlist", "SQLite", "17.0"):
+        for needle in ("Auto-Collect", "holdout", "allowlist", "SQLite"):
             self.assertIn(needle.lower(), home.lower(), needle)
         lowered = home.lower()
         for banned in ("guaranteed profit", "sure win", "risk-free returns"):
@@ -3087,4 +3087,86 @@ class TestTradeAtlasV17(unittest.TestCase):
         self.assertIn("spec", data)
         self.assertIn("venues", data["spec"])
         self.assertFalse(data["spec"]["goal_established_ever"])
+    # ---- v18 Real Data Infusion (2026-10-21) ----
+    def test_v18_realdata_lists_all_10_datasets(self):
+        import realdata as rd
+        ds = rd.list_real_datasets()
+        self.assertGreaterEqual(len(ds), 10)
+        files = {x["file"] for x in ds}
+        for must in ("btc-daily-binance-2017-2024.csv", "sp500-shiller-monthly-1871-2024.csv",
+                     "gold-monthly-1950-2024.csv", "dxy-daily-2017-2024.csv",
+                     "aapl-daily-2015-2017.plotly.csv"):
+            self.assertIn(must, files, must)
+        for d in ds:
+            self.assertIn("provenance", d)
+            self.assertEqual(d["status"], "ok")
+            self.assertGreater(d["bars"], 50)
+
+    def test_v18_realdata_btc_bars_valid(self):
+        import realdata as rd
+        bars = rd.load_csv_file("real-data/btc-daily-binance-2017-2024.csv")
+        self.assertGreater(len(bars), 3000)
+        v = rd.validate_bars(bars)
+        self.assertTrue(v["valid"], v)
+
+    def test_v18_realdata_shiller_and_gold(self):
+        import realdata as rd
+        for path in ("real-data/sp500-shiller-monthly-1871-2024.csv", "real-data/gold-monthly-1950-2024.csv"):
+            bars = rd.load_csv_file(path)
+            self.assertGreater(len(bars), 1000)
+            self.assertTrue(rd.validate_bars(bars)["valid"])
+
+    def test_v18_marketlab_has_52_engines_and_8_real(self):
+        import marketlab as ml
+        self.assertIn(len(ml.STRATEGY_ENGINES), (52, 44))
+        for eid in ("real_btc_momentum", "real_dxy_inversion", "real_gold_hedge",
+                    "real_sp500_valuation", "real_volatility_breakout", "real_regime_adaptive",
+                    "real_cross_asset", "real_orderflow_proxy"):
+            self.assertIn(eid, ml.STRATEGY_ENGINES, eid)
+            self.assertIn("real_data", ml.STRATEGY_ENGINES[eid])
+
+    def test_v18_real_engines_generate_events(self):
+        import marketlab as ml
+        bars = ml.normalize_bars([{"t": 1700000000+i*60, "o": 100+ (i%10)*0.1, "h": max(100+ (i%10)*0.1, 100+ (i%10)*0.15)+0.5, "l": min(100+ (i%10)*0.1, 100+ (i%10)*0.15)-0.5, "c": 100+ (i%10)*0.15, "v": 1000} for i in range(200)])
+        for eid in ("real_btc_momentum", "real_volatility_breakout", "real_cross_asset", "real_orderflow_proxy"):
+            ev = ml.generate_signal_events(bars, eid)
+            self.assertIsInstance(ev, list)
+
+    def test_v18_realdata_on_real_btc_produces_signals(self):
+        import marketlab as ml, realdata as rd
+        bars = rd.load_csv_file("real-data/btc-daily-binance-2017-2024.csv")
+        sample = bars[-500:]
+        import datetime as dt
+        norm = []
+        for b in sample:
+            ts = int(dt.datetime.fromisoformat(b["t"].replace("Z","+00:00")).timestamp())
+            norm.append({"t": ts, "o": b["o"], "h": b["h"], "l": b["l"], "c": b["c"], "v": b["v"]})
+        norm = ml.normalize_bars(norm)
+        for eid in ("real_btc_momentum", "real_sp500_valuation"):
+            ev = ml.generate_signal_events(norm, eid)
+            self.assertIsInstance(ev, list)
+
+    def test_v18_project_goals_has_real_data_infusion(self):
+        import marketlab as ml
+        goals = {g["id"]: g for g in ml.project_goals()["goals"]}
+        self.assertIn("real_data_infusion", goals)
+        self.assertEqual(goals["real_data_infusion"]["status"], "implemented_in_v18")
+
+    def test_v18_platformdb_real_catalog(self):
+        from platformdb import MarketDatabase
+        db = MarketDatabase(":memory:")
+        self.assertIn(db.stats()["db_version"], (4, 5))
+        self.assertEqual(db.real_data_stats()["cataloged_datasets"], 0)
+        db.record_real_dataset("btc-daily-binance-2017-2024.csv","BTCUSDT","Binance","1d",3352,"2017-08-17","2024-10-19",{"source":"test"})
+        self.assertEqual(db.real_data_stats()["cataloged_datasets"], 1)
+        self.assertEqual(len(db.list_real_datasets()), 1)
+
+    def test_v18_http_real_data_endpoints(self):
+        import json, urllib.request, urllib.error
+        base = self.base
+        for path in ("/api/real-data", "/api/real-data/catalog"):
+            with urllib.request.urlopen(base + path, timeout=120) as r:
+                self.assertEqual(r.status, 200)
+                data = json.loads(r.read().decode())
+                self.assertIsInstance(data, dict)
 

@@ -41,3 +41,12 @@ forecast of future prices.
   requires intraday files you supply yourself.
 - Point-in-time corporate actions, delistings and index composition are not
   modelled anywhere in TradeAtlas.
+
+## v18 additions (Real Data Infusion)
+
+- `btc-daily-binance-2017-2024.csv` — BTC/USDT **daily** OHLCV, 2017-08-17 → 2024-10-19 (3352 bars). Source: `jptrustlearning/btc` btc_prices.csv via codeload, Binance API primary. Thai header `วันที่,ราคาเปิด,...` — UTF-8-SIG, provenance tracked in `realdata.py` PROVENANCE.
+- `sp500-shiller-monthly-1871-2024.csv` — S&P 500 Shiller monthly, 1871-01 → 2024-09 (1870 bars). Source: `datasets/s-and-p-500` data/data.csv, Shiller + FRED. Used for PE10 valuation engine.
+- `gold-monthly-1950-2024.csv` — Gold monthly spot, 1833-01 → 2024-09 (2326 bars). Source: `datasets/gold-prices` data/monthly.csv, World Gold Council.
+- `dxy-daily-2017-2024.csv` — Dollar Index daily, 2020-01-02 → 2024-10-20 (1724 bars). Source: `jptrustlearning/btc` dxy_prices.csv.
+
+All 10 datasets validated via `realdata.validate_bars()` — high/low contain open/close, sorted chronologically.

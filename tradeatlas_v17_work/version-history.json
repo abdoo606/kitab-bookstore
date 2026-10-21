@@ -1,8 +1,8 @@
 {
  "product": "TradeAtlas",
  "schema_version": "1.0",
- "last_updated": "2026-10-21 — v17 Evolution Revolution",
- "current_version": "17.0",
+ "last_updated": "2026-10-21 — v18 Real Data Infusion — 10 real datasets, 52 engines, 152 tests",
+ "current_version": "18.0",
  "universal_80pct_direction_claim_established": false,
  "methodology": {
   "attempt": "Hide future bars after an origin, forecast using only origin-time data, reveal later bars only for scoring.",

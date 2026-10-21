@@ -1,6 +1,6 @@
 # TradeAtlas project goals — v17.0
 
-**Last updated:** 2026-10-21 — v17 Evolution Revolution
+**Last updated:** 2026-10-21 — v18 Real Data Infusion
 
 This file records requested goals separately from evidence. A goal is not a
 result, a promise, or permission to trade real money.
