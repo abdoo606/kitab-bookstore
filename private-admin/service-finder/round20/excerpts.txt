@@ -1,0 +1,31 @@
+Round 20 hunt excerpts — captured 2026-10-21 (verdicts in sources.json)
+
+--- 1) City of Berkeley / Berkeley Public Library (CA, USA) — Rebranding Services RFP 26-11785-C
+URL: https://berkeleyca.gov/doing-business/working-city/bid-proposal-opportunities/rebranding-services-berkeley-public-library
+Excerpt: "Proposals must be received no later than 2:00 pm, on Thursday, May 21, 2026.
+Proposals are to be sent via email ... Email Proposals to Solicitations@berkeleyca.gov.
+Questions to Aimee Reeder areeder@berkeleyca.gov by May 8, 2026."
+Verdict: public email YES, but deadline May 21, 2026 has passed (and it is a city
+procurement for rebranding, not a small nonprofit website) → screened out, not contacted.
+
+--- 2) Friends of Gates Public Library (Rochester, NY, USA) — RFP via the Friends page
+URL: https://gateslibrary.org/friends/
+Excerpt: "Proposals are due August 28, 2026 to books4Gatesfriends@yahoo.com or mailed to:
+Lee Krist, Vice President, Friends of Gates Public Library, 902 Elmgrove Road, Rochester NY, 14624.
+Read the RFP for more information."
+Verdict: public email YES, but deadline August 28, 2026 has passed → screened out, not contacted.
+
+--- 3) Lackawanna County Library System (PA, USA) — Website Redesign & Public Relations RFP
+URL: https://lclshome.org/website-and-public-relations-request-for-proposal/
+Excerpt: "June 5, 2026. The Lackawanna County Library System is seeking submissions in
+response to a Request for Proposal for a Website Redesign and Public Relations. Please
+see attachment for details and submit your response by Friday, June 26, 2026."
+Verdict: deadline June 26, 2026 has passed, and no plain public submission email appears
+outside the attachment → screened out, not contacted.
+
+--- Also seen and rejected without individual records:
+City of Waverly 2026 Website Redesign RFP (jljohhson@waverlyia.com, due Apr 6, 2026 — passed);
+New Rochelle Public Library 2025 (3 references required); Hartford Public Library 2025;
+Southeastern Railway Museum strategic-planning RFP (not a website; 3 references; Atlanta
+preference; Dec 31, 2025); Cecil County Library strategic planning (Sep 18, 2026 — passed,
+not a website); grant directories and non-website NGO funding calls in PH/ZA/IN searches.
