@@ -1,0 +1,58 @@
+Round 22 hunt excerpts — captured 2026-10-21 (verdicts in sources.json)
+
+--- 1) Caribbean Policy Development Centre (CPDC, Barbados) — Website build-out consultancy
+URL: https://cpdcngo.org/consultancy-to-undertake-the-technical-build-out-and-operationalisation-of-the-cpdc-website-and-integration-of-its-online-hubs/
+TOR PDF: https://cpdcngo.org/wp-content/uploads/2026/10/TOR-Consultancy-for-the-Technical-Build-Out-and-Operationalisation-of-the-CPDC-Website.pdf
+Excerpt: Remote consultancy (individual/team/firm) to technically build CPDC's approved website
+design, integrate its online hubs and add AI-assisted public/staff tools. Submissions by email
+to cpdcsubmissions@gmail.com by 5:00 p.m. AST on 22 October 2026. Required: cover letter,
+technical + financial proposals, portfolio of similar assignments, one-page profile and full
+CV per expert. Qualifications: "A University degree in Computer Science, Information
+Technology, Software Engineering, Web Design and Development, Digital Media, or a related
+field"; "At least seven (7) years of relevant professional experience"; successful track
+record; "CPDC will require at least one (1) professional reference from shortlisted applicants
+to verify satisfactory performance on a similar assignment"; "Only applicants meeting the
+criteria outlined in the Terms of Reference should apply."
+Verdict: live deadline tomorrow and a public submission email exist, but the university-degree
+gate, 7-years professional-experience gate, similar-assignment track record and professional
+reference cannot be represented honestly from the documented record (no proven client
+references/employment history) → screened out, not contacted.
+
+--- 2) International Livestock Research Institute (ILRI, Ethiopia) — NPA-FORAGE digital platform
+URL: https://www.ethiongojobs.com/consultant-nourishing-prosperity-alliance-npa-forage-project/
+Excerpt: Consultant to design/develop/deploy a web-based Forage Market Digital Platform + PWA.
+Deadline November 1, 2026; applications online via ILRI recruitment portal
+(ilri.simplicant.com) before 31 October 2026. Required: minimum bachelor's degree in CS/SE/IT;
+5–7 years proven full-stack experience; agricultural marketplace experience; "Fluency in
+English and Amharic is required"; duty station Addis Ababa with travel inside Ethiopia;
+"THE CONSULTANT IS REQUIRED TO HOLD A VALID BUSINESS LICENSE AND ABLE TO ISSUE VAT/TOT
+RECEIPTS".
+Verdict: degree/experience/language/duty-station/business-licence gates not meetable honestly,
+and portal-only submission (no plain public submission email) → screened out, not contacted.
+
+--- 3) International Seabed Authority (ISA, Jamaica) — Call for Proposals 2026/EOSG/001
+URL: https://isa.org.jm/wp-content/uploads/2026/09/EOSG001_WEBSITE-REDESIGN_RFP.pdf
+Excerpt: Consultancy for design and implementation of the Authority's website; proposals by
+email to rfp@isa.org.jm on or before 20 October 2026; "Individual consultants are not eligible
+due to the scale and complexity of the engagement"; three (3) comparable case studies from the
+past 5–10 years required.
+Verdict: deadline passed yesterday (Oct 20, 2026), individuals explicitly ineligible, and
+case-study gates not meetable honestly → screened out, not contacted. (ISA was also screened
+in earlier rounds.)
+
+--- 4) Civic Voice (East Africa) — EOI for website revamp and development services
+URL: https://civic-voice.org/uncategorized/expression-of-interest-eoi-provision-of-website-revamp-and-development-services/
+Excerpt: Expressions of interest to info@civic-voice.org; "Deadline: 24 August 2026, 5:00 PM
+EAT"; applicants need at least 3 years demonstrated experience, a portfolio of at least 3
+comparable websites, and must be legally registered with statutory documentation.
+Verdict: deadline passed (Aug 24, 2026) and experience/portfolio/legal-registration gates not
+meetable honestly → screened out, not contacted.
+
+--- Also seen and rejected without individual records:
+Boulder County Film Commission, CWPD, Ferncliff, OR/WA Nutrition Academies, Guelph Humane,
+Hunger Task Force, Union Square Alliance and The Hans Foundation reappeared in search results
+and were already screened in earlier rounds (all expired and/or reference-gated). Bellingham
+Housing, Northumberland Humane, DFC Belize, Hidden Hills, Southern Nevada Health District and
+similar 2026 website RFPs are all past their deadlines as of 2026-10-21 or run through formal
+procurement channels. UNDP/AfDB/ICANN listings are portal-based formal procurement. No
+qualifying plain public-email, honestly-meetable request was found this round.
