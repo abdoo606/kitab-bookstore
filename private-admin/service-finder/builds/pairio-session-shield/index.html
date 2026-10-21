@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pairio — Live Screen Scribble Overlay, App-Mask Compositor & WebRTC Session Telemetry</title>
+  <style>
+    :root { --bg:#090b10; --panel:#131722; --border:#273046; --txt:#f8fafc; --muted:#94a3b8; --accent:#f97316; --green:#34d399; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; background:var(--bg); color:var(--txt); line-height:1.55; }
+    
+.preview-banner {
+  background: linear-gradient(90deg, #7c2d12, #b45309, #7c2d12);
+  color: #fef3c7;
+  padding: 10px 18px;
+  font-size: 12.5px;
+  font-weight: 600;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #f59e0b;
+}
+.preview-pill {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid #fbbf24;
+  color: #fde68a;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+    .wrap { max-width:1200px; margin:0 auto; padding:24px; }
+    .stage { position:relative; background:#0d1117; border:1px solid var(--border); border-radius:14px; height:360px; overflow:hidden; margin-top:16px; user-select:none; }
+    canvas { position:absolute; inset:0; cursor:crosshair; z-index:4; }
+    .code-pane { padding:20px; font-family:ui-monospace, monospace; font-size:13.5px; color:#e2e8f0; }
+    .secret-win { position:absolute; right:26px; bottom:24px; width:290px; background:#1e293b; border:1px solid #475569; border-radius:11px; padding:12px; z-index:2; transition:0.2s; }
+    .secret-win.masked { filter:blur(14px); opacity:0.22; }
+    button { cursor:pointer; background:var(--accent); color:#0b0907; border:none; font-weight:800; padding:8px 13px; border-radius:8px; font-size:12.5px; }
+    button.sec { background:#1e293b; color:#f8fafc; border:1px solid #334155; }
+  </style>
+</head>
+<body>
+  <div class="preview-banner">
+    <span><span class="preview-pill">Proposal Preview Demo</span> Custom-built for <strong>Pairio Engineering Team</strong> — Drag Mouse on Shared Screen to Scribble Live!</span>
+    <span>Full WebRTC Signaling State Machine + Free-Tier 10h/mo Quota Ledger Locked in Milestone Vault</span>
+  </div>
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <div>
+        <h1 style="font-size:24px;">Pairio Interactive Workstation — Live Vector Scribble + Privacy <code>App Mask</code></h1>
+        <p style="color:var(--muted);font-size:14px;">Drag anywhere across <code>subscription.rb</code> below to draw real-time collaborator annotations, and toggle <strong>App Mask</strong> to hide private Messages/Slack windows before WebRTC frame capture.</p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button onclick="toggleMask()" id="maskBtn">App Mask: ON (Messages Hidden)</button>
+        <button class="sec" onclick="clearCanvas()">Clear Scribbles</button>
+      </div>
+    </div>
+
+    <div class="stage" id="stageBox">
+      <div class="code-pane">
+        <div style="color:#94a3b8;font-size:12px;margin-bottom:8px;">billing/app/models/subscription.rb · Shared 60fps 4:4:4 Chroma · EU Relay (11.4 ms RTT)</div>
+        <div>1 &nbsp; <span style="color:#ff7b72;">class</span> Subscription &lt; ApplicationRecord</div>
+        <div>2 &nbsp; &nbsp; belongs_to :user</div>
+        <div>3 &nbsp; &nbsp; <span style="color:#8b949e;"># Circle line 5 with your mouse — Thomas fixed $30 -> $15!</span></div>
+        <div>4 &nbsp; &nbsp; <span style="color:#ff7b72;">def</span> charge!</div>
+        <div style="background:rgba(52,211,153,0.14);display:inline-block;padding:2px 8px;border-radius:5px;">5 &nbsp; &nbsp; &nbsp; user.invoices.create!(amount: 15)</div>
+        <div>6 &nbsp; &nbsp; <span style="color:#ff7b72;">end</span></div>
+        <div>7 &nbsp; <span style="color:#ff7b72;">end</span></div>
+      </div>
+
+      <div class="secret-win masked" id="privWin">
+        <div style="font-size:11px;color:#38bdf8;font-weight:700;">iMessage · Sophie (Private Window)</div>
+        <div style="font-size:13px;margin-top:4px;">"Dinner at 8? API Production Key: sk_live_demo_9912"</div>
+      </div>
+      <canvas id="drawCanvas"></canvas>
+    </div>
+  </div>
+<script>
+const cv = document.getElementById("drawCanvas"), box = document.getElementById("stageBox"), ctx = cv.getContext("2d");
+let drawing = false, masked = true;
+function resize() { cv.width = box.clientWidth; cv.height = box.clientHeight; drawSeedCircle(); }
+function drawSeedCircle() {
+  ctx.strokeStyle = "#f97316"; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.ellipse(210, 148, 155, 22, 0, 0, Math.PI * 2); ctx.stroke();
+}
+cv.addEventListener("pointerdown", e => { drawing = true; ctx.beginPath(); ctx.moveTo(e.offsetX, e.offsetY); });
+cv.addEventListener("pointermove", e => {
+  if (!drawing) return;
+  ctx.strokeStyle = "#f97316"; ctx.lineWidth = 3.2; ctx.lineCap = "round";
+  ctx.lineTo(e.offsetX, e.offsetY); ctx.stroke();
+});
+window.addEventListener("pointerup", () => drawing = false);
+function clearCanvas() { ctx.clearRect(0, 0, cv.width, cv.height); }
+function toggleMask() {
+  masked = !masked;
+  document.getElementById("privWin").classList.toggle("masked", masked);
+  document.getElementById("maskBtn").textContent = masked ? "App Mask: ON (Messages Hidden)" : "App Mask: OFF (Window Visible)";
+}
+window.addEventListener("resize", resize);
+resize();
+</script>
+</body>
+</html>

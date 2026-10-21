@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trackerbot.me — PasteMe MV3 Address Sync, BCE Tracking Converter & Seller Defect Guard</title>
+  <style>
+    :root { --bg:#090d16; --panel:#12192b; --border:#253554; --txt:#f8fafc; --muted:#94a3b8; --accent:#38bdf8; --green:#34d399; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; background:var(--bg); color:var(--txt); line-height:1.55; }
+    
+.preview-banner {
+  background: linear-gradient(90deg, #7c2d12, #b45309, #7c2d12);
+  color: #fef3c7;
+  padding: 10px 18px;
+  font-size: 12.5px;
+  font-weight: 600;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #f59e0b;
+}
+.preview-pill {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid #fbbf24;
+  color: #fde68a;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+    .wrap { max-width:1200px; margin:0 auto; padding:24px; }
+    .grid2 { display:grid; grid-template-columns:1.15fr 0.85fr; gap:18px; margin-top:18px; }
+    @media(max-width:920px){ .grid2 { grid-template-columns:1fr; } }
+    .card { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:18px; }
+    table { width:100%; border-collapse:collapse; font-size:13px; margin-top:8px; }
+    th, td { padding:8px; border-bottom:1px solid #1e2d4a; text-align:left; }
+    button { cursor:pointer; background:var(--accent); color:#061220; border:none; font-weight:800; padding:8px 13px; border-radius:8px; font-size:12.5px; }
+    pre { background:#060a12; border:1px solid #1e293b; border-radius:9px; padding:12px; font-size:12px; color:#67e8f9; overflow-x:auto; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <div class="preview-banner">
+    <span><span class="preview-pill">Proposal Preview Demo</span> Custom-built for <strong>Trackerbot.me CTO &amp; Team</strong> — Sample Seller Orders Shown</span>
+    <span>Full Node/Postgres/SQLite Carrier Engine + Chrome MV3 PasteMe Extension Locked in Milestone Vault</span>
+  </div>
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;">
+      <div>
+        <h1 style="font-size:24px;">Trackerbot Auto &amp; Non-API MV3 Workbench — PasteMe + BCE Tracking Converter</h1>
+        <p style="color:var(--muted);font-size:14px;">Converts raw AMZL tracking numbers into eBay-compliant BCE trackings automatically, prevents duplicate carrier uploads across seller accounts, and formats 1-click PasteMe supplier checkout payloads.</p>
+      </div>
+      <button onclick="convertAllBce()">Auto-Convert All AMZL -> BCE &amp; Queue Buyer Auto-Messages</button>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Live eBay / Amazon Order Queue (Click Any Order for 1-Click PasteMe Payload)</h3>
+        <table id="ordTable">
+          <thead><tr><th>Order ID</th><th>Raw Carrier Code</th><th>BCE Converted</th><th>Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Chrome MV3 <code>PasteMe</code> Clipboard &amp; Auto-Message Preview</h3>
+        <pre id="pasteBox"></pre>
+      </div>
+    </div>
+  </div>
+<script>
+const ORDERS = [
+  { id: "EBAY-29-10841-99210", buyer: "Hannah Miller · 742 Evergreen Ter, Austin, TX 78701", raw: "TBA318499201844", bce: "Pending", stage: "Shipped" },
+  { id: "EBAY-14-88310-44102", buyer: "David Brooks · 1900 Market St Apt 4B, Philadelphia, PA 19103", raw: "TBA318500912300", bce: "Pending", stage: "Out for Delivery" },
+  { id: "AMZN-114-7729104-882", buyer: "Claire Laurent · 88 Pine Ave, Seattle, WA 98101", raw: "940011189922384719", bce: "USPS Native", stage: "Delivered" }
+];
+let sel = 0;
+
+function render() {
+  document.querySelector("#ordTable tbody").innerHTML = ORDERS.map((o, i) => `
+    <tr onclick="sel=${i};render()" style="cursor:pointer;background:${i===sel?'rgba(56,189,248,0.12)':''}">
+      <td><strong>${o.id}</strong></td>
+      <td><code>${o.raw}</code></td>
+      <td style="color:#34d399;font-weight:700;">${o.bce}</td>
+      <td>${o.stage}</td>
+    </tr>
+  `).join("");
+  const o = ORDERS[sel];
+  document.getElementById("pasteBox").textContent =
+`[PASTEME MV3 STRUCTURED CLIPBOARD PAYLOAD]
+Order:     ${o.id}
+Recipient: ${o.buyer}
+Raw Track: ${o.raw}  -->  eBay Upload: ${o.bce}
+
+[AUTO-MESSAGE TRIGGER: ${o.stage.toUpperCase()}]
+"Hi! Great news — your order ${o.id} is now ${o.stage.toLowerCase()} (${o.bce}). Thank you for shopping with our Top-Rated store!"`;
+}
+
+function convertAllBce() {
+  ORDERS.forEach((o, idx) => {
+    if (o.raw.startsWith("TBA")) o.bce = "BCE" + o.raw.slice(3) + "EU";
+  });
+  render();
+}
+render();
+</script>
+</body>
+</html>
