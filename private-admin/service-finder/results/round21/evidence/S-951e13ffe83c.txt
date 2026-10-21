@@ -1,0 +1,38 @@
+Round 21 hunt excerpts — captured 2026-10-21 (verdicts in sources.json)
+
+--- 1) Idaho Association for the Education of Young Children (Idaho AEYC, USA)
+URL: https://www.idahoaeyc.org/careers/rfp-idaho-aeyc-website-redevelopment
+Original RFP text found in the linked PDF: full website redevelopment and content-strategy
+partnership; $50,000 budget; proposals to Laurie Demko, ldemko@idahoaeyc.org; project to be
+completed by December 31, 2026. Indexed original page states: "DEADLINE: AUGUST 28th, 2026"
+and "ONLY ACCEPTING SUBMISSIONS FROM WITHIN THE U.S.A".
+Verdict: deadline passed and USA-only eligibility gate → screened out, not contacted.
+
+--- 2) HomeFront / Housing Authority of Billings (Montana, USA) — P26001 Website Design and Development
+URL: https://www.bidnetdirect.com/montana/homefront
+Excerpt: HomeFront posts solicitations through BidNet / Montana Purchasing Group. Listing
+shows P26001 Website Design and Development, published September 24, 2026 and closing
+November 4, 2026. The public listing is a bid-portal workflow rather than a public email
+submission route.
+Verdict: open date, but no plain public submission email and formal public-housing bid
+portal/registration gates → screened out under the standing rules, not contacted.
+
+--- 3) National Trust for Canada — Website Redesign RFP
+URL: https://nationaltrustcanada.ca/latest-news-from-the-national-trust/rfp-national-trust-for-canada-website-redesign
+Excerpt: "The application period for this RFP is closed." Correct submission deadline was
+April 6, 2026 at 11:59 PM PST; inquiries used NationalTrust@nationaltrustcanada.ca.
+Verdict: explicitly closed and deadline passed → screened out, not contacted.
+
+--- 4) Society for AIDS in Africa — Website Redevelopment RFP
+URL: https://www.saafrica.org/pages/2026/06/16/request-for-proposals-website-redevelopment/
+Excerpt: single-PDF proposals to info@saafrica.org by June 30, 2026; at least three
+comparable international-organisation projects and two or more client references requested.
+Verdict: deadline passed and reference/experience gates are not meetable honestly →
+screened out, not contacted.
+
+--- Also seen and rejected without individual records:
+Achievement First and Wave Transit reappeared and were already screened in earlier rounds;
+Newton County and other November government website bids appeared through aggregators or
+formal procurement channels without a qualifying plain public-email/small-provider path;
+Australia/New Zealand and South Africa searches returned grants, jobs, expired tenders, or
+formal government procurement rather than a qualifying website-service request.
