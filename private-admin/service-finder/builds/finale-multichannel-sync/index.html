@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Descartes Finale Inventory — 25+ Channel Oversell Guard & QuickBooks COGS Workbench</title>
+  <style>
+    :root { --bg:#081018; --panel:#101d2c; --border:#233952; --txt:#f8fafc; --muted:#94a3b8; --accent:#22d3ee; --green:#10b981; --red:#f43f5e; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; background:var(--bg); color:var(--txt); line-height:1.55; }
+    
+.preview-banner {
+  background: linear-gradient(90deg, #92400e, #b45309, #92400e);
+  color: #fef3c7;
+  padding: 10px 18px;
+  font-size: 12.5px;
+  font-weight: 600;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #f59e0b;
+}
+.preview-pill {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid #fbbf24;
+  color: #fde68a;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+    .wrap { max-width:1220px; margin:0 auto; padding:24px; }
+    .hdr { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+    .hdr h1 { font-size:24px; }
+    .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; margin-bottom:20px; }
+    .kpi { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:15px; }
+    .kpi .val { font-size:25px; font-weight:800; color:var(--accent); margin-top:4px; }
+    .grid2 { display:grid; grid-template-columns:1.2fr 0.8fr; gap:18px; }
+    @media(max-width:920px){ .grid2 { grid-template-columns:1fr; } }
+    .card { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:18px; }
+    table { width:100%; border-collapse:collapse; font-size:13px; margin-top:8px; }
+    th, td { padding:8px; border-bottom:1px solid #1d3147; text-align:left; }
+    th { color:var(--muted); font-size:11.5px; text-transform:uppercase; }
+    button { cursor:pointer; background:var(--accent); color:#06121c; border:none; font-weight:800; padding:8px 13px; border-radius:8px; font-size:12.5px; }
+    button.sec { background:#1b2c40; color:#e2e8f0; border:1px solid #2e4968; }
+    pre { background:#060b11; border:1px solid #1b2e44; border-radius:9px; padding:11px; font-size:12px; color:#67e8f9; overflow-x:auto; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <div class="preview-banner">
+    <span><span class="preview-pill">Proposal Preview Demo</span> Custom-built for <strong>Descartes Finale Inventory (Jason Forbes, Director of Software Dev)</strong></span>
+    <span>Atomic Multi-Warehouse Reservation Engine + QuickBooks/Xero COGS Ledger in Milestone Vault</span>
+  </div>
+  <div class="wrap">
+    <div class="hdr">
+      <div>
+        <h1>Multichannel Oversell Guard, Barcode Scan &amp; QuickBooks Landed-Cost COGS Workbench</h1>
+        <p>Simulates concurrent webhook bursts across Shopify, Amazon FBA, Walmart &amp; eBay against mobile barcode warehouse receipts and moving-average COGS journal entries.</p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button onclick="simulateBurst()">Simulate Flash-Sale Burst (4 Channels)</button>
+        <button class="sec" onclick="scanPoReceipt()">+ Barcode Scan PO Receipt (+25 Units @ $19.40 Landed)</button>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><div style="font-size:12px;color:var(--muted);">AVAILABLE TO PROMISE (ATP)</div><div class="val" id="kAtp">42 units</div><div style="font-size:12px;color:#6ee7b7;">Zero negative stock across 4 channels</div></div>
+      <div class="kpi"><div style="font-size:12px;color:var(--muted);">OVERSELLS PREVENTED</div><div class="val" id="kPrevented">0 blocked</div><div style="font-size:12px;color:#fda4af;">Atomic lock + channel safety buffer</div></div>
+      <div class="kpi"><div style="font-size:12px;color:var(--muted);">MOVING-AVG LANDED UNIT COST</div><div class="val" id="kUnitCost">$18.50</div><div style="font-size:12px;color:var(--muted);">Freight + duty allocated automatically</div></div>
+      <div class="kpi"><div style="font-size:12px;color:var(--muted);">QUICKBOOKS COGS JOURNAL TOTAL</div><div class="val" id="kCogs">$0.00</div><div style="font-size:12px;color:#6ee7b7;">Balanced DR COGS / CR Inventory Asset</div></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>Real-Time SKU Channel Allocation (`SKU-TAC-PACK-BLK`)</h3>
+        <table id="skuTable">
+          <thead><tr><th>Sales Channel</th><th>Buffer Rule</th><th>Published Qty</th><th>Orders Filled</th><th>Prevented Oversells</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>QuickBooks Online / Xero Double-Entry COGS Journal</h3>
+        <pre id="journalBox"></pre>
+      </div>
+    </div>
+  </div>
+<script>
+let onHand = 42, unitCost = 18.50, totalCogs = 0, blocked = 0;
+const CHANNELS = [
+  { name: "Shopify Plus Flagship", buffer: 2, filled: 0, blocked: 0 },
+  { name: "Amazon FBA / FBM Sync", buffer: 4, filled: 0, blocked: 0 },
+  { name: "Walmart Marketplace", buffer: 3, filled: 0, blocked: 0 },
+  { name: "eBay Motors / Direct", buffer: 3, filled: 0, blocked: 0 }
+];
+
+function render() {
+  document.getElementById("kAtp").textContent = onHand + " units";
+  document.getElementById("kPrevented").textContent = blocked + " blocked";
+  document.getElementById("kUnitCost").textContent = "$" + unitCost.toFixed(2);
+  document.getElementById("kCogs").textContent = "$" + totalCogs.toFixed(2);
+  document.querySelector("#skuTable tbody").innerHTML = CHANNELS.map(c => `
+    <tr>
+      <td><strong>${c.name}</strong></td>
+      <td>Holdback ${c.buffer}</td>
+      <td><strong>${Math.max(0, onHand - c.buffer)}</strong></td>
+      <td style="color:#6ee7b7;">${c.filled} units</td>
+      <td style="color:#fda4af;">${c.blocked} orders</td>
+    </tr>
+  `).join("");
+  document.getElementById("journalBox").textContent =
+`POST /quickbooks/v3/journalentry (Idempotent Sync)
+---------------------------------------------------
+Account 5010 · Cost of Goods Sold (DEBIT)   $${totalCogs.toFixed(2)}
+Account 1210 · Inventory Asset    (CREDIT)  $${totalCogs.toFixed(2)}
+Inventory Valuation Remaining:              $${(onHand * unitCost).toFixed(2)}
+Status: BALANCED (DR == CR, 0 drift)`;
+}
+
+function simulateBurst() {
+  const reqs = [12, 15, 11, 9];
+  reqs.forEach((qty, idx) => {
+    if (onHand >= qty) {
+      onHand -= qty;
+      CHANNELS[idx].filled += qty;
+      totalCogs += qty * unitCost;
+    } else {
+      blocked += 1;
+      CHANNELS[idx].blocked += 1;
+    }
+  });
+  render();
+}
+
+function scanPoReceipt() {
+  const addedQty = 25, landedUnit = 19.40;
+  unitCost = ((onHand * unitCost) + (addedQty * landedUnit)) / (onHand + addedQty);
+  onHand += addedQty;
+  render();
+}
+render();
+</script>
+</body>
+</html>
