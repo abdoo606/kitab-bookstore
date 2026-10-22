@@ -27,9 +27,6 @@ STRATEGIES = {
 }
 
 VIX_ERA = ("1990-02", "2023-06")
-DATA_VIX = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "vix_daily.csv")
-MA_WINDOW = 10
-VIX_CAP = 30.0
 
 
 def window_bars(name: str):
@@ -41,52 +38,6 @@ def window_bars(name: str):
     lo = next(i for i, b in enumerate(bars) if b.month >= start + "-01")
     hi = next((i for i, b in enumerate(bars) if b.month > end + "-01"), len(bars)) - 1
     return bars, bars[lo:hi + 1]
-
-
-def live_signal() -> dict:
-    """The signal a subscriber would act on now.
-
-    The engine's rule is: the decision taken at the close of month t is the
-    position held during month t+1. So the position for the month after the last
-    complete observation is `signal(bars)`, with no peeking at the new month.
-    """
-    bars = engine.load_bars(vix_path=DATA_VIX)
-    last = bars[-1]
-    ma = sum(b.price for b in bars[-MA_WINDOW:]) / MA_WINDOW
-    trend_ok = engine.trend_signal(MA_WINDOW)(bars)
-    vix_ok = last.vix is not None and last.vix <= VIX_CAP
-    position = "IN" if (trend_ok and vix_ok) else "OUT"
-
-    year, month = int(last.month[:4]), int(last.month[5:7])
-    next_ym = f"{year + 1:04d}-01" if month == 12 else f"{year:04d}-{month + 1:02d}"
-
-    reasons = []
-    reasons.append(f"price {last.price:,.2f} vs {MA_WINDOW}-month average {ma:,.2f} "
-                   f"({(last.price / ma - 1) * 100:+.1f}%)")
-    reasons.append(f"VIX {last.vix:.2f} vs cap {VIX_CAP:g} " if last.vix is not None
-                   else "VIX missing (treated as unsafe) ")
-    if not trend_ok:
-        reasons.append("trend filter is off")
-    if not vix_ok:
-        reasons.append("fear filter is off")
-
-    return {
-        "as_of": last.month[:7],
-        "decision_for": next_ym,
-        "position": position,
-        "trend_ok": bool(trend_ok),
-        "vix_ok": bool(vix_ok),
-        "price": round(last.price, 2),
-        "ma10": round(ma, 2),
-        "distance_to_ma_pct": round((last.price / ma - 1) * 100, 2),
-        "vix": last.vix,
-        "vix_cap": VIX_CAP,
-        "flip_price": round(ma, 2),
-        "dividend_caveat": "dividends are only available to 2023-06; later months are price-only",
-        "reasons": reasons,
-        "rule": f"hold equity while price > {MA_WINDOW}-month average AND VIX <= {VIX_CAP:g}; "
-                "otherwise cash; one switch costs 10 bps",
-    }
 
 
 def run_one(window: str, strategy: str, capital: float, fee_bps: float) -> dict:
@@ -147,11 +98,6 @@ def research_payload() -> dict:
 
     res = engine.backtest(seg, STRATEGIES["trend10vix"])
     out["bootstrap"] = analysis.block_bootstrap(analysis.monthly_returns(res), n_paths=2000, block=12)
-
-    out["cost_sensitivity"] = analysis.cost_sensitivity(
-        seg, lambda: engine.trend_vix(10, 30.0), cost_bps=(10.0, 20.0, 30.0, 50.0, 100.0))
-    out["deflated_sharpe"] = analysis.deflated_sharpe(
-        analysis.monthly_returns(res), [r["sharpe"] for r in out["sweep"]])
     return out
 
 
@@ -176,29 +122,6 @@ def cmd_research(_args) -> int:
     print(f"  final equity p05 ${b['final_p05']:,.0f} · p50 ${b['final_p50']:,.0f} · p95 ${b['final_p95']:,.0f}")
     print(f"  max drawdown p05 {b['dd_p05']:.2f}% · p50 {b['dd_p50']:.2f}% · p95 {b['dd_p95']:.2f}%")
     print(f"  P(final < capital) = {b['probability_of_loss']:.2%}")
-
-    print("\nall-in cost sensitivity (commission + slippage, trend10vix)")
-    for r in d["cost_sensitivity"]:
-        print(f"  {r['all_in_bps']:>5.0f} bps  final ${r['final_equity']:>9,.0f}  "
-              f"CAGR {r['cagr_pct']:>5.2f}%  Sharpe {r['sharpe']:>4.2f}  "
-              f"MDD {r['max_drawdown_pct']:>7.2f}%  trades {r['trades']}")
-
-    dsr = d["deflated_sharpe"]
-    print(f"\ndeflated Sharpe ratio · {dsr['trials']} rules tried on this window")
-    print(f"  winner Sharpe {dsr['sharpe_annual']:.2f} (annualised) vs expected-max "
-          f"under the null {dsr['sr0_annual']:.2f}")
-    print(f"  skew {dsr['skew']:.2f} · kurtosis {dsr['kurtosis']:.2f} · "
-          f"P(true Sharpe > 0) = {dsr['dsr']:.4%}  (z = {dsr['z']:+.2f})")
-    return 0
-
-
-def cmd_signal(_args) -> int:
-    d = live_signal()
-    print(f"TradeAtlas signal for {d['decision_for']}  (data through {d['as_of']})")
-    print(f"  position: {d['position']}")
-    for line in d["reasons"]:
-        print(f"  - {line}")
-    print(f"  rule: {d['rule']}")
     return 0
 
 
@@ -252,7 +175,6 @@ def make_server(host: str = "0.0.0.0", port: int = 8820) -> ThreadingHTTPServer:
                     boot = analysis.block_bootstrap(analysis.monthly_returns(
                         engine.backtest(seg, STRATEGIES["trend10vix"])), n_paths=800, block=12)
                     proofer = engine.truncation_test(window_bars("full")[1], STRATEGIES["trend10"])
-                    sig = live_signal()
                     html = f"""<!doctype html><meta charset=utf-8>
 <title>TradeAtlas Core</title>
 <style>body{{background:#0b0f14;color:#e7edf5;font:15px ui-sans-serif,system-ui;
@@ -264,17 +186,10 @@ th{{color:#8fa1b6;font-size:11px;text-transform:uppercase;letter-spacing:.8px}}
 td.n{{font-family:ui-monospace,Menlo,monospace;text-align:right}}
 .ok{{color:#35c88a}}.tag{{display:inline-block;border:1px solid #1f2937;border-radius:99px;
  padding:3px 9px;font-size:12px;color:#8fa1b6;margin-right:6px}}
-.foot{{color:#8fa1b6;font-size:12px;margin-top:18px;max-width:860px}}
-.sig{{border:1px solid #1f2937;border-radius:12px;padding:14px 18px;margin:14px 0 22px;max-width:860px}}
-.sig .k{{font-size:11px;color:#8fa1b6;text-transform:uppercase;letter-spacing:.8px}}
-.sig .v{{font-size:30px;font-weight:600;color:#35c88a;margin:2px 0}}
-.sig .m{{font-size:13px;color:#c7d2df}}</style>
+.foot{{color:#8fa1b6;font-size:12px;margin-top:18px;max-width:860px}}</style>
 <h1>TradeAtlas Core</h1>
 <p class=s><span class=tag>long-only spot</span><span class=tag>10 bps per switch</span>
 <span class=tag>cash earns 0%</span><span class=tag>Shiller monthly, 1871&ndash;2026</span></p>
-<div class=sig><div class=k>signal for {sig['decision_for']}</div>
-<div class=v>{sig['position']}</div>
-<div class=m>price {sig['price']:,.2f} · 10m avg {sig['ma10']:,.2f} ({sig['distance_to_ma_pct']:+.1f}%) · VIX {sig['vix']:.2f} (cap {sig['vix_cap']:g})</div></div>
 <table><tr><th>window</th><th>strategy</th><th>final equity</th><th>CAGR</th><th>Sharpe</th>
 <th>max DD</th><th>in market</th></tr>{''.join(rows)}</table>
 <h2 style="font-size:15px;margin:26px 0 8px">VIX era, 1990-02 → 2023-06</h2>
@@ -307,8 +222,6 @@ API: <code>/api/backtest?window=1993&amp;strategy=trend10</code></p>"""
                                                                              engine.trend_signal(10))))
                 elif u.path == "/api/research":
                     self._json(200, research_payload())
-                elif u.path in ("/api/signal", "/signal"):
-                    self._json(200, live_signal())
                 elif u.path == "/api/windows":
                     self._json(200, {k: {"start": v[0], "end": v[1]} for k, v in WINDOWS.items()})
                 else:
@@ -339,7 +252,6 @@ def main(argv=None) -> int:
     sub.add_parser("demo", help="print the four windows x two strategies").set_defaults(fn=cmd_demo)
     sub.add_parser("truncation", help="prove no lookahead").set_defaults(fn=cmd_truncation)
     sub.add_parser("research", help="walk-forward, parameter stability, bootstrap").set_defaults(fn=cmd_research)
-    sub.add_parser("signal", help="the position to hold next month").set_defaults(fn=cmd_signal)
 
     b = sub.add_parser("backtest", help="one backtest as json")
     b.add_argument("--window", default="1993", choices=sorted(WINDOWS))
