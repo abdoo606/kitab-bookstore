@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StudyTurtle — Parametric 2D SVG Character Rig, Viseme Lip-Sync & CV Simplifier</title>
+<style>
+  :root{--bg:#08121a;--card:#10202e;--line:#1e3a52;--acc:#34d399;--warn:#fbbf24;--txt:#f8fafc;--mut:#94a3b8}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif;line-height:1.5}
+  .wrap{max-width:1100px;margin:0 auto;padding:28px 20px 60px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+  @media(max-width:860px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+  button{background:var(--acc);color:#042419;border:0;border-radius:8px;padding:9px 14px;font-weight:800;cursor:pointer;margin:4px 6px 4px 0}
+  input[type=text]{width:100%;padding:9px 12px;border-radius:8px;border:1px solid #2b4c68;background:#071018;color:#fff;margin-bottom:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span style="background:rgba(52,211,153,.15);color:#34d399;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700">CUSTOM PROTOTYPE FOR STUDYTURTLE · INDIVIDUAL ENGINEER (NON-US, REMOTE)</span>
+  <h1 style="margin:12px 0 6px;font-size:27px">🐢 StudyTurtle Automation Studio — Live 2D SVG Rig, Viseme Lip-Sync &amp; RDP Vector Simplifier</h1>
+  <p style="color:var(--mut);margin:0">Built specifically to turn static flat-shaded episode scenes into expressive, zero-jitter 60fps SVG animations for ages 4–10: automatic transcript-to-viseme lip-sync, natural 3.4s eye-blink cadence, spring head-bobbing, and Ramer–Douglas–Peucker contour cleanup.</p>
+
+  <div class="grid">
+    <div class="card" style="text-align:center">
+      <h3 style="margin-top:0;text-align:left">1. Live Parametric SVG Character Rig (Ages 4–10)</h3>
+      <input id="lineInput" type="text" value="Hello little explorers! Today we count five glowing stars in the ocean!">
+      <div style="text-align:left;margin-bottom:8px">
+        <button onclick="speakLine()">▶️ Play Automated Lip-Sync + Head Bounce</button>
+        <span id="visBadge" style="font-size:12px;color:var(--warn);font-weight:700">Viseme: REST</span>
+      </div>
+      <svg viewBox="0 0 320 220" style="width:100%;max-width:400px;background:#0a1824;border-radius:14px;border:1px solid #1e3a52">
+        <ellipse cx="160" cy="196" rx="75" ry="12" fill="#061018"/>
+        <ellipse cx="160" cy="155" rx="64" ry="44" fill="#0d9488" stroke="#5eead4" stroke-width="3"/>
+        <g id="turtleHead" transform="translate(160,96)">
+          <circle cx="0" cy="0" r="44" fill="#34d399" stroke="#a7f3d0" stroke-width="3"/>
+          <ellipse id="eyeL" cx="-16" cy="-10" rx="6" ry="7" fill="#052e16"/>
+          <ellipse id="eyeR" cx="16" cy="-10" rx="6" ry="7" fill="#052e16"/>
+          <circle cx="-24" cy="4" r="7" fill="#fda4af" opacity="0.55"/>
+          <circle cx="24" cy="4" r="7" fill="#fda4af" opacity="0.55"/>
+          <path id="mouthPath" d="M -14 10 Q 0 18 14 10" fill="#7f1d1d" stroke="#052e16" stroke-width="3" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">2. CV Contour -> Ramer–Douglas–Peucker SVG Path Cleaner</h3>
+      <p style="font-size:13px;color:var(--mut)">Drag tolerance <code>epsilon</code> to watch noisy traced raster contours collapse into clean, lightweight SVG paths without losing silhouette fidelity:</p>
+      <label style="font-size:13px">Epsilon Tolerance: <b id="epsVal">2.2</b> px -> Nodes Kept: <b id="nodeStats" style="color:var(--acc)"></b></label>
+      <input type="range" id="epsRange" min="0.2" max="7.0" step="0.2" value="2.2" oninput="updateRdp()" style="width:100%;margin:8px 0">
+      <svg viewBox="0 0 320 120" style="width:100%;background:#071018;border-radius:10px;border:1px solid #1d3549">
+        <path id="rawPath" fill="none" stroke="#475569" stroke-width="1.5"/>
+        <path id="cleanPath" fill="none" stroke="#34d399" stroke-width="3"/>
+      </svg>
+      <div style="margin-top:12px;padding:11px;background:#081520;border:1px solid #1e3a52;border-radius:10px;font-size:13px">
+        <strong style="color:var(--warn)">Individual Engineer Rates (Direct 1-on-1 — Zero Agencies/Recruiters):</strong><br>
+        • <b>Turnkey SVG + CV Episode Automation Pipeline:</b> <b>$1,400 USD total</b> ($700 Milestone 1 kickoff + $700 Milestone 2 full Python CV/RDP + Bezier + lip-sync engine).<br>
+        • <b>Ongoing Remote Engineering Role (Non-US, UTC+3):</b> <b>$4,200/month USD</b> direct individual collaboration.
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const VISEMES = {
+  REST: "M -14 10 Q 0 17 14 10",
+  AA:   "M -15 8 Q 0 28 15 8 Q 0 13 -15 8 Z",
+  EE:   "M -18 10 Q 0 20 18 10 Q 0 13 -18 10 Z",
+  OH:   "M -9 6 A 9 10 0 1 0 9 6 A 9 10 0 1 0 -9 6 Z",
+  FV:   "M -15 11 L 15 11 Q 0 16 -15 11 Z"
+};
+function speakLine() {
+  const words = document.getElementById('lineInput').value.split(/\s+/).filter(Boolean);
+  let i = 0;
+  const timer = setInterval(() => {
+    if (i >= words.length) {
+      document.getElementById('mouthPath').setAttribute('d', VISEMES.REST);
+      document.getElementById('turtleHead').setAttribute('transform', 'translate(160,96)');
+      document.getElementById('visBadge').textContent = 'Viseme: REST';
+      clearInterval(timer); return;
+    }
+    const w = words[i].toLowerCase();
+    const v = /o|oo|ow/.test(w) ? 'OH' : (/f|v/.test(w) ? 'FV' : (/ee|ea|i|y/.test(w) ? 'EE' : 'AA'));
+    document.getElementById('mouthPath').setAttribute('d', VISEMES[v]);
+    document.getElementById('turtleHead').setAttribute('transform', `translate(160,${92 + (i%2)*5}) rotate(${(i%2?2:-2)})`);
+    document.getElementById('visBadge').textContent = `Word: "${words[i]}" -> Viseme: ${v}`;
+    i++;
+  }, 260);
+}
+setInterval(() => {
+  ['eyeL','eyeR'].forEach(id => document.getElementById(id).setAttribute('ry','1'));
+  setTimeout(() => ['eyeL','eyeR'].forEach(id => document.getElementById(id).setAttribute('ry','7')), 140);
+}, 3200);
+
+const RAW_PTS = Array.from({length:48}, (_,i) => [12 + i*6.3, 62 + Math.sin(i*0.28)*34 + (i%2?2.4:-2.4)]);
+function perp(p,a,b){ const dx=b[0]-a[0],dy=b[1]-a[1]; const t=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/(dx*dx+dy*dy||1))); return Math.hypot(p[0]-(a[0]+t*dx),p[1]-(a[1]+t*dy)); }
+function rdp(pts,eps){ if(pts.length<3)return pts; let dm=0,idx=0; for(let i=1;i<pts.length-1;i++){const d=perp(pts[i],pts[0],pts[pts.length-1]); if(d>dm){dm=d;idx=i;}} return dm>eps ? rdp(pts.slice(0,idx+1),eps).slice(0,-1).concat(rdp(pts.slice(idx),eps)) : [pts[0],pts[pts.length-1]]; }
+function toPath(pts){ return pts.map((p,i)=>(i?'L ':'M ')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' '); }
+function updateRdp(){
+  const eps = parseFloat(document.getElementById('epsRange').value);
+  document.getElementById('epsVal').textContent = eps.toFixed(1);
+  const clean = rdp(RAW_PTS, eps);
+  document.getElementById('rawPath').setAttribute('d', toPath(RAW_PTS));
+  document.getElementById('cleanPath').setAttribute('d', toPath(clean));
+  document.getElementById('nodeStats').textContent = `${clean.length} / ${RAW_PTS.length} nodes (-${Math.round((1-clean.length/RAW_PTS.length)*100)}% DOM size)`;
+}
+updateRdp();
+</script>
+</body>
+</html>

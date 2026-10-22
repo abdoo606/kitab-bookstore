@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AssumeAI — Consultancy AI ROI & UK-GDPR Governance Studio</title>
+<style>
+  body{margin:0;background:#080d17;color:#f8fafc;font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  .wrap{max-width:1100px;margin:0 auto;padding:28px 20px 60px}.card{background:#11192b;border:1px solid #243556;border-radius:14px;padding:18px;margin-top:16px}
+  button{background:#34d399;color:#042419;border:0;border-radius:8px;padding:9px 14px;font-weight:800;cursor:pointer}
+  pre{background:#050811;border:1px solid #1d2d4a;border-radius:10px;padding:13px;color:#93c5fd;overflow-x:auto;font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span style="background:rgba(52,211,153,.15);color:#34d399;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700">CUSTOM PROTOTYPE BUILT FOR ASSUMEAI · STRATEGY ROI + UK-GDPR GOVERNANCE FIREWALL</span>
+  <h1 style="margin:12px 0 6px;font-size:27px">🏛️ Consultancy AI Payback Model &amp; Pre-LLM Client-Confidentiality Redactor</h1>
+  <p style="color:#94a3b8;margin:0">Built directly around AssumeAI's two-pillar thesis ("nothing built without commercial ROI justification, and nothing deployed without governance safeguards").</p>
+  <div class="card">
+    <button onclick="runCheck()">▶ Run Live 14-Consultant Firm ROI + UK-GDPR Redaction Check</button>
+    <pre id="out"></pre>
+  </div>
+  <div class="card" style="font-size:13px">
+    <strong style="color:#fbbf24">Transparent Contractor &amp; Turnkey Delivery Options (Full UK Working Hours Overlap):</strong><br>
+    • <b>Option A — Multi-Month Senior AI Engineer Contract:</b> <b>£50/hr (~$65/hr USD)</b> directly matching your published senior contract band.<br>
+    • <b>Option B — Turnkey White-Label ROI + Governance Assessment Portal:</b> <b>$1,800 USD total</b> ($900 Milestone 1 kickoff + $900 Milestone 2 full Python/SQL/Vercel codebase).
+  </div>
+</div>
+<script>
+function runCheck() {
+  const grossGbp = 14 * 4.5 * 48 * 95;
+  const buildGbp = 12500, infraYr = 380 * 12;
+  document.getElementById('out').textContent = JSON.stringify({
+    consultancy_profile: "14-Consultant UK Advisory Practice (4.5 hrs/wk saved @ £95/hr blended cost)",
+    annual_capacity_unlocked_gbp: "£" + grossGbp.toLocaleString(),
+    year_1_net_benefit_gbp: "£" + (grossGbp - buildGbp - infraYr).toLocaleString(),
+    payback_period_weeks: +(buildGbp / (grossGbp / 52)).toFixed(1) + " weeks",
+    uk_gdpr_prompt_firewall: {
+      raw_excerpt: "Client Sarah Jenkins (s.jenkins@client.co.uk, NI QQ 12 34 56 A)",
+      forwarded_to_claude: "Client Sarah Jenkins ([REDACTED_EMAIL], NI [REDACTED_UK_NI])"
+    }
+  }, null, 2);
+}
+runCheck();
+</script>
+</body></html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document Library, Staff &amp; Public Engagement — CSKT DEWR Concept</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="demo-disclaimer" role="note">
+    <div class="container">
+      <strong>Unofficial RFP Working Concept:</strong> Searchable document library, staff directory, careers board, and static demo public-comment form (transmits zero data).
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">DEWR</span>
+        <span>
+          <span class="brand-kicker">Confederated Salish &amp; Kootenai Tribes · Natural Resources</span>
+          <span class="brand-title">Division of Engineering &amp; Water Resources</span>
+        </span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="index.html">Home &amp; Programs</a></li>
+          <li><a href="projects-gis.html">Projects, GIS &amp; StoryMaps</a></li>
+          <li><a href="documents.html" aria-current="page">Documents, Staff &amp; Outreach</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container breadcrumb"><a href="index.html">Home</a> / Document Library, Staff Directory, Careers &amp; Public Comments</div>
+
+    <section class="section" aria-labelledby="docs-heading">
+      <div class="container">
+        <div class="section-head">
+          <h1 id="docs-heading">Searchable Public Document &amp; Resource Library (RFP Section 5.8)</h1>
+          <p>Instant keyword search, category taxonomy, year filter, version tracking, and file-size transparency so residents, irrigators, and partner agencies find technical PDFs and forms quickly.</p>
+        </div>
+
+        <div class="filter-bar">
+          <div>
+            <label for="doc-search">Keyword Search</label>
+            <input id="doc-search" type="search" placeholder="Search hydrology, headgate, compact, specs...">
+          </div>
+          <div>
+            <label for="doc-category">Document Category</label>
+            <select id="doc-category">
+              <option value="ALL">All Categories</option>
+              <option value="Technical Reports">Technical Reports</option>
+              <option value="Forms & Water Users">Forms &amp; Water Users</option>
+              <option value="Public Notices">Public Notices</option>
+              <option value="Procurement & Engineering">Procurement &amp; Engineering</option>
+              <option value="Educational Materials">Educational Materials</option>
+            </select>
+          </div>
+          <div>
+            <label for="doc-year">Publication Year</label>
+            <select id="doc-year">
+              <option value="ALL">All Years</option>
+              <option value="2026">2026</option>
+              <option value="2025">2025</option>
+            </select>
+          </div>
+        </div>
+
+        <p id="doc-count" class="doc-meta" aria-live="polite"></p>
+        <div id="doc-results"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="staff" aria-labelledby="staff-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="staff-heading">DEWR Staff Directory &amp; Career Opportunities (RFP Section 5.14)</h2>
+          <p>Program-filterable staff contacts alongside current engineering, hydrology, and GIS career openings.</p>
+        </div>
+
+        <div class="filter-bar">
+          <div>
+            <label for="staff-area-filter">Filter Staff by Program Area</label>
+            <select id="staff-area-filter">
+              <option value="ALL">All Program Areas</option>
+              <option value="Administration & Compact Coordination">Administration &amp; Compact Coordination</option>
+              <option value="Public Outreach & Education">Public Outreach &amp; Education</option>
+              <option value="Engineering & Infrastructure">Engineering &amp; Infrastructure</option>
+              <option value="Hydrology & GIS">Hydrology &amp; GIS</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2" id="staff-grid"></div>
+
+        <div class="section-head" id="careers" style="margin-top:2.2rem;">
+          <h2>Employment &amp; Career Opportunities</h2>
+          <p>Dedicated CMS section allowing authorized staff to publish DEWR openings or link directly to official CSKT Personnel announcements.</p>
+        </div>
+        <div class="grid-3" id="career-list"></div>
+      </div>
+    </section>
+
+    <section class="section" id="public-comment" aria-labelledby="comment-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="comment-heading">Public Comment, Meeting RSVP &amp; Inquiry Form (RFP Section 5.9)</h2>
+          <p>Accessible form layout demonstrating public comment intake, topic routing, and newsletter opt-in. Static concept only — nothing is transmitted.</p>
+        </div>
+        <form class="card" id="public-comment-form" style="max-width:740px;">
+          <div class="grid-2">
+            <div>
+              <label for="comment-name">Full Name</label>
+              <input id="comment-name" type="text" required placeholder="Jane Doe">
+            </div>
+            <div>
+              <label for="comment-email">Email Address (for confirmation &amp; updates)</label>
+              <input id="comment-email" type="email" required placeholder="name@example.org">
+            </div>
+          </div>
+          <div>
+            <label for="comment-topic">Program / Public Notice Topic</label>
+            <select id="comment-topic">
+              <option value="Fall Watershed Open House RSVP">Fall Watershed Open House RSVP</option>
+              <option value="Stream & Fishery Restoration Comment">Stream &amp; Fishery Restoration Comment</option>
+              <option value="Irrigation Modernization & Measurement Inquiry">Irrigation Modernization &amp; Measurement Inquiry</option>
+              <option value="General DEWR Question / Newsletter Sign-Up">General DEWR Question / Newsletter Sign-Up</option>
+            </select>
+          </div>
+          <div>
+            <label for="comment-body">Public Comment or Question</label>
+            <textarea id="comment-body" rows="4" required placeholder="Enter comment or question (demo mode — stays locally in browser)..."></textarea>
+          </div>
+          <div>
+            <button type="submit" class="btn btn-river">Preview Submission Workflow</button>
+          </div>
+          <div id="comment-status" class="status-note" role="status" aria-live="polite" hidden></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>CSKT DEWR Working Concept</strong>
+        <p>Full administrative credentials, domain control, source code, and digital style guide belong 100% to CSKT upon delivery (RFP Section 5.13).</p>
+      </div>
+      <div>
+        <strong>Prepared By</strong>
+        <p>Abdulrhman — <a href="mailto:abdulrhmant948@gmail.com">abdulrhmant948@gmail.com</a> · <a href="https://github.com/abdoo606">github.com/abdoo606</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/dewr-data.js"></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>

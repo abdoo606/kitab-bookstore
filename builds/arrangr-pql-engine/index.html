@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arrangr — Corporate Domain PQL Radar & Team Expansion Workbench</title>
+  <style>
+    :root { --bg:#090e1a; --panel:#11192c; --border:#253554; --txt:#f8fafc; --muted:#94a3b8; --accent:#38bdf8; --emerald:#10b981; --violet:#8b5cf6; --amber:#f59e0b; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:var(--bg); color:var(--txt); line-height:1.55; }
+    
+.preview-banner {
+  background: linear-gradient(90deg, #92400e, #b45309, #92400e);
+  color: #fef3c7;
+  padding: 10px 18px;
+  font-size: 12.5px;
+  font-weight: 600;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #f59e0b;
+}
+.preview-pill {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid #fbbf24;
+  color: #fde68a;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+    .wrap { max-width:1220px; margin:0 auto; padding:24px; }
+    .hdr { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:16px; padding-bottom:20px; border-bottom:1px solid var(--border); margin-bottom:22px; }
+    .hdr h1 { font-size:25px; letter-spacing:-0.02em; }
+    .hdr p { color:var(--muted); font-size:14px; max-width:740px; margin-top:4px; }
+    .kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; margin-bottom:22px; }
+    .kpi { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:16px; }
+    .kpi .lbl { font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; }
+    .kpi .val { font-size:26px; font-weight:800; margin-top:4px; color:var(--accent); }
+    .kpi .sub { font-size:12px; color:#6ee7b7; margin-top:2px; }
+    .grid2 { display:grid; grid-template-columns:1.25fr 0.95fr; gap:18px; margin-bottom:20px; }
+    @media(max-width:920px){ .grid2 { grid-template-columns:1fr; } }
+    .card { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:18px; }
+    .card h2 { font-size:16.5px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th, td { padding:9px 8px; border-bottom:1px solid #1e2d47; text-align:left; }
+    th { color:var(--muted); font-size:11.5px; text-transform:uppercase; }
+    tr.active-row { background:rgba(56,189,248,0.11); }
+    button { cursor:pointer; background:var(--accent); color:#071120; border:none; font-weight:700; padding:8px 13px; border-radius:8px; font-size:12.5px; transition:0.15s; }
+    button:hover { filter:brightness(1.08); }
+    button.sec { background:#1e293b; color:#e2e8f0; border:1px solid #334155; }
+    .modal-preview { background:linear-gradient(145deg,#0f172a,#172554); border:1px solid #3b82f6; border-radius:12px; padding:16px; margin-top:10px; }
+    .badge { display:inline-block; padding:2px 8px; border-radius:999px; font-size:11px; font-weight:700; background:rgba(16,185,129,0.16); color:#6ee7b7; }
+    .slider-row { margin:10px 0; }
+    .slider-row label { display:flex; justify-content:space-between; font-size:13px; color:#cbd5e1; margin-bottom:4px; }
+    input[type=range] { width:100%; accent-color:var(--accent); }
+    pre { background:#060a13; border:1px solid #1e293b; border-radius:9px; padding:12px; font-size:12px; color:#a5f3fc; overflow-x:auto; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <div class="preview-banner">
+    <span><span class="preview-pill">Proposal Preview Demo</span> Custom-built for <strong>Arrangr (Adam Perl, CEO)</strong> — Sample PQL Telemetry Shown</span>
+    <span>Full SQLite/Postgres Cluster Engine + Automated Sequence Webhook Locked in Milestone Vault ($12K / 5-Milestone Structure)</span>
+  </div>
+  <div class="wrap">
+    <div class="hdr">
+      <div>
+        <h1>Arrangr Silent-Team PQL Radar &amp; Priority-Scheduling Expansion Engine</h1>
+        <p>Turns multi-user individual signups on the same corporate email domain + shared Custom 1:1 / Poll invite graphs into self-serve 14-day Team Pilots &amp; paid seat expansion.</p>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button onclick="exportManifest()">Export Milestone 1 Cohort Spec (JSON)</button>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><div class="lbl">Detected Multi-User Work Domains</div><div class="val" id="kpiClusters">412</div><div class="sub">>= 3 active individual users (non-webmail)</div></div>
+      <div class="kpi"><div class="lbl">High-Intent PQL Score >= 80</div><div class="val" id="kpiHot">94</div><div class="sub">Shared 1:1 guest overlap + Priority Bump active</div></div>
+      <div class="kpi"><div class="lbl">Projected 90-Day New Team ARR</div><div class="val" id="kpiArr">$64,800</div><div class="sub" id="kpiSeats">450 seats converted across Milestones 1-3</div></div>
+      <div class="kpi"><div class="lbl">Dormant Organizer Winback Lift</div><div class="val" id="kpiWinback">+14.2%</div><div class="sub">Triggered when guest replies or colleague books</div></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h2><span>1. Live Unmonetized Corporate Domain Clusters (Click Row to Inspect Motion)</span><span class="badge">Webmail Excluded</span></h2>
+        <table id="clusterTable">
+          <thead>
+            <tr><th>Work Domain</th><th>Active Users</th><th>Shared Guests</th><th>Priority Bumps/Mo</th><th>PQL Score</th><th>Action</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <pre id="sqlPreview"></pre>
+      </div>
+
+      <div class="card">
+        <h2><span>2. Zero-Eng-Friction In-Product Surface Preview</span><span class="badge" id="selectedOrgBadge">northstar-advisors.example</span></h2>
+        <p style="font-size:12.5px;color:var(--muted);">Triggered automatically right after a Custom 1:1 invite (94% close rate) or Group Poll finishes:</p>
+        <div class="modal-preview" id="nudgeCard"></div>
+
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
+          <h2 style="margin-bottom:8px;"><span>3. Milestone 1–5 Funnel &amp; ARR Model</span></h2>
+          <div class="slider-row">
+            <label><span>Cluster Pilot Activation Rate (%)</span><strong id="lblPilot">18%</strong></label>
+            <input type="range" id="rngPilot" min="5" max="40" value="18" oninput="recalcFunnel()" />
+          </div>
+          <div class="slider-row">
+            <label><span>Pilot-to-Paid Team Close Rate (%)</span><strong id="lblPaid">42%</strong></label>
+            <input type="range" id="rngPaid" min="15" max="70" value="42" oninput="recalcFunnel()" />
+          </div>
+          <div class="slider-row">
+            <label><span>Avg Annual Price per Team Seat ($/yr)</span><strong id="lblPrice">$144</strong></label>
+            <input type="range" id="rngPrice" min="96" max="288" step="12" value="144" oninput="recalcFunnel()" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const CLUSTERS = [
+  { domain: "northstar-advisors.example", users: 9, sharedGuests: 14, bumps: 31, champion: "maya.chen@northstar-advisors.example", score: 96, dormant: 3 },
+  { domain: "kestrel-biotech.example", users: 7, sharedGuests: 11, bumps: 24, champion: "devon.patel@kestrel-biotech.example", score: 91, dormant: 2 },
+  { domain: "meridian-freight.example", users: 6, sharedGuests: 8, bumps: 19, champion: "lucas.meyer@meridian-freight.example", score: 87, dormant: 4 },
+  { domain: "harborview-legal.example", users: 5, sharedGuests: 7, bumps: 15, champion: "claire.ross@harborview-legal.example", score: 83, dormant: 1 },
+  { domain: "solstice-ventures.example", users: 4, sharedGuests: 6, bumps: 12, champion: "omar.farouk@solstice-ventures.example", score: 78, dormant: 2 }
+];
+let currentIdx = 0;
+
+function renderClusters() {
+  const tb = document.querySelector("#clusterTable tbody");
+  tb.innerHTML = CLUSTERS.map((c, i) => `
+    <tr class="${i===currentIdx?'active-row':''}" onclick="selectCluster(${i})" style="cursor:pointer;">
+      <td><strong>${c.domain}</strong></td>
+      <td>${c.users} active (+${c.dormant} dormant)</td>
+      <td>${c.sharedGuests} external</td>
+      <td>${c.bumps} bumps</td>
+      <td><span class="badge">${c.score}/100</span></td>
+      <td><button class="sec" onclick="event.stopPropagation();selectCluster(${i})">Preview Nudge</button></td>
+    </tr>
+  `).join("");
+  const c = CLUSTERS[currentIdx];
+  document.getElementById("selectedOrgBadge").textContent = c.domain;
+  document.getElementById("nudgeCard").innerHTML = `
+    <div style="font-size:11.5px;color:#93c5fd;font-weight:700;margin-bottom:4px;">POST-1:1 INVITE BANNER · CHAMPION: ${c.champion}</div>
+    <div style="font-size:15.5px;font-weight:700;margin-bottom:6px;">${c.users} colleagues at ${c.domain} already schedule on Arrangr — including ${c.sharedGuests} shared external contacts.</div>
+    <p style="font-size:12.5px;color:#cbd5e1;margin-bottom:10px;">Unlock <strong>Shared Priority-Bump Rules</strong>, <strong>Multi-Host Group Polls</strong>, and <strong>Consolidated Team Billing</strong> across all ${c.users + c.dormant} seats. 14-day instant pilot — existing personal links stay untouched.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button onclick="alert('Pilot Provisioned for ' + '${c.domain}' + ' (' + (${c.users}+${c.dormant}) + ' seats) — Admin & Security Pack queued!')">Start 14-Day Team Pilot (${c.users} Active Seats)</button>
+      <button class="sec" onclick="alert('Instant Reply Pack: SOC2/GDPR Summary + SSO Admin Role Matrix + Consolidated Invoice Quote sent to ' + '${c.champion}')">Admin / Security FAQ Pack</button>
+    </div>
+  `;
+  document.getElementById("sqlPreview").textContent =
+`-- Milestone 1 Event & Graph Query (${c.domain} -> PQL Score ${c.score}/100)
+SELECT split_part(email,'@',2) AS work_domain, COUNT(*) AS active_organizers,
+       SUM(priority_bumps_30d) AS bumps_30d, COUNT(DISTINCT shared_guest_hash) AS shared_external_guests
+FROM arrangr_users u LEFT JOIN invite_graph g ON u.id = g.organizer_id
+WHERE split_part(email,'@',2) NOT IN ('gmail.com','outlook.com','yahoo.com','icloud.com')
+GROUP BY 1 HAVING COUNT(*) >= 3 ORDER BY bumps_30d DESC;`;
+}
+
+function selectCluster(i) { currentIdx = i; renderClusters(); }
+
+function recalcFunnel() {
+  const pilotPct = +document.getElementById("rngPilot").value;
+  const paidPct = +document.getElementById("rngPaid").value;
+  const price = +document.getElementById("rngPrice").value;
+  document.getElementById("lblPilot").textContent = pilotPct + "%";
+  document.getElementById("lblPaid").textContent = paidPct + "%";
+  document.getElementById("lblPrice").textContent = "$" + price;
+  const pilots = Math.round(412 * (pilotPct / 100));
+  const teams = Math.round(pilots * (paidPct / 100));
+  const seats = teams * 6;
+  const arr = seats * price;
+  document.getElementById("kpiArr").textContent = "$" + arr.toLocaleString();
+  document.getElementById("kpiSeats").textContent = `${pilots} pilots -> ${teams} paid teams (~${seats} seats)`;
+}
+
+function exportManifest() {
+  const payload = {
+    target: "Arrangr ($12K 5-Milestone Expansion Motion)",
+    milestone_1: "End-to-end event taxonomy + work-domain PQL clustering + ARR drop-off diagnosis",
+    milestone_2: "Behavior-triggered post-1:1 team expansion surface + dormant organizer winback",
+    sample_clusters: CLUSTERS
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type: "application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "arrangr-pql-milestone-spec.json";
+  a.click();
+}
+renderClusters();
+recalcFunnel();
+</script>
+</body>
+</html>

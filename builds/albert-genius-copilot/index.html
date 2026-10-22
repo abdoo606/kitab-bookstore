@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Albert Genius — Zero-Overdraft Cash-Flow Safe-to-Save Forecaster & Subscription Leak Guard</title>
+  <style>
+    :root { --bg:#080e16; --panel:#101b2b; --border:#233754; --txt:#f8fafc; --muted:#94a3b8; --accent:#34d399; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; background:var(--bg); color:var(--txt); line-height:1.55; }
+    
+.preview-banner {
+  background: linear-gradient(90deg, #7c2d12, #b45309, #7c2d12);
+  color: #fef3c7;
+  padding: 10px 18px;
+  font-size: 12.5px;
+  font-weight: 600;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #f59e0b;
+}
+.preview-pill {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid #fbbf24;
+  color: #fde68a;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+    .wrap { max-width:1200px; margin:0 auto; padding:24px; }
+    .grid2 { display:grid; grid-template-columns:1.1fr 0.9fr; gap:18px; margin-top:18px; }
+    @media(max-width:920px){ .grid2 { grid-template-columns:1fr; } }
+    .card { background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:18px; }
+    button { cursor:pointer; background:var(--accent); color:#04170f; border:none; font-weight:800; padding:8px 13px; border-radius:8px; font-size:12.5px; }
+    pre { background:#060b12; border:1px solid #1d2f47; border-radius:9px; padding:12px; font-size:12px; color:#86efac; overflow-x:auto; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <div class="preview-banner">
+    <span><span class="preview-pill">Proposal Preview Demo</span> Custom-built for <strong>Albert Product &amp; Engineering Team</strong> — Sample Member Cash-Flow Ledger</span>
+    <span>Full Python/Postgres Safe-to-Save Min-Balance Solver + Subscription Detector Locked in Vault</span>
+  </div>
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;">
+      <div>
+        <h1 style="font-size:24px;">Albert <code>Genius</code> — Zero-Overdraft Safe-to-Save Solver &amp; Recurring Bill Renegotiator</h1>
+        <p style="color:var(--muted);font-size:14px;">Computes exact maximum auto-save transfer guaranteed never to breach a member's 30-day minimum balance floor across upcoming rent, utilities, and detected duplicate subscriptions.</p>
+      </div>
+      <button onclick="cancelLeaks()">Cancel 2 Duplicate Subscriptions (+$44.98/mo Saved)</button>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>30-Day Forward Cash-Flow &amp; Overdraft-Proof Auto-Save</h3>
+        <pre id="forecastOut"></pre>
+      </div>
+      <div class="card">
+        <h3>Detected Recurring Subscriptions &amp; Price-Hike Alerts</h3>
+        <pre id="subsOut"></pre>
+      </div>
+    </div>
+  </div>
+<script>
+let extraSaved = 0;
+function render() {
+  const safeTransfer = 185 + extraSaved;
+  document.getElementById("forecastOut").textContent =
+`Current Checking Balance:           $1,640.00
+Upcoming Rent + Utilities (14d):   -$1,205.00
+Protected Safety Cushion Floor:       $250.00
+----------------------------------------------
+MAX ZERO-OVERDRAFT GENIUS TRANSFER:   $${safeTransfer.toFixed(2)} -> High-Yield Savings
+Projected Min Balance After Save:     $250.00 (0.0% Overdraft Risk)`;
+  document.getElementById("subsOut").textContent = extraSaved === 0
+    ? `[ALERT 1] StreamMax Ultra hiked +$5.00/mo ($24.99) — 0 watches in 45d
+[ALERT 2] Duplicate CloudStorage Plan ($19.99/mo) — overlaps Family Plan
+Status: Click button above to reclaim +$44.98/mo into Genius Savings`
+    : `[RESOLVED] Cancelled 2 unused subscriptions -> +$44.98/mo ($539.76/yr compounding!)`;
+}
+function cancelLeaks() { extraSaved = 44.98; render(); }
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C&amp;D Municipal Sales — concept: manufacturer &amp; equipment directory</title>
+<meta name="description" content="Working concept demo: filterable manufacturer directory and equipment categories for a municipal/industrial water & wastewater equipment representative.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<p class="concept-note">Working concept demo with SAMPLE records only — not C&amp;D Municipal Sales' live website or line card.</p>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="#home">C&amp;D <span>Municipal Sales</span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#manufacturers">Manufacturers</a>
+      <a href="#equipment">Equipment / Products</a>
+      <a href="#resources">Resources</a>
+      <a href="#news">News / Insights</a>
+      <a href="#about">About / Team</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="home">
+    <div class="wrap">
+      <p class="kicker">Baltimore, Maryland · Water &amp; Wastewater Equipment</p>
+      <h1>Equipment representation engineers and municipalities can actually navigate</h1>
+      <p class="lead">Concept redesign: browse represented manufacturers, filter by equipment category, and reach the right product line in two clicks — no PDF hunting.</p>
+      <p class="actions"><a class="btn" href="#manufacturers">Browse manufacturers</a> <a class="btn btn-ghost" href="#contact">Talk to sales engineering</a></p>
+    </div>
+  </section>
+
+  <section class="section" id="manufacturers">
+    <div class="wrap">
+      <h2>Manufacturers</h2>
+      <p class="section-lead">This directory is data-driven: each card is one record. In WordPress this maps to a <strong>Manufacturer</strong> custom post type — staff add/edit records in the dashboard and every listing updates automatically.</p>
+      <div class="filters" role="search">
+        <label for="q">Search manufacturers</label>
+        <input id="q" type="search" placeholder="e.g. pumps, screening, valves…" autocomplete="off">
+        <label for="cat">Equipment category</label>
+        <select id="cat"><option value="">All categories</option></select>
+        <p class="count" id="count" role="status" aria-live="polite"></p>
+      </div>
+      <div class="grid" id="cards"></div>
+      <p class="empty" id="empty" hidden>No sample records match. Clear the search or category filter.</p>
+    </div>
+  </section>
+
+  <section class="section alt" id="equipment">
+    <div class="wrap">
+      <h2>Equipment / Products</h2>
+      <p class="section-lead">Category pages build themselves: choosing a category lists its manufacturers automatically from the same records — exactly how the WordPress taxonomy templates will behave.</p>
+      <div class="chips" id="chips" role="group" aria-label="Equipment categories"></div>
+      <div class="related" id="related" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="section" id="resources">
+    <div class="wrap grid grid-2">
+      <article class="card"><h2>Resources</h2><p>Your line card and selected technical resources live here. Manufacturer catalogs stay on the manufacturers' own sites (linked from each record), so staff never maintain a duplicate library.</p></article>
+      <article class="card" id="news"><h2>News / Insights</h2><p>Project wins, new lines and event notes. Structured now so a future Project Gallery slots in without another redesign.</p></article>
+    </div>
+  </section>
+
+  <section class="section alt" id="about">
+    <div class="wrap">
+      <h2>About / Team</h2>
+      <p class="section-lead">Company history, territory and team profiles (sales engineering &amp; project management) — populated from client-supplied content in the full build.</p>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="wrap narrow">
+      <h2>Contact</h2>
+      <form data-demo-form novalidate>
+        <label for="c-name">Name *</label>
+        <input id="c-name" name="name" autocomplete="name" required>
+        <label for="c-email">Work email *</label>
+        <input id="c-email" name="email" type="email" autocomplete="email" required>
+        <label for="c-topic">Topic</label>
+        <select id="c-topic" name="topic"><option>Equipment enquiry</option><option>Project specification</option><option>Parts &amp; service</option><option>Other</option></select>
+        <label for="c-msg">Message *</label>
+        <textarea id="c-msg" name="message" rows="5" required></textarea>
+        <div class="hp" aria-hidden="true"><label for="c-hp">Leave empty</label><input id="c-hp" name="company_website" tabindex="-1" autocomplete="off"></div>
+        <button class="btn" type="submit">Send enquiry</button>
+        <p class="hint" data-form-note>Concept: spam-protected form wiring (honeypot shown) connects to the client's email on IONOS in the full build.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <p>Concept demo · sample data · Existing IONOS DNS/email untouched by this concept.</p>
+    <p><a href="#manufacturers">Manufacturers</a> · <a href="#contact">Contact</a></p>
+  </div>
+</footer>
+<script src="assets/data.js"></script>
+<script src="assets/main.js"></script>
+</body>
+</html>

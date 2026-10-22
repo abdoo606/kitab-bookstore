@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Events &amp; Announcements (Concept) — Memory Studies Association Sample</title>
+<meta name="description" content="Working concept: public events agenda plus a searchable archive with year filter, using clearly-labelled sample data.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="concept-banner" role="note">Unofficial concept sample — all events below are invented sample data to demonstrate agenda + archive behaviour. Not real MSA events.</div>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="index.html" aria-label="Memory Studies Association — concept home">
+      <span class="brand-mark" aria-hidden="true">MSA</span>
+      <span class="brand-text">Memory Studies Association<small>International non-profit association (concept)</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="events.html" aria-current="page">Events &amp; announcements</a></li>
+        <li><a href="membership.html">Membership</a></li>
+        <li><a href="membership.html#members">Members area</a></li>
+        <li><a href="membership.html#conference">Conference</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="page-head">
+    <div class="wrap">
+      <h1>Events &amp; announcements</h1>
+      <p class="lead">Public agenda first, archive second — the pattern the call asks for. Staff would add each item once in the CMS; after its date it moves to the archive automatically.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="upcoming-h">
+    <div class="wrap">
+      <h2 id="upcoming-h">Upcoming (sample data)</h2>
+      <div class="event-list" data-upcoming></div>
+    </div>
+  </section>
+
+  <section class="section alt" id="archive" aria-labelledby="archive-h">
+    <div class="wrap">
+      <h2 id="archive-h">Archive (sample data)</h2>
+      <form data-filter-form aria-label="Filter the sample archive">
+        <div class="filters">
+          <div class="field">
+            <label for="year">Year</label>
+            <select id="year" data-year-filter><option value="">All years</option></select>
+          </div>
+          <div class="field">
+            <label for="q">Search title, type or text</label>
+            <input id="q" type="search" data-search placeholder="e.g. workshop, award, consent">
+          </div>
+        </div>
+      </form>
+      <p class="note" data-count role="status"></p>
+      <div class="event-list" data-archive-list></div>
+      <p class="note">Production note: recordings/slides attached to past items can be public, members-only, or hidden per item — set by staff with one field, no code needed.</p>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>Memory Studies Association</strong> — concept footer. Privacy notice (GDPR) and cookie preferences would appear here.</p>
+    <p class="note">Concept sample for the public website-development call (deadline 1 November 2026). Sample data only. © <span data-year>2026</span></p>
+  </div>
+</footer>
+<script src="assets/events-data.js"></script>
+<script src="assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enveritas — EUDR Smallholder Polygon Validator & Deforestation Risk Studio</title>
+<style>
+  body{margin:0;background:#07120e;color:#f8fafc;font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  .wrap{max-width:1100px;margin:0 auto;padding:28px 20px 60px}.card{background:#0f1f18;border:1px solid #1f3d30;border-radius:14px;padding:18px;margin-top:16px}
+  button{background:#34d399;color:#032216;border:0;border-radius:8px;padding:9px 14px;font-weight:800;cursor:pointer;margin-right:8px}
+  pre{background:#050b08;border:1px solid #183327;border-radius:10px;padding:13px;color:#86efac;overflow-x:auto;font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span style="background:rgba(52,211,153,.15);color:#34d399;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700">TECHNICAL PROTOTYPE FOR ENVERITAS · SMALLHOLDER SUPPLY CHAIN &amp; EUDR GEORISK</span>
+  <h1 style="margin:12px 0 6px;font-size:27px">🌱 EUDR Smallholder Polygon Validator (&ge;4 ha Rule) &amp; Post-2020 Canopy Loss Screener</h1>
+  <p style="color:#94a3b8;margin:0">Validates smallholder coffee &amp; cocoa field plots across 30+ countries against EU Deforestation Regulation Article 9 geometry precision rules and post-Dec-31-2020 canopy loss thresholds.</p>
+  <div class="card">
+    <button onclick="showCase('compliant')">✅ Compliant 4.9 ha Closed Polygon (Huila, Colombia)</button>
+    <button onclick="showCase('violation')" style="background:#f59e0b;color:#211200">🚨 Flagged 5.2 ha Point-Only Plot (Missing Polygon Ring)</button>
+    <pre id="out"></pre>
+  </div>
+  <div class="card" style="font-size:13px">
+    <strong style="color:#fbbf24">Collaboration &amp; Pricing Options (Global Remote):</strong><br>
+    • <b>Option A — Global Remote Backend Software Engineer Role:</b> <b>$135,000 USD/year</b> (within Enveritas's published $130k–$150k global remote engineering band).<br>
+    • <b>Option B — Standalone Python EUDR Polygon &amp; Offline Field-Sync Package:</b> <b>$1,900 USD total</b> ($950 Milestone 1 kickoff + $950 Milestone 2 full Python geospatial &amp; test suite).
+  </div>
+</div>
+<script>
+function showCase(mode) {
+  document.getElementById('out').textContent = JSON.stringify(mode === 'compliant' ? {
+    plot_id: "CO-HUILA-8841", declared_ha: 4.9, computed_shoelace_ha: 4.862,
+    wgs84_decimal_places: 6, post_2020_canopy_loss_pct: 0.0,
+    eudr_article_9_verdict: "COMPLIANT_READY_FOR_DDS_STATEMENT"
+  } : {
+    plot_id: "ET-SIDAMA-2109", declared_ha: 5.2, geometry_submitted: "POINT (single GPS fix)",
+    eudr_article_9_verdict: "REJECTED_REQUIRES_PERIMETER_POLYGON_ABOVE_4HA",
+    remediation_task: "Queued for offline mobile GPS perimeter walk on next field visit"
+  }, null, 2);
+}
+showCase('compliant');
+</script>
+</body></html>

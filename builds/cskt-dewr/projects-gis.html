@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects, GIS &amp; StoryMaps — CSKT DEWR Concept</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="demo-disclaimer" role="note">
+    <div class="container">
+      <strong>Unofficial RFP Working Concept:</strong> Interactive GIS basin filter, ArcGIS StoryMap CMS embed pattern, and Compact timeline built with placeholder sample data.
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">DEWR</span>
+        <span>
+          <span class="brand-kicker">Confederated Salish &amp; Kootenai Tribes · Natural Resources</span>
+          <span class="brand-title">Division of Engineering &amp; Water Resources</span>
+        </span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="index.html">Home &amp; Programs</a></li>
+          <li><a href="projects-gis.html" aria-current="page">Projects, GIS &amp; StoryMaps</a></li>
+          <li><a href="documents.html">Documents, Staff &amp; Outreach</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container breadcrumb"><a href="index.html">Home</a> / Projects, Interactive GIS &amp; StoryMaps</div>
+
+    <section class="section" aria-labelledby="gis-heading">
+      <div class="container">
+        <div class="section-head">
+          <h1 id="gis-heading">Interactive Watershed Projects, ArcGIS Online &amp; StoryMaps Hub</h1>
+          <p>Demonstrates RFP Sections 4.6, 5.7 &amp; 5.11: filter engineering, fishery restoration, irrigation modernization, and hydrology projects or click any keyboard-accessible map pin to inspect its ArcGIS Online / StoryMap integration slot.</p>
+        </div>
+
+        <div class="filter-bar">
+          <div>
+            <label for="project-category-filter">Filter by DEWR Program Category</label>
+            <select id="project-category-filter">
+              <option value="ALL">All DEWR Program Categories (4)</option>
+              <option value="Stream & Fishery Restoration">Stream &amp; Fishery Restoration</option>
+              <option value="Irrigation Modernization">Irrigation Modernization</option>
+              <option value="Engineering & Infrastructure">Engineering &amp; Infrastructure</option>
+              <option value="Hydrology & Water Compact">Hydrology &amp; Water Compact</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="gis-shell">
+          <div class="map-panel">
+            <svg viewBox="0 0 540 310" role="img" aria-label="Schematic Flathead Indian Reservation watershed map with selectable project pins">
+              <rect width="540" height="310" fill="#dceaf0"/>
+              <polygon points="55,30 470,30 495,275 80,285" fill="#eef6f2" stroke="#164e3a" stroke-width="2.5" stroke-dasharray="6,4"/>
+              <ellipse cx="235" cy="68" rx="68" ry="26" fill="#7fc0dc"/>
+              <path d="M 195 92 Q 160 155 155 215 T 230 278" fill="none" stroke="#2f85ad" stroke-width="7"/>
+              <path d="M 275 95 Q 290 165 345 238" fill="none" stroke="#459bc2" stroke-width="4.5"/>
+              <text x="195" y="72" fill="#0f2430" font-size="12" font-weight="700">Flathead Lake</text>
+              <text x="68" y="52" fill="#164e3a" font-size="11" font-weight="700">Schematic Watershed Locator (Sample Pins)</text>
+              <g id="map-pins"></g>
+            </svg>
+          </div>
+
+          <div class="card" id="active-project-detail" aria-live="polite">
+            <p>Select a basin pin or project card to view details and its ArcGIS Online / StoryMap embed slot.</p>
+          </div>
+        </div>
+
+        <div class="grid-2" id="project-cards" style="margin-top:1.4rem;"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="compact-timeline" aria-labelledby="timeline-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="timeline-heading">Educational Timeline: CSKT–Montana Water Compact &amp; Stewardship</h2>
+          <p>Demonstrates interactive educational storytelling (RFP Section 5.7) with tab-accessible milestones editable by staff in the CMS.</p>
+        </div>
+        <div class="timeline-steps" id="timeline-steps" role="tablist" aria-label="Water Compact milestones"></div>
+        <div class="card" id="timeline-panel" role="tabpanel" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>CSKT DEWR Working Concept</strong>
+        <p>ArcGIS Online &amp; StoryMaps embeds load over HTTPS with responsive aspect ratios, title attributes for screen readers, and direct external full-screen links.</p>
+      </div>
+      <div>
+        <strong>Navigation</strong>
+        <p><a href="index.html">Home &amp; Programs</a> · <a href="documents.html">Document Library, Staff &amp; Careers</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/dewr-data.js"></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>

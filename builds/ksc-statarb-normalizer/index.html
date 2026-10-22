@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KSC Trading — Cross-Exchange Prediction & Sports Orderbook Stat-Arb Workbench</title>
+<style>
+  body{margin:0;background:#080c14;color:#f8fafc;font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  .wrap{max-width:1100px;margin:0 auto;padding:28px 20px 60px}.card{background:#111827;border:1px solid #24324d;border-radius:14px;padding:18px;margin-top:16px}
+  button{background:#38bdf8;color:#041827;border:0;border-radius:8px;padding:9px 14px;font-weight:800;cursor:pointer;margin-right:8px}
+  pre{background:#05080f;border:1px solid #1d2942;border-radius:10px;padding:13px;color:#86efac;overflow-x:auto;font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span style="background:rgba(56,189,248,.15);color:#38bdf8;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700">TECHNICAL PROTOTYPE BUILT FOR KSC TRADING · CROSS-VENUE FEED NORMALIZER &amp; STAT-ARB</span>
+  <h1 style="margin:12px 0 6px;font-size:27px">⚡ Prediction Market &amp; Sports Exchange Feed Normalizer + Latency-Adjusted Stat-Arb Simulator</h1>
+  <p style="color:#94a3b8;margin:0">Normalizes CLOB cent contracts, Betfair back/lay decimal odds (with commission), and American lines into vig-adjusted implied probabilities, filtering false arbs below the adverse-selection latency buffer.</p>
+  <div class="card">
+    <button onclick="simArb(44, 2.02)">✅ Live Executable Dislocation (44c YES vs 2.02 Decimal NO)</button>
+    <button onclick="simArb(51, 1.94)" style="background:#f59e0b;color:#1f1100">⚠️ Micro-Spread Rejected by 25 bps Latency Buffer</button>
+    <pre id="out"></pre>
+  </div>
+  <div class="card" style="font-size:13px">
+    <strong style="color:#fbbf24">Transparent Collaboration &amp; Pricing Options (Daily US East Overlap from UTC+3):</strong><br>
+    • <b>Option A — Senior Backend Engineering Collaboration:</b> <b>$210,000 USD/year</b> (within your published $200k–$250k range; strong overlap with US East hours).<br>
+    • <b>Option B — Standalone Turnkey Multi-Exchange Normalizer + Fast Replay Engine (50/50 Milestones):</b> <b>$2,400 USD total</b> ($1,200 Milestone 1 kickoff + $1,200 Milestone 2 full source &amp; benchmark suite).
+  </div>
+</div>
+<script>
+function simArb(yesCents, noDec) {
+  const costYes = (yesCents / 100) * 1.002;
+  const effNo = 1 + (noDec - 1) * 0.98;
+  const costNo = 1 / effNo;
+  const rawBps = Math.round((1 - (costYes + costNo)) * 10000);
+  const netBps = rawBps - 25;
+  document.getElementById('out').textContent = JSON.stringify({
+    normalized_legs: { venue_a_yes_after_fee: +costYes.toFixed(5), venue_b_no_after_2pct_comm: +costNo.toFixed(5) },
+    raw_synthetic_edge_bps: rawBps,
+    adverse_selection_latency_buffer_bps: 25,
+    net_executable_edge_bps: netBps,
+    decision: netBps > 0 ? "EXECUTE_SIMULTANEOUS_IOC_LEGS" : "PASS_BELOW_LATENCY_HURDLE"
+  }, null, 2);
+}
+simArb(44, 2.02);
+</script>
+</body></html>
