@@ -43,3 +43,6 @@ coverage
 # Misc
 *.pem
 Thumbs.db
+
+# large archives (recovered externally)
+google_drive/*.zip
