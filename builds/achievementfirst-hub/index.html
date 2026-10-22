@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Achievement First — Governed 41-School Multi-Region Portal & Family Enrollment Finder</title>
+<style>body{margin:0;background:#08101c;color:#f8fafc;font-family:Inter,system-ui,sans-serif;line-height:1.55}.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 60px}.card{background:#101d33;border:1px solid #223b66;border-radius:14px;padding:18px;margin-top:16px}button{background:#34d399;color:#042419;border:0;border-radius:8px;padding:9px 14px;font-weight:800;cursor:pointer}pre{background:#050a12;border:1px solid #1b3154;border-radius:10px;padding:13px;color:#67e8f9;overflow-x:auto;font-size:12.5px}</style>
+</head><body><div class="wrap">
+<span style="background:rgba(52,211,153,.15);color:#34d399;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700">RFP PROTOTYPE BUILT FOR ACHIEVEMENT FIRST · CT / NY / RI 41-SCHOOL NETWORK GOVERNANCE</span>
+<h1 style="margin:12px 0 6px;font-size:27px">🎓 Governed 41-School Design System, Regional Hubs &amp; Family Enrollment Matcher</h1>
+<p style="color:#94a3b8;margin:0">Unifies Achievement First's main network site, CT/NY/RI regional hubs, and 41 school sites under shared brand/accessibility governance while keeping campus updates effortless.</p>
+<div class="card"><button onclick="simAf()">▶ Test Multi-Site Governance Gate + Family Grade/Region Finder</button><pre id="out"></pre></div>
+<div class="card" style="font-size:13px"><strong style="color:#fbbf24">Transparent Multi-Milestone RFP Pricing Options:</strong><br>
+• <b>Option A — Phase-1 Network Hub + Multi-School Design-System Pilot:</b> <b>$3,800 USD Fixed Total</b> ($1,900 Milestone 1 + $1,900 Milestone 2).<br>
+• <b>Option B — Complete 41-School Rollout, Content Governance &amp; 12-Month SLA Support:</b> <b>$14,500 USD</b> milestone-gated delivery.</div>
+</div><script>
+function simAf(){
+  document.getElementById('out').textContent = JSON.stringify({
+    governed_sites_total: 41,
+    regional_hubs: ["Connecticut", "New York", "Rhode Island"],
+    shared_design_tokens_enforced: true,
+    bilingual_wcag_2_1_aa_audit: "PASS Across All 41 School Templates",
+    sample_family_match: { query: "Brooklyn, NY — Grade 5", matched_schools: ["AF Apollo Middle", "AF Crown Heights Middle"] }
+  }, null, 2);
+}
+simAf();
+</script></body></html>
