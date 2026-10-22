@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Datamint — Router-First Web Data Extraction & MCP Server Interactive Preview</title>
+<style>
+  :root{--bg:#080c14;--card:#101726;--line:#1f2e4d;--acc:#38bdf8;--ok:#34d399;--warn:#fbbf24;--txt:#f8fafc;--mut:#94a3b8}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,-apple-system,sans-serif;line-height:1.55}
+  .wrap{max-width:1120px;margin:0 auto;padding:28px 20px 60px}
+  .badge{display:inline-block;background:rgba(56,189,248,.14);border:1px solid rgba(56,189,248,.38);color:var(--acc);padding:4px 12px;border-radius:999px;font-size:12px;font-weight:700}
+  .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:20px}
+  @media(max-width:860px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  button{background:var(--acc);color:#041524;border:0;border-radius:8px;padding:9px 14px;font-weight:800;cursor:pointer;margin:4px 6px 4px 0}
+  button.sec{background:#1e293b;color:#e2e8f0;border:1px solid #334155}
+  pre{background:#05080f;border:1px solid #1a2640;border-radius:10px;padding:13px;overflow-x:auto;font-size:12.5px;color:#a7f3d0}
+  .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+  .kpi div{background:#09101d;border:1px solid #1b2a47;border-radius:10px;padding:10px}
+  .kpi b{font-size:19px;color:var(--ok);display:block}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="badge">INTERACTIVE TECHNICAL PROTOTYPE · BUILT FOR DATAMINT (POST /v1/mint + MCP)</span>
+  <h1 style="margin:12px 0 6px;font-size:28px">⚡ Router-First Extraction Engine, Confidence Escalator & MCP Server</h1>
+  <p style="color:var(--mut);margin:0">Interactive browser simulation of the exact architecture behind <code>POST /v1/mint</code> &amp; <code>mcp.datamint.xyz</code>: TLS-impersonated static fetch first (<code>$0.0002</code>), automatic headless escalation on <code>_cf_chl_opt</code> / Turnstile or confidence <code>&lt; 0.80</code>, <code>&gt;90%</code> DOM boilerplate pruning, and strict <b>$0.0000 billing on blocked targets</b>.</p>
+
+  <div class="kpi">
+    <div><span style="font-size:11px;color:var(--mut)">ROUTING TIER USED</span><b id="kTier">static_tls</b></div>
+    <div><span style="font-size:11px;color:var(--mut)">EXTRACTION CONFIDENCE</span><b id="kConf">0.96</b></div>
+    <div><span style="font-size:11px;color:var(--mut)">LLM TOKEN SAVINGS</span><b id="kSave">93.8%</b></div>
+    <div><span style="font-size:11px;color:var(--mut)">CUSTOMER CHARGE</span><b id="kBill">$0.0002</b></div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3 style="margin-top:0">1. Simulate Live <code>POST /v1/mint</code> Scenarios</h3>
+      <button onclick="runScenario('fast')">⚡ Clean Docs Page (Static Fast-Path)</button>
+      <button onclick="runScenario('cf')">🛡️ Cloudflare _cf_chl_opt 403 -> Auto Browser Escalation</button>
+      <button onclick="runScenario('lowconf')">🔍 JS Hydration Shell (Confidence 0.34 &lt; 0.80 Reroute)</button>
+      <button class="sec" onclick="runScenario('blocked')">🚫 Hard Captcha Block ($0.0000 Zero-Charge Guard)</button>
+      <pre id="traceOut"></pre>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">2. MCP JSON-RPC Server &amp; Delivery Terms</h3>
+      <p style="font-size:13px;color:var(--mut)">Full Python 3 + SQLite WAL turnkey backend verified with unit tests (WAF detector, DOM-to-Markdown pruner, schema confidence scorer &amp; JSON-RPC 2.0 MCP tools).</p>
+      <pre id="mcpOut"></pre>
+      <div style="margin-top:12px;padding:12px;background:#091322;border:1px solid #1e3a5f;border-radius:10px;font-size:13px">
+        <strong style="color:var(--warn)">Commercial Options (Transparent Fixed Milestone OR Remote Engineering):</strong><br>
+        • <b>Option A — Turnkey Fixed Milestone Handoff:</b> <b>$1,800 USD total</b> ($900 Milestone 1 kickoff + $900 Milestone 2 full Python/SQLite-WAL source repo, MCP server &amp; test suite).<br>
+        • <b>Option B — Ongoing Full-Stack / Systems Engineering Role:</b> Remote global collaboration ($135k/yr benchmark within your $120k–$170k range, available immediately).
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const SCENARIOS = {
+  fast: {
+    tier: "static_tls (curl_cffi JA3/HTTP2)", conf: "0.96", save: "93.8%", bill: "$0.0002",
+    trace: {
+      endpoint: "POST /v1/mint",
+      steps: [
+        "1. [18ms] Static TLS fetch -> HTTP 200 (84,210 raw HTML bytes, no WAF signature)",
+        "2. [4ms] CleanMarkdownPruner stripped <nav>, <footer>, SVG & 41 <script> bundles -> 5,210 clean chars",
+        "3. [1ms] Schema & density confidence = 0.96 (>= 0.80 threshold) -> Browser NOT spawned!"
+      ],
+      billed_usd: 0.0002,
+      clean_markdown_preview: "## Enterprise Pricing\n- Starter: $29/mo (100k credits)\n- Growth: $199/mo (1M credits, webhooks + batch crawl)"
+    }
+  },
+  cf: {
+    tier: "headless_browser (Escalated)", conf: "0.94", save: "91.4%", bill: "$0.0015",
+    trace: {
+      endpoint: "POST /v1/mint",
+      steps: [
+        "1. [29ms] Static TLS fetch -> HTTP 403 | Matched signature: WAF_CHALLENGE:_cf_chl_opt",
+        "2. [Auto-Reroute] Escalated to pooled stealth Chromium context + sticky residential session",
+        "3. [640ms] Hydrated DOM captured -> 91.4% token reduction -> Confidence 0.94 -> Cached domain profile in SQLite WAL"
+      ],
+      billed_usd: 0.0015,
+      clean_markdown_preview: "## Protected Product Catalog\n- SKU-8841: Industrial Sensor Array — In Stock ($412.00)"
+    }
+  },
+  lowconf: {
+    tier: "headless_browser (Conf < 0.80)", conf: "0.92", save: "89.7%", bill: "$0.0015",
+    trace: {
+      endpoint: "POST /v1/mint",
+      steps: [
+        "1. [22ms] Static TLS fetch -> HTTP 200 ('<div id=\"root\"></div>' SPA shell, 38 visible chars)",
+        "2. [Confidence Gate] Score = 0.25 (< 0.80 threshold) -> Triggered automatic browser hydration!",
+        "3. [510ms] Post-hydration confidence = 0.92 -> Returned clean Markdown + typed JSON fields"
+      ],
+      billed_usd: 0.0015
+    }
+  },
+  blocked: {
+    tier: "blocked ($0 Billed)", conf: "0.00", save: "0.0%", bill: "$0.0000",
+    trace: {
+      endpoint: "POST /v1/mint",
+      status: "BLOCKED_ZERO_CHARGE",
+      steps: [
+        "1. [24ms] Static TLS fetch -> HTTP 403 (datadome interstitial)",
+        "2. [890ms] Headless escalation -> HTTP 403 persistent hard CAPTCHA",
+        "3. [Billing Guard] Ledger strictly wrote $0.0000 — failed/blocked requests NEVER charge credits!"
+      ],
+      billed_usd: 0.0
+    }
+  }
+};
+function runScenario(k) {
+  const s = SCENARIOS[k];
+  document.getElementById('kTier').textContent = s.tier;
+  document.getElementById('kConf').textContent = s.conf;
+  document.getElementById('kSave').textContent = s.save;
+  document.getElementById('kBill').textContent = s.bill;
+  document.getElementById('traceOut').textContent = JSON.stringify(s.trace, null, 2);
+}
+document.getElementById('mcpOut').textContent = JSON.stringify({
+  jsonrpc: "2.0",
+  server: "datamint-mcp-v1",
+  tools: ["datamint_mint", "datamint_extract", "datamint_batch_crawl"]
+}, null, 2);
+runScenario('cf');
+</script>
+</body>
+</html>

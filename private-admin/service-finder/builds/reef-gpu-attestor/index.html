@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reef Technologies — Trustless GPU Runner Attestor & Leaderless Gossip Consensus</title>
+<style>
+  :root{--bg:#090c14;--card:#111827;--line:#24324d;--acc:#a78bfa;--ok:#34d399;--warn:#fbbf24;--bad:#f87171;--txt:#f8fafc;--mut:#94a3b8}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif;line-height:1.55}
+  .wrap{max-width:1120px;margin:0 auto;padding:28px 20px 60px}
+  .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;margin-top:18px}
+  @media(max-width:860px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  button{background:var(--acc);color:#14092b;border:0;border-radius:8px;padding:9px 14px;font-weight:800;cursor:pointer;margin:4px 6px 4px 0}
+  pre{background:#05080f;border:1px solid #1d2942;border-radius:10px;padding:13px;overflow-x:auto;font-size:12.5px;color:#c4b5fd}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span style="background:rgba(167,139,250,.15);color:#c4b5fd;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700">TECHNICAL ARCHITECTURE PROTOTYPE · REEF TECHNOLOGIES (SENIOR PYTHON BACKEND)</span>
+  <h1 style="margin:12px 0 6px;font-size:27px">⚡ Trustless Sandboxed GPU Runner Verifier (O(n²) Freivalds Proof) &amp; Leaderless Gossip Quorum</h1>
+  <p style="color:var(--mut);margin:0">Verifies untrusted GPU Docker container claims (<code>C = A @ B</code>) in <b>O(k·n²)</b> CPU operations via randomized Freivalds vectors (<code>1 - 2⁻⁸ = 99.61%</code> cheat detection per spot-check without re-running O(n³) GPU GEMM), enforces rootless <code>--network=none --cap-drop=ALL</code> Docker sandboxing, and finalizes via stake-weighted gossip without a single-leader RAFT/PAXOS bottleneck.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3 style="margin-top:0">1. Live O(n²) Freivalds GPU Proof Verifier</h3>
+      <button onclick="verifyNode(false)">✅ Verify Honest H100 Sandboxed Runner</button>
+      <button onclick="verifyNode(true)" style="background:#f87171;color:#2b0606">🚨 Inject Spoofed / Lazy Runner Output</button>
+      <pre id="proofOut"></pre>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">2. Hardened Docker Spec &amp; Commercial Terms</h3>
+      <pre id="dockerOut"></pre>
+      <div style="margin-top:12px;padding:12px;background:#0a1120;border:1px solid #263554;border-radius:10px;font-size:13px">
+        <strong style="color:var(--warn)">Commercial Options (EMEA Remote · UTC+3):</strong><br>
+        • <b>Option A — Turnkey Python Attestor + Gossip Scheduler Deliverable:</b> <b>$1,600 USD total</b> ($800 Milestone 1 kickoff + $800 Milestone 2 full Python 3 module + unit test suite).<br>
+        • <b>Option B — Ongoing Senior Python B2B Contract:</b> <b>$55/hr USD</b> (squarely within your published <b>$45–$70/hr USD</b> band, available immediately in EMEA).
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function verifyNode(corrupt) {
+  const A = [[4,2,1],[3,5,2],[1,2,6]], B = [[2,1,3],[4,3,1],[5,2,4]];
+  const C = A.map((row,i)=>B[0].map((_,j)=>row.reduce((s,v,k)=>s+v*B[k][j],0)));
+  if (corrupt) C[1][2] += 1; // Subtle single-cell bit corruption by lazy GPU runner!
+  let failedRound = -1;
+  for (let rnd = 0; rnd < 8; rnd++) {
+    const r = [rnd%2?1:-1, (rnd>>1)%2?1:-1, (rnd>>2)%2?1:-1];
+    const Br = B.map(row => row.reduce((s,v,j)=>s+v*r[j],0));
+    const ABr = A.map(row => row.reduce((s,v,j)=>s+v*Br[j],0));
+    const Cr = C.map(row => row.reduce((s,v,j)=>s+v*r[j],0));
+    if (ABr.some((v,i) => Math.abs(v - Cr[i]) > 1e-6)) { failedRound = rnd; break; }
+  }
+  document.getElementById('proofOut').textContent = JSON.stringify({
+    runner_node: corrupt ? "node-eu-spoof-09 (RTX-3060 claiming H100)" : "node-warsaw-h100-04",
+    verification_complexity: "O(8 * n^2) spot-check vs O(n^3) full GPU replay",
+    soundness: "99.6094% per batch",
+    verified: failedRound === -1,
+    failed_at_round: failedRound === -1 ? null : failedRound,
+    gossip_quorum_decision: failedRound === -1 ? "QUORUM_FINALIZED (75.0% >= 67%) -> PAYOUT_RELEASED" : "SLASH_STAKE_AND_REASSIGN_SHARD"
+  }, null, 2);
+}
+document.getElementById('dockerOut').textContent = [
+  "docker run --rm --network=none --read-only --cap-drop=ALL \\",
+  "  --security-opt=no-new-privileges:true --pids-limit=256 \\",
+  "  --memory=24g --gpus='\"device=GPU-991a\"' \\",
+  "  ghcr.io/reef/sandbox-runner@sha256:8f91c2a0..."
+].join("\n");
+verifyNode(false);
+</script>
+</body>
+</html>

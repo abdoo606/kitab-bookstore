@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Helix v1 — UK Accountancy Practice Control Plane (Hartley & Cole Demo)</title>
+<style>
+  :root{--bg:#0b101b;--card:#121a2b;--line:#22314f;--acc:#60a5fa;--ok:#34d399;--warn:#fbbf24;--txt:#f8fafc;--mut:#94a3b8}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif;line-height:1.5}
+  .wrap{max-width:1160px;margin:0 auto;padding:28px 20px 60px}
+  .badge{display:inline-block;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.4);color:var(--acc);padding:4px 12px;border-radius:999px;font-size:12px;font-weight:700}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:16px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:10px 8px;border-bottom:1px solid #1e2b45;text-align:left}
+  button{background:var(--ok);color:#042418;border:0;border-radius:7px;padding:6px 11px;font-weight:800;cursor:pointer;font-size:12px}
+  button.flag{background:#f59e0b;color:#231400;margin-left:5px}
+  .boxes{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}
+  @media(max-width:860px){.boxes{grid-template-columns:1fr 1fr}}
+  .boxes div{background:#090f1a;border:1px solid #1e2d4a;border-radius:10px;padding:11px}
+  .boxes b{font-size:19px;color:var(--acc);display:block;margin-top:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="badge">HELIX v1 CONTROL PLANE PROTOTYPE · OPEN ACCOUNTANCY (HARTLEY &amp; COLE, CHARTERED ACCOUNTANTS)</span>
+  <h1 style="margin:12px 0 6px;font-size:27px">🏛️ Helix Practice Control Plane — Evidence-Linked UK Reconciliation &amp; MTD VAT Gate</h1>
+  <p style="color:var(--mut);margin:0">Built around a single non-negotiable rule for UK practice software: <b>AI prepares work items with SHA-256 source evidence, while ZERO entries touch the client ledger or HMRC MTD VAT Boxes 1–7 until a qualified human accountant signs off.</b></p>
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <strong>Live HMRC Making Tax Digital (MTD) VAT Return — Recomputed Strictly From Human-Approved Items</strong>
+      <span id="submissionBadge" style="font-size:12px;padding:4px 10px;border-radius:99px;background:#78350f;color:#fde68a;font-weight:700">BLOCKED: Pending Partner Sign-Off</span>
+    </div>
+    <div class="boxes">
+      <div><span style="font-size:11px;color:var(--mut)">BOX 1 · VAT DUE SALES</span><b id="b1">£0.00</b></div>
+      <div><span style="font-size:11px;color:var(--mut)">BOX 4 · VAT RECLAIMED</span><b id="b4">£0.00</b></div>
+      <div><span style="font-size:11px;color:var(--mut)">BOX 5 · NET VAT PAYABLE</span><b id="b5" style="color:var(--ok)">£0.00</b></div>
+      <div><span style="font-size:11px;color:var(--mut)">BOX 6 · NET SALES EX-VAT</span><b id="b6">£0</b></div>
+      <div><span style="font-size:11px;color:var(--mut)">BOX 7 · NET PURCHASES</span><b id="b7">£0</b></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Staged Practice Work Queue — Click to Inspect SHA-256 Source Evidence or Sign Off</h3>
+    <table>
+      <thead><tr><th>Client Entity</th><th>Workflow</th><th>Gross (£)</th><th>VAT</th><th>Source Evidence (SHA-256)</th><th>AI Conf.</th><th>Status / Human Control</th></tr></thead>
+      <tbody id="rowsBody"></tbody>
+    </table>
+    <pre id="evidenceDrawer" style="margin-top:14px;background:#070b13;border:1px solid #1d2c4a;padding:12px;border-radius:9px;color:#93c5fd;font-size:12px">Click any row's Evidence chip to inspect extracted invoice/bank proof before approving.</pre>
+  </div>
+
+  <div class="card" style="font-size:13px;background:#0d1626">
+    <strong style="color:var(--warn)">Transparent Engagement Options:</strong><br>
+    • <b>Option A — Turnkey Helix v1 Foundation Sprint (50/50 Milestones):</b> <b>$2,200 USD total</b> ($1,100 Milestone 1 kickoff + $1,100 Milestone 2 full Python/SQLite multi-practice control engine, SHA-256 audit log &amp; MTD VAT test suite).<br>
+    • <b>Option B — Remote Founding Technical Lead / CTO Partnership:</b> Immediate start with full daily UK working-hour overlap (UTC+3 EMEA timezone) — $7,500/mo retainer + equity structure open to discussion.
+  </div>
+</div>
+<script>
+const ITEMS = [
+  {id:"HX-101", client:"Cotswold Precision Ltd", wf:"Bank <-> Sales Invoice", gross:4800, rate:0.20, dir:"SALE", doc:"INV-2026-0891.pdf + Barclays Feed #9941", sha:"9f84c2e1...77b0", conf:"99.1%", status:"PENDING"},
+  {id:"HX-102", client:"Cotswold Precision Ltd", wf:"Supplier Bill (MTD VAT)", gross:1440, rate:0.20, dir:"PURCH", doc:"AWS-UK-OCT26.pdf (VAT GB3492811)", sha:"4a19d0f8...11c4", conf:"97.8%", status:"PENDING"},
+  {id:"HX-103", client:"Cotswold Precision Ltd", wf:"Aged Debtor Receipt", gross:2400, rate:0.20, dir:"SALE", doc:"NatWest FasterPayment Ref#DP-441", sha:"c301e772...90a2", conf:"94.5%", status:"PENDING"}
+];
+function inspectItem(idx) {
+  const it = ITEMS[idx];
+  document.getElementById('evidenceDrawer').textContent =
+    `EVIDENCE AUDIT [${it.id}] — ${it.client}\nDocument: ${it.doc}\nImmutable SHA-256: ${it.sha}\nMath Check: Gross £${it.gross.toFixed(2)} = Net £${(it.gross/(1+it.rate)).toFixed(2)} + UK Standard VAT (20%) £${(it.gross - it.gross/(1+it.rate)).toFixed(2)}`;
+}
+function setStatus(idx, st) { ITEMS[idx].status = st; render(); }
+function render() {
+  const tb = document.getElementById('rowsBody');
+  tb.innerHTML = ITEMS.map((it, i) => `<tr>
+    <td><b>${it.client}</b></td><td>${it.wf}</td><td>£${it.gross.toLocaleString()}</td><td>20%</td>
+    <td><a href="#" onclick="inspectItem(${i});return false" style="color:#60a5fa">${it.doc}</a></td>
+    <td>${it.conf}</td>
+    <td>${it.status === 'APPROVED' ? '<b style="color:#34d399">✅ Approved (Partner ACA)</b>' :
+      it.status === 'FLAGGED' ? '<b style="color:#fbbf24">⚠️ Held for Query</b>' :
+      `<button onclick="setStatus(${i},'APPROVED')">Approve &amp; Post</button><button class="flag" onclick="setStatus(${i},'FLAGGED')">Query</button>`}</td>
+  </tr>`).join('');
+  let b1=0,b4=0,b6=0,b7=0;
+  ITEMS.filter(x=>x.status==='APPROVED').forEach(it=>{
+    const net = it.gross/(1+it.rate), vat = it.gross-net;
+    if(it.dir==='SALE'){ b6+=net; b1+=vat; } else { b7+=net; b4+=vat; }
+  });
+  document.getElementById('b1').textContent = '£'+b1.toFixed(2);
+  document.getElementById('b4').textContent = '£'+b4.toFixed(2);
+  document.getElementById('b5').textContent = '£'+(b1-b4).toFixed(2);
+  document.getElementById('b6').textContent = '£'+Math.round(b6).toLocaleString();
+  document.getElementById('b7').textContent = '£'+Math.round(b7).toLocaleString();
+  const allOk = ITEMS.every(x=>x.status==='APPROVED');
+  const badge = document.getElementById('submissionBadge');
+  badge.textContent = allOk ? 'READY FOR HMRC MTD SUBMISSION (3/3 HUMAN-SIGNED)' : 'BLOCKED: Pending Human Accountant Sign-Off';
+  badge.style.background = allOk ? '#065f46' : '#78350f';
+}
+inspectItem(0); render();
+</script>
+</body>
+</html>
