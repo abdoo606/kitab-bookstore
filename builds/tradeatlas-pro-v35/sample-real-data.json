@@ -1,0 +1,194 @@
+{
+  "version": "18.0",
+  "generated": "2026-10-21",
+  "datasets": [
+    {
+      "file": "aapl-daily-2015-2017.plotly.csv",
+      "path": "real-data/aapl-daily-2015-2017.plotly.csv",
+      "bars": 506,
+      "first": "2015-02-17T00:00:00+00:00",
+      "last": "2017-02-16T00:00:00+00:00",
+      "provenance": {
+        "symbol": "AAPL",
+        "market": "NASDAQ",
+        "interval": "1d",
+        "bars": 506,
+        "range": "2015-02-17 → 2017-02-16",
+        "source": "plotly/datasets finance-charts-apple.csv blob 7b1bab3",
+        "fetched": "2026-10-21 GitHub API",
+        "license": "MIT (plotly sample)",
+        "type": "daily_ohlcv_adjusted"
+      },
+      "status": "ok"
+    },
+    {
+      "file": "btc-daily-binance-2017-2024.csv",
+      "path": "real-data/btc-daily-binance-2017-2024.csv",
+      "bars": 3351,
+      "first": "2017-08-17T00:00:00+00:00",
+      "last": "2026-10-19T00:00:00+00:00",
+      "provenance": {
+        "symbol": "BTCUSDT",
+        "market": "Binance Spot",
+        "interval": "1d",
+        "bars": 3352,
+        "range": "2017-08-17 → 2024-10-21",
+        "source": "jptrustlearning/btc btc_prices.csv — Binance API primary, yfinance fallback, CC",
+        "fetched": "2026-10-21 via codeload github api",
+        "license": "MIT",
+        "type": "daily_ohlcv_crypto"
+      },
+      "status": "ok"
+    },
+    {
+      "file": "dxy-daily-2017-2024.csv",
+      "path": "real-data/dxy-daily-2017-2024.csv",
+      "bars": 1723,
+      "first": "2020-01-02T00:00:00+00:00",
+      "last": "2026-10-20T00:00:00+00:00",
+      "provenance": {
+        "symbol": "DXY",
+        "market": "FX Dollar Index",
+        "interval": "1d",
+        "bars": 1724,
+        "range": "2020-01-02 → 2024-10-?? (from btc repo dxy_prices.csv)",
+        "source": "jptrustlearning/btc dxy_prices.csv",
+        "fetched": "2026-10-21",
+        "license": "MIT",
+        "type": "daily_fx_index"
+      },
+      "status": "ok"
+    },
+    {
+      "file": "gold-monthly-1950-2024.csv",
+      "path": "real-data/gold-monthly-1950-2024.csv",
+      "bars": 2325,
+      "first": "1833-01-01T00:00:00+00:00",
+      "last": "2026-09-01T00:00:00+00:00",
+      "provenance": {
+        "symbol": "XAUUSD",
+        "market": "Gold spot",
+        "interval": "1M",
+        "bars": 2326,
+        "range": "1833-01 → 2024-09 (monthly) — usable 1950→",
+        "source": "datasets/gold-prices data/monthly.csv — World Gold Council via FRED",
+        "fetched": "2026-10-21",
+        "license": "ODC",
+        "type": "monthly_gold"
+      },
+      "status": "ok"
+    },
+    {
+      "file": "sp500-shiller-monthly-1871-2024.csv",
+      "path": "real-data/sp500-shiller-monthly-1871-2024.csv",
+      "bars": 1869,
+      "first": "1871-01-01T00:00:00+00:00",
+      "last": "2026-09-01T00:00:00+00:00",
+      "provenance": {
+        "symbol": "^GSPC",
+        "market": "S&P 500 Shiller",
+        "interval": "1M",
+        "bars": 1870,
+        "range": "1871-01 → 2024-09",
+        "source": "datasets/s-and-p-500 data/data.csv — Shiller + FRED",
+        "fetched": "2026-10-21",
+        "license": "Open Data (Shiller/FRED)",
+        "type": "monthly_index"
+      },
+      "status": "ok"
+    },
+    {
+      "file": "vega-aapl-monthly-2000-2010.csv",
+      "path": "real-data/vega-aapl-monthly-2000-2010.csv",
+      "bars": 123,
+      "first": "2000-01-01T00:00:00+00:00",
+      "last": "2010-03-01T00:00:00+00:00",
+      "provenance": {
+        "symbol": "AAPL",
+        "market": "NASDAQ",
+        "interval": "1M",
+        "bars": 123,
+        "range": "2000-01 → 2010-03",
+        "source": "vega/vega-datasets data/stocks.csv blob 58e2ce1",
+        "fetched": "2026-10-21 GitHub API",
+        "license": "BSD (vega)",
+        "type": "monthly_close_only"
+      },
+      "status": "ok"
+    },
+    {
+      "file": "vega-amzn-monthly-2000-2010.csv",
+      "path": "real-data/vega-amzn-monthly-2000-2010.csv",
+      "bars": 123,
+      "first": "2000-01-01T00:00:00+00:00",
+      "last": "2010-03-01T00:00:00+00:00",
+      "provenance": {
+        "symbol": "AMZN",
+        "market": "NASDAQ",
+        "interval": "1M",
+        "bars": 123,
+        "range": "2000-01 → 2010-03",
+        "source": "vega/vega-datasets",
+        "license": "BSD",
+        "type": "monthly_close_only"
+      },
+      "status": "ok"
+    },
+    {
+      "file": "vega-goog-monthly-2000-2010.csv",
+      "path": "real-data/vega-goog-monthly-2000-2010.csv",
+      "bars": 68,
+      "first": "2004-08-01T00:00:00+00:00",
+      "last": "2010-03-01T00:00:00+00:00",
+      "provenance": {
+        "symbol": "GOOG",
+        "market": "NASDAQ",
+        "interval": "1M",
+        "bars": 68,
+        "range": "2004-08 → 2010-03",
+        "source": "vega/vega-datasets",
+        "license": "BSD",
+        "type": "monthly_close_only"
+      },
+      "status": "ok"
+    },
+    {
+      "file": "vega-ibm-monthly-2000-2010.csv",
+      "path": "real-data/vega-ibm-monthly-2000-2010.csv",
+      "bars": 123,
+      "first": "2000-01-01T00:00:00+00:00",
+      "last": "2010-03-01T00:00:00+00:00",
+      "provenance": {
+        "symbol": "IBM",
+        "market": "NYSE",
+        "interval": "1M",
+        "bars": 123,
+        "range": "2000-01 → 2010-03",
+        "source": "vega/vega-datasets",
+        "license": "BSD",
+        "type": "monthly_close_only"
+      },
+      "status": "ok"
+    },
+    {
+      "file": "vega-msft-monthly-2000-2010.csv",
+      "path": "real-data/vega-msft-monthly-2000-2010.csv",
+      "bars": 123,
+      "first": "2000-01-01T00:00:00+00:00",
+      "last": "2010-03-01T00:00:00+00:00",
+      "provenance": {
+        "symbol": "MSFT",
+        "market": "NASDAQ",
+        "interval": "1M",
+        "bars": 123,
+        "range": "2000-01 → 2010-03",
+        "source": "vega/vega-datasets",
+        "license": "BSD",
+        "type": "monthly_close_only"
+      },
+      "status": "ok"
+    }
+  ],
+  "engines": 52,
+  "warning": "Real historical data only - past bars do not predict future"
+}

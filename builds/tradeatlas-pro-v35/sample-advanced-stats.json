@@ -1,0 +1,81 @@
+{
+ "bootstrap": {
+  "mean": 0.049115,
+  "ci_low": -0.036841,
+  "ci_high": 0.141021,
+  "n": 100,
+  "n_bootstrap": 1000,
+  "ci_pct": 95.0
+ },
+ "permutation": {
+  "p_value": 0.030485,
+  "observed_hits": 60,
+  "total": 100,
+  "observed_pct": 60.0,
+  "null_pct": 50.0,
+  "n_perm": 2000,
+  "is_significant_5pct": true,
+  "is_significant_1pct": false
+ },
+ "bonferroni": 0.004166666666666667,
+ "fdr": {
+  "rejected": [
+   0
+  ],
+  "n_tests": 5,
+  "alpha": 0.05,
+  "method": "benjamini_hochberg_fdr"
+ },
+ "sharpe": {
+  "sharpe": 1.7778,
+  "dsr": 1.4434,
+  "n": 100,
+  "n_trials": 12,
+  "skew": -0.1322,
+  "kurtosis": 0.3133,
+  "exp_max_sr_null": 2.2293,
+  "is_positive": true
+ },
+ "tail": {
+  "var_95": -0.7018,
+  "cvar_95": -0.8442,
+  "max_loss": -1.29,
+  "max_gain": 1.1879,
+  "skew": -0.1322,
+  "kurtosis": 0.3133,
+  "tail_ratio": 1.203,
+  "has_fat_tail": false,
+  "has_negative_skew": false
+ },
+ "autocorr": {
+  "autocorr": 0.1116,
+  "lag": 1,
+  "n": 100,
+  "std_error": 0.1,
+  "is_significant": false,
+  "interpretation": "no_significant_autocorr"
+ },
+ "vol_regime": {
+  "vol_early": 0.398041,
+  "vol_late": 0.468502,
+  "ratio_late_early": 1.177,
+  "regime_shift_detected": false,
+  "shift_magnitude": 0.177,
+  "interpretation": "stable_volatility"
+ },
+ "liquidity": {
+  "median_dollar_volume": 10000.0,
+  "low_volume_pct": 0.0,
+  "is_adequate": true,
+  "is_illusion_risk": false,
+  "interpretation": "adequate_liquidity"
+ },
+ "pbo": {
+  "pbo": 0.385,
+  "n_candidates": 2,
+  "best_first_half": 0,
+  "best_second_half": 0,
+  "is_overfit_risk": false,
+  "method": "simplified_pbo_half_split_proxy"
+ }
+}

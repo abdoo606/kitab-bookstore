@@ -1,0 +1,2545 @@
+{
+  "version": "21.0",
+  "comparison_1000_usd": {
+    "capital_usd": 1000.0,
+    "scenarios": [
+      {
+        "scenario": "يوم كامل 24 ساعة — إيثيريوم ETH (2026-10-15 · 1,440 شمعة 1m)",
+        "symbol": "ETHUSDT",
+        "day": "2026-10-15",
+        "minutes": 1440,
+        "smart_maker_0bps": {
+          "end_usd": 1014.1,
+          "net_usd": 14.1,
+          "win_pct": 88.89,
+          "trades": 9,
+          "fees_usd": 0.0
+        },
+        "vip_maker_2bps": {
+          "end_usd": 1012.31,
+          "net_usd": 12.31,
+          "win_pct": 88.89,
+          "trades": 9,
+          "fees_usd": 1.78
+        },
+        "smart_taker_10bps": {
+          "end_usd": 1005.2,
+          "net_usd": 5.2,
+          "win_pct": 77.78,
+          "trades": 9,
+          "fees_usd": 8.86
+        },
+        "naive_bot_10bps": {
+          "end_usd": 963.73,
+          "net_usd": -36.27,
+          "win_pct": 16.67,
+          "trades": 18,
+          "fees_usd": 17.33
+        },
+        "buy_and_hold_pnl_usd": 8.45
+      },
+      {
+        "scenario": "يوم كامل 24 ساعة — بيتكوين BTC (2026-10-15 · 1,440 شمعة 1m)",
+        "symbol": "BTCUSDT",
+        "day": "2026-10-15",
+        "minutes": 1440,
+        "smart_maker_0bps": {
+          "end_usd": 1009.67,
+          "net_usd": 9.67,
+          "win_pct": 83.33,
+          "trades": 12,
+          "fees_usd": 0.0
+        },
+        "vip_maker_2bps": {
+          "end_usd": 1007.3,
+          "net_usd": 7.3,
+          "win_pct": 75.0,
+          "trades": 12,
+          "fees_usd": 2.35
+        },
+        "smart_taker_10bps": {
+          "end_usd": 997.87,
+          "net_usd": -2.13,
+          "win_pct": 66.67,
+          "trades": 12,
+          "fees_usd": 11.71
+        },
+        "naive_bot_10bps": {
+          "end_usd": 968.0,
+          "net_usd": -32.0,
+          "win_pct": 20.59,
+          "trades": 34,
+          "fees_usd": 32.82
+        },
+        "buy_and_hold_pnl_usd": 6.9
+      },
+      {
+        "scenario": "أحدث يوم كامل 24 ساعة — بيتكوين BTC (2026-10-17 · يوم هادئ متذبذب)",
+        "symbol": "BTCUSDT",
+        "day": "2026-10-17",
+        "minutes": 1440,
+        "smart_maker_0bps": {
+          "end_usd": 1001.96,
+          "net_usd": 1.96,
+          "win_pct": 100.0,
+          "trades": 1,
+          "fees_usd": 0.0
+        },
+        "vip_maker_2bps": {
+          "end_usd": 1001.76,
+          "net_usd": 1.76,
+          "win_pct": 100.0,
+          "trades": 1,
+          "fees_usd": 0.2
+        },
+        "smart_taker_10bps": {
+          "end_usd": 1000.98,
+          "net_usd": 0.98,
+          "win_pct": 100.0,
+          "trades": 1,
+          "fees_usd": 0.98
+        },
+        "naive_bot_10bps": {
+          "end_usd": 964.07,
+          "net_usd": -35.93,
+          "win_pct": 2.94,
+          "trades": 34,
+          "fees_usd": 32.75
+        },
+        "buy_and_hold_pnl_usd": -1.53
+      },
+      {
+        "scenario": "أسبوع كامل متواصل 7 أيام — ETH (10,080 دقيقة حقيقية)",
+        "symbol": "ETHUSDT",
+        "day": "ALL_DAYS",
+        "minutes": 10015,
+        "smart_maker_0bps": {
+          "end_usd": 1022.71,
+          "net_usd": 22.71,
+          "win_pct": 67.86,
+          "trades": 56,
+          "fees_usd": 0.0
+        },
+        "vip_maker_2bps": {
+          "end_usd": 1011.55,
+          "net_usd": 11.55,
+          "win_pct": 67.86,
+          "trades": 56,
+          "fees_usd": 11.09
+        },
+        "smart_taker_10bps": {
+          "end_usd": 968.09,
+          "net_usd": -31.91,
+          "win_pct": 60.71,
+          "trades": 56,
+          "fees_usd": 54.28
+        },
+        "naive_bot_10bps": {
+          "end_usd": 963.8,
+          "net_usd": -36.2,
+          "win_pct": 5.0,
+          "trades": 40,
+          "fees_usd": 38.54
+        },
+        "buy_and_hold_pnl_usd": -41.13
+      },
+      {
+        "scenario": "أسبوع كامل متواصل 7 أيام — BTC (10,080 دقيقة حقيقية)",
+        "symbol": "BTCUSDT",
+        "day": "ALL_DAYS",
+        "minutes": 10015,
+        "smart_maker_0bps": {
+          "end_usd": 1017.52,
+          "net_usd": 17.52,
+          "win_pct": 69.77,
+          "trades": 43,
+          "fees_usd": 0.0
+        },
+        "vip_maker_2bps": {
+          "end_usd": 1008.98,
+          "net_usd": 8.98,
+          "win_pct": 62.79,
+          "trades": 43,
+          "fees_usd": 8.49
+        },
+        "smart_taker_10bps": {
+          "end_usd": 975.53,
+          "net_usd": -24.47,
+          "win_pct": 55.81,
+          "trades": 43,
+          "fees_usd": 41.75
+        },
+        "naive_bot_10bps": {
+          "end_usd": 964.91,
+          "net_usd": -35.09,
+          "win_pct": 2.78,
+          "trades": 36,
+          "fees_usd": 34.72
+        },
+        "buy_and_hold_pnl_usd": -17.7
+      }
+    ]
+  },
+  "eth_full_day_2026_10_15_maker_0bps": {
+    "symbol": "ETHUSDT",
+    "day": "2026-10-15",
+    "strategy_mode": "smart_maker_0bps",
+    "fee_bps": 0.0,
+    "minutes_analyzed": 1440,
+    "period_start_utc": "2026-10-15T00:00:00",
+    "period_end_utc": "2026-10-15T23:59:00",
+    "start_balance_usd": 1000.0,
+    "end_balance_usd": 1014.1,
+    "net_profit_usd": 14.1,
+    "net_return_pct": 1.41,
+    "buy_and_hold_end_usd": 1008.45,
+    "buy_and_hold_pnl_usd": 8.45,
+    "outperformance_vs_bh_usd": 5.64,
+    "trades_count": 9,
+    "winning_trades": 8,
+    "losing_trades": 1,
+    "win_rate_pct": 88.89,
+    "total_fees_paid_usd": 0.0,
+    "max_drawdown_usd": 1.88,
+    "halted_by_risk_guard": false,
+    "minute_equity_curve": [
+      {
+        "time": "10-15 00:00",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.05,
+        "price": 2421.72
+      },
+      {
+        "time": "10-15 00:08",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.07,
+        "price": 2424.21
+      },
+      {
+        "time": "10-15 00:16",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.79,
+        "price": 2425.95
+      },
+      {
+        "time": "10-15 00:24",
+        "balance_usd": 1000.0,
+        "bh_usd": 1002.29,
+        "price": 2427.15
+      },
+      {
+        "time": "10-15 00:32",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.4,
+        "price": 2425.01
+      },
+      {
+        "time": "10-15 00:40",
+        "balance_usd": 1001.96,
+        "bh_usd": 1000.4,
+        "price": 2422.59
+      },
+      {
+        "time": "10-15 00:48",
+        "balance_usd": 1001.96,
+        "bh_usd": 997.09,
+        "price": 2414.56
+      },
+      {
+        "time": "10-15 00:56",
+        "balance_usd": 1001.96,
+        "bh_usd": 998.53,
+        "price": 2418.05
+      },
+      {
+        "time": "10-15 01:04",
+        "balance_usd": 1001.96,
+        "bh_usd": 1000.37,
+        "price": 2422.51
+      },
+      {
+        "time": "10-15 01:12",
+        "balance_usd": 1001.96,
+        "bh_usd": 997.82,
+        "price": 2416.33
+      },
+      {
+        "time": "10-15 01:20",
+        "balance_usd": 1001.96,
+        "bh_usd": 998.59,
+        "price": 2418.19
+      },
+      {
+        "time": "10-15 01:28",
+        "balance_usd": 1001.96,
+        "bh_usd": 995.78,
+        "price": 2411.4
+      },
+      {
+        "time": "10-15 01:36",
+        "balance_usd": 1001.96,
+        "bh_usd": 998.89,
+        "price": 2418.93
+      },
+      {
+        "time": "10-15 01:44",
+        "balance_usd": 1001.96,
+        "bh_usd": 1000.31,
+        "price": 2422.37
+      },
+      {
+        "time": "10-15 01:52",
+        "balance_usd": 1001.96,
+        "bh_usd": 998.26,
+        "price": 2417.4
+      },
+      {
+        "time": "10-15 02:00",
+        "balance_usd": 1001.96,
+        "bh_usd": 995.59,
+        "price": 2410.93
+      },
+      {
+        "time": "10-15 02:08",
+        "balance_usd": 1001.96,
+        "bh_usd": 996.89,
+        "price": 2414.08
+      },
+      {
+        "time": "10-15 02:16",
+        "balance_usd": 1001.96,
+        "bh_usd": 994.47,
+        "price": 2408.22
+      },
+      {
+        "time": "10-15 02:24",
+        "balance_usd": 1001.96,
+        "bh_usd": 971.12,
+        "price": 2351.68
+      },
+      {
+        "time": "10-15 02:32",
+        "balance_usd": 1001.96,
+        "bh_usd": 969.87,
+        "price": 2348.64
+      },
+      {
+        "time": "10-15 02:40",
+        "balance_usd": 1001.96,
+        "bh_usd": 978.49,
+        "price": 2369.53
+      },
+      {
+        "time": "10-15 02:48",
+        "balance_usd": 1001.96,
+        "bh_usd": 978.3,
+        "price": 2369.07
+      },
+      {
+        "time": "10-15 02:56",
+        "balance_usd": 1001.96,
+        "bh_usd": 984.13,
+        "price": 2383.17
+      },
+      {
+        "time": "10-15 03:04",
+        "balance_usd": 1001.96,
+        "bh_usd": 977.3,
+        "price": 2366.65
+      },
+      {
+        "time": "10-15 03:12",
+        "balance_usd": 1001.96,
+        "bh_usd": 977.66,
+        "price": 2367.51
+      },
+      {
+        "time": "10-15 03:20",
+        "balance_usd": 1001.96,
+        "bh_usd": 978.06,
+        "price": 2368.47
+      },
+      {
+        "time": "10-15 03:28",
+        "balance_usd": 1001.96,
+        "bh_usd": 975.73,
+        "price": 2362.83
+      },
+      {
+        "time": "10-15 03:36",
+        "balance_usd": 1001.96,
+        "bh_usd": 975.34,
+        "price": 2361.89
+      },
+      {
+        "time": "10-15 03:44",
+        "balance_usd": 1001.96,
+        "bh_usd": 973.07,
+        "price": 2356.4
+      },
+      {
+        "time": "10-15 03:52",
+        "balance_usd": 1001.96,
+        "bh_usd": 974.08,
+        "price": 2358.85
+      },
+      {
+        "time": "10-15 04:00",
+        "balance_usd": 1001.96,
+        "bh_usd": 975.71,
+        "price": 2362.79
+      },
+      {
+        "time": "10-15 04:08",
+        "balance_usd": 1001.96,
+        "bh_usd": 975.77,
+        "price": 2362.93
+      },
+      {
+        "time": "10-15 04:16",
+        "balance_usd": 1001.96,
+        "bh_usd": 976.26,
+        "price": 2364.11
+      },
+      {
+        "time": "10-15 04:24",
+        "balance_usd": 1001.96,
+        "bh_usd": 980.98,
+        "price": 2375.56
+      },
+      {
+        "time": "10-15 04:32",
+        "balance_usd": 1001.96,
+        "bh_usd": 984.68,
+        "price": 2384.52
+      },
+      {
+        "time": "10-15 04:40",
+        "balance_usd": 1001.96,
+        "bh_usd": 984.34,
+        "price": 2383.68
+      },
+      {
+        "time": "10-15 04:48",
+        "balance_usd": 1001.96,
+        "bh_usd": 984.76,
+        "price": 2384.7
+      },
+      {
+        "time": "10-15 04:56",
+        "balance_usd": 1001.96,
+        "bh_usd": 984.38,
+        "price": 2383.79
+      },
+      {
+        "time": "10-15 05:04",
+        "balance_usd": 1001.96,
+        "bh_usd": 984.12,
+        "price": 2383.15
+      },
+      {
+        "time": "10-15 05:12",
+        "balance_usd": 1001.96,
+        "bh_usd": 977.91,
+        "price": 2368.12
+      },
+      {
+        "time": "10-15 05:20",
+        "balance_usd": 1001.96,
+        "bh_usd": 977.18,
+        "price": 2366.36
+      },
+      {
+        "time": "10-15 05:28",
+        "balance_usd": 1001.96,
+        "bh_usd": 975.66,
+        "price": 2362.67
+      },
+      {
+        "time": "10-15 05:36",
+        "balance_usd": 1001.96,
+        "bh_usd": 975.42,
+        "price": 2362.09
+      },
+      {
+        "time": "10-15 05:44",
+        "balance_usd": 1001.96,
+        "bh_usd": 975.13,
+        "price": 2361.39
+      },
+      {
+        "time": "10-15 05:52",
+        "balance_usd": 1001.96,
+        "bh_usd": 971.45,
+        "price": 2352.48
+      },
+      {
+        "time": "10-15 06:00",
+        "balance_usd": 1001.96,
+        "bh_usd": 970.5,
+        "price": 2350.17
+      },
+      {
+        "time": "10-15 06:08",
+        "balance_usd": 1001.96,
+        "bh_usd": 970.78,
+        "price": 2350.84
+      },
+      {
+        "time": "10-15 06:16",
+        "balance_usd": 1001.96,
+        "bh_usd": 972.94,
+        "price": 2356.09
+      },
+      {
+        "time": "10-15 06:24",
+        "balance_usd": 1001.96,
+        "bh_usd": 973.08,
+        "price": 2356.41
+      },
+      {
+        "time": "10-15 06:32",
+        "balance_usd": 1001.96,
+        "bh_usd": 976.09,
+        "price": 2363.72
+      },
+      {
+        "time": "10-15 06:40",
+        "balance_usd": 1001.96,
+        "bh_usd": 975.96,
+        "price": 2363.4
+      },
+      {
+        "time": "10-15 06:48",
+        "balance_usd": 1001.96,
+        "bh_usd": 972.81,
+        "price": 2355.76
+      },
+      {
+        "time": "10-15 06:56",
+        "balance_usd": 1001.96,
+        "bh_usd": 973.12,
+        "price": 2356.52
+      },
+      {
+        "time": "10-15 07:04",
+        "balance_usd": 1001.96,
+        "bh_usd": 974.03,
+        "price": 2358.73
+      },
+      {
+        "time": "10-15 07:12",
+        "balance_usd": 1001.96,
+        "bh_usd": 974.45,
+        "price": 2359.73
+      },
+      {
+        "time": "10-15 07:20",
+        "balance_usd": 1001.96,
+        "bh_usd": 975.73,
+        "price": 2362.84
+      },
+      {
+        "time": "10-15 07:28",
+        "balance_usd": 1001.96,
+        "bh_usd": 978.93,
+        "price": 2370.58
+      },
+      {
+        "time": "10-15 07:36",
+        "balance_usd": 1001.96,
+        "bh_usd": 978.83,
+        "price": 2370.35
+      },
+      {
+        "time": "10-15 07:44",
+        "balance_usd": 1001.96,
+        "bh_usd": 981.61,
+        "price": 2377.08
+      },
+      {
+        "time": "10-15 07:52",
+        "balance_usd": 1001.96,
+        "bh_usd": 980.68,
+        "price": 2374.82
+      },
+      {
+        "time": "10-15 08:00",
+        "balance_usd": 1003.93,
+        "bh_usd": 982.97,
+        "price": 2380.37
+      },
+      {
+        "time": "10-15 08:08",
+        "balance_usd": 1003.93,
+        "bh_usd": 979.46,
+        "price": 2371.86
+      },
+      {
+        "time": "10-15 08:16",
+        "balance_usd": 1005.9,
+        "bh_usd": 978.42,
+        "price": 2369.34
+      },
+      {
+        "time": "10-15 08:24",
+        "balance_usd": 1005.9,
+        "bh_usd": 979.32,
+        "price": 2371.52
+      },
+      {
+        "time": "10-15 08:32",
+        "balance_usd": 1005.9,
+        "bh_usd": 981.21,
+        "price": 2376.11
+      },
+      {
+        "time": "10-15 08:40",
+        "balance_usd": 1005.9,
+        "bh_usd": 980.66,
+        "price": 2374.77
+      },
+      {
+        "time": "10-15 08:48",
+        "balance_usd": 1005.9,
+        "bh_usd": 981.83,
+        "price": 2377.6
+      },
+      {
+        "time": "10-15 08:56",
+        "balance_usd": 1005.9,
+        "bh_usd": 979.96,
+        "price": 2373.08
+      },
+      {
+        "time": "10-15 09:04",
+        "balance_usd": 1005.9,
+        "bh_usd": 981.07,
+        "price": 2375.78
+      },
+      {
+        "time": "10-15 09:12",
+        "balance_usd": 1005.9,
+        "bh_usd": 981.46,
+        "price": 2376.72
+      },
+      {
+        "time": "10-15 09:20",
+        "balance_usd": 1005.9,
+        "bh_usd": 979.8,
+        "price": 2372.69
+      },
+      {
+        "time": "10-15 09:28",
+        "balance_usd": 1005.9,
+        "bh_usd": 979.35,
+        "price": 2371.6
+      },
+      {
+        "time": "10-15 09:36",
+        "balance_usd": 1005.9,
+        "bh_usd": 979.43,
+        "price": 2371.8
+      },
+      {
+        "time": "10-15 09:44",
+        "balance_usd": 1005.9,
+        "bh_usd": 979.08,
+        "price": 2370.94
+      },
+      {
+        "time": "10-15 09:52",
+        "balance_usd": 1005.9,
+        "bh_usd": 981.4,
+        "price": 2376.58
+      },
+      {
+        "time": "10-15 10:00",
+        "balance_usd": 1005.9,
+        "bh_usd": 980.91,
+        "price": 2375.39
+      },
+      {
+        "time": "10-15 10:08",
+        "balance_usd": 1005.9,
+        "bh_usd": 978.12,
+        "price": 2368.63
+      },
+      {
+        "time": "10-15 10:16",
+        "balance_usd": 1005.9,
+        "bh_usd": 977.69,
+        "price": 2367.59
+      },
+      {
+        "time": "10-15 10:24",
+        "balance_usd": 1005.9,
+        "bh_usd": 975.91,
+        "price": 2363.28
+      },
+      {
+        "time": "10-15 10:32",
+        "balance_usd": 1005.9,
+        "bh_usd": 978.29,
+        "price": 2369.04
+      },
+      {
+        "time": "10-15 10:40",
+        "balance_usd": 1005.9,
+        "bh_usd": 978.21,
+        "price": 2368.84
+      },
+      {
+        "time": "10-15 10:48",
+        "balance_usd": 1007.87,
+        "bh_usd": 975.2,
+        "price": 2361.56
+      },
+      {
+        "time": "10-15 10:56",
+        "balance_usd": 1007.87,
+        "bh_usd": 977.47,
+        "price": 2367.04
+      },
+      {
+        "time": "10-15 11:04",
+        "balance_usd": 1009.84,
+        "bh_usd": 974.87,
+        "price": 2360.75
+      },
+      {
+        "time": "10-15 11:12",
+        "balance_usd": 1009.84,
+        "bh_usd": 975.87,
+        "price": 2363.17
+      },
+      {
+        "time": "10-15 11:20",
+        "balance_usd": 1009.84,
+        "bh_usd": 976.0,
+        "price": 2363.5
+      },
+      {
+        "time": "10-15 11:28",
+        "balance_usd": 1009.84,
+        "bh_usd": 977.68,
+        "price": 2367.56
+      },
+      {
+        "time": "10-15 11:36",
+        "balance_usd": 1009.84,
+        "bh_usd": 977.75,
+        "price": 2367.72
+      },
+      {
+        "time": "10-15 11:44",
+        "balance_usd": 1009.84,
+        "bh_usd": 977.82,
+        "price": 2367.91
+      },
+      {
+        "time": "10-15 11:52",
+        "balance_usd": 1009.84,
+        "bh_usd": 976.56,
+        "price": 2364.85
+      },
+      {
+        "time": "10-15 12:00",
+        "balance_usd": 1009.84,
+        "bh_usd": 975.05,
+        "price": 2361.19
+      },
+      {
+        "time": "10-15 12:08",
+        "balance_usd": 1009.84,
+        "bh_usd": 975.21,
+        "price": 2361.57
+      },
+      {
+        "time": "10-15 12:16",
+        "balance_usd": 1009.84,
+        "bh_usd": 977.54,
+        "price": 2367.23
+      },
+      {
+        "time": "10-15 12:24",
+        "balance_usd": 1009.84,
+        "bh_usd": 978.82,
+        "price": 2370.31
+      },
+      {
+        "time": "10-15 12:32",
+        "balance_usd": 1009.84,
+        "bh_usd": 969.57,
+        "price": 2347.92
+      },
+      {
+        "time": "10-15 12:40",
+        "balance_usd": 1009.84,
+        "bh_usd": 975.97,
+        "price": 2363.42
+      },
+      {
+        "time": "10-15 12:48",
+        "balance_usd": 1009.84,
+        "bh_usd": 973.19,
+        "price": 2356.68
+      },
+      {
+        "time": "10-15 12:56",
+        "balance_usd": 1009.84,
+        "bh_usd": 971.5,
+        "price": 2352.6
+      },
+      {
+        "time": "10-15 13:04",
+        "balance_usd": 1009.84,
+        "bh_usd": 970.82,
+        "price": 2350.94
+      },
+      {
+        "time": "10-15 13:12",
+        "balance_usd": 1009.84,
+        "bh_usd": 970.61,
+        "price": 2350.44
+      },
+      {
+        "time": "10-15 13:20",
+        "balance_usd": 1009.84,
+        "bh_usd": 968.29,
+        "price": 2344.81
+      },
+      {
+        "time": "10-15 13:28",
+        "balance_usd": 1009.84,
+        "bh_usd": 967.52,
+        "price": 2342.96
+      },
+      {
+        "time": "10-15 13:36",
+        "balance_usd": 1009.84,
+        "bh_usd": 966.08,
+        "price": 2339.47
+      },
+      {
+        "time": "10-15 13:44",
+        "balance_usd": 1009.84,
+        "bh_usd": 972.33,
+        "price": 2354.61
+      },
+      {
+        "time": "10-15 13:52",
+        "balance_usd": 1009.84,
+        "bh_usd": 964.78,
+        "price": 2336.33
+      },
+      {
+        "time": "10-15 14:00",
+        "balance_usd": 1013.47,
+        "bh_usd": 966.2,
+        "price": 2339.77
+      },
+      {
+        "time": "10-15 14:08",
+        "balance_usd": 1013.47,
+        "bh_usd": 975.68,
+        "price": 2362.72
+      },
+      {
+        "time": "10-15 14:16",
+        "balance_usd": 1013.47,
+        "bh_usd": 978.16,
+        "price": 2368.72
+      },
+      {
+        "time": "10-15 14:24",
+        "balance_usd": 1013.47,
+        "bh_usd": 979.24,
+        "price": 2371.34
+      },
+      {
+        "time": "10-15 14:32",
+        "balance_usd": 1013.47,
+        "bh_usd": 978.06,
+        "price": 2368.49
+      },
+      {
+        "time": "10-15 14:40",
+        "balance_usd": 1013.47,
+        "bh_usd": 983.98,
+        "price": 2382.82
+      },
+      {
+        "time": "10-15 14:48",
+        "balance_usd": 1013.47,
+        "bh_usd": 988.23,
+        "price": 2393.11
+      },
+      {
+        "time": "10-15 14:56",
+        "balance_usd": 1013.47,
+        "bh_usd": 989.48,
+        "price": 2396.13
+      },
+      {
+        "time": "10-15 15:04",
+        "balance_usd": 1013.47,
+        "bh_usd": 1001.64,
+        "price": 2425.57
+      },
+      {
+        "time": "10-15 15:12",
+        "balance_usd": 1013.47,
+        "bh_usd": 999.57,
+        "price": 2420.57
+      },
+      {
+        "time": "10-15 15:20",
+        "balance_usd": 1013.47,
+        "bh_usd": 1001.47,
+        "price": 2425.18
+      },
+      {
+        "time": "10-15 15:28",
+        "balance_usd": 1013.47,
+        "bh_usd": 1000.64,
+        "price": 2423.15
+      },
+      {
+        "time": "10-15 15:36",
+        "balance_usd": 1013.47,
+        "bh_usd": 1004.33,
+        "price": 2432.1
+      },
+      {
+        "time": "10-15 15:44",
+        "balance_usd": 1013.47,
+        "bh_usd": 1007.42,
+        "price": 2439.57
+      },
+      {
+        "time": "10-15 15:52",
+        "balance_usd": 1013.47,
+        "bh_usd": 1007.79,
+        "price": 2440.47
+      },
+      {
+        "time": "10-15 16:00",
+        "balance_usd": 1013.47,
+        "bh_usd": 1008.19,
+        "price": 2441.45
+      },
+      {
+        "time": "10-15 16:08",
+        "balance_usd": 1013.47,
+        "bh_usd": 1009.14,
+        "price": 2443.75
+      },
+      {
+        "time": "10-15 16:16",
+        "balance_usd": 1013.47,
+        "bh_usd": 1007.28,
+        "price": 2439.25
+      },
+      {
+        "time": "10-15 16:24",
+        "balance_usd": 1013.47,
+        "bh_usd": 1004.01,
+        "price": 2431.32
+      },
+      {
+        "time": "10-15 16:32",
+        "balance_usd": 1013.47,
+        "bh_usd": 1001.9,
+        "price": 2426.2
+      },
+      {
+        "time": "10-15 16:40",
+        "balance_usd": 1013.47,
+        "bh_usd": 1002.74,
+        "price": 2428.24
+      },
+      {
+        "time": "10-15 16:48",
+        "balance_usd": 1013.47,
+        "bh_usd": 1005.29,
+        "price": 2434.42
+      },
+      {
+        "time": "10-15 16:56",
+        "balance_usd": 1013.47,
+        "bh_usd": 1005.16,
+        "price": 2434.1
+      },
+      {
+        "time": "10-15 17:04",
+        "balance_usd": 1013.47,
+        "bh_usd": 1005.14,
+        "price": 2434.05
+      },
+      {
+        "time": "10-15 17:12",
+        "balance_usd": 1013.47,
+        "bh_usd": 1006.78,
+        "price": 2438.03
+      },
+      {
+        "time": "10-15 17:20",
+        "balance_usd": 1015.46,
+        "bh_usd": 1012.53,
+        "price": 2451.96
+      },
+      {
+        "time": "10-15 17:28",
+        "balance_usd": 1015.46,
+        "bh_usd": 1009.53,
+        "price": 2444.68
+      },
+      {
+        "time": "10-15 17:36",
+        "balance_usd": 1015.46,
+        "bh_usd": 1010.65,
+        "price": 2447.39
+      },
+      {
+        "time": "10-15 17:44",
+        "balance_usd": 1015.46,
+        "bh_usd": 1011.1,
+        "price": 2448.48
+      },
+      {
+        "time": "10-15 17:52",
+        "balance_usd": 1015.46,
+        "bh_usd": 1010.75,
+        "price": 2447.64
+      },
+      {
+        "time": "10-15 18:00",
+        "balance_usd": 1015.46,
+        "bh_usd": 1009.41,
+        "price": 2444.39
+      },
+      {
+        "time": "10-15 18:08",
+        "balance_usd": 1013.58,
+        "bh_usd": 1007.66,
+        "price": 2440.17
+      },
+      {
+        "time": "10-15 18:16",
+        "balance_usd": 1013.58,
+        "bh_usd": 1006.98,
+        "price": 2438.51
+      },
+      {
+        "time": "10-15 18:24",
+        "balance_usd": 1013.58,
+        "bh_usd": 1006.2,
+        "price": 2436.63
+      },
+      {
+        "time": "10-15 18:32",
+        "balance_usd": 1013.58,
+        "bh_usd": 1008.98,
+        "price": 2443.35
+      },
+      {
+        "time": "10-15 18:40",
+        "balance_usd": 1013.58,
+        "bh_usd": 1009.12,
+        "price": 2443.7
+      },
+      {
+        "time": "10-15 18:48",
+        "balance_usd": 1013.58,
+        "bh_usd": 1011.86,
+        "price": 2450.32
+      },
+      {
+        "time": "10-15 18:56",
+        "balance_usd": 1013.58,
+        "bh_usd": 1011.24,
+        "price": 2448.84
+      },
+      {
+        "time": "10-15 19:04",
+        "balance_usd": 1013.58,
+        "bh_usd": 1013.1,
+        "price": 2453.33
+      },
+      {
+        "time": "10-15 19:12",
+        "balance_usd": 1013.58,
+        "bh_usd": 1012.7,
+        "price": 2452.36
+      },
+      {
+        "time": "10-15 19:20",
+        "balance_usd": 1013.58,
+        "bh_usd": 1014.59,
+        "price": 2456.94
+      },
+      {
+        "time": "10-15 19:28",
+        "balance_usd": 1013.58,
+        "bh_usd": 1015.36,
+        "price": 2458.8
+      },
+      {
+        "time": "10-15 19:36",
+        "balance_usd": 1013.58,
+        "bh_usd": 1013.23,
+        "price": 2453.65
+      },
+      {
+        "time": "10-15 19:44",
+        "balance_usd": 1013.58,
+        "bh_usd": 1013.95,
+        "price": 2455.4
+      },
+      {
+        "time": "10-15 19:52",
+        "balance_usd": 1013.58,
+        "bh_usd": 1015.41,
+        "price": 2458.92
+      },
+      {
+        "time": "10-15 20:00",
+        "balance_usd": 1013.58,
+        "bh_usd": 1012.85,
+        "price": 2452.72
+      },
+      {
+        "time": "10-15 20:08",
+        "balance_usd": 1013.58,
+        "bh_usd": 1014.14,
+        "price": 2455.85
+      },
+      {
+        "time": "10-15 20:16",
+        "balance_usd": 1013.58,
+        "bh_usd": 1015.02,
+        "price": 2457.99
+      },
+      {
+        "time": "10-15 20:24",
+        "balance_usd": 1013.58,
+        "bh_usd": 1016.17,
+        "price": 2460.76
+      },
+      {
+        "time": "10-15 20:32",
+        "balance_usd": 1013.58,
+        "bh_usd": 1016.31,
+        "price": 2461.1
+      },
+      {
+        "time": "10-15 20:40",
+        "balance_usd": 1013.58,
+        "bh_usd": 1016.27,
+        "price": 2461.02
+      },
+      {
+        "time": "10-15 20:48",
+        "balance_usd": 1013.58,
+        "bh_usd": 1015.86,
+        "price": 2460.01
+      },
+      {
+        "time": "10-15 20:56",
+        "balance_usd": 1014.1,
+        "bh_usd": 1012.03,
+        "price": 2450.74
+      },
+      {
+        "time": "10-15 21:04",
+        "balance_usd": 1014.1,
+        "bh_usd": 1013.55,
+        "price": 2454.42
+      },
+      {
+        "time": "10-15 21:12",
+        "balance_usd": 1014.1,
+        "bh_usd": 1013.32,
+        "price": 2453.87
+      },
+      {
+        "time": "10-15 21:20",
+        "balance_usd": 1014.1,
+        "bh_usd": 1014.61,
+        "price": 2457.0
+      },
+      {
+        "time": "10-15 21:28",
+        "balance_usd": 1014.1,
+        "bh_usd": 1015.13,
+        "price": 2458.24
+      },
+      {
+        "time": "10-15 21:36",
+        "balance_usd": 1014.1,
+        "bh_usd": 1015.85,
+        "price": 2460.0
+      },
+      {
+        "time": "10-15 21:44",
+        "balance_usd": 1014.1,
+        "bh_usd": 1015.89,
+        "price": 2460.09
+      },
+      {
+        "time": "10-15 21:52",
+        "balance_usd": 1014.1,
+        "bh_usd": 1015.11,
+        "price": 2458.2
+      },
+      {
+        "time": "10-15 22:00",
+        "balance_usd": 1014.1,
+        "bh_usd": 1017.09,
+        "price": 2463.0
+      },
+      {
+        "time": "10-15 22:08",
+        "balance_usd": 1014.1,
+        "bh_usd": 1017.24,
+        "price": 2463.35
+      },
+      {
+        "time": "10-15 22:16",
+        "balance_usd": 1014.1,
+        "bh_usd": 1016.58,
+        "price": 2461.76
+      },
+      {
+        "time": "10-15 22:24",
+        "balance_usd": 1014.1,
+        "bh_usd": 1016.65,
+        "price": 2461.94
+      },
+      {
+        "time": "10-15 22:32",
+        "balance_usd": 1014.1,
+        "bh_usd": 1015.42,
+        "price": 2458.95
+      },
+      {
+        "time": "10-15 22:40",
+        "balance_usd": 1014.1,
+        "bh_usd": 1015.48,
+        "price": 2459.09
+      },
+      {
+        "time": "10-15 22:48",
+        "balance_usd": 1014.1,
+        "bh_usd": 1014.73,
+        "price": 2457.29
+      },
+      {
+        "time": "10-15 22:56",
+        "balance_usd": 1014.1,
+        "bh_usd": 1014.21,
+        "price": 2456.02
+      },
+      {
+        "time": "10-15 23:04",
+        "balance_usd": 1014.1,
+        "bh_usd": 1012.34,
+        "price": 2451.5
+      },
+      {
+        "time": "10-15 23:12",
+        "balance_usd": 1014.1,
+        "bh_usd": 1009.02,
+        "price": 2443.45
+      },
+      {
+        "time": "10-15 23:20",
+        "balance_usd": 1014.1,
+        "bh_usd": 1007.47,
+        "price": 2439.69
+      },
+      {
+        "time": "10-15 23:28",
+        "balance_usd": 1014.1,
+        "bh_usd": 1007.83,
+        "price": 2440.57
+      },
+      {
+        "time": "10-15 23:36",
+        "balance_usd": 1014.1,
+        "bh_usd": 1008.44,
+        "price": 2442.04
+      },
+      {
+        "time": "10-15 23:59",
+        "balance_usd": 1014.1,
+        "bh_usd": 1008.45,
+        "price": 2442.08
+      }
+    ],
+    "trades": [
+      {
+        "idx": 1,
+        "symbol": "ETHUSDT",
+        "side": "LONG",
+        "entry_time": "2026-10-15 00:40",
+        "exit_time": "2026-10-15 01:00",
+        "duration_min": 20,
+        "entry_price": 2421.1679,
+        "exit_price": 2426.0102,
+        "notional_usd": 980.0,
+        "gross_usd": 1.96,
+        "fee_usd": 0.0,
+        "net_usd": 1.96,
+        "balance_after_usd": 1001.96,
+        "reason": "take_profit_maker"
+      },
+      {
+        "idx": 2,
+        "symbol": "ETHUSDT",
+        "side": "SHORT",
+        "entry_time": "2026-10-15 07:56",
+        "exit_time": "2026-10-15 08:03",
+        "duration_min": 7,
+        "entry_price": 2380.188,
+        "exit_price": 2375.4276,
+        "notional_usd": 981.92,
+        "gross_usd": 1.97,
+        "fee_usd": 0.0,
+        "net_usd": 1.97,
+        "balance_after_usd": 1003.93,
+        "reason": "take_profit_maker"
+      },
+      {
+        "idx": 3,
+        "symbol": "ETHUSDT",
+        "side": "LONG",
+        "entry_time": "2026-10-15 08:11",
+        "exit_time": "2026-10-15 08:22",
+        "duration_min": 11,
+        "entry_price": 2366.2933,
+        "exit_price": 2371.0259,
+        "notional_usd": 983.85,
+        "gross_usd": 1.97,
+        "fee_usd": 0.0,
+        "net_usd": 1.97,
+        "balance_after_usd": 1005.9,
+        "reason": "take_profit_maker"
+      },
+      {
+        "idx": 4,
+        "symbol": "ETHUSDT",
+        "side": "LONG",
+        "entry_time": "2026-10-15 10:45",
+        "exit_time": "2026-10-15 10:54",
+        "duration_min": 9,
+        "entry_price": 2361.8638,
+        "exit_price": 2366.5875,
+        "notional_usd": 985.78,
+        "gross_usd": 1.97,
+        "fee_usd": 0.0,
+        "net_usd": 1.97,
+        "balance_after_usd": 1007.87,
+        "reason": "take_profit_maker"
+      },
+      {
+        "idx": 5,
+        "symbol": "ETHUSDT",
+        "side": "LONG",
+        "entry_time": "2026-10-15 11:04",
+        "exit_time": "2026-10-15 11:08",
+        "duration_min": 4,
+        "entry_price": 2360.4239,
+        "exit_price": 2365.1448,
+        "notional_usd": 987.71,
+        "gross_usd": 1.98,
+        "fee_usd": 0.0,
+        "net_usd": 1.98,
+        "balance_after_usd": 1009.84,
+        "reason": "take_profit_maker"
+      },
+      {
+        "idx": 6,
+        "symbol": "ETHUSDT",
+        "side": "LONG",
+        "entry_time": "2026-10-15 13:54",
+        "exit_time": "2026-10-15 13:55",
+        "duration_min": 1,
+        "entry_price": 2329.507,
+        "exit_price": 2338.0453,
+        "notional_usd": 989.65,
+        "gross_usd": 3.63,
+        "fee_usd": 0.0,
+        "net_usd": 3.63,
+        "balance_after_usd": 1013.47,
+        "reason": "take_profit_maker"
+      },
+      {
+        "idx": 7,
+        "symbol": "ETHUSDT",
+        "side": "SHORT",
+        "entry_time": "2026-10-15 17:17",
+        "exit_time": "2026-10-15 17:24",
+        "duration_min": 7,
+        "entry_price": 2452.8253,
+        "exit_price": 2447.9196,
+        "notional_usd": 993.2,
+        "gross_usd": 1.99,
+        "fee_usd": 0.0,
+        "net_usd": 1.99,
+        "balance_after_usd": 1015.46,
+        "reason": "take_profit_maker"
+      },
+      {
+        "idx": 8,
+        "symbol": "ETHUSDT",
+        "side": "LONG",
+        "entry_time": "2026-10-15 18:04",
+        "exit_time": "2026-10-15 18:25",
+        "duration_min": 21,
+        "entry_price": 2441.2559,
+        "exit_price": 2436.64,
+        "notional_usd": 995.15,
+        "gross_usd": -1.88,
+        "fee_usd": 0.0,
+        "net_usd": -1.88,
+        "balance_after_usd": 1013.58,
+        "reason": "time_barrier_20m"
+      },
+      {
+        "idx": 9,
+        "symbol": "ETHUSDT",
+        "side": "LONG",
+        "entry_time": "2026-10-15 20:54",
+        "exit_time": "2026-10-15 21:15",
+        "duration_min": 21,
+        "entry_price": 2452.3847,
+        "exit_price": 2453.66,
+        "notional_usd": 993.31,
+        "gross_usd": 0.52,
+        "fee_usd": 0.0,
+        "net_usd": 0.52,
+        "balance_after_usd": 1014.1,
+        "reason": "time_barrier_20m"
+      }
+    ]
+  },
+  "btc_full_day_2026_10_17_maker_0bps": {
+    "symbol": "BTCUSDT",
+    "day": "2026-10-17",
+    "strategy_mode": "smart_maker_0bps",
+    "fee_bps": 0.0,
+    "minutes_analyzed": 1440,
+    "period_start_utc": "2026-10-17T00:00:00",
+    "period_end_utc": "2026-10-17T23:59:00",
+    "start_balance_usd": 1000.0,
+    "end_balance_usd": 1001.96,
+    "net_profit_usd": 1.96,
+    "net_return_pct": 0.196,
+    "buy_and_hold_end_usd": 998.47,
+    "buy_and_hold_pnl_usd": -1.53,
+    "outperformance_vs_bh_usd": 3.49,
+    "trades_count": 1,
+    "winning_trades": 1,
+    "losing_trades": 0,
+    "win_rate_pct": 100.0,
+    "total_fees_paid_usd": 0.0,
+    "max_drawdown_usd": 0.0,
+    "halted_by_risk_guard": false,
+    "minute_equity_curve": [
+      {
+        "time": "10-17 00:00",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.83,
+        "price": 81602.36
+      },
+      {
+        "time": "10-17 00:08",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.73,
+        "price": 81594.28
+      },
+      {
+        "time": "10-17 00:16",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.31,
+        "price": 81641.04
+      },
+      {
+        "time": "10-17 00:24",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.65,
+        "price": 81587.63
+      },
+      {
+        "time": "10-17 00:32",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.14,
+        "price": 81627.7
+      },
+      {
+        "time": "10-17 00:40",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.21,
+        "price": 81632.95
+      },
+      {
+        "time": "10-17 00:48",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.68,
+        "price": 81508.33
+      },
+      {
+        "time": "10-17 00:56",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.62,
+        "price": 81584.77
+      },
+      {
+        "time": "10-17 01:04",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.09,
+        "price": 81542.01
+      },
+      {
+        "time": "10-17 01:12",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.56,
+        "price": 81579.77
+      },
+      {
+        "time": "10-17 01:20",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.13,
+        "price": 81545.18
+      },
+      {
+        "time": "10-17 01:28",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.31,
+        "price": 81559.21
+      },
+      {
+        "time": "10-17 01:36",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.72,
+        "price": 81511.82
+      },
+      {
+        "time": "10-17 01:44",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.12,
+        "price": 81544.01
+      },
+      {
+        "time": "10-17 01:52",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.5,
+        "price": 81575.5
+      },
+      {
+        "time": "10-17 02:00",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.19,
+        "price": 81550.0
+      },
+      {
+        "time": "10-17 02:08",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.06,
+        "price": 81620.6
+      },
+      {
+        "time": "10-17 02:16",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.65,
+        "price": 81587.32
+      },
+      {
+        "time": "10-17 02:24",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.03,
+        "price": 81536.95
+      },
+      {
+        "time": "10-17 02:32",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.33,
+        "price": 81480.01
+      },
+      {
+        "time": "10-17 02:40",
+        "balance_usd": 1000.0,
+        "bh_usd": 997.87,
+        "price": 81442.0
+      },
+      {
+        "time": "10-17 02:48",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.21,
+        "price": 81470.0
+      },
+      {
+        "time": "10-17 02:56",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.6,
+        "price": 81502.0
+      },
+      {
+        "time": "10-17 03:04",
+        "balance_usd": 1000.0,
+        "bh_usd": 997.8,
+        "price": 81436.55
+      },
+      {
+        "time": "10-17 03:12",
+        "balance_usd": 1000.0,
+        "bh_usd": 997.91,
+        "price": 81445.5
+      },
+      {
+        "time": "10-17 03:20",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.58,
+        "price": 81499.61
+      },
+      {
+        "time": "10-17 03:28",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.85,
+        "price": 81604.01
+      },
+      {
+        "time": "10-17 03:36",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.72,
+        "price": 81593.35
+      },
+      {
+        "time": "10-17 03:44",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.91,
+        "price": 81608.46
+      },
+      {
+        "time": "10-17 03:52",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.61,
+        "price": 81584.2
+      },
+      {
+        "time": "10-17 04:00",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.36,
+        "price": 81563.29
+      },
+      {
+        "time": "10-17 04:08",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.12,
+        "price": 81544.25
+      },
+      {
+        "time": "10-17 04:16",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.24,
+        "price": 81553.62
+      },
+      {
+        "time": "10-17 04:24",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.05,
+        "price": 81538.13
+      },
+      {
+        "time": "10-17 04:32",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.9,
+        "price": 81526.01
+      },
+      {
+        "time": "10-17 04:40",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.4,
+        "price": 81566.9
+      },
+      {
+        "time": "10-17 04:48",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.96,
+        "price": 81530.91
+      },
+      {
+        "time": "10-17 04:56",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.0,
+        "price": 81534.02
+      },
+      {
+        "time": "10-17 05:04",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.99,
+        "price": 81614.78
+      },
+      {
+        "time": "10-17 05:12",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.22,
+        "price": 81633.77
+      },
+      {
+        "time": "10-17 05:20",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.07,
+        "price": 81621.57
+      },
+      {
+        "time": "10-17 05:28",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.99,
+        "price": 81614.83
+      },
+      {
+        "time": "10-17 05:36",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.64,
+        "price": 81586.42
+      },
+      {
+        "time": "10-17 05:44",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.86,
+        "price": 81604.86
+      },
+      {
+        "time": "10-17 05:52",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.64,
+        "price": 81586.89
+      },
+      {
+        "time": "10-17 06:00",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.37,
+        "price": 81564.25
+      },
+      {
+        "time": "10-17 06:08",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.41,
+        "price": 81568.13
+      },
+      {
+        "time": "10-17 06:16",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.88,
+        "price": 81605.99
+      },
+      {
+        "time": "10-17 06:24",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.63,
+        "price": 81585.54
+      },
+      {
+        "time": "10-17 06:32",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.78,
+        "price": 81598.01
+      },
+      {
+        "time": "10-17 06:40",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.93,
+        "price": 81610.26
+      },
+      {
+        "time": "10-17 06:48",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.98,
+        "price": 81614.45
+      },
+      {
+        "time": "10-17 06:56",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.09,
+        "price": 81623.38
+      },
+      {
+        "time": "10-17 07:04",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.32,
+        "price": 81642.01
+      },
+      {
+        "time": "10-17 07:12",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.39,
+        "price": 81647.75
+      },
+      {
+        "time": "10-17 07:20",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.0,
+        "price": 81615.95
+      },
+      {
+        "time": "10-17 07:28",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.38,
+        "price": 81647.14
+      },
+      {
+        "time": "10-17 07:36",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.31,
+        "price": 81722.88
+      },
+      {
+        "time": "10-17 07:44",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.08,
+        "price": 81704.0
+      },
+      {
+        "time": "10-17 07:52",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.08,
+        "price": 81703.91
+      },
+      {
+        "time": "10-17 08:00",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.52,
+        "price": 81740.0
+      },
+      {
+        "time": "10-17 08:08",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.33,
+        "price": 81724.39
+      },
+      {
+        "time": "10-17 08:16",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.64,
+        "price": 81749.51
+      },
+      {
+        "time": "10-17 08:24",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.37,
+        "price": 81727.78
+      },
+      {
+        "time": "10-17 08:32",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.05,
+        "price": 81701.51
+      },
+      {
+        "time": "10-17 08:40",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.92,
+        "price": 81691.05
+      },
+      {
+        "time": "10-17 08:48",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.98,
+        "price": 81696.25
+      },
+      {
+        "time": "10-17 08:56",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.12,
+        "price": 81707.63
+      },
+      {
+        "time": "10-17 09:04",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.33,
+        "price": 81724.65
+      },
+      {
+        "time": "10-17 09:12",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.44,
+        "price": 81733.33
+      },
+      {
+        "time": "10-17 09:20",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.27,
+        "price": 81719.3
+      },
+      {
+        "time": "10-17 09:28",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.75,
+        "price": 81676.81
+      },
+      {
+        "time": "10-17 09:36",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.71,
+        "price": 81673.81
+      },
+      {
+        "time": "10-17 09:44",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.71,
+        "price": 81673.54
+      },
+      {
+        "time": "10-17 09:52",
+        "balance_usd": 1000.0,
+        "bh_usd": 1001.2,
+        "price": 81713.99
+      },
+      {
+        "time": "10-17 10:00",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.56,
+        "price": 81579.92
+      },
+      {
+        "time": "10-17 10:08",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.76,
+        "price": 81596.55
+      },
+      {
+        "time": "10-17 10:16",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.6,
+        "price": 81582.95
+      },
+      {
+        "time": "10-17 10:24",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.83,
+        "price": 81602.0
+      },
+      {
+        "time": "10-17 10:32",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.28,
+        "price": 81639.0
+      },
+      {
+        "time": "10-17 10:40",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.49,
+        "price": 81656.0
+      },
+      {
+        "time": "10-17 10:48",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.56,
+        "price": 81661.62
+      },
+      {
+        "time": "10-17 10:56",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.68,
+        "price": 81671.26
+      },
+      {
+        "time": "10-17 11:04",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.42,
+        "price": 81650.25
+      },
+      {
+        "time": "10-17 11:12",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.43,
+        "price": 81651.36
+      },
+      {
+        "time": "10-17 11:20",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.76,
+        "price": 81596.31
+      },
+      {
+        "time": "10-17 11:28",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.51,
+        "price": 81575.78
+      },
+      {
+        "time": "10-17 11:36",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.68,
+        "price": 81589.7
+      },
+      {
+        "time": "10-17 11:44",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.73,
+        "price": 81593.86
+      },
+      {
+        "time": "10-17 11:52",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.73,
+        "price": 81593.86
+      },
+      {
+        "time": "10-17 12:00",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.72,
+        "price": 81593.43
+      },
+      {
+        "time": "10-17 12:08",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.25,
+        "price": 81554.38
+      },
+      {
+        "time": "10-17 12:16",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.24,
+        "price": 81553.93
+      },
+      {
+        "time": "10-17 12:24",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.02,
+        "price": 81536.01
+      },
+      {
+        "time": "10-17 12:32",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.19,
+        "price": 81549.66
+      },
+      {
+        "time": "10-17 12:40",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.74,
+        "price": 81513.42
+      },
+      {
+        "time": "10-17 12:48",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.7,
+        "price": 81510.0
+      },
+      {
+        "time": "10-17 12:56",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.82,
+        "price": 81519.96
+      },
+      {
+        "time": "10-17 13:04",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.33,
+        "price": 81560.95
+      },
+      {
+        "time": "10-17 13:12",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.52,
+        "price": 81495.43
+      },
+      {
+        "time": "10-17 13:20",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.69,
+        "price": 81509.33
+      },
+      {
+        "time": "10-17 13:28",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.17,
+        "price": 81548.01
+      },
+      {
+        "time": "10-17 13:36",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.49,
+        "price": 81492.97
+      },
+      {
+        "time": "10-17 13:44",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.38,
+        "price": 81484.01
+      },
+      {
+        "time": "10-17 13:52",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.01,
+        "price": 81534.94
+      },
+      {
+        "time": "10-17 14:00",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.58,
+        "price": 81500.01
+      },
+      {
+        "time": "10-17 14:08",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.52,
+        "price": 81495.01
+      },
+      {
+        "time": "10-17 14:16",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.28,
+        "price": 81475.92
+      },
+      {
+        "time": "10-17 14:24",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.99,
+        "price": 81533.07
+      },
+      {
+        "time": "10-17 14:32",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.36,
+        "price": 81563.6
+      },
+      {
+        "time": "10-17 14:40",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.46,
+        "price": 81571.8
+      },
+      {
+        "time": "10-17 14:48",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.41,
+        "price": 81567.66
+      },
+      {
+        "time": "10-17 14:56",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.7,
+        "price": 81591.3
+      },
+      {
+        "time": "10-17 15:04",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.27,
+        "price": 81556.14
+      },
+      {
+        "time": "10-17 15:12",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.24,
+        "price": 81554.0
+      },
+      {
+        "time": "10-17 15:20",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.44,
+        "price": 81488.8
+      },
+      {
+        "time": "10-17 15:28",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.51,
+        "price": 81493.91
+      },
+      {
+        "time": "10-17 15:36",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.24,
+        "price": 81472.19
+      },
+      {
+        "time": "10-17 15:44",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.19,
+        "price": 81468.48
+      },
+      {
+        "time": "10-17 15:52",
+        "balance_usd": 1000.0,
+        "bh_usd": 996.93,
+        "price": 81365.43
+      },
+      {
+        "time": "10-17 16:00",
+        "balance_usd": 1000.0,
+        "bh_usd": 997.5,
+        "price": 81412.05
+      },
+      {
+        "time": "10-17 16:08",
+        "balance_usd": 1000.0,
+        "bh_usd": 997.31,
+        "price": 81396.01
+      },
+      {
+        "time": "10-17 16:16",
+        "balance_usd": 1000.0,
+        "bh_usd": 997.16,
+        "price": 81383.99
+      },
+      {
+        "time": "10-17 16:24",
+        "balance_usd": 1000.0,
+        "bh_usd": 996.15,
+        "price": 81302.01
+      },
+      {
+        "time": "10-17 16:32",
+        "balance_usd": 1000.0,
+        "bh_usd": 995.7,
+        "price": 81264.68
+      },
+      {
+        "time": "10-17 16:40",
+        "balance_usd": 1000.0,
+        "bh_usd": 996.1,
+        "price": 81297.35
+      },
+      {
+        "time": "10-17 16:48",
+        "balance_usd": 1000.0,
+        "bh_usd": 996.41,
+        "price": 81322.53
+      },
+      {
+        "time": "10-17 16:56",
+        "balance_usd": 1000.0,
+        "bh_usd": 994.9,
+        "price": 81200.01
+      },
+      {
+        "time": "10-17 17:04",
+        "balance_usd": 1000.0,
+        "bh_usd": 994.79,
+        "price": 81190.71
+      },
+      {
+        "time": "10-17 17:12",
+        "balance_usd": 1000.0,
+        "bh_usd": 996.05,
+        "price": 81293.52
+      },
+      {
+        "time": "10-17 17:20",
+        "balance_usd": 1000.0,
+        "bh_usd": 995.74,
+        "price": 81268.01
+      },
+      {
+        "time": "10-17 17:28",
+        "balance_usd": 1000.0,
+        "bh_usd": 995.88,
+        "price": 81279.67
+      },
+      {
+        "time": "10-17 17:36",
+        "balance_usd": 1000.0,
+        "bh_usd": 995.68,
+        "price": 81263.15
+      },
+      {
+        "time": "10-17 17:44",
+        "balance_usd": 1000.0,
+        "bh_usd": 996.09,
+        "price": 81296.39
+      },
+      {
+        "time": "10-17 17:52",
+        "balance_usd": 1000.0,
+        "bh_usd": 996.7,
+        "price": 81346.67
+      },
+      {
+        "time": "10-17 18:00",
+        "balance_usd": 1000.0,
+        "bh_usd": 997.28,
+        "price": 81394.01
+      },
+      {
+        "time": "10-17 18:08",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.59,
+        "price": 81501.1
+      },
+      {
+        "time": "10-17 18:16",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.92,
+        "price": 81528.03
+      },
+      {
+        "time": "10-17 18:24",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.09,
+        "price": 81541.32
+      },
+      {
+        "time": "10-17 18:32",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.36,
+        "price": 81563.28
+      },
+      {
+        "time": "10-17 18:40",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.27,
+        "price": 81556.39
+      },
+      {
+        "time": "10-17 18:48",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.41,
+        "price": 81567.43
+      },
+      {
+        "time": "10-17 18:56",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.31,
+        "price": 81559.74
+      },
+      {
+        "time": "10-17 19:04",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.63,
+        "price": 81504.0
+      },
+      {
+        "time": "10-17 19:12",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.21,
+        "price": 81551.51
+      },
+      {
+        "time": "10-17 19:20",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.06,
+        "price": 81538.8
+      },
+      {
+        "time": "10-17 19:28",
+        "balance_usd": 1000.0,
+        "bh_usd": 998.56,
+        "price": 81498.01
+      },
+      {
+        "time": "10-17 19:36",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.39,
+        "price": 81566.0
+      },
+      {
+        "time": "10-17 19:44",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.13,
+        "price": 81626.54
+      },
+      {
+        "time": "10-17 19:52",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.2,
+        "price": 81632.63
+      },
+      {
+        "time": "10-17 20:00",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.91,
+        "price": 81608.8
+      },
+      {
+        "time": "10-17 20:08",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.2,
+        "price": 81632.0
+      },
+      {
+        "time": "10-17 20:16",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.03,
+        "price": 81618.36
+      },
+      {
+        "time": "10-17 20:24",
+        "balance_usd": 1000.0,
+        "bh_usd": 999.93,
+        "price": 81610.0
+      },
+      {
+        "time": "10-17 20:32",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.26,
+        "price": 81636.73
+      },
+      {
+        "time": "10-17 20:40",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.17,
+        "price": 81629.78
+      },
+      {
+        "time": "10-17 20:48",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.16,
+        "price": 81629.3
+      },
+      {
+        "time": "10-17 20:56",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.48,
+        "price": 81655.36
+      },
+      {
+        "time": "10-17 21:04",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.71,
+        "price": 81673.63
+      },
+      {
+        "time": "10-17 21:12",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.39,
+        "price": 81647.43
+      },
+      {
+        "time": "10-17 21:20",
+        "balance_usd": 1000.0,
+        "bh_usd": 1000.04,
+        "price": 81619.18
+      },
+      {
+        "time": "10-17 21:28",
+        "balance_usd": 1000.0,
+        "bh_usd": 995.74,
+        "price": 81268.21
+      },
+      {
+        "time": "10-17 21:36",
+        "balance_usd": 1001.96,
+        "bh_usd": 993.46,
+        "price": 81082.0
+      },
+      {
+        "time": "10-17 21:44",
+        "balance_usd": 1001.96,
+        "bh_usd": 993.92,
+        "price": 81120.01
+      },
+      {
+        "time": "10-17 21:52",
+        "balance_usd": 1001.96,
+        "bh_usd": 994.49,
+        "price": 81166.0
+      },
+      {
+        "time": "10-17 22:00",
+        "balance_usd": 1001.96,
+        "bh_usd": 995.69,
+        "price": 81264.1
+      },
+      {
+        "time": "10-17 22:08",
+        "balance_usd": 1001.96,
+        "bh_usd": 995.34,
+        "price": 81235.19
+      },
+      {
+        "time": "10-17 22:16",
+        "balance_usd": 1001.96,
+        "bh_usd": 995.61,
+        "price": 81257.75
+      },
+      {
+        "time": "10-17 22:24",
+        "balance_usd": 1001.96,
+        "bh_usd": 996.03,
+        "price": 81291.99
+      },
+      {
+        "time": "10-17 22:32",
+        "balance_usd": 1001.96,
+        "bh_usd": 995.89,
+        "price": 81280.84
+      },
+      {
+        "time": "10-17 22:40",
+        "balance_usd": 1001.96,
+        "bh_usd": 996.96,
+        "price": 81367.98
+      },
+      {
+        "time": "10-17 22:48",
+        "balance_usd": 1001.96,
+        "bh_usd": 998.0,
+        "price": 81452.57
+      },
+      {
+        "time": "10-17 22:56",
+        "balance_usd": 1001.96,
+        "bh_usd": 997.36,
+        "price": 81400.58
+      },
+      {
+        "time": "10-17 23:04",
+        "balance_usd": 1001.96,
+        "bh_usd": 997.24,
+        "price": 81390.7
+      },
+      {
+        "time": "10-17 23:12",
+        "balance_usd": 1001.96,
+        "bh_usd": 996.89,
+        "price": 81362.01
+      },
+      {
+        "time": "10-17 23:20",
+        "balance_usd": 1001.96,
+        "bh_usd": 996.37,
+        "price": 81320.0
+      },
+      {
+        "time": "10-17 23:28",
+        "balance_usd": 1001.96,
+        "bh_usd": 995.98,
+        "price": 81287.85
+      },
+      {
+        "time": "10-17 23:36",
+        "balance_usd": 1001.96,
+        "bh_usd": 996.3,
+        "price": 81314.01
+      },
+      {
+        "time": "10-17 23:59",
+        "balance_usd": 1001.96,
+        "bh_usd": 998.47,
+        "price": 81491.04
+      }
+    ],
+    "trades": [
+      {
+        "idx": 1,
+        "symbol": "BTCUSDT",
+        "side": "LONG",
+        "entry_time": "2026-10-17 21:32",
+        "exit_time": "2026-10-17 21:45",
+        "duration_min": 13,
+        "entry_price": 81108.1784,
+        "exit_price": 81270.3947,
+        "notional_usd": 980.0,
+        "gross_usd": 1.96,
+        "fee_usd": 0.0,
+        "net_usd": 1.96,
+        "balance_after_usd": 1001.96,
+        "reason": "take_profit_maker"
+      }
+    ]
+  }
+}

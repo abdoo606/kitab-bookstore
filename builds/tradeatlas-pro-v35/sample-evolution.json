@@ -1,0 +1,107 @@
+{
+ "mode": "evolution_sample",
+ "source": "deterministic SYNTHETIC 1m bars seeds 15/27 — software check",
+ "self_correction": {
+  "verdict": "validated_on_supplied_data_still_needs_fresh_unseen_validation",
+  "lessons": 21,
+  "retired": 7
+ },
+ "evolution_metrics": {
+  "generations": 1,
+  "total_lessons": 21,
+  "resolved_rate": 0.1905,
+  "retirement_rate": 0.3333,
+  "avoidance_efficiency": 0.0,
+  "accuracy_trend": [
+   63.636
+  ],
+  "coverage_trend": [],
+  "net_trend": [],
+  "lesson_reuse_count": 0,
+  "improvement_signal": "insufficient_data",
+  "is_learning": true,
+  "verdict": "early_learning"
+ },
+ "failure_cluster": {
+  "by_cause": {
+   "cost_eaten_edge": 6,
+   "asymmetric_payoff_trap": 6,
+   "baseline_not_beaten": 4,
+   "cost_filter_starved_sample": 2,
+   "remedy_failed_twice": 2,
+   "all_scores_abstained": 1
+  },
+  "by_severity": {
+   "blocker": 21
+  },
+  "by_remedy_kind": {
+   "filter": 9,
+   "gate": 6,
+   "retire": 6
+  },
+  "by_status": {
+   "escalated": 6,
+   "resolved": 4,
+   "retired": 9,
+   "observed": 1,
+   "recurred": 1
+  },
+  "dominant_cause": "cost_eaten_edge",
+  "total": 21,
+  "unique_causes": 6,
+  "diversity_index": 0.286
+ },
+ "remedy_effectiveness": {
+  "by_remedy_kind": {
+   "filter": {
+    "total": 9,
+    "resolved": 3,
+    "recurred": 0,
+    "retired": 3,
+    "escalated": 2,
+    "resolve_rate": 0.333,
+    "failure_rate": 0.556
+   },
+   "gate": {
+    "total": 6,
+    "resolved": 1,
+    "recurred": 0,
+    "retired": 3,
+    "escalated": 2,
+    "resolve_rate": 0.167,
+    "failure_rate": 0.833
+   },
+   "retire": {
+    "total": 6,
+    "resolved": 0,
+    "recurred": 1,
+    "retired": 3,
+    "escalated": 2,
+    "resolve_rate": 0.0,
+    "failure_rate": 1.0
+   }
+  },
+  "best_remedy": "filter",
+  "worst_remedy": "retire"
+ },
+ "prediction_example": {
+  "probability": 0.6047619047619048,
+  "confidence": 0.3,
+  "predicted_cause": null,
+  "reason": "base retirement rate 76%",
+  "should_skip": false
+ },
+ "spec": {
+  "name": "Atlas Evolution Tracker",
+  "version": "17.0",
+  "tracks": [
+   "generation_over_generation_accuracy",
+   "failure_resolution_rate",
+   "remedy_reuse_and_avoidance",
+   "predictive_failure_scoring",
+   "cluster_heatmaps"
+  ],
+  "honesty": "Evolution tracks the research process, not market predictability. Higher resolved_rate means the process learns faster, not that the market is beaten.",
+  "goal_established": false
+ }
+}

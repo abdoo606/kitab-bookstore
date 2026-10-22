@@ -56,3 +56,10 @@ __pycache__/
 
 # Mail attachments pulled locally (large, client material) 
 gmail/
+
+# Drive download cache
+google_drive/
+
+# Live SQLite sidecar files
+*.db-wal
+*.db-shm
