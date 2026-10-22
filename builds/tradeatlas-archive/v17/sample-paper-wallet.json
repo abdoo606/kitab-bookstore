@@ -1,0 +1,1216 @@
+{
+ "mode": "paper_simulation_only",
+ "source": "deterministic SYNTHETIC bars — software/wallet arithmetic validation only",
+ "simulated_balance_deposit": {
+  "deposit": {
+   "seq": 2,
+   "kind": "simulated_crypto_deposit_balance",
+   "asset": "BTC",
+   "hypothetical_crypto_amount": 0.01,
+   "hypothetical_usd_rate": 50000.0,
+   "new_paper_quantity": 0.01,
+   "real_blockchain_transfer": false,
+   "deposit_address": null,
+   "note": "Simulation only: no crypto was sent, received or custodied."
+  },
+  "wallet": {
+   "mode": "paper_simulation_only",
+   "currency": "PAPER_USD",
+   "cash": 10000.0,
+   "positions": [],
+   "paper_asset_balances": [
+    {
+     "asset": "BTC",
+     "quantity": 0.01,
+     "last_simulated_usd_rate": 50000.0,
+     "mark_price": 50000.0,
+     "paper_usd_value": 500.0,
+     "price_is_supplied_mark": true,
+     "real_crypto": false,
+     "deposit_address": null
+    }
+   ],
+   "paper_asset_balances_value": 500.0,
+   "external_account_mirror": {
+    "venue_label": "",
+    "balances": [],
+    "reported_total_usd_value": 0.0,
+    "custody": "user_own_external_account",
+    "tradeatlas_can_access": false,
+    "verified_by_tradeatlas": false,
+    "included_in_paper_equity": false,
+    "deposit_address": null,
+    "funding_instruction": "If you choose to fund an account, use only the official deposit screen inside your own licensed exchange/broker account. TradeAtlas does not provide or verify a deposit address."
+   },
+   "positions_market_value": 0.0,
+   "equity": 10500.0,
+   "realized_pnl": 0.0,
+   "unrealized_pnl": 0.0,
+   "total_fees": 0.0,
+   "simulated_conversion_total_paper_usd": 0.0,
+   "simulated_withdrawal_total_paper_usd_equivalent": 0.0,
+   "following": false,
+   "halted": true,
+   "settings": {
+    "allocation_pct": 10.0,
+    "max_allocation_pct": 25.0,
+    "fee_bps": 10.0,
+    "spot_long_only": true,
+    "leverage": "none"
+   },
+   "ledger": [
+    {
+     "seq": 1,
+     "kind": "initial_paper_capital",
+     "amount": 10000.0,
+     "note": "Imaginary teaching balance; no deposit occurred."
+    },
+    {
+     "seq": 2,
+     "kind": "simulated_crypto_deposit_balance",
+     "asset": "BTC",
+     "hypothetical_crypto_amount": 0.01,
+     "hypothetical_usd_rate": 50000.0,
+     "new_paper_quantity": 0.01,
+     "real_blockchain_transfer": false,
+     "deposit_address": null,
+     "note": "Simulation only: no crypto was sent, received or custodied."
+    }
+   ],
+   "follow_log": [],
+   "real_money": false,
+   "accepts_real_crypto": false,
+   "deposit_address": null,
+   "broker_or_exchange_execution": false,
+   "warning": "Never send cryptocurrency or money to TradeAtlas. It has no deposit address and cannot convert or trade real assets."
+  }
+ },
+ "simulated_balance_conversion": {
+  "conversion": {
+   "seq": 3,
+   "kind": "simulated_crypto_balance_conversion",
+   "asset": "BTC",
+   "hypothetical_crypto_amount": 0.005,
+   "hypothetical_usd_rate": 60000.0,
+   "gross_paper_usd": 300.0,
+   "fee": 0.3,
+   "fee_bps": 10.0,
+   "paper_usd_credited": 299.7,
+   "remaining_paper_quantity": 0.005,
+   "real_blockchain_transfer": false,
+   "real_conversion": false,
+   "deposit_address": null,
+   "note": "Simulation only: imaginary units became imaginary PAPER_USD."
+  },
+  "wallet": {
+   "mode": "paper_simulation_only",
+   "currency": "PAPER_USD",
+   "cash": 10299.7,
+   "positions": [],
+   "paper_asset_balances": [
+    {
+     "asset": "BTC",
+     "quantity": 0.005,
+     "last_simulated_usd_rate": 60000.0,
+     "mark_price": 60000.0,
+     "paper_usd_value": 300.0,
+     "price_is_supplied_mark": true,
+     "real_crypto": false,
+     "deposit_address": null
+    }
+   ],
+   "paper_asset_balances_value": 300.0,
+   "external_account_mirror": {
+    "venue_label": "",
+    "balances": [],
+    "reported_total_usd_value": 0.0,
+    "custody": "user_own_external_account",
+    "tradeatlas_can_access": false,
+    "verified_by_tradeatlas": false,
+    "included_in_paper_equity": false,
+    "deposit_address": null,
+    "funding_instruction": "If you choose to fund an account, use only the official deposit screen inside your own licensed exchange/broker account. TradeAtlas does not provide or verify a deposit address."
+   },
+   "positions_market_value": 0.0,
+   "equity": 10599.7,
+   "realized_pnl": 0.0,
+   "unrealized_pnl": 0.0,
+   "total_fees": 0.3,
+   "simulated_conversion_total_paper_usd": 299.7,
+   "simulated_withdrawal_total_paper_usd_equivalent": 0.0,
+   "following": false,
+   "halted": true,
+   "settings": {
+    "allocation_pct": 10.0,
+    "max_allocation_pct": 25.0,
+    "fee_bps": 10.0,
+    "spot_long_only": true,
+    "leverage": "none"
+   },
+   "ledger": [
+    {
+     "seq": 1,
+     "kind": "initial_paper_capital",
+     "amount": 10000.0,
+     "note": "Imaginary teaching balance; no deposit occurred."
+    },
+    {
+     "seq": 2,
+     "kind": "simulated_crypto_deposit_balance",
+     "asset": "BTC",
+     "hypothetical_crypto_amount": 0.01,
+     "hypothetical_usd_rate": 50000.0,
+     "new_paper_quantity": 0.01,
+     "real_blockchain_transfer": false,
+     "deposit_address": null,
+     "note": "Simulation only: no crypto was sent, received or custodied."
+    },
+    {
+     "seq": 3,
+     "kind": "simulated_crypto_balance_conversion",
+     "asset": "BTC",
+     "hypothetical_crypto_amount": 0.005,
+     "hypothetical_usd_rate": 60000.0,
+     "gross_paper_usd": 300.0,
+     "fee": 0.3,
+     "fee_bps": 10.0,
+     "paper_usd_credited": 299.7,
+     "remaining_paper_quantity": 0.005,
+     "real_blockchain_transfer": false,
+     "real_conversion": false,
+     "deposit_address": null,
+     "note": "Simulation only: imaginary units became imaginary PAPER_USD."
+    }
+   ],
+   "follow_log": [],
+   "real_money": false,
+   "accepts_real_crypto": false,
+   "deposit_address": null,
+   "broker_or_exchange_execution": false,
+   "warning": "Never send cryptocurrency or money to TradeAtlas. It has no deposit address and cannot convert or trade real assets."
+  }
+ },
+ "simulated_balance_withdrawal": {
+  "withdrawal": {
+   "seq": 4,
+   "kind": "simulated_withdrawal",
+   "asset": "BTC",
+   "hypothetical_amount": 0.001,
+   "hypothetical_usd_rate": 60000.0,
+   "paper_usd_equivalent": 60.0,
+   "real_withdrawal": false,
+   "real_blockchain_transfer": false,
+   "destination_address": null,
+   "note": "Simulation only: imaginary units were removed; nothing was sent anywhere."
+  },
+  "wallet": {
+   "mode": "paper_simulation_only",
+   "currency": "PAPER_USD",
+   "cash": 10299.7,
+   "positions": [],
+   "paper_asset_balances": [
+    {
+     "asset": "BTC",
+     "quantity": 0.004,
+     "last_simulated_usd_rate": 60000.0,
+     "mark_price": 60000.0,
+     "paper_usd_value": 240.0,
+     "price_is_supplied_mark": false,
+     "real_crypto": false,
+     "deposit_address": null
+    }
+   ],
+   "paper_asset_balances_value": 240.0,
+   "external_account_mirror": {
+    "venue_label": "",
+    "balances": [],
+    "reported_total_usd_value": 0.0,
+    "custody": "user_own_external_account",
+    "tradeatlas_can_access": false,
+    "verified_by_tradeatlas": false,
+    "included_in_paper_equity": false,
+    "deposit_address": null,
+    "funding_instruction": "If you choose to fund an account, use only the official deposit screen inside your own licensed exchange/broker account. TradeAtlas does not provide or verify a deposit address."
+   },
+   "positions_market_value": 0.0,
+   "equity": 10539.7,
+   "realized_pnl": 0.0,
+   "unrealized_pnl": 0.0,
+   "total_fees": 0.3,
+   "simulated_conversion_total_paper_usd": 299.7,
+   "simulated_withdrawal_total_paper_usd_equivalent": 60.0,
+   "following": false,
+   "halted": true,
+   "settings": {
+    "allocation_pct": 10.0,
+    "max_allocation_pct": 25.0,
+    "fee_bps": 10.0,
+    "spot_long_only": true,
+    "leverage": "none"
+   },
+   "ledger": [
+    {
+     "seq": 1,
+     "kind": "initial_paper_capital",
+     "amount": 10000.0,
+     "note": "Imaginary teaching balance; no deposit occurred."
+    },
+    {
+     "seq": 2,
+     "kind": "simulated_crypto_deposit_balance",
+     "asset": "BTC",
+     "hypothetical_crypto_amount": 0.01,
+     "hypothetical_usd_rate": 50000.0,
+     "new_paper_quantity": 0.01,
+     "real_blockchain_transfer": false,
+     "deposit_address": null,
+     "note": "Simulation only: no crypto was sent, received or custodied."
+    },
+    {
+     "seq": 3,
+     "kind": "simulated_crypto_balance_conversion",
+     "asset": "BTC",
+     "hypothetical_crypto_amount": 0.005,
+     "hypothetical_usd_rate": 60000.0,
+     "gross_paper_usd": 300.0,
+     "fee": 0.3,
+     "fee_bps": 10.0,
+     "paper_usd_credited": 299.7,
+     "remaining_paper_quantity": 0.005,
+     "real_blockchain_transfer": false,
+     "real_conversion": false,
+     "deposit_address": null,
+     "note": "Simulation only: imaginary units became imaginary PAPER_USD."
+    },
+    {
+     "seq": 4,
+     "kind": "simulated_withdrawal",
+     "asset": "BTC",
+     "hypothetical_amount": 0.001,
+     "hypothetical_usd_rate": 60000.0,
+     "paper_usd_equivalent": 60.0,
+     "real_withdrawal": false,
+     "real_blockchain_transfer": false,
+     "destination_address": null,
+     "note": "Simulation only: imaginary units were removed; nothing was sent anywhere."
+    }
+   ],
+   "follow_log": [],
+   "real_money": false,
+   "accepts_real_crypto": false,
+   "deposit_address": null,
+   "broker_or_exchange_execution": false,
+   "warning": "Never send cryptocurrency or money to TradeAtlas. It has no deposit address and cannot convert or trade real assets."
+  }
+ },
+ "conversion": {
+  "conversion": {
+   "seq": 5,
+   "kind": "simulated_crypto_conversion",
+   "asset": "USDT",
+   "hypothetical_crypto_amount": 250.0,
+   "hypothetical_usd_rate": 1.0,
+   "paper_usd_credited": 250.0,
+   "real_blockchain_transfer": false,
+   "deposit_address": null,
+   "note": "Simulation only: nothing was received or converted."
+  },
+  "wallet": {
+   "mode": "paper_simulation_only",
+   "currency": "PAPER_USD",
+   "cash": 10549.7,
+   "positions": [],
+   "paper_asset_balances": [
+    {
+     "asset": "BTC",
+     "quantity": 0.004,
+     "last_simulated_usd_rate": 60000.0,
+     "mark_price": 60000.0,
+     "paper_usd_value": 240.0,
+     "price_is_supplied_mark": false,
+     "real_crypto": false,
+     "deposit_address": null
+    }
+   ],
+   "paper_asset_balances_value": 240.0,
+   "external_account_mirror": {
+    "venue_label": "",
+    "balances": [],
+    "reported_total_usd_value": 0.0,
+    "custody": "user_own_external_account",
+    "tradeatlas_can_access": false,
+    "verified_by_tradeatlas": false,
+    "included_in_paper_equity": false,
+    "deposit_address": null,
+    "funding_instruction": "If you choose to fund an account, use only the official deposit screen inside your own licensed exchange/broker account. TradeAtlas does not provide or verify a deposit address."
+   },
+   "positions_market_value": 0.0,
+   "equity": 10789.7,
+   "realized_pnl": 0.0,
+   "unrealized_pnl": 0.0,
+   "total_fees": 0.3,
+   "simulated_conversion_total_paper_usd": 549.7,
+   "simulated_withdrawal_total_paper_usd_equivalent": 60.0,
+   "following": false,
+   "halted": true,
+   "settings": {
+    "allocation_pct": 10.0,
+    "max_allocation_pct": 25.0,
+    "fee_bps": 10.0,
+    "spot_long_only": true,
+    "leverage": "none"
+   },
+   "ledger": [
+    {
+     "seq": 1,
+     "kind": "initial_paper_capital",
+     "amount": 10000.0,
+     "note": "Imaginary teaching balance; no deposit occurred."
+    },
+    {
+     "seq": 2,
+     "kind": "simulated_crypto_deposit_balance",
+     "asset": "BTC",
+     "hypothetical_crypto_amount": 0.01,
+     "hypothetical_usd_rate": 50000.0,
+     "new_paper_quantity": 0.01,
+     "real_blockchain_transfer": false,
+     "deposit_address": null,
+     "note": "Simulation only: no crypto was sent, received or custodied."
+    },
+    {
+     "seq": 3,
+     "kind": "simulated_crypto_balance_conversion",
+     "asset": "BTC",
+     "hypothetical_crypto_amount": 0.005,
+     "hypothetical_usd_rate": 60000.0,
+     "gross_paper_usd": 300.0,
+     "fee": 0.3,
+     "fee_bps": 10.0,
+     "paper_usd_credited": 299.7,
+     "remaining_paper_quantity": 0.005,
+     "real_blockchain_transfer": false,
+     "real_conversion": false,
+     "deposit_address": null,
+     "note": "Simulation only: imaginary units became imaginary PAPER_USD."
+    },
+    {
+     "seq": 4,
+     "kind": "simulated_withdrawal",
+     "asset": "BTC",
+     "hypothetical_amount": 0.001,
+     "hypothetical_usd_rate": 60000.0,
+     "paper_usd_equivalent": 60.0,
+     "real_withdrawal": false,
+     "real_blockchain_transfer": false,
+     "destination_address": null,
+     "note": "Simulation only: imaginary units were removed; nothing was sent anywhere."
+    },
+    {
+     "seq": 5,
+     "kind": "simulated_crypto_conversion",
+     "asset": "USDT",
+     "hypothetical_crypto_amount": 250.0,
+     "hypothetical_usd_rate": 1.0,
+     "paper_usd_credited": 250.0,
+     "real_blockchain_transfer": false,
+     "deposit_address": null,
+     "note": "Simulation only: nothing was received or converted."
+    }
+   ],
+   "follow_log": [],
+   "real_money": false,
+   "accepts_real_crypto": false,
+   "deposit_address": null,
+   "broker_or_exchange_execution": false,
+   "warning": "Never send cryptocurrency or money to TradeAtlas. It has no deposit address and cannot convert or trade real assets."
+  }
+ },
+ "external_account_mirror_usdt": {
+  "external_balance_record": {
+   "seq": 6,
+   "kind": "external_account_balance_reported_by_user",
+   "venue_label": "DEMO label for a user's own licensed account",
+   "asset": "USDT",
+   "quantity": 500.0,
+   "user_reported_usd_rate": 1.0,
+   "reported_at": "synthetic-demo",
+   "custody": "user_own_external_account",
+   "tradeatlas_received_asset": false,
+   "verified_by_tradeatlas": false,
+   "deposit_address": null,
+   "note": "Mirror only. Any funding must occur inside the user's own licensed account; nothing was sent to TradeAtlas."
+  },
+  "wallet": {
+   "mode": "paper_simulation_only",
+   "currency": "PAPER_USD",
+   "cash": 10549.7,
+   "positions": [],
+   "paper_asset_balances": [
+    {
+     "asset": "BTC",
+     "quantity": 0.004,
+     "last_simulated_usd_rate": 60000.0,
+     "mark_price": 60000.0,
+     "paper_usd_value": 240.0,
+     "price_is_supplied_mark": false,
+     "real_crypto": false,
+     "deposit_address": null
+    }
+   ],
+   "paper_asset_balances_value": 240.0,
+   "external_account_mirror": {
+    "venue_label": "DEMO label for a user's own licensed account",
+    "balances": [
+     {
+      "asset": "USDT",
+      "quantity": 500.0,
+      "user_reported_usd_rate": 1.0,
+      "mark_price": 1.0,
+      "reported_usd_value": 500.0,
+      "reported_at": "synthetic-demo",
+      "custody": "user_own_external_account",
+      "tradeatlas_can_access": false,
+      "verified_by_tradeatlas": false,
+      "deposit_address": null
+     }
+    ],
+    "reported_total_usd_value": 500.0,
+    "custody": "user_own_external_account",
+    "tradeatlas_can_access": false,
+    "verified_by_tradeatlas": false,
+    "included_in_paper_equity": false,
+    "deposit_address": null,
+    "funding_instruction": "If you choose to fund an account, use only the official deposit screen inside your own licensed exchange/broker account. TradeAtlas does not provide or verify a deposit address."
+   },
+   "positions_market_value": 0.0,
+   "equity": 10789.7,
+   "realized_pnl": 0.0,
+   "unrealized_pnl": 0.0,
+   "total_fees": 0.3,
+   "simulated_conversion_total_paper_usd": 549.7,
+   "simulated_withdrawal_total_paper_usd_equivalent": 60.0,
+   "following": false,
+   "halted": true,
+   "settings": {
+    "allocation_pct": 10.0,
+    "max_allocation_pct": 25.0,
+    "fee_bps": 10.0,
+    "spot_long_only": true,
+    "leverage": "none"
+   },
+   "ledger": [
+    {
+     "seq": 1,
+     "kind": "initial_paper_capital",
+     "amount": 10000.0,
+     "note": "Imaginary teaching balance; no deposit occurred."
+    },
+    {
+     "seq": 2,
+     "kind": "simulated_crypto_deposit_balance",
+     "asset": "BTC",
+     "hypothetical_crypto_amount": 0.01,
+     "hypothetical_usd_rate": 50000.0,
+     "new_paper_quantity": 0.01,
+     "real_blockchain_transfer": false,
+     "deposit_address": null,
+     "note": "Simulation only: no crypto was sent, received or custodied."
+    },
+    {
+     "seq": 3,
+     "kind": "simulated_crypto_balance_conversion",
+     "asset": "BTC",
+     "hypothetical_crypto_amount": 0.005,
+     "hypothetical_usd_rate": 60000.0,
+     "gross_paper_usd": 300.0,
+     "fee": 0.3,
+     "fee_bps": 10.0,
+     "paper_usd_credited": 299.7,
+     "remaining_paper_quantity": 0.005,
+     "real_blockchain_transfer": false,
+     "real_conversion": false,
+     "deposit_address": null,
+     "note": "Simulation only: imaginary units became imaginary PAPER_USD."
+    },
+    {
+     "seq": 4,
+     "kind": "simulated_withdrawal",
+     "asset": "BTC",
+     "hypothetical_amount": 0.001,
+     "hypothetical_usd_rate": 60000.0,
+     "paper_usd_equivalent": 60.0,
+     "real_withdrawal": false,
+     "real_blockchain_transfer": false,
+     "destination_address": null,
+     "note": "Simulation only: imaginary units were removed; nothing was sent anywhere."
+    },
+    {
+     "seq": 5,
+     "kind": "simulated_crypto_conversion",
+     "asset": "USDT",
+     "hypothetical_crypto_amount": 250.0,
+     "hypothetical_usd_rate": 1.0,
+     "paper_usd_credited": 250.0,
+     "real_blockchain_transfer": false,
+     "deposit_address": null,
+     "note": "Simulation only: nothing was received or converted."
+    },
+    {
+     "seq": 6,
+     "kind": "external_account_balance_reported_by_user",
+     "venue_label": "DEMO label for a user's own licensed account",
+     "asset": "USDT",
+     "quantity": 500.0,
+     "user_reported_usd_rate": 1.0,
+     "reported_at": "synthetic-demo",
+     "custody": "user_own_external_account",
+     "tradeatlas_received_asset": false,
+     "verified_by_tradeatlas": false,
+     "deposit_address": null,
+     "note": "Mirror only. Any funding must occur inside the user's own licensed account; nothing was sent to TradeAtlas."
+    }
+   ],
+   "follow_log": [],
+   "real_money": false,
+   "accepts_real_crypto": false,
+   "deposit_address": null,
+   "broker_or_exchange_execution": false,
+   "warning": "Never send cryptocurrency or money to TradeAtlas. It has no deposit address and cannot convert or trade real assets."
+  }
+ },
+ "external_account_mirror_btc": {
+  "external_balance_record": {
+   "seq": 7,
+   "kind": "external_account_balance_reported_by_user",
+   "venue_label": "DEMO label for a user's own licensed account",
+   "asset": "BTC",
+   "quantity": 0.01,
+   "user_reported_usd_rate": 50000.0,
+   "reported_at": "synthetic-demo",
+   "custody": "user_own_external_account",
+   "tradeatlas_received_asset": false,
+   "verified_by_tradeatlas": false,
+   "deposit_address": null,
+   "note": "Mirror only. Any funding must occur inside the user's own licensed account; nothing was sent to TradeAtlas."
+  },
+  "wallet": {
+   "mode": "paper_simulation_only",
+   "currency": "PAPER_USD",
+   "cash": 10549.7,
+   "positions": [],
+   "paper_asset_balances": [
+    {
+     "asset": "BTC",
+     "quantity": 0.004,
+     "last_simulated_usd_rate": 60000.0,
+     "mark_price": 50000.0,
+     "paper_usd_value": 200.0,
+     "price_is_supplied_mark": true,
+     "real_crypto": false,
+     "deposit_address": null
+    }
+   ],
+   "paper_asset_balances_value": 200.0,
+   "external_account_mirror": {
+    "venue_label": "DEMO label for a user's own licensed account",
+    "balances": [
+     {
+      "asset": "BTC",
+      "quantity": 0.01,
+      "user_reported_usd_rate": 50000.0,
+      "mark_price": 50000.0,
+      "reported_usd_value": 500.0,
+      "reported_at": "synthetic-demo",
+      "custody": "user_own_external_account",
+      "tradeatlas_can_access": false,
+      "verified_by_tradeatlas": false,
+      "deposit_address": null
+     },
+     {
+      "asset": "USDT",
+      "quantity": 500.0,
+      "user_reported_usd_rate": 1.0,
+      "mark_price": 1.0,
+      "reported_usd_value": 500.0,
+      "reported_at": "synthetic-demo",
+      "custody": "user_own_external_account",
+      "tradeatlas_can_access": false,
+      "verified_by_tradeatlas": false,
+      "deposit_address": null
+     }
+    ],
+    "reported_total_usd_value": 1000.0,
+    "custody": "user_own_external_account",
+    "tradeatlas_can_access": false,
+    "verified_by_tradeatlas": false,
+    "included_in_paper_equity": false,
+    "deposit_address": null,
+    "funding_instruction": "If you choose to fund an account, use only the official deposit screen inside your own licensed exchange/broker account. TradeAtlas does not provide or verify a deposit address."
+   },
+   "positions_market_value": 0.0,
+   "equity": 10749.7,
+   "realized_pnl": 0.0,
+   "unrealized_pnl": 0.0,
+   "total_fees": 0.3,
+   "simulated_conversion_total_paper_usd": 549.7,
+   "simulated_withdrawal_total_paper_usd_equivalent": 60.0,
+   "following": false,
+   "halted": true,
+   "settings": {
+    "allocation_pct": 10.0,
+    "max_allocation_pct": 25.0,
+    "fee_bps": 10.0,
+    "spot_long_only": true,
+    "leverage": "none"
+   },
+   "ledger": [
+    {
+     "seq": 1,
+     "kind": "initial_paper_capital",
+     "amount": 10000.0,
+     "note": "Imaginary teaching balance; no deposit occurred."
+    },
+    {
+     "seq": 2,
+     "kind": "simulated_crypto_deposit_balance",
+     "asset": "BTC",
+     "hypothetical_crypto_amount": 0.01,
+     "hypothetical_usd_rate": 50000.0,
+     "new_paper_quantity": 0.01,
+     "real_blockchain_transfer": false,
+     "deposit_address": null,
+     "note": "Simulation only: no crypto was sent, received or custodied."
+    },
+    {
+     "seq": 3,
+     "kind": "simulated_crypto_balance_conversion",
+     "asset": "BTC",
+     "hypothetical_crypto_amount": 0.005,
+     "hypothetical_usd_rate": 60000.0,
+     "gross_paper_usd": 300.0,
+     "fee": 0.3,
+     "fee_bps": 10.0,
+     "paper_usd_credited": 299.7,
+     "remaining_paper_quantity": 0.005,
+     "real_blockchain_transfer": false,
+     "real_conversion": false,
+     "deposit_address": null,
+     "note": "Simulation only: imaginary units became imaginary PAPER_USD."
+    },
+    {
+     "seq": 4,
+     "kind": "simulated_withdrawal",
+     "asset": "BTC",
+     "hypothetical_amount": 0.001,
+     "hypothetical_usd_rate": 60000.0,
+     "paper_usd_equivalent": 60.0,
+     "real_withdrawal": false,
+     "real_blockchain_transfer": false,
+     "destination_address": null,
+     "note": "Simulation only: imaginary units were removed; nothing was sent anywhere."
+    },
+    {
+     "seq": 5,
+     "kind": "simulated_crypto_conversion",
+     "asset": "USDT",
+     "hypothetical_crypto_amount": 250.0,
+     "hypothetical_usd_rate": 1.0,
+     "paper_usd_credited": 250.0,
+     "real_blockchain_transfer": false,
+     "deposit_address": null,
+     "note": "Simulation only: nothing was received or converted."
+    },
+    {
+     "seq": 6,
+     "kind": "external_account_balance_reported_by_user",
+     "venue_label": "DEMO label for a user's own licensed account",
+     "asset": "USDT",
+     "quantity": 500.0,
+     "user_reported_usd_rate": 1.0,
+     "reported_at": "synthetic-demo",
+     "custody": "user_own_external_account",
+     "tradeatlas_received_asset": false,
+     "verified_by_tradeatlas": false,
+     "deposit_address": null,
+     "note": "Mirror only. Any funding must occur inside the user's own licensed account; nothing was sent to TradeAtlas."
+    },
+    {
+     "seq": 7,
+     "kind": "external_account_balance_reported_by_user",
+     "venue_label": "DEMO label for a user's own licensed account",
+     "asset": "BTC",
+     "quantity": 0.01,
+     "user_reported_usd_rate": 50000.0,
+     "reported_at": "synthetic-demo",
+     "custody": "user_own_external_account",
+     "tradeatlas_received_asset": false,
+     "verified_by_tradeatlas": false,
+     "deposit_address": null,
+     "note": "Mirror only. Any funding must occur inside the user's own licensed account; nothing was sent to TradeAtlas."
+    }
+   ],
+   "follow_log": [],
+   "real_money": false,
+   "accepts_real_crypto": false,
+   "deposit_address": null,
+   "broker_or_exchange_execution": false,
+   "warning": "Never send cryptocurrency or money to TradeAtlas. It has no deposit address and cannot convert or trade real assets."
+  }
+ },
+ "follow_step": {
+  "mode": "paper_simulation_only",
+  "symbol": "SYNTHETIC-DEMO",
+  "timeframe": "1m",
+  "strategy": "atlas_minute_pulse",
+  "latest_bar_time": "2026-01-01T00:00:00Z",
+  "latest_close": 110.126982,
+  "latest_signal": {
+   "condition": "long_condition",
+   "fresh": true,
+   "bias": "bullish_bias",
+   "bias_score": 2,
+   "last_event": {
+    "index": 2497,
+    "timestamp": 1767225480,
+    "time_utc": "2025-12-31T23:58:00Z",
+    "direction": 1,
+    "condition": "long_condition",
+    "close": 109.961725,
+    "reason": "Atlas Minute Pulse (TradeAtlas v14) crossed above +0.25"
+   },
+   "bars_since_last_event": 2,
+   "message": "A mechanical long_condition fired 2 bar(s) ago: Atlas Minute Pulse (TradeAtlas v14) crossed above +0.25."
+  },
+  "action": "simulated_buy",
+  "real_order_sent": false,
+  "order": {
+   "seq": 9,
+   "kind": "simulated_spot_order",
+   "symbol": "SYNTHETIC-DEMO",
+   "side": "buy",
+   "quantity": 4.8938601981,
+   "price": 110.126982,
+   "gross": 538.9461,
+   "fee": 0.5389,
+   "fee_bps": 10.0,
+   "realized_pnl": 0.0,
+   "timestamp": 1767225600,
+   "execution": "paper_only_no_broker"
+  },
+  "wallet": {
+   "mode": "paper_simulation_only",
+   "currency": "PAPER_USD",
+   "cash": 10010.215,
+   "positions": [
+    {
+     "symbol": "SYNTHETIC-DEMO",
+     "quantity": 4.8938601981,
+     "average_cost": 110.23710898,
+     "cost_basis": 539.485,
+     "mark_price": 110.126982,
+     "market_value": 538.9461,
+     "unrealized_pnl": -0.5389,
+     "price_is_supplied_mark": true
+    }
+   ],
+   "paper_asset_balances": [
+    {
+     "asset": "BTC",
+     "quantity": 0.004,
+     "last_simulated_usd_rate": 60000.0,
+     "mark_price": 60000.0,
+     "paper_usd_value": 240.0,
+     "price_is_supplied_mark": false,
+     "real_crypto": false,
+     "deposit_address": null
+    }
+   ],
+   "paper_asset_balances_value": 240.0,
+   "external_account_mirror": {
+    "venue_label": "DEMO label for a user's own licensed account",
+    "balances": [
+     {
+      "asset": "BTC",
+      "quantity": 0.01,
+      "user_reported_usd_rate": 50000.0,
+      "mark_price": 50000.0,
+      "reported_usd_value": 500.0,
+      "reported_at": "synthetic-demo",
+      "custody": "user_own_external_account",
+      "tradeatlas_can_access": false,
+      "verified_by_tradeatlas": false,
+      "deposit_address": null
+     },
+     {
+      "asset": "USDT",
+      "quantity": 500.0,
+      "user_reported_usd_rate": 1.0,
+      "mark_price": 1.0,
+      "reported_usd_value": 500.0,
+      "reported_at": "synthetic-demo",
+      "custody": "user_own_external_account",
+      "tradeatlas_can_access": false,
+      "verified_by_tradeatlas": false,
+      "deposit_address": null
+     }
+    ],
+    "reported_total_usd_value": 1000.0,
+    "custody": "user_own_external_account",
+    "tradeatlas_can_access": false,
+    "verified_by_tradeatlas": false,
+    "included_in_paper_equity": false,
+    "deposit_address": null,
+    "funding_instruction": "If you choose to fund an account, use only the official deposit screen inside your own licensed exchange/broker account. TradeAtlas does not provide or verify a deposit address."
+   },
+   "positions_market_value": 538.9461,
+   "equity": 10789.1611,
+   "realized_pnl": 0.0,
+   "unrealized_pnl": -0.5389,
+   "total_fees": 0.8389,
+   "simulated_conversion_total_paper_usd": 549.7,
+   "simulated_withdrawal_total_paper_usd_equivalent": 60.0,
+   "following": true,
+   "halted": false,
+   "settings": {
+    "allocation_pct": 10.0,
+    "max_allocation_pct": 25.0,
+    "fee_bps": 10.0,
+    "spot_long_only": true,
+    "leverage": "none"
+   },
+   "ledger": [
+    {
+     "seq": 1,
+     "kind": "initial_paper_capital",
+     "amount": 10000.0,
+     "note": "Imaginary teaching balance; no deposit occurred."
+    },
+    {
+     "seq": 2,
+     "kind": "simulated_crypto_deposit_balance",
+     "asset": "BTC",
+     "hypothetical_crypto_amount": 0.01,
+     "hypothetical_usd_rate": 50000.0,
+     "new_paper_quantity": 0.01,
+     "real_blockchain_transfer": false,
+     "deposit_address": null,
+     "note": "Simulation only: no crypto was sent, received or custodied."
+    },
+    {
+     "seq": 3,
+     "kind": "simulated_crypto_balance_conversion",
+     "asset": "BTC",
+     "hypothetical_crypto_amount": 0.005,
+     "hypothetical_usd_rate": 60000.0,
+     "gross_paper_usd": 300.0,
+     "fee": 0.3,
+     "fee_bps": 10.0,
+     "paper_usd_credited": 299.7,
+     "remaining_paper_quantity": 0.005,
+     "real_blockchain_transfer": false,
+     "real_conversion": false,
+     "deposit_address": null,
+     "note": "Simulation only: imaginary units became imaginary PAPER_USD."
+    },
+    {
+     "seq": 4,
+     "kind": "simulated_withdrawal",
+     "asset": "BTC",
+     "hypothetical_amount": 0.001,
+     "hypothetical_usd_rate": 60000.0,
+     "paper_usd_equivalent": 60.0,
+     "real_withdrawal": false,
+     "real_blockchain_transfer": false,
+     "destination_address": null,
+     "note": "Simulation only: imaginary units were removed; nothing was sent anywhere."
+    },
+    {
+     "seq": 5,
+     "kind": "simulated_crypto_conversion",
+     "asset": "USDT",
+     "hypothetical_crypto_amount": 250.0,
+     "hypothetical_usd_rate": 1.0,
+     "paper_usd_credited": 250.0,
+     "real_blockchain_transfer": false,
+     "deposit_address": null,
+     "note": "Simulation only: nothing was received or converted."
+    },
+    {
+     "seq": 6,
+     "kind": "external_account_balance_reported_by_user",
+     "venue_label": "DEMO label for a user's own licensed account",
+     "asset": "USDT",
+     "quantity": 500.0,
+     "user_reported_usd_rate": 1.0,
+     "reported_at": "synthetic-demo",
+     "custody": "user_own_external_account",
+     "tradeatlas_received_asset": false,
+     "verified_by_tradeatlas": false,
+     "deposit_address": null,
+     "note": "Mirror only. Any funding must occur inside the user's own licensed account; nothing was sent to TradeAtlas."
+    },
+    {
+     "seq": 7,
+     "kind": "external_account_balance_reported_by_user",
+     "venue_label": "DEMO label for a user's own licensed account",
+     "asset": "BTC",
+     "quantity": 0.01,
+     "user_reported_usd_rate": 50000.0,
+     "reported_at": "synthetic-demo",
+     "custody": "user_own_external_account",
+     "tradeatlas_received_asset": false,
+     "verified_by_tradeatlas": false,
+     "deposit_address": null,
+     "note": "Mirror only. Any funding must occur inside the user's own licensed account; nothing was sent to TradeAtlas."
+    },
+    {
+     "seq": 8,
+     "kind": "paper_follow_on",
+     "note": "Simulation control only; no broker connection exists."
+    },
+    {
+     "seq": 9,
+     "kind": "simulated_spot_order",
+     "symbol": "SYNTHETIC-DEMO",
+     "side": "buy",
+     "quantity": 4.8938601981,
+     "price": 110.126982,
+     "gross": 538.9461,
+     "fee": 0.5389,
+     "fee_bps": 10.0,
+     "realized_pnl": 0.0,
+     "timestamp": 1767225600,
+     "execution": "paper_only_no_broker"
+    }
+   ],
+   "follow_log": [
+    {
+     "symbol": "SYNTHETIC-DEMO",
+     "timeframe": "1m",
+     "strategy": "atlas_minute_pulse",
+     "latest_bar_time": "2026-01-01T00:00:00Z",
+     "action": "simulated_buy",
+     "condition": "long_condition",
+     "latest_close": 110.126982
+    }
+   ],
+   "real_money": false,
+   "accepts_real_crypto": false,
+   "deposit_address": null,
+   "broker_or_exchange_execution": false,
+   "warning": "Never send cryptocurrency or money to TradeAtlas. It has no deposit address and cannot convert or trade real assets."
+  }
+ },
+ "wallet_after_stop": {
+  "mode": "paper_simulation_only",
+  "currency": "PAPER_USD",
+  "cash": 10010.215,
+  "positions": [
+   {
+    "symbol": "SYNTHETIC-DEMO",
+    "quantity": 4.8938601981,
+    "average_cost": 110.23710898,
+    "cost_basis": 539.485,
+    "mark_price": 110.23710898,
+    "market_value": 539.485,
+    "unrealized_pnl": 0.0,
+    "price_is_supplied_mark": false
+   }
+  ],
+  "paper_asset_balances": [
+   {
+    "asset": "BTC",
+    "quantity": 0.004,
+    "last_simulated_usd_rate": 60000.0,
+    "mark_price": 60000.0,
+    "paper_usd_value": 240.0,
+    "price_is_supplied_mark": false,
+    "real_crypto": false,
+    "deposit_address": null
+   }
+  ],
+  "paper_asset_balances_value": 240.0,
+  "external_account_mirror": {
+   "venue_label": "DEMO label for a user's own licensed account",
+   "balances": [
+    {
+     "asset": "BTC",
+     "quantity": 0.01,
+     "user_reported_usd_rate": 50000.0,
+     "mark_price": 50000.0,
+     "reported_usd_value": 500.0,
+     "reported_at": "synthetic-demo",
+     "custody": "user_own_external_account",
+     "tradeatlas_can_access": false,
+     "verified_by_tradeatlas": false,
+     "deposit_address": null
+    },
+    {
+     "asset": "USDT",
+     "quantity": 500.0,
+     "user_reported_usd_rate": 1.0,
+     "mark_price": 1.0,
+     "reported_usd_value": 500.0,
+     "reported_at": "synthetic-demo",
+     "custody": "user_own_external_account",
+     "tradeatlas_can_access": false,
+     "verified_by_tradeatlas": false,
+     "deposit_address": null
+    }
+   ],
+   "reported_total_usd_value": 1000.0,
+   "custody": "user_own_external_account",
+   "tradeatlas_can_access": false,
+   "verified_by_tradeatlas": false,
+   "included_in_paper_equity": false,
+   "deposit_address": null,
+   "funding_instruction": "If you choose to fund an account, use only the official deposit screen inside your own licensed exchange/broker account. TradeAtlas does not provide or verify a deposit address."
+  },
+  "positions_market_value": 539.485,
+  "equity": 10789.7,
+  "realized_pnl": 0.0,
+  "unrealized_pnl": 0.0,
+  "total_fees": 0.8389,
+  "simulated_conversion_total_paper_usd": 549.7,
+  "simulated_withdrawal_total_paper_usd_equivalent": 60.0,
+  "following": false,
+  "halted": true,
+  "settings": {
+   "allocation_pct": 10.0,
+   "max_allocation_pct": 25.0,
+   "fee_bps": 10.0,
+   "spot_long_only": true,
+   "leverage": "none"
+  },
+  "ledger": [
+   {
+    "seq": 1,
+    "kind": "initial_paper_capital",
+    "amount": 10000.0,
+    "note": "Imaginary teaching balance; no deposit occurred."
+   },
+   {
+    "seq": 2,
+    "kind": "simulated_crypto_deposit_balance",
+    "asset": "BTC",
+    "hypothetical_crypto_amount": 0.01,
+    "hypothetical_usd_rate": 50000.0,
+    "new_paper_quantity": 0.01,
+    "real_blockchain_transfer": false,
+    "deposit_address": null,
+    "note": "Simulation only: no crypto was sent, received or custodied."
+   },
+   {
+    "seq": 3,
+    "kind": "simulated_crypto_balance_conversion",
+    "asset": "BTC",
+    "hypothetical_crypto_amount": 0.005,
+    "hypothetical_usd_rate": 60000.0,
+    "gross_paper_usd": 300.0,
+    "fee": 0.3,
+    "fee_bps": 10.0,
+    "paper_usd_credited": 299.7,
+    "remaining_paper_quantity": 0.005,
+    "real_blockchain_transfer": false,
+    "real_conversion": false,
+    "deposit_address": null,
+    "note": "Simulation only: imaginary units became imaginary PAPER_USD."
+   },
+   {
+    "seq": 4,
+    "kind": "simulated_withdrawal",
+    "asset": "BTC",
+    "hypothetical_amount": 0.001,
+    "hypothetical_usd_rate": 60000.0,
+    "paper_usd_equivalent": 60.0,
+    "real_withdrawal": false,
+    "real_blockchain_transfer": false,
+    "destination_address": null,
+    "note": "Simulation only: imaginary units were removed; nothing was sent anywhere."
+   },
+   {
+    "seq": 5,
+    "kind": "simulated_crypto_conversion",
+    "asset": "USDT",
+    "hypothetical_crypto_amount": 250.0,
+    "hypothetical_usd_rate": 1.0,
+    "paper_usd_credited": 250.0,
+    "real_blockchain_transfer": false,
+    "deposit_address": null,
+    "note": "Simulation only: nothing was received or converted."
+   },
+   {
+    "seq": 6,
+    "kind": "external_account_balance_reported_by_user",
+    "venue_label": "DEMO label for a user's own licensed account",
+    "asset": "USDT",
+    "quantity": 500.0,
+    "user_reported_usd_rate": 1.0,
+    "reported_at": "synthetic-demo",
+    "custody": "user_own_external_account",
+    "tradeatlas_received_asset": false,
+    "verified_by_tradeatlas": false,
+    "deposit_address": null,
+    "note": "Mirror only. Any funding must occur inside the user's own licensed account; nothing was sent to TradeAtlas."
+   },
+   {
+    "seq": 7,
+    "kind": "external_account_balance_reported_by_user",
+    "venue_label": "DEMO label for a user's own licensed account",
+    "asset": "BTC",
+    "quantity": 0.01,
+    "user_reported_usd_rate": 50000.0,
+    "reported_at": "synthetic-demo",
+    "custody": "user_own_external_account",
+    "tradeatlas_received_asset": false,
+    "verified_by_tradeatlas": false,
+    "deposit_address": null,
+    "note": "Mirror only. Any funding must occur inside the user's own licensed account; nothing was sent to TradeAtlas."
+   },
+   {
+    "seq": 8,
+    "kind": "paper_follow_on",
+    "note": "Simulation control only; no broker connection exists."
+   },
+   {
+    "seq": 9,
+    "kind": "simulated_spot_order",
+    "symbol": "SYNTHETIC-DEMO",
+    "side": "buy",
+    "quantity": 4.8938601981,
+    "price": 110.126982,
+    "gross": 538.9461,
+    "fee": 0.5389,
+    "fee_bps": 10.0,
+    "realized_pnl": 0.0,
+    "timestamp": 1767225600,
+    "execution": "paper_only_no_broker"
+   },
+   {
+    "seq": 10,
+    "kind": "paper_trading_stopped",
+    "close_all": false,
+    "note": "Hard halt for the simulation. No real orders exist to cancel."
+   }
+  ],
+  "follow_log": [
+   {
+    "symbol": "SYNTHETIC-DEMO",
+    "timeframe": "1m",
+    "strategy": "atlas_minute_pulse",
+    "latest_bar_time": "2026-01-01T00:00:00Z",
+    "action": "simulated_buy",
+    "condition": "long_condition",
+    "latest_close": 110.126982
+   }
+  ],
+  "real_money": false,
+  "accepts_real_crypto": false,
+  "deposit_address": null,
+  "broker_or_exchange_execution": false,
+  "warning": "Never send cryptocurrency or money to TradeAtlas. It has no deposit address and cannot convert or trade real assets."
+ },
+ "warning": "No real deposit, conversion, custody or order occurred.",
+ "disclaimer": "TradeAtlas is educational/research software only. It is NOT financial advice. Market Lab long/short (buy/sell-condition) labels are mechanical indicator states, not recommendations. TradeAtlas bundles no licensed live market data; real-market tracking uses only OHLCV data or a feed endpoint that you supply and have the right to use. Its wallet is a paper simulation only: never send money or cryptocurrency to TradeAtlas; it has no deposit address, custody, conversion, withdrawal or broker execution. Its halal-stock screen is transparent arithmetic on evidence you supply, not a fatwa or certification, and its bot is paper-only. It makes no profit promises. Most short-term traders lose money. Study the ideas, paper-trade first, risk only money you can afford to lose, and consult a licensed financial professional for personal decisions."
+}

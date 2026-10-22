@@ -1,0 +1,1855 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TradeAtlas — educational atlas of trading strategies & analysis methods</title>
+<style>
+:root{--bg:#0f172a;--card:#1e293b;--ink:#e2e8f0;--mut:#94a3b8;--acc:#38bdf8}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+.wrap{max-width:1080px;margin:0 auto;padding:22px 16px 46px}
+h1{font-size:30px;margin:6px 0}h2{margin:0 0 12px}h3{margin:4px 0 8px}
+.sub{color:var(--mut)}
+.banner{background:#451a03;border:1px solid #b45309;border-radius:12px;padding:12px 14px;margin:14px 0;color:#fde68a}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.tabs button{background:var(--card);color:var(--ink);border:1px solid #334155;border-radius:999px;padding:8px 14px;cursor:pointer;font-size:15px}
+.tabs button.on{background:var(--acc);color:#082f49;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid #334155;border-radius:14px;padding:16px}
+.tags span{display:inline-block;background:#0b1220;border:1px solid #334155;border-radius:999px;padding:2px 9px;margin:0 4px 4px 0;font-size:12px;color:var(--mut)}
+.warn{color:#fca5a5}.pane{display:none}.pane.on{display:block}
+label{display:block;font-size:13px;color:var(--mut);margin-top:8px}
+input,select,textarea{width:100%;padding:9px;border-radius:9px;border:1px solid #334155;background:#0b1220;color:var(--ink)}
+textarea{min-height:130px;font-family:ui-monospace,Consolas,monospace;font-size:12px}
+th{text-align:left;color:var(--mut);border-bottom:1px solid #334155;padding:8px}
+details pre{white-space:pre-wrap;max-height:420px;overflow:auto;background:#020617;padding:10px;border-radius:10px}
+.labwide{grid-column:1/-1}.status{color:var(--acc);margin-top:10px}
+button.go{margin-top:12px;background:var(--acc);color:#082f49;font-weight:700;border:0;border-radius:10px;padding:10px 16px;cursor:pointer}
+.out{background:#0b1220;border:1px solid #334155;border-radius:10px;padding:12px;margin-top:12px;white-space:pre-wrap;min-height:40px}
+table{width:100%;border-collapse:collapse}td{border-bottom:1px solid #334155;padding:8px;vertical-align:top}
+.foot{color:var(--mut);font-size:13px;margin-top:26px}
+</style></head><body><div class="wrap">
+<h1>🗺️ TradeAtlas <small style="font-size:14px;color:var(--mut)">v17.0 · Genius Idea #14</small></h1>
+<p class="sub">An educational atlas of the world's best-known trading <b>strategies</b> and <b>analysis methods</b> —
+what each idea is, its classic textbook rules, how it fails, and the risk notes nobody should skip.</p>
+<div class="banner">⚠️ <b>Education only — not financial advice.</b> TradeAtlas is educational/research software only. It is NOT financial advice. Market Lab long/short (buy/sell-condition) labels are mechanical indicator states, not recommendations. TradeAtlas bundles no licensed live market data; real-market tracking uses only OHLCV data or a feed endpoint that you supply and have the right to use. Its wallet is a paper simulation only: never send money or cryptocurrency to TradeAtlas; it has no deposit address, custody, conversion, withdrawal or broker execution. Its halal-stock screen is transparent arithmetic on evidence you supply, not a fatwa or certification, and its bot is paper-only. It makes no profit promises. Most short-term traders lose money. Study the ideas, paper-trade first, risk only money you can afford to lose, and consult a licensed financial professional for personal decisions.</div>
+<div class="tabs">
+<button class="on" onclick="tab('strategies',this)">📈 Strategies (16)</button>
+<button onclick="tab('methods',this)">🔬 Analysis methods (10)</button>
+<button onclick="tab('patterns',this)">🕯️ Candle patterns (8)</button>
+<button onclick="tab('lab',this)">📊 Market Lab · all timeframes</button>
+<button onclick="tab('calcs',this)">🧮 Risk calculators</button>
+<button onclick="tab('risk',this)">🛡️ Risk rules & glossary</button>
+</div>
+
+<section id="strategies" class="pane on"><h2>Strategies</h2><div class="grid"><article class="card"><h3>Trend following</h3><p class="tags"><span>Trend</span><span>Beginner</span><span>Daily / weekly</span><span>Stocks, futures, forex, crypto</span></p><p><b>The idea:</b> Prices that have been rising tend to keep rising for a while (&#x27;the trend is your friend&#x27;). The strategy rides established directional moves instead of predicting reversals.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> Join the existing direction: e.g., buy when price holds above a rising long-term moving average after a pullback.<br>▸ <b>Exit:</b> Trail the stop behind the trend and let winners run; exit when the trend breaks (e.g., close below the trend line / average).<br>▸ <b>Stop / invalidation:</b> Below the most recent swing low (long) or a volatility-based distance such as 2x ATR.</p><p><b>Why people like it:</b> Simple, captures the biggest moves, works across many markets.</p><p><b>How it fails:</b> Sideways/ranging markets cause repeated small losses (&#x27;whipsaws&#x27;); late entries when the trend is exhausted.</p><p class="warn"><b>Risk note:</b> Expect many small losses between a few large wins — psychology, not math, is the hard part.</p></article><article class="card"><h3>Breakout trading</h3><p class="tags"><span>Trend</span><span>Beginner</span><span>Hourly to daily</span><span>All liquid markets</span></p><p><b>The idea:</b> When price escapes a well-defined range or level (support/resistance, prior high/low), stored energy releases and a new move often begins.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> Enter after a close beyond the level, ideally with above-average volume confirming.<br>▸ <b>Exit:</b> Target measured moves (e.g., range height projected from the breakout) or trail the stop.<br>▸ <b>Stop / invalidation:</b> Just back inside the broken range — if price returns, the breakout failed.</p><p><b>Why people like it:</b> Clear levels, clear invalidation; catches moves early.</p><p><b>How it fails:</b> False breakouts (&#x27;fakeouts&#x27;) are common, especially on low volume or into news.</p><p class="warn"><b>Risk note:</b> Chasing extended breakouts without waiting for the close is the classic beginner trap.</p></article><article class="card"><h3>Pullback / retest entries</h3><p class="tags"><span>Trend</span><span>Beginner</span><span>Hourly to weekly</span><span>All liquid markets</span></p><p><b>The idea:</b> Instead of chasing, wait for a trending market to dip to a known level (old resistance turns support, a rising moving average) and enter there at a better price with a closer stop.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> After the pullback reaches the level and shows rejection (e.g., a bullish candle at support in an uptrend).<br>▸ <b>Exit:</b> Previous swing high first, then trail the stop under rising swing lows.<br>▸ <b>Stop / invalidation:</b> Beyond the level being tested — if it gives way, the idea is wrong.</p><p><b>Why people like it:</b> Better prices and tighter, logical stops than chasing.</p><p><b>How it fails:</b> Strong trends sometimes never pull back; weak trends &#x27;pull back&#x27; all the way into reversal.</p><p class="warn"><b>Risk note:</b> Distinguishing a healthy pullback from the start of a reversal is judgment, not certainty.</p></article><article class="card"><h3>Range trading &amp; mean reversion</h3><p class="tags"><span>Mean reversion</span><span>Intermediate</span><span>Hourly to daily</span><span>Sideways stocks, forex pairs, indices</span></p><p><b>The idea:</b> In a sideways market, price oscillates between support and resistance and tends to return toward its average. Buy near support, sell near resistance, fade extremes.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> At the range edges with confirmation (rejection candle, oscillator extreme).<br>▸ <b>Exit:</b> Mid-range (the mean) first, opposite edge second.<br>▸ <b>Stop / invalidation:</b> Outside the range — a close beyond it means the regime changed.</p><p><b>Why people like it:</b> Frequent, well-defined setups; clear levels both ways.</p><p><b>How it fails:</b> Ranges eventually break — one breakout against you can erase many small range wins.</p><p class="warn"><b>Risk note:</b> Never &#x27;average down&#x27; a broken range without a predefined maximum loss.</p></article><article class="card"><h3>RSI momentum &amp; extremes</h3><p class="tags"><span>Momentum</span><span>Beginner</span><span>Hourly to daily</span><span>All liquid markets</span></p><p><b>The idea:</b> The Relative Strength Index (0-100) measures speed of recent gains vs losses. Readings above 70 / below 30 flag stretched conditions; in trends, pullbacks to RSI 40-50 (uptrend) mark continuation zones.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> Two textbook styles: (a) fade extremes only inside ranges; (b) in trends, enter when RSI resets to mid-zone and turns back with price.<br>▸ <b>Exit:</b> Opposite extreme, or price-based targets (prior swing).<br>▸ <b>Stop / invalidation:</b> Beyond the swing that created the RSI signal.</p><p><b>Why people like it:</b> Objective overbought/oversold gauge; divergence warns of weakening moves.</p><p><b>How it fails:</b> In strong trends RSI can stay &#x27;overbought&#x27; for weeks — fading it blindly is expensive.</p><p class="warn"><b>Risk note:</b> RSI is a thermometer, not a steering wheel: it describes, it does not predict.</p></article><article class="card"><h3>MACD crossover &amp; histogram</h3><p class="tags"><span>Momentum</span><span>Beginner</span><span>Daily / 4-hour</span><span>All liquid markets</span></p><p><b>The idea:</b> MACD compares two exponential moving averages (12 vs 26). Crossovers of the MACD line and its 9-period signal line mark momentum shifts; the histogram visualizes their distance.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> Long when MACD crosses up through the signal line (stronger below/near the zero line in an uptrend context).<br>▸ <b>Exit:</b> Opposite crossover, histogram shrinking after extension, or price targets.<br>▸ <b>Stop / invalidation:</b> Beyond the swing low/high preceding the crossover.</p><p><b>Why people like it:</b> Combines trend + momentum in one panel; divergence is a useful warning.</p><p><b>How it fails:</b> Lagging and noisy in ranges — crossovers whipsaw sideways markets.</p><p class="warn"><b>Risk note:</b> Because it is built from averages, MACD always confirms AFTER price has moved.</p></article><article class="card"><h3>Bollinger Band squeeze</h3><p class="tags"><span>Volatility</span><span>Intermediate</span><span>Daily / 4-hour</span><span>All liquid markets</span></p><p><b>The idea:</b> Bollinger Bands (20-period average ±2 standard deviations) widen with volatility and contract in quiet markets. Extreme contraction (&#x27;the squeeze&#x27;) often precedes an expansion move — direction unknown.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> Wait for the expansion: a strong close outside the band after a squeeze, trade in that direction.<br>▸ <b>Exit:</b> Ride while closes stay outside/near the band (&#x27;walking the band&#x27;); exit when momentum closes back inside.<br>▸ <b>Stop / invalidation:</b> Middle band (the 20-period average) or the squeeze&#x27;s opposite edge.</p><p><b>Why people like it:</b> Objective volatility regime detector; adapts to market speed.</p><p><b>How it fails:</b> The squeeze says &#x27;something is coming&#x27;, never which way; first expansion can reverse violently.</p><p class="warn"><b>Risk note:</b> Touching a band is not by itself a reversal signal — in trends price hugs bands.</p></article><article class="card"><h3>Moving-average cross (golden / death cross)</h3><p class="tags"><span>Trend</span><span>Beginner</span><span>Daily / weekly</span><span>Indices, large stocks, forex</span></p><p><b>The idea:</b> A faster average (e.g., 50-day) crossing above a slower one (200-day) is called a golden cross; below, a death cross. A slow regime filter more than a precise trigger.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> Favor longs while price and the fast average sit above the slow average; favor defense/cash below.<br>▸ <b>Exit:</b> Opposite cross, or use crosses only as a bias filter for other entries.<br>▸ <b>Stop / invalidation:</b> System-level: the opposite cross IS the exit — per-trade stops still apply.</p><p><b>Why people like it:</b> Keeps you on the right side of major trends; trivially backtestable.</p><p><b>How it fails:</b> Very lagging — by the cross, much of the move happened; sideways years whipsaw it.</p><p class="warn"><b>Risk note:</b> A filter reduces (never removes) drawdowns; past index behavior is not a guarantee.</p></article><article class="card"><h3>Support &amp; resistance (horizontal levels)</h3><p class="tags"><span>Price action</span><span>Beginner</span><span>All</span><span>All markets</span></p><p><b>The idea:</b> Markets remember levels where price previously reversed or stalled. Those zones attract orders again, so trades are planned around them rather than in empty space.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> Buy support / sell resistance with a confirmation candle, or trade the break-and-retest.<br>▸ <b>Exit:</b> The next opposing level.<br>▸ <b>Stop / invalidation:</b> Just beyond the level — beyond it, the level failed.</p><p><b>Why people like it:</b> The foundation under almost every other strategy; no indicators needed.</p><p><b>How it fails:</b> Levels are zones, not laser lines; they weaken with each test and break without warning.</p><p class="warn"><b>Risk note:</b> Drawing a level does not obligate the market to respect it.</p></article><article class="card"><h3>Fibonacci retracement</h3><p class="tags"><span>Price action</span><span>Intermediate</span><span>Hourly to weekly</span><span>All markets</span></p><p><b>The idea:</b> After an impulse move, pullbacks often pause near 38.2%, 50%, or 61.8% of that move. Traders watch those proportional zones for trend-continuation entries.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> In the 50-61.8% zone (&#x27;golden pocket&#x27;) when it aligns with structure (old level, average) and a rejection appears.<br>▸ <b>Exit:</b> Prior swing extreme, then extension levels (127%, 161.8%).<br>▸ <b>Stop / invalidation:</b> Beyond the next retracement level or the impulse origin.</p><p><b>Why people like it:</b> Gives planned, proportional entry zones instead of chasing.</p><p><b>How it fails:</b> Self-fulfilling at best; weak trends retrace 100%+. Three zones means one usually &#x27;works&#x27; — selection bias.</p><p class="warn"><b>Risk note:</b> Ratios are conventions, not physics. Confluence with structure matters more than the decimal.</p></article><article class="card"><h3>VWAP intraday</h3><p class="tags"><span>Intraday</span><span>Intermediate</span><span>1-15 minute</span><span>Stocks, futures (intraday)</span></p><p><b>The idea:</b> VWAP is the day&#x27;s volume-weighted average price — the level institutions benchmark fills against. Intraday traders use it as a fair-value magnet and bias line.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> Trend day: buy pullbacks to a rising VWAP. Range day: fade moves 2+ standard-deviation bands away from VWAP back toward it.<br>▸ <b>Exit:</b> VWAP itself (mean trades) or band extensions (trend trades). Flat by the close.<br>▸ <b>Stop / invalidation:</b> Beyond the band/level that defined the setup; time-based exit before close.</p><p><b>Why people like it:</b> Objective, widely watched intraday reference; resets daily so no stale levels.</p><p><b>How it fails:</b> Requires volume data and screen time; news days ignore VWAP entirely.</p><p class="warn"><b>Risk note:</b> Intraday trading has the highest cost drag (spread+fees) — most day traders lose.</p></article><article class="card"><h3>Gap-and-go (opening momentum)</h3><p class="tags"><span>Intraday</span><span>Advanced</span><span>First 30-90 minutes</span><span>Stocks with overnight news</span></p><p><b>The idea:</b> A stock gapping on real news with heavy pre-market volume sometimes continues in the gap direction during the opening range as institutions reposition.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> After the first minutes form an opening range; enter on its break in the gap direction with volume surging.<br>▸ <b>Exit:</b> Fast, into opening momentum; most gap trades are done within the first hour.<br>▸ <b>Stop / invalidation:</b> Opening-range opposite edge — gaps that fill immediately are failed ideas.</p><p><b>Why people like it:</b> Concentrated opportunity window; news provides a genuine catalyst.</p><p><b>How it fails:</b> Many gaps fade and fill; spreads and slippage are widest exactly then.</p><p class="warn"><b>Risk note:</b> Fastest way for a beginner to lose: emotional, leveraged, wide spreads. Paper-trade extensively.</p></article><article class="card"><h3>Pairs trading (statistical basics)</h3><p class="tags"><span>Market-neutral</span><span>Advanced</span><span>Daily</span><span>Related stocks, ETFs, futures spreads</span></p><p><b>The idea:</b> Two historically related instruments (e.g., two banks) tend to keep a stable price relationship. When the spread stretches far from its average, buy the laggard and short the leader, betting on the relationship — not direction.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> When the spread&#x27;s z-score exceeds a threshold (textbooks use ±2) after checking the pair is still fundamentally linked.<br>▸ <b>Exit:</b> Spread returns toward its mean (z near 0).<br>▸ <b>Stop / invalidation:</b> A wider z (e.g., ±3-4) or any fundamental break in one leg (earnings disaster, merger).</p><p><b>Why people like it:</b> Market-direction neutral in theory; the rationale is statistical, testable.</p><p><b>How it fails:</b> Relationships break permanently (&#x27;the spread can stay irrational longer…&#x27;); borrow costs on the short leg.</p><p class="warn"><b>Risk note:</b> Correlation is not a contract. Cointegration can vanish exactly when you size up.</p></article><article class="card"><h3>Forex carry basics</h3><p class="tags"><span>Macro</span><span>Advanced</span><span>Weeks to months</span><span>Forex (major pairs)</span></p><p><b>The idea:</b> Borrow a low-interest currency, hold a higher-interest one, and earn the rate difference (&#x27;swap&#x27;). The return is the interest — the risk is the exchange rate moving against you more than the carry earned.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> Textbook version pairs the carry with a supportive trend/risk environment and modest leverage.<br>▸ <b>Exit:</b> When rate differentials shrink, volatility spikes, or the trend breaks.<br>▸ <b>Stop / invalidation:</b> Position-level risk limits; carry trades historically unwind violently in crises.</p><p><b>Why people like it:</b> A real, well-documented long-term factor in currency markets.</p><p><b>How it fails:</b> &#x27;Picking up pennies in front of a steamroller&#x27;: calm gains, sudden crash losses (2008, 2020).</p><p class="warn"><b>Risk note:</b> Leverage turns a slow interest trickle into a fast margin call. This is a professional strategy.</p></article><article class="card"><h3>Dollar-cost averaging &amp; value averaging</h3><p class="tags"><span>Investing</span><span>Beginner</span><span>Monthly, years</span><span>Broad index funds, diversified portfolios</span></p><p><b>The idea:</b> Invest a fixed amount on a fixed schedule regardless of market noise. You automatically buy more units when prices are low and fewer when high, removing timing decisions.</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> Automatic fixed contributions (e.g., monthly) into diversified holdings.<br>▸ <b>Exit:</b> Goal-based (retirement, house deposit), with periodic rebalancing — not headlines.<br>▸ <b>Stop / invalidation:</b> None per-trade; risk is managed by diversification, horizon, and keeping an emergency fund outside the market.</p><p><b>Why people like it:</b> The approach with the strongest evidence for ordinary savers; behaviorally robust.</p><p><b>How it fails:</b> Sitting through -30% drawdowns is emotionally hard; single-stock DCA can ride a failing company to zero.</p><p class="warn"><b>Risk note:</b> Still not a guarantee: markets can fall for years. Diversification and horizon do the heavy lifting.</p></article><article class="card"><h3>Catalyst / earnings momentum</h3><p class="tags"><span>Momentum</span><span>Intermediate</span><span>Days to weeks</span><span>Stocks (earnings, guidance, approvals)</span></p><p><b>The idea:</b> Genuine news (earnings beats, raised guidance, regulatory approvals) re-prices a stock, and the repricing often drifts over days/weeks (&#x27;post-earnings-announcement drift&#x27;, a documented academic effect).</p><p><b>Classic textbook rules</b> (education, not a recommendation):<br>▸ <b>Entry:</b> After the initial reaction day, on strength in the news direction once a base/pullback forms — not into the first chaotic spike.<br>▸ <b>Exit:</b> As volume and momentum normalize, or at predefined targets.<br>▸ <b>Stop / invalidation:</b> Below the post-news base; if the market rejects the news, leave.</p><p><b>Why people like it:</b> Grounded in a real, studied market phenomenon; news gives a &#x27;why&#x27;.</p><p><b>How it fails:</b> &#x27;Buy the rumor, sell the news&#x27; — good news already priced in gets sold into.</p><p class="warn"><b>Risk note:</b> Event risk cuts both ways: secondary offerings, lawsuits, or guidance cuts can gap through stops.</p></article></div></section>
+
+<section id="methods" class="pane"><h2>Analysis methods</h2><div class="grid"><article class="card"><h3>Price action &amp; market structure</h3><p>Reading raw price: higher highs/lows (uptrend), lower highs/lows (downtrend), breaks of structure, and reactions at prior swing points. The grammar every other method annotates.</p><p><b>Tools:</b> Swing points, trend lines, horizontal levels, candlestick rejection wicks.</p><p class="warn"><b>Watch out:</b> Structure is fractal — an uptrend on 5-minutes can sit inside a weekly downtrend. State your timeframe or fool yourself.</p></article><article class="card"><h3>Candlestick patterns</h3><p>Single- and multi-candle shapes (engulfing, pin bar, doji, morning star…) that summarize who won the session&#x27;s battle between buyers and sellers.</p><p><b>Tools:</b> The illustrated patterns in this atlas; always read location (at support/resistance) over shape alone.</p><p class="warn"><b>Watch out:</b> A pattern in the middle of nowhere means little; the same candle at a major level means more. Context first, names second.</p></article><article class="card"><h3>Chart patterns</h3><p>Larger formations — triangles, flags, head-and-shoulders, double tops/bottoms, wedges — that frame consolidation vs continuation and give measured-move targets.</p><p><b>Tools:</b> Trend lines, necklines, measured moves (pattern height projected from the break).</p><p class="warn"><b>Watch out:</b> Patterns are in the eye of the beholder until they break; trade the break + retest, not the hope.</p></article><article class="card"><h3>Indicator analysis</h3><p>Mathematical transformations of price/volume: moving averages (trend), RSI/Stochastic (momentum), MACD (both), ATR (volatility for stops/position sizing), Bollinger Bands (volatility envelope).</p><p><b>Tools:</b> One tool per job: trend filter, timing aid, volatility gauge. Fewer, understood deeply, beat ten stacked randomly.</p><p class="warn"><b>Watch out:</b> Every indicator is derived from price — it cannot know more than price. Lag is the price of smoothness.</p></article><article class="card"><h3>Volume analysis</h3><p>Volume shows conviction: breakouts on expanding volume, pullbacks on shrinking volume, climax volume at exhaustions, and volume profile (where most trading actually happened).</p><p><b>Tools:</b> Volume bars vs their average, OBV, VWAP, volume-profile high/low volume nodes.</p><p class="warn"><b>Watch out:</b> Forex &#x27;volume&#x27; from a broker is tick count, not true volume; crypto volume varies wildly by exchange.</p></article><article class="card"><h3>Order-flow basics</h3><p>Watching the actual bid/ask battle: order book (Level 2), time &amp; sales, and footprint/delta concepts used by futures day traders.</p><p><b>Tools:</b> Depth of market, tape speed, cumulative delta. Mostly an intraday, futures-centric craft.</p><p class="warn"><b>Watch out:</b> Spoofing and hidden iceberg orders mean the book can lie; tools and data feeds for this usually cost money.</p></article><article class="card"><h3>Fundamental analysis</h3><p>Valuing the underlying business/economy: revenue growth, margins, cash flow, debt, moat, management; for macro assets: rates, inflation, growth, central-bank policy.</p><p><b>Tools:</b> Income statement, balance sheet, cash-flow statement; ratios (P/E, ROE, debt/equity); earnings quality checks.</p><p class="warn"><b>Watch out:</b> A great company can be a terrible stock if the price already assumes perfection. Value and price are different questions.</p></article><article class="card"><h3>Macro &amp; sentiment analysis</h3><p>Positioning and mood: interest-rate expectations, fear/greed gauges, put/call ratios, COT reports, fund flows. Extremes of one-sided positioning precede reversals — timing them is the art.</p><p><b>Tools:</b> Central-bank calendars, CPI/jobs releases, VIX, COT (Commitment of Traders) data.</p><p class="warn"><b>Watch out:</b> Sentiment can stay extreme far longer than a leveraged account can stay solvent. Extremes warn; price confirms.</p></article><article class="card"><h3>Intermarket analysis</h3><p>Markets move in families: dollar vs commodities, yields vs growth stocks, risk-on vs risk-off currencies, credit spreads vs equities. Cross-checking relatives confirms or questions a move.</p><p><b>Tools:</b> Correlation checks across DXY, yields, gold, oil, major indices before committing to a narrative.</p><p class="warn"><b>Watch out:</b> Correlations are regime-dependent; in panics, &#x27;everything correlates to 1&#x27; — diversification fails exactly when wanted most.</p></article><article class="card"><h3>Backtesting &amp; trade journaling</h3><p>The scientific layer: test a rule-set on historical data (including costs), then journal live trades — setup, size, exit, emotion — and review expectancy per setup, not per opinion.</p><p><b>Tools:</b> Spreadsheet or code backtests, walk-forward checks, a trade journal with expectancy = win% × avg win − loss% × avg loss.</p><p class="warn"><b>Watch out:</b> Overfitting: tuning rules until history looks perfect guarantees the future disappoints. Out-of-sample honesty or it didn&#x27;t happen.</p></article></div></section>
+
+<section id="patterns" class="pane"><h2>Candlestick patterns <small class="sub">(illustrations use invented example prices — shape only)</small></h2><div class="grid"><article class="card"><h3>Bullish engulfing</h3><svg width="360" height="200" viewBox="0 0 360 200" role="img" aria-label="Candlestick illustration" style="max-width:100%;background:#0b1220;border-radius:10px"><line x1="94.0" y1="63.9" x2="94.0" y2="179.3" stroke="#ef4444" stroke-width="2"/><rect x="46.7" y="78.4" width="94.6" height="86.5" fill="#ef4444" rx="2"/><line x1="266.0" y1="20.7" x2="266.0" y2="179.3" stroke="#22c55e" stroke-width="2"/><rect x="218.7" y="42.3" width="94.6" height="129.8" fill="#22c55e" rx="2"/></svg><p class="tags"><span>Potential reversal up (at support)</span></p><p>A red candle followed by a green candle whose body completely covers the prior body: buyers overwhelmed sellers in one session.</p></article><article class="card"><h3>Bearish engulfing</h3><svg width="360" height="200" viewBox="0 0 360 200" role="img" aria-label="Candlestick illustration" style="max-width:100%;background:#0b1220;border-radius:10px"><line x1="94.0" y1="20.7" x2="94.0" y2="147.6" stroke="#22c55e" stroke-width="2"/><rect x="46.7" y="36.6" width="94.6" height="103.1" fill="#22c55e" rx="2"/><line x1="266.0" y1="20.7" x2="266.0" y2="179.3" stroke="#ef4444" stroke-width="2"/><rect x="218.7" y="28.6" width="94.6" height="134.8" fill="#ef4444" rx="2"/></svg><p class="tags"><span>Potential reversal down (at resistance)</span></p><p>A green candle engulfed by a red one: sellers took the session back. Most meaningful after a run-up into resistance.</p></article><article class="card"><h3>Hammer (pin bar at lows)</h3><svg width="360" height="200" viewBox="0 0 360 200" role="img" aria-label="Candlestick illustration" style="max-width:100%;background:#0b1220;border-radius:10px"><line x1="94.0" y1="20.7" x2="94.0" y2="105.7" stroke="#ef4444" stroke-width="2"/><rect x="46.7" y="26.4" width="94.6" height="68.0" fill="#ef4444" rx="2"/><line x1="266.0" y1="54.7" x2="266.0" y2="179.3" stroke="#22c55e" stroke-width="2"/><rect x="218.7" y="66.0" width="94.6" height="28.3" fill="#22c55e" rx="2"/></svg><p class="tags"><span>Rejection of lower prices</span></p><p>Price plunged intraday but closed near the open, leaving a long lower wick: the dip was bought. At support after a decline, it warns sellers are tiring.</p></article><article class="card"><h3>Shooting star</h3><svg width="360" height="200" viewBox="0 0 360 200" role="img" aria-label="Candlestick illustration" style="max-width:100%;background:#0b1220;border-radius:10px"><line x1="94.0" y1="112.8" x2="94.0" y2="179.3" stroke="#22c55e" stroke-width="2"/><rect x="46.7" y="117.9" width="94.6" height="56.3" fill="#22c55e" rx="2"/><line x1="266.0" y1="20.7" x2="266.0" y2="138.4" stroke="#ef4444" stroke-width="2"/><rect x="218.7" y="117.9" width="94.6" height="10.2" fill="#ef4444" rx="2"/></svg><p class="tags"><span>Rejection of higher prices</span></p><p>A long upper wick after an advance: buyers pushed up, sellers pushed it all back by the close. The mirror image of the hammer.</p></article><article class="card"><h3>Doji</h3><svg width="360" height="200" viewBox="0 0 360 200" role="img" aria-label="Candlestick illustration" style="max-width:100%;background:#0b1220;border-radius:10px"><line x1="180.0" y1="20.7" x2="180.0" y2="179.3" stroke="#22c55e" stroke-width="2"/><rect x="85.4" y="97.1" width="189.2" height="2.9" fill="#22c55e" rx="2"/></svg><p class="tags"><span>Indecision / balance</span></p><p>Open and close nearly equal despite a wide range: neither side won. After a long trend it hints momentum is stalling — it is a question, not an answer.</p></article><article class="card"><h3>Morning star (3-candle)</h3><svg width="360" height="200" viewBox="0 0 360 200" role="img" aria-label="Candlestick illustration" style="max-width:100%;background:#0b1220;border-radius:10px"><line x1="65.3" y1="27.6" x2="65.3" y2="158.6" stroke="#ef4444" stroke-width="2"/><rect x="33.8" y="34.5" width="63.1" height="110.3" fill="#ef4444" rx="2"/><line x1="180.0" y1="137.9" x2="180.0" y2="179.3" stroke="#22c55e" stroke-width="2"/><rect x="148.5" y="151.7" width="63.1" height="6.9" fill="#22c55e" rx="2"/><line x1="294.7" y1="20.7" x2="294.7" y2="151.7" stroke="#22c55e" stroke-width="2"/><rect x="263.1" y="34.5" width="63.1" height="110.3" fill="#22c55e" rx="2"/></svg><p class="tags"><span>Potential bottoming reversal</span></p><p>Strong red candle, small indecisive candle, strong green candle closing deep into the first: a three-act handover from sellers to buyers.</p></article><article class="card"><h3>Evening star (3-candle)</h3><svg width="360" height="200" viewBox="0 0 360 200" role="img" aria-label="Candlestick illustration" style="max-width:100%;background:#0b1220;border-radius:10px"><line x1="65.3" y1="39.0" x2="65.3" y2="167.1" stroke="#22c55e" stroke-width="2"/><rect x="33.8" y="51.2" width="63.1" height="109.8" fill="#22c55e" rx="2"/><line x1="180.0" y1="20.7" x2="180.0" y2="57.3" stroke="#ef4444" stroke-width="2"/><rect x="148.5" y="45.1" width="63.1" height="6.1" fill="#ef4444" rx="2"/><line x1="294.7" y1="51.2" x2="294.7" y2="179.3" stroke="#ef4444" stroke-width="2"/><rect x="263.1" y="57.3" width="63.1" height="109.8" fill="#ef4444" rx="2"/></svg><p class="tags"><span>Potential topping reversal</span></p><p>The morning star inverted: strong advance, pause, then a strong red candle. A handover from buyers to sellers at highs.</p></article><article class="card"><h3>Inside bar</h3><svg width="360" height="200" viewBox="0 0 360 200" role="img" aria-label="Candlestick illustration" style="max-width:100%;background:#0b1220;border-radius:10px"><line x1="94.0" y1="20.7" x2="94.0" y2="179.3" stroke="#22c55e" stroke-width="2"/><rect x="46.7" y="40.5" width="94.6" height="99.1" fill="#22c55e" rx="2"/><line x1="266.0" y1="45.5" x2="266.0" y2="114.9" stroke="#ef4444" stroke-width="2"/><rect x="218.7" y="70.3" width="94.6" height="24.8" fill="#ef4444" rx="2"/></svg><p class="tags"><span>Compression / pending expansion</span></p><p>A candle fully inside the previous candle&#x27;s range: volatility contracted. Traders watch which side of the mother bar breaks first — with the trend preferred.</p></article></div></section>
+
+<section id="lab" class="pane"><h2>Market Lab — real data in, mechanical conditions + 100-signal validation out</h2>
+<div class="banner">⚠️ <b>Research tool, not a signal seller.</b> “LONG / buy-condition” and “SHORT / sell-condition” below mean only that a published indicator rule fired on completed bars. They are <b>not recommendations</b>. TradeAtlas bundles <b>no licensed live prices</b>: upload/paste lawful OHLCV data or let your own browser poll a public/custom CORS feed. The wallet and bot below are <b>paper-only — never send money or crypto to TradeAtlas</b>; they have no deposit address or broker. The bot's paper-trading universe is only registered assets that pass your chosen halal screen; the screen is <b>not a fatwa</b>. A local SQLite database stores imported history and research, but no database can guarantee an 80% future hit rate.</div>
+<div class="grid">
+<div class="card labwide"><h3>🚀 Start here — simple 4-step paper workflow</h3>
+<p class="sub"><b>v14 is minute-first.</b> <b>1)</b> Fetch real completed <b>1m</b> bars in your browser (BTC/USDT preset) or paste/upload lawful 1m/5m/15m OHLCV. <b>2)</b> Run the v14 minute race at 1/3/5/15/30 bars with up to 5000 hidden-future attempts before believing any number. <b>3)</b> Save real minute bars + halal evidence to SQLite across many symbols/days. <b>4)</b> Use the 1m paper bot and, if you independently decide to act in your own licensed account, its manual checklist tickets. <b>80% is a project GOAL, not a reached result.</b> TradeAtlas still has no deposit address, custody, API-key field, real conversion/withdrawal or automatic broker order.</p>
+<button class="go" onclick="pollSelectedFeed()">1 · Fetch selected real market data</button>
+<button class="go" onclick="analyzeCurrentLab()">2 · Analyze current data</button>
+<button class="go" onclick="analyzeForecast(null)">3 · Run hidden-future Forecast Lab</button>
+<button class="go" onclick="runMinuteForecast()">⏱ Run 1m hidden-future race</button>
+<button class="go" onclick="loadGoals()">🎯 Show project goals</button>
+<button class="go" onclick="seedDb()">Seed database</button>
+<button class="go" onclick="importCurrentToDb()">Save current bars to database</button>
+<button class="go" onclick="runDbResearch()">Run pooled database research</button>
+<button class="go" onclick="botSetStatus('start')">▶ Start paper bot</button>
+<button class="go" onclick="botSetStatus('resume')">↩ Resume paper bot</button>
+<button class="go" onclick="botSetStatus('pause')">⏸ Pause paper bot</button>
+<button class="go" onclick="botSetStatus('stop')">⏹ STOP paper bot</button>
+</div>
+<div class="card labwide"><h3>🎯 Project goals — minute trading, real-bot integration and the 80% accuracy gate</h3>
+<p class="warn">Targets are tracked separately from evidence. <b>Current honest status: 80% is NOT reached or established.</b> It can only be marked reached after causal hidden-future tests on real minute data across symbols/days, with at least 1000 attempts per candidate, coverage, costs/slippage, confidence interval and fresh validation shown. USDT/BTC funding belongs in <b>your own licensed exchange account</b>; TradeAtlas can mirror a balance you report and create manual checklist tickets, but it must never receive or custody crypto.</p>
+<button class="go" onclick="loadGoals()">Refresh goals JSON</button>
+<div id="goals_out" style="overflow:auto"></div>
+</div>
+<div class="card"><h3>1 · Choose the mechanical engine</h3>
+<label>Strategy engine</label><select id="lab_strategy"><option value="ma_cross">EMA 20/50 cross — Moving-average cross / trend following</option><option value="macd_cross">MACD signal cross — MACD crossover &amp; histogram</option><option value="breakout_20">20-bar breakout — Breakout trading</option><option value="rsi_reversal">RSI extreme reversal — RSI momentum &amp; extremes</option><option value="bollinger_mean_reversion">Bollinger mean reversion — Range trading &amp; mean reversion / Bollinger Bands</option><option value="trend_pullback_rsi">Trend pullback + RSI reset — Pullback / retest entries + RSI</option><option value="consensus">Multi-indicator consensus — Trend + MACD + RSI + moving-average confluence</option><option value="stochastic_reversal">Stochastic zone reversal — Stochastic oscillator &amp; momentum extremes</option><option value="adx_trend_strength">ADX trend-strength onset — ADX / directional movement trend confirmation</option><option value="schaff_cycle">Schaff Trend Cycle turn — Schaff Trend Cycle (MACD stochastic, double-smoothed)</option><option value="vortex_trend">Vortex trend cross — Vortex Indicator (+VI / -VI)</option><option value="fisher_reversal">Fisher Transform reversal — Ehlers Fisher Transform</option><option value="kst_momentum">KST momentum cross — Know Sure Thing (weighted multi-horizon ROC)</option><option value="entropy_trend">Entropy-gated multiscale trend (TradeAtlas research rule) — Invented v10 Entropy-Weighted Trend: vol-normalized 3/5/10/20/60/120-bar momentum, gated by permutation entropy of smoothed log price</option><option value="cci_reversal">CCI extreme reversal — Commodity Channel Index mean-reversion</option><option value="williams_reversal">Williams %R reversal — Williams %R close-location oscillator</option><option value="parabolic_sar_trend">Parabolic SAR flip — Wilder Parabolic SAR trend/stop flip</option><option value="ichimoku_cloud">Ichimoku cloud state — Ichimoku Tenkan/Kijun plus the cloud projected from past bars</option><option value="kalman_trend">Kalman local-trend slope — Causal alpha-beta/Kalman-style local linear trend filter on log price</option><option value="omni_consensus">Omni direct consensus (TradeAtlas v11) — Fixed weighted fusion of multiscale trend, Kalman slope, horizon-matched trend, Parabolic SAR and an oscillator basket</option><option value="hull_trend">Hull moving-average trend — Alan Hull moving average (low-lag weighted MA combination)</option><option value="supertrend_flip">Supertrend flip — ATR-band Supertrend (10,3) direction flip</option><option value="kaufman_trend">Kaufman adaptive trend — Kaufman Adaptive Moving Average efficiency-ratio trend</option><option value="haar_wavelet">Haar wavelet multiscale trend — Haar block-average wavelet decomposition over 4/8/16/32/64 bars</option><option value="aroon_trend">Aroon oscillator trend — Aroon(25) recency of highs versus lows</option><option value="tsi_momentum">TSI signal momentum — True Strength Index double-smoothed momentum versus its signal</option><option value="trix_momentum">TRIX zero-cross momentum — Triple-smoothed EMA rate of change</option><option value="cmo_momentum">Chande Momentum trend — Chande Momentum Oscillator(14) gains-versus-losses balance</option><option value="ultimate_reversal">Ultimate Oscillator reversal — Larry Williams Ultimate Oscillator 7/14/28 buying pressure</option><option value="rvi_trend">Relative Vigor trend — Relative Vigor Index body/range pressure versus its signal</option><option value="regression_trend">Log-regression trend fusion — 20/60-bar least-squares log-price slopes scaled by residual noise</option><option value="donchian_trend">Donchian channel state — Prior-20-bar Donchian breakout/midpoint state</option><option value="obv_flow_trend">OBV flow trend — 20-bar On-Balance-Volume change normalized by real traded volume</option><option value="coppock_trend">Coppock cycle trend — Coppock Curve weighted 11/14-bar rate-of-change cycle</option><option value="atlas_pressure_wave">Atlas Pressure Wave (TradeAtlas v13) — Invented exponentially weighted candle close/body pressure scaled by ATR range and relative real volume, fused with 3/10-bar volatility-normalized momentum</option><option value="atlas_regime_compass">Atlas Regime Compass (TradeAtlas v13) — Invented smooth regime switch: ADX/permutation-entropy decide how much Hull/multiscale trend to trust versus Bollinger/RSI range reversion</option><option value="atlas_phoenix_fusion">Atlas Phoenix Fusion (TradeAtlas v13) — Invented family-balanced fusion of trend filters, momentum oscillators, price structure, OHLCV flow proxies and the Regime Compass; families are averaged before fusion so correlated cousins cannot outvote whole evidence types</option><option value="minute_vwap_reversion">Minute VWAP reversion (60-bar) — Intraday VWAP deviation / mean reversion on completed minute bars</option><option value="minute_ema_ribbon">Minute EMA ribbon trend — EMA 5/13/34 ribbon alignment and volatility-normalized ribbon spread</option><option value="minute_rsi2_snapback">Minute RSI-2 snapback — Larry Connors-style RSI(2) extreme with an SMA50 trend filter</option><option value="minute_orb_breakout">Minute opening-range breakout — First-15-minute UTC opening range breakout (session proxy; verify the real venue session)</option><option value="minute_squeeze_breakout">Minute Bollinger squeeze release — Low trailing Bollinger-bandwidth percentile followed by 5-bar volatility-normalized momentum</option><option value="minute_volume_surge">Minute volume-surge pressure — Real relative-volume surge multiplied by completed-candle close-location pressure</option><option value="atlas_minute_pulse" selected>Atlas Minute Pulse (TradeAtlas v14) — Invented minute-first fusion of EMA ribbon, Atlas Pressure Wave, VWAP trend side, UTC opening-range state, volume surge and squeeze release, damped when permutation entropy says the path is noise-dominated</option></select>
+<label>Historical signals to test (most recent completed, non-overlapping)</label><input id="lab_max_signals" type="number" min="1" max="1000" step="1" value="100">
+<label>Hold / forward-test horizon (bars on each timeframe; minute default)</label><input id="lab_horizon" type="number" min="1" max="500" step="1" value="5">
+<label>Round-trip cost + slippage allowance (basis points)</label><input id="lab_cost" type="number" min="0" max="1000" step="any" value="10">
+<p class="sub">The test enters at the <b>next bar open</b>, exits after the selected horizon, deducts costs, blocks overlaps, and reports accuracy together with expectancy, drawdown and an equity curve. <b>New in v3:</b> every timeframe also runs an <b>all-engine tournament</b> (all engines tested on the same bars) and a <b>70/30 walk-forward split</b>, and snapshots add Stochastic + ADX. <b>v10 raised the tournament to 14 engines</b> and snapshots added cycle/flow state. <b>v11 raised it to 20 engines</b>; <b>v12 raised it to 24</b>; <b>v13 raised it to 37</b>; <b>v14 raises it to 44</b> with rolling-VWAP reversion, EMA ribbon, RSI-2 snapback, UTC opening-range breakout, squeeze release, volume surge and the invented <b>Atlas Minute Pulse</b>. The default v14 workflow is Atlas Minute Pulse on 1m bars. The tournament's #1 row is the best fit to history — the most over-fit row — so trust it only where the later walk-forward slice agrees. <b>New in v4:</b> the <b>Forecast Lab</b> (card 5) answers "what happened next the last times it looked like this?" with historical analogs — then grades that very method with a <b>100-attempt hidden-future test</b> against naive baselines, on your data or on the bundled <b>real</b> AAPL 2015–2017 sample. If a method cannot beat a coin-flip dressed as a baseline, the lab prints exactly that.</p>
+<button class="go" onclick="runLabDemo()">Run synthetic software validation</button>
+</div>
+<div class="card"><h3>2 · Analyze real OHLCV you supply</h3>
+<label>Upload CSV or JSON</label><input id="lab_file" type="file" accept=".csv,.json,.txt" onchange="analyzeLabFile(this)">
+<label>…or paste CSV/JSON bars</label><textarea id="lab_data" placeholder="timestamp,open,high,low,close,volume&#10;1767225600,100,101,99,100.7,12345"></textarea>
+<button class="go" onclick="analyzeLabText()">Analyze pasted data on every timeframe</button>
+<p class="sub">CSV header: <code>timestamp,open,high,low,close,volume</code>. JSON: an array or <code>bars[]</code> with <code>t/o/h/l/c/v</code>. Finer timeframes than your source interval are reported as unavailable — never fabricated.</p>
+</div>
+<div class="card"><h3>3 · Connect real market data in your browser</h3>
+<label>One-click market preset (fills the fields; still data only)</label>
+<select id="lab_market_preset" onchange="applyMarketPreset()">
+<option value="crypto_binance" selected>Crypto 1m — BTC/USDT on Binance public data</option>
+<option value="crypto_kraken">Crypto 1m — XBT/USD on Kraken public data</option>
+<option value="stock_us">US stock — AAPL.US daily on Stooq</option>
+<option value="etf_us">US ETF — SPY.US daily on Stooq</option>
+<option value="index_spx">Index — ^SPX daily on Stooq</option>
+<option value="fx_eurusd">Currency — EURUSD daily on Stooq</option>
+<option value="stock_uk">UK stock example — VOD.UK daily on Stooq</option>
+<option value="stock_de">German stock example — BMW.DE daily on Stooq</option>
+</select>
+<label>Market-data adapter (data only — never order routing)</label>
+<select id="lab_feed_provider" onchange="feedProviderChanged()">
+<option value="binance" selected>Binance public spot klines (crypto)</option>
+<option value="kraken">Kraken public OHLC (crypto)</option>
+<option value="stooq">Stooq daily CSV</option>
+<option value="custom">My own CORS JSON/CSV endpoint</option>
+</select>
+<label>Symbol</label><input id="lab_feed_symbol" type="text" value="BTCUSDT" placeholder="BTCUSDT · XBTUSD · aapl.us">
+<label>Base interval (v14 default: minutes)</label><select id="lab_feed_interval"><option selected>1m</option><option>5m</option><option>15m</option><option>1h</option><option>4h</option><option>1d</option><option>1w</option></select>
+<label>History bars requested (Binance; other venues may cap it)</label><input id="lab_feed_limit" type="number" min="100" max="1000" step="50" value="1000">
+<label>Custom CORS endpoint (used only by the custom adapter)</label><input id="lab_feed_url" type="url" placeholder="https://your-feed.example/bars?symbol=…">
+<label>Poll every (seconds; use 60+ for completed 1m bars)</label><input id="lab_poll_seconds" type="number" min="5" max="3600" step="1" value="60">
+<button id="lab_live_btn" class="go" onclick="toggleLabLive()">▶ Start browser live polling</button>
+<button class="go" onclick="pollSelectedFeed()">Fetch real market data once</button>
+<p class="sub">Your browser fetches the selected venue directly; the TradeAtlas server never sees feed credentials or fetches arbitrary URLs. Binance/Kraken adapters discard the still-forming candle. Public endpoints can fail through CORS, region, symbol naming, rate limits or terms; TradeAtlas does not bypass those controls. This is a market-data connection, <b>not a broker account and not live order execution</b>. For the halal paper bot, register and screen the exact asset first. Unregistered/review/fail assets of every class are blocked from bot entries.</p>
+</div>
+<div class="card"><h3>4 · Watch many symbols at once (all markets, your files)</h3>
+<label>Upload one CSV/JSON file per symbol (up to 12; filename = symbol)</label>
+<input id="watch_files" type="file" accept=".csv,.json,.txt" multiple onchange="analyzeWatchlist(this)">
+<p class="sub">Crypto, stocks, FX, futures, indices — the lab is data-agnostic: if you can export honest OHLCV bars for it, every timeframe your base interval supports gets the same rulebook. The heatmap shows the latest mechanical condition; it deliberately does not rank symbols for you.</p>
+<p id="watch_status" class="status"></p>
+<div id="watch_out" style="overflow:auto"></div>
+</div>
+<div class="card"><h3>5 · Forecast Lab — “what happened next, last time it looked like this?”</h3>
+<label>Upload one OHLCV file (same format as card 1; 250+ bars recommended)</label>
+<input id="fc_file" type="file" accept=".csv,.json,.txt" onchange="analyzeForecast(this)">
+<label>Out-of-sample attempts</label><input id="fc_attempts" type="number" min="10" max="300" value="100">
+<label>Forecast horizon (bars)</label><input id="fc_horizon" type="number" min="1" max="60" value="5">
+<button class="go" onclick="analyzeForecast(null)">Run Forecast Lab on current analyzed/pasted data</button>
+<p class="sub">Two honest tools, neither is a crystal ball. <b>(a) Analog lookup:</b> finds the 30 past setups most similar to your latest bar (returns, RSI, SMA distance, volatility) and shows what those setups <i>actually did next</i> in your file. <b>(b) The 100-attempt hidden-future test:</b> replays history blind — forecast, uncover, score — and forces the analog method to compete against always-up, naive momentum and mean-reversion. <b>v5 adds:</b> the same test at 1/3/5/10/20-bar horizons (one-horizon "edges" usually evaporate), accuracy split by trend/volatility regime, and a path simulation that bootstraps the <i>real</i> look-alike paths to show how wide the historical spread — including worst dips — actually was. <b>v6 adds:</b> an ensemble race (analog median, distance-weighted analogs, momentum, majority vote, and an agreement-only filter whose accuracy is always printed next to its coverage) and a cost-aware re-scoring of every call after 10/25 bps round-trip costs — because a direction rate that dies after fees was never an edge. <b>v7 adds:</b> a candle-structure analog contestant — gap, range, body/wick balance, close location, range expansion and relative volume — raced under the identical hidden-future and cost rules, and explicitly unavailable on close-only files rather than fabricating candle anatomy. <b>v8 adds:</b> an indicator-regime analog contestant — RSI level/slope, ATR-normalized MACD, Bollinger %B/bandwidth, SMA distance/slope, Donchian/Stochastic position, ADX balance/strength, volatility regime and real volume surprise — plus majority_vote_v3 and a coverage-labelled consensus_3plus subset. <b>v9 adds:</b> a path-geometry analog contestant — 20/60-bar travel efficiency, volatility-normalized trend slopes, variance ratio, autocorrelation, skew/downside share, 60-bar excursion and drawdown position, volatility/range compression, sign streaks and real up/down volume balance — plus majority_vote_v4 and a <b>causal adaptive selector</b> that follows only contestants proven on attempts whose outcome windows had already ended (<code>old_origin + horizon ≤ current origin</code>), never on unfinished overlapping windows. <b>v13 adds:</b> direct Aroon/TSI/TRIX/CMO/Ultimate/RVI/regression/Donchian/OBV/Coppock signs, invented Atlas Pressure Wave + Regime Compass + family-balanced Phoenix Fusion, majority_vote_v8, and delayed-label Atlas Meta Hedge + online logistic learning. <b>v12 adds:</b> Hull trend, Supertrend, Kaufman AMA, Haar wavelet scales, a causal Markov trend/volatility/RSI regime vote, Atlas Fusion v12, majority_vote_v7, and a SQLite database that pools hidden-future research across every stored symbol/timeframe. <b>v11 adds:</b> causal Kalman local-trend, a fixed Omni direct consensus (multiscale + Kalman + horizon-matched trend + Parabolic SAR + a CCI/Williams/TSI/TRIX/Ultimate/CMO/Fisher/Schaff basket), rank-fusion neighbours across all five analog families, majority_vote_v6 and direct-method rows at neighbouring horizons. <b>v10 adds:</b> a cycle/flow analog family (Aroon, Vortex, CMO, Fisher, RVI, Schaff, KST, Coppock, CMF/MFI, Force Index, rolling VWAP, Ulcer, SuperSmoother, permutation entropy, overnight/intraday balance, plus invented Signed Path Pressure and Entropy-Weighted Trend), a direct volatility-normalized multiscale trend score across 3/5/10/20/60/120 bars, majority_vote_v5, multiscale rows at neighbouring horizons, and coverage-labelled confidence thresholds that are forbidden from becoming the headline. It gets no free pass: the same 100 hidden-future attempts and 10/25-bps cost rows decide whether it helps or merely decorates the loss. On the bundled real AAPL sample the original analog method <b>loses</b> (44% vs 56–58%) and the lab says so. That verdict is the product.</p>
+<p id="fc_status" class="status"></p>
+<p id="fc_verdict" class="warn"></p>
+<div id="fc_out" style="overflow:auto"></div>
+</div>
+<div class="card"><h3>5B · Minute Accuracy Race — the road to the 80% GOAL</h3>
+<p class="warn">Use real completed 1m/5m/15m bars only for evidence. This race tests seven causal minute engines plus baselines at several bar horizons, with coverage, Wilson 95% intervals and 5/10/25-bps costs. <b>It never declares the project goal proven from one series.</b> Synthetic minute bars test the software only.</p>
+<label>Hidden-future attempts requested per horizon (goal gate starts at 1000)</label><input id="minute_attempts" type="number" min="10" max="5000" step="10" value="1000">
+<label>Horizons in bars (comma-separated)</label><input id="minute_horizons" type="text" value="1,3,5,15,30">
+<button class="go" onclick="runMinuteForecast()">Run minute hidden-future race on current/pasted bars</button>
+<p class="sub">Methods with a hard state such as RSI-2, opening range or squeeze can abstain; accuracy is always printed with attempts and coverage. Minute OHLCV still omits the live order book, queue position, latency and partial fills.</p>
+<p id="minute_status" class="status"></p>
+<p id="minute_verdict" class="warn"></p>
+<div id="minute_out" style="overflow:auto"></div>
+</div>
+<div class="card" id="failure-memory"><h3>5C · Failure Memory — the loop that learns from every failed test</h3>
+<p class="warn">Research only. This loop does not predict markets and it never declares the 80% goal reached. What it does is refuse to repeat a failure silently.</p>
+<p class="sub">Every candidate (method × horizon) is graded on completed bars only. A failed candidate is <b>diagnosed</b> against an explicit cause library — too few attempts, coverage too low, a naive baseline winning, costs eating the gross edge, one-horizon overfitting, walk-forward decay, regime dependence, deep drawdown, selection bias, zero volume, or a remedy that starved its own sample. Each cause carries an <b>avoid-rule</b> and an <b>implemented remedy</b>: the next round re-tests only what can still be saved, with that remedy applied. If the cause disappears the lesson is <b>resolved</b>; if it returns on a fair sample the candidate is <b>retired</b> and remembered, and later runs skip it automatically. Survivors must also hold on the recent 30% slice and, when you supply a second file, on that second symbol. Costs are always subtracted.</p>
+<p class="sub"><b>Cause ids</b> (the full library is also returned by <code>GET /api/lessons</code>): <code>no_evaluable_origins</code> <code>all_scores_abstained</code> <code>insufficient_attempts</code> <code>coverage_too_low</code> <code>below_accuracy_target</code> <code>no_directional_edge</code> <code>baseline_not_beaten</code> <code>cost_eaten_edge</code> <code>cost_filter_starved_sample</code> <code>negative_net_after_costs</code> <code>overfit_single_horizon</code> <code>walk_forward_degraded</code> <code>regime_dependence</code> <code>drawdown_too_deep</code> <code>wide_confidence_interval</code> <code>single_symbol_only</code> <code>short_history</code> <code>selection_bias</code> <code>volume_missing</code> <code>cost_below_floor</code> <code>remedy_failed_twice</code> <code>autocorrelation_trap</code> <code>volatility_regime_shift</code> <code>liquidity_illusion</code> <code>overparameterized_signal</code> <code>multiple_testing_bias</code> <code>non_stationary_drift</code> <code>microstructure_noise</code> <code>asymmetric_payoff_trap</code> <code>tail_risk_hidden</code> <code>correlation_breakdown</code> <code>concept_drift</code> <code>horizon_mismatch</code> <code>threshold_overfit</code> <code>sample_contamination</code></p>
+<label>Attempts per candidate in the screen round</label><input id="sc_attempts" type="number" min="30" max="5000" step="10" value="120">
+<label>Horizons in bars (comma-separated)</label><input id="sc_horizons" type="text" value="3,5,15">
+<label>Round-trip cost (bps)</label><input id="sc_cost" type="number" min="1" max="500" step="1" value="10">
+<label>Second symbol file (optional, for the independent validation round)</label><input id="sc_second_file" type="file" accept=".csv,.json,.txt">
+<label><input id="sc_remember" type="checkbox" checked> Save the lesson ledger to SQLite</label>
+<label><input id="sc_use_saved" type="checkbox" checked> Avoid candidates my stored lessons already retired</label>
+<button class="go" onclick="runSelfCorrection()">Run the self-correcting loop on current/pasted bars</button>
+<button class="go" onclick="runSelfCorrectionDemo()">Run it on synthetic 1m demo bars (software check only)</button>
+<h4>Real market test for today (your browser fetches, never this server)</h4>
+<p class="sub">This sandbox cannot reach exchanges, and TradeAtlas deliberately never proxies arbitrary URLs. Your browser can reach these public endpoints directly, so it fetches the completed bars and posts them here. The still-forming candle is dropped. Two symbols are fetched so the validation round has an independent sample. Every run stores its provenance (venue, endpoint, bar times, fetch time) and its lessons in SQLite.</p>
+<label>Public venue (no key, no login)</label><select id="today_venue">
+<option value="binance" selected>Binance spot public klines</option>
+<option value="kraken">Kraken public OHLC</option>
+</select>
+<label>Primary symbol (e.g. BTCUSDT on Binance, XBTUSD on Kraken)</label><input id="today_symbol" type="text" value="BTCUSDT">
+<label>Validation symbol, same venue (e.g. ETHUSDT / ETHUSD)</label><input id="today_symbol2" type="text" value="ETHUSDT">
+<label>Interval</label><select id="today_interval">
+<option value="1m" selected>1m</option><option value="5m">5m</option><option value="15m">15m</option>
+<option value="1h">1h</option><option value="4h">4h</option><option value="1d">1d</option>
+</select>
+<label>Completed bars requested (405–1000)</label><input id="today_limit" type="number" min="405" max="1000" step="5" value="1000">
+<label>Round-trip cost assumed (bps) — Binance spot taker ≈ 7.5–10 bps per side depending on tier</label><input id="today_cost" type="number" min="1" max="500" step="0.5" value="12">
+<button class="go" onclick="runTodayMarketTest()">Fetch today's completed bars in my browser → run the failure loop</button>
+<p id="today_status" class="status"></p>
+<div id="today_provenance" class="out" style="display:none"></div>
+<button class="go" onclick="loadLessons()">Load the saved lesson ledger</button>
+<button class="go" onclick="clearLessons()">Forget all stored lessons (asks first)</button>
+<p id="sc_status" class="status"></p>
+<p id="sc_verdict" class="warn"></p>
+<div id="sc_out" style="overflow:auto"></div>
+</div>
+<div class="card labwide" id="auto-pipeline"><h3>6 · Auto-Collect &amp; Goal Progress — the site fetches and stores by itself</h3>
+<p class="warn">Automation changes how much lawful data exists and how honestly it is measured. It cannot change the market: no button here makes a losing candidate win, and <b>goal_established stays false</b>.</p>
+<p class="sub">Two collectors feed one SQLite database. <b>(a) Server collector:</b> the TradeAtlas process fetches from a <i>fixed allowlist</i> of public venues — no arbitrary URLs, no keys, no logins — walking backwards page by page until the target bar count is stored. <b>(b) Browser collector:</b> your browser fetches the same public endpoints and posts the bars back, which is what you need when the server has no network. Both store incrementally: later runs add only new bars. The newest <b>20%</b> of every series is reserved as a <b>holdout</b> that the tuning loop never sees; only the holdout button reads it, and every read is counted. The goal tracker then reports the honest distance to 80% gate by gate.</p>
+<label>Venue</label><select id="pl_venue"><option value="binance" selected>Binance spot public klines</option><option value="kraken">Kraken public OHLC</option></select>
+<label>Symbols (comma-separated)</label><input id="pl_symbols" type="text" value="BTCUSDT,ETHUSDT,BNBUSDT,SOLUSDT">
+<label>Interval</label><select id="pl_interval"><option value="1m" selected>1m</option><option>5m</option><option>15m</option><option>1h</option><option>4h</option><option>1d</option></select>
+<label>Target bars per symbol</label><input id="pl_target" type="number" min="300" max="20000" step="100" value="3000">
+<label>Round-trip cost assumed (bps)</label><input id="pl_cost" type="number" min="1" max="500" step="0.5" value="12">
+<button class="go" onclick="pipelineCollectServer()">Collect on the server (needs outbound network)</button>
+<button class="go" onclick="pipelineCollectBrowser()">Collect in my browser, then store in SQLite</button>
+<button class="go" onclick="runAutoResearch()">Grade everything stored (pooled evidence)</button>
+<label>Stored symbol for the one-shot holdout test (e.g. BINANCE.BTCUSDT.1m)</label><input id="pl_holdout_symbol" type="text" value="BINANCE.BTCUSDT.1m">
+<button class="go" onclick="runHoldout()">Evaluate the reserved holdout (recorded)</button>
+<button class="go" onclick="loadGoalProgress()">Refresh 80% goal progress</button>
+<p id="pl_status" class="status"></p>
+<div id="pl_progress" style="margin-top:10px"></div>
+<div id="pl_out" style="overflow:auto"></div>
+</div>
+<div class="card"><h3>6 · Demo e-wallet — simulated crypto balances, conversion, bot transfer + Follow / STOP</h3>
+<p class="warn"><b>DO NOT SEND MONEY OR CRYPTOCURRENCY.</b> TradeAtlas has no deposit address, custody, real conversion, real withdrawal, leverage or broker/exchange execution. The demo e-wallet records imaginary balances and local PAPER_USD movements. <b>v14 adds an external-account mirror:</b> if your real USDT/BTC is in your own licensed exchange account, you may record that balance for accounting/checklists; TradeAtlas cannot access or verify it and does not add it to paper equity. Fund only through the exchange's own official deposit screen — never an address from TradeAtlas.</p>
+<label>Reset starting PAPER_USD</label><input id="paper_start" type="number" min="1" step="any" value="10000">
+<button class="go" onclick="paperReset()">Reset paper wallet</button>
+<label>Hypothetical crypto asset</label><select id="paper_asset"><option>USDT</option><option>USDC</option><option>BTC</option><option>ETH</option><option>SOL</option><option>OTHER_PAPER_ASSET</option></select>
+<label>Hypothetical crypto amount (simulation only)</label><input id="paper_crypto_amount" type="number" min="0" step="any" value="250">
+<label>Hypothetical USD rate you type</label><input id="paper_usd_rate" type="number" min="0" step="any" value="1">
+<button class="go" onclick="paperDepositBalance()">Add simulated crypto balance (no transfer)</button>
+<button class="go" onclick="paperConvertBalance()">Convert simulated balance to PAPER_USD</button>
+<button class="go" onclick="paperWithdrawSimulated()">Simulate withdrawal (remove imaginary units)</button>
+<button class="go" onclick="paperConvert()">Legacy: credit a hypothetical conversion directly</button>
+<label>Your own exchange/broker account label (never type a password, seed or API secret)</label><input id="external_venue" type="text" value="My own licensed account">
+<label>External asset held by YOU outside TradeAtlas</label><select id="external_asset"><option>USDT</option><option>BTC</option><option>USDC</option><option>USD</option><option>ETH</option><option>SOL</option><option>OTHER_PAPER_ASSET</option></select>
+<label>External balance quantity you report (0 clears the mirror row)</label><input id="external_quantity" type="number" min="0" step="any" value="0">
+<label>USD rate you report for that asset</label><input id="external_rate" type="number" min="0" step="any" value="1">
+<button class="go" onclick="paperRecordExternalBalance()">Record my external USDT/BTC balance (mirror only — no transfer)</button>
+<label>Internal PAPER_USD transfer amount (demo wallet ↔ halal paper bot)</label><input id="paper_transfer_amount" type="number" min="0" step="any" value="1000">
+<button class="go" onclick="paperTransferBot('wallet_to_bot')">Transfer PAPER_USD to paper bot</button>
+<button class="go" onclick="paperTransferBot('bot_to_wallet')">Transfer bot PAPER_USD back to demo wallet</button>
+<label>Paper symbol (must match the bars currently analyzed)</label><input id="paper_symbol" type="text" value="BTCUSDT">
+<label>Paper timeframe</label><select id="paper_timeframe"><option value="source">Source bars</option><option selected>1m</option><option>5m</option><option>15m</option><option>1h</option><option>4h</option><option>1d</option><option>1w</option></select>
+<label>Paper allocation per new long position (% of equity; hard cap 25%)</label><input id="paper_allocation" type="number" min="0.1" max="25" step="any" value="5">
+<label>Simulated one-way fee (bps)</label><input id="paper_fee" type="number" min="0" max="500" step="any" value="10">
+<label><input id="paper_drop_last" type="checkbox"> Drop the last bar first (use when my feed includes a still-forming candle)</label><br>
+<button class="go" onclick="paperSetFollow(true)">▶ Follow paper signals</button>
+<button class="go" onclick="paperFollowStep()">Run one paper follow-step</button>
+<button class="go" onclick="paperSetFollow(false)">Pause following</button>
+<button class="go" onclick="paperSetFollow(true)">Resume following</button>
+<button class="go" onclick="paperStop()">⏹ STOP paper trading</button>
+<button class="go" onclick="loadPaperWallet()">Refresh paper wallet</button>
+<p class="sub">Follow mode is deliberately one click/one latest closed bar at a time: a fresh long condition may open one capped simulated spot position; a short condition exits a simulated holding. It cannot short, leverage, place a real order, or trade merely because a historical accuracy number looked attractive.</p>
+<p id="paper_status" class="status"></p>
+<div id="paper_out" style="overflow:auto"></div>
+</div>
+<div class="card"><h3>7 · Integrated minute bot — paper engine + manual tickets for your own external account</h3>
+<p class="warn"><b>Integrated workflow, not custody or automatic live execution.</b> The v14 bot defaults to Atlas Minute Pulse on 1m bars, applies fees + simulated slippage, daily entry/holding/cooldown limits and halal-pass gating, then can produce a manual checklist ticket for your own licensed USDT/BTC account. It never accepts deposits or API keys and never sends a real order. The halal screen is a transparent calculator over evidence <b>you</b> type; it is <b>not a fatwa or certification</b>. Missing evidence = needs_review, and needs_review cannot enter even on paper.</p>
+<label>Bot starting PAPER_USD (used by Reset bot)</label><input id="bot_start_balance" type="number" min="1" step="any" value="10000">
+<label>Screen preset (examples — choose the standard you follow)</label><select id="halal_preset"><option value="strict" selected>Strict: debt/cash/receivables ≤30%, non-compliant income ≤5%</option><option value="balanced">Balanced: debt/cash ≤33%, receivables ≤49%, income ≤5%</option></select>
+<label>Asset type</label><select id="halal_asset_type"><option value="stock" selected>Stock — financial-ratio screen</option><option value="crypto">Crypto — spot-only evidence screen</option><option value="currency">Currency/FX — spot/swap-free evidence screen</option><option value="commodity">Commodity — delivery/possession evidence screen</option><option value="etf">ETF — underlying-holdings screen</option><option value="fund">Fund — underlying-holdings screen</option></select>
+<label>Asset symbol</label><input id="halal_symbol" type="text" value="TEST">
+<label>Bot symbol for the currently analyzed bars</label><input id="bot_symbol" type="text" value="TEST">
+<label>Company name</label><input id="halal_company" type="text" value="Synthetic test company">
+<label>Sector</label><input id="halal_sector" type="text" value="technology">
+<label>Prohibited activities found (comma list; leave empty only after checking)</label><input id="halal_activities" type="text" value="">
+<label><input id="halal_activities_reviewed" type="checkbox"> I reviewed the company's core business activities myself</label><br>
+<label><input id="halal_core_prohibited" type="checkbox"> Its core business/activity is prohibited under my chosen standard</label><br>
+<label><input id="halal_user_allows" type="checkbox"> My chosen standard explicitly allows this asset in the exact form below</label><br>
+<label><input id="halal_spot_only" type="checkbox" checked> Spot only (no futures/options/CFD form)</label><br>
+<label><input id="halal_asset_specific_reviewed" type="checkbox"> Asset-specific activity/delivery reviewed</label><br>
+<label><input id="halal_settlement_reviewed" type="checkbox"> Settlement/possession form reviewed</label><br>
+<label><input id="halal_swap_free" type="checkbox"> Swap-free currency form (currency only)</label><br>
+<label><input id="halal_leverage" type="checkbox"> Leverage/margin is involved</label><br>
+<label><input id="halal_interest" type="checkbox"> Interest/swap/lending is involved</label><br>
+<label><input id="halal_shorting" type="checkbox"> Short selling is involved</label><br>
+<label><input id="halal_staking" type="checkbox"> Staking/lending/yield is involved (crypto)</label><br>
+<label><input id="halal_gambling" type="checkbox"> Gambling activity is involved</label><br>
+<label><input id="halal_fund_bad" type="checkbox"> Fund/ETF itself uses prohibited leverage/interest</label>
+<label>Underlying ETF/fund holdings screen</label><select id="halal_underlying_status"><option value="">Not reviewed / not applicable</option><option value="pass">Pass</option><option value="needs_review">Needs review</option><option value="fail">Fail</option></select>
+<label>Review expires (YYYY-MM-DD, optional but recommended)</label><input id="halal_expires" type="date" value="">
+<label>Interest-bearing debt (% of market cap)</label><input id="halal_debt" type="number" min="0" step="any" value="10">
+<label>Interest-bearing cash/securities (% of market cap)</label><input id="halal_cash_securities" type="number" min="0" step="any" value="5">
+<label>Receivables (% of market cap)</label><input id="halal_receivables" type="number" min="0" step="any" value="20">
+<label>Non-compliant income (% of revenue)</label><input id="halal_income" type="number" min="0" step="any" value="1">
+<label>Dividend per share (optional, for a simple purification estimate)</label><input id="halal_dividend" type="number" min="0" step="any" value="">
+<label>Where did these company figures come from?</label><input id="halal_source" type="text" value="DEMO FORM VALUES — replace with the company's latest filing">
+<label>Financials as of</label><input id="halal_asof" type="text" value="replace-me">
+<button class="go" onclick="screenHalalStock(false)">Screen only</button>
+<button class="go" onclick="screenHalalStock(true)">Register screened asset</button>
+<button class="go" onclick="saveHalalToDb()">Save evidence to database + bot</button>
+<label>Bot mode profile</label><select id="bot_mode_profile"><option value="minute_scalping_paper" selected>Minute scalping — paper + manual tickets</option><option value="manual_live_companion">Manual live companion — paper decisions + tickets only</option><option value="standard_paper">Standard paper (non-minute research)</option></select>
+<label>Bot timeframe</label><select id="bot_timeframe"><option value="source">Source bars</option><option selected>1m</option><option>5m</option><option>15m</option><option>1h</option><option>4h</option><option>1d</option><option>1w</option></select>
+<label>Max allocation per position (% equity, hard cap 25)</label><input id="bot_allocation" type="number" min="0.1" max="25" step="any" value="5">
+<label>Risk per trade (% equity, hard cap 2)</label><input id="bot_risk" type="number" min="0.05" max="2" step="any" value="0.5">
+<label>Maximum open paper positions</label><input id="bot_max_positions" type="number" min="1" max="20" step="1" value="3">
+<label>ATR stop multiple</label><input id="bot_atr_stop" type="number" min="0.25" max="10" step="any" value="1.5">
+<label>Take-profit (R multiple)</label><input id="bot_take_r" type="number" min="0.1" max="20" step="any" value="1.5">
+<label>Trailing stop (ATR multiple)</label><input id="bot_trail" type="number" min="0.25" max="10" step="any" value="1.5">
+<label>Simulated one-way fee (bps)</label><input id="bot_fee" type="number" min="0" max="500" step="any" value="10">
+<label>Simulated slippage (bps, worsens every paper fill)</label><input id="bot_slippage" type="number" min="0" max="500" step="any" value="5">
+<label>Maximum new entries per UTC day</label><input id="bot_max_trades_day" type="number" min="1" max="5000" step="1" value="20">
+<label>Maximum holding bars (0 = disabled; minute default 30)</label><input id="bot_max_holding" type="number" min="0" max="100000" step="1" value="30">
+<label>Cooldown bars after an exit</label><input id="bot_cooldown" type="number" min="0" max="100000" step="1" value="3">
+<label>Minimum ATR (% of price) before a minute entry</label><input id="bot_min_atr" type="number" min="0" max="20" step="any" value="0.02">
+<label>Daily-loss halt (% — blocks new entries)</label><input id="bot_daily_loss" type="number" min="0.1" max="20" step="any" value="2">
+<label>Peak drawdown halt (% — blocks new entries)</label><input id="bot_drawdown" type="number" min="1" max="50" step="any" value="6">
+<label>Auto-cycle every (seconds, minimum 60 for 1m; this browser tab must stay open)</label><input id="bot_poll_seconds" type="number" min="60" max="3600" step="1" value="60">
+<label><input id="bot_drop_last" type="checkbox"> Drop last bar (my feed includes a still-forming candle)</label><br>
+<button class="go" onclick="botReset()">Reset halal paper bot</button>
+<button class="go" onclick="botSetStatus('start')">▶ Start bot</button>
+<button class="go" onclick="botStep()">Run one bot cycle</button>
+<button id="bot_auto_btn" class="go" onclick="toggleBotAuto()">▶ Auto paper cycles</button>
+<button class="go" onclick="botSetStatus('pause')">Pause bot</button>
+<button class="go" onclick="botSetStatus('resume')">Resume bot</button>
+<button class="go" onclick="botSetStatus('stop')">⏹ STOP bot</button>
+<button class="go" onclick="botSetStatus('reset_risk')">Reset risk halt</button>
+<button class="go" onclick="loadBot()">Refresh bot</button>
+<p class="sub">The bot uses the Strategy engine selected in card 1 (all 44 engines are available; the v14 minute default is Atlas Minute Pulse). Start begins paper entries, Pause temporarily blocks them, Resume continues a paused bot, and STOP hard-halts following; protective logic and saved state remain inspectable. It buys only a fresh long condition on a registered <b>pass</b> asset, sizes by ATR risk, and exits on stop/target/trailing/short-condition. Short conditions never open shorts. State is saved locally in <code>tradeatlas-bot-state.json</code>; market/research history is in <code>tradeatlas.db</code>. Delete both files to erase the private paper platform data.</p>
+<p id="bot_status" class="status"></p>
+<div id="bot_out" style="overflow:auto"></div>
+</div>
+<div class="card"><h3>8 · Private market database — history, halal evidence, pooled research</h3>
+<p class="sub">SQLite grows with every lawful file/feed you import. The package seeds the bundled real samples; it does <b>not</b> contain every global market's licensed history. Import Stooq/custom files or browser-fetched bars to expand it. Pooled research runs the hidden-future race on every stored series and saves attempts, accuracy and after-cost means — useful evidence, never an 80% guarantee.</p>
+<label>Private access token (only needed if the server was started with TRADEATLAS_ACCESS_TOKEN)</label><input id="private_token" type="password" onchange="savePrivateToken(this)" placeholder="stored only in this browser">
+<label>Database symbol</label><input id="db_symbol" type="text" value="AAPL">
+<label>Asset type</label><select id="db_asset_type"><option>stock</option><option>crypto</option><option>currency</option><option>commodity</option><option>etf</option><option>fund</option><option>index</option><option>future</option></select>
+<label>Instrument name</label><input id="db_name" type="text" value="">
+<label>Exchange</label><input id="db_exchange" type="text" value="">
+<label>Currency</label><input id="db_currency" type="text" value="USD">
+<label>Country</label><input id="db_country" type="text" value="">
+<label>Timeframe label for the currently analyzed/source bars</label><select id="db_timeframe"><option>1m</option><option>5m</option><option>15m</option><option>1h</option><option>4h</option><option selected>1d</option><option>1w</option><option>1mo</option><option>source</option></select>
+<label>Source / licence note for these bars</label><input id="db_source" type="text" value="user-supplied bars — replace with exact source">
+<button class="go" onclick="seedDb()">Seed bundled real samples</button>
+<button class="go" onclick="importCurrentToDb()">Import current analyzed bars</button>
+<label>Hidden-future attempts per long series</label><input id="db_attempts" type="number" min="10" max="1000" value="100">
+<button class="go" onclick="runDbResearch()">Run pooled database research</button>
+<button class="go" onclick="syncDbHalalToBot()">Re-screen + sync database halal profiles to bot</button>
+<button class="go" onclick="loadDb()">Refresh database stats</button>
+<p id="db_status" class="status"></p>
+<div id="db_out" style="overflow:auto"></div>
+</div>
+<div class="card labwide"><h3>Market presets — cost & data homework per asset class</h3>
+<p class="sub">Starting points for the cost field above, not facts about your broker: measure your real spread/fees/slippage and type that number in. A backtest with fantasy costs grades your imagination, not an engine.</p>
+<table><tr><th>Market</th><th>Examples (your exports)</th><th>Typical base intervals</th><th>Round-trip cost to research</th><th>Data traps</th></tr><tr><td><b>Crypto spot (24/7)</b></td><td>BTC, ETH and other exchange pairs — exported from your own exchange account/tools</td><td>1m, 5m, 15m, 1h</td><td>10-30 round-trip (fees + spread + slippage vary wildly by venue/pair)</td><td>Trades around the clock; exchange outages and wick anomalies are common — sanity-check bars.</td></tr><tr><td><b>US stocks &amp; ETFs</b></td><td>Single names and index ETFs via your broker/data vendor export</td><td>1m, 5m, 1d</td><td>1-10 for liquid names (plus borrow costs for shorts, which this lab does not model)</td><td>Mind splits/dividends (adjusted vs raw), halts, and pre/post-market thin bars.</td></tr><tr><td><b>FX majors</b></td><td>EUR/USD, USD/JPY class pairs from your broker export</td><td>5m, 15m, 1h</td><td>1-5 spread on majors at liquid hours (swap/rollover not modelled here)</td><td>Broker feeds differ; weekend gaps and news spikes dominate short-horizon results.</td></tr><tr><td><b>Futures &amp; commodities</b></td><td>Index, energy and metals futures continuous or single-contract exports</td><td>5m, 15m, 1h, 1d</td><td>Convert per-contract commissions/ticks to bps yourself; roll gaps distort backtests</td><td>Continuous-contract joins create fake jumps; prefer testing single contracts or adjusted series you trust.</td></tr><tr><td><b>Global indices (cash/CFD exports)</b></td><td>Regional index series exported from a vendor you subscribe to</td><td>15m, 1h, 1d</td><td>Vendor/CFD spreads vary; dividend and financing adjustments are not modelled here</td><td>Confirm timezone/session alignment before comparing timeframes across regions.</td></tr></table></div>
+<div class="card labwide"><h3>Mechanical rule sheet — all 44 engines (every engine is also tournament-tested per timeframe)</h3><table><tr><th>Engine</th><th>Long / buy-condition</th><th>Short / sell-condition</th></tr><tr><td><b>EMA 20/50 cross</b></td><td>EMA20 crosses above EMA50 at bar close.</td><td>EMA20 crosses below EMA50 at bar close.</td></tr><tr><td><b>MACD signal cross</b></td><td>MACD (12,26) crosses above its 9-period signal line.</td><td>MACD crosses below its signal line.</td></tr><tr><td><b>20-bar breakout</b></td><td>Close breaks above the highest high of the prior 20 bars.</td><td>Close breaks below the lowest low of the prior 20 bars.</td></tr><tr><td><b>RSI extreme reversal</b></td><td>RSI(14) crosses back above 30 after being oversold.</td><td>RSI(14) crosses back below 70 after being overbought.</td></tr><tr><td><b>Bollinger mean reversion</b></td><td>Close returns inside the lower Bollinger Band after closing below it.</td><td>Close returns inside the upper Bollinger Band after closing above it.</td></tr><tr><td><b>Trend pullback + RSI reset</b></td><td>Close is above SMA50 and RSI crosses upward through 45.</td><td>Close is below SMA50 and RSI crosses downward through 55.</td></tr><tr><td><b>Multi-indicator consensus</b></td><td>Consensus score rises to +3 or higher (EMA trend, MACD, RSI, price vs SMA50).</td><td>Consensus score falls to -3 or lower.</td></tr><tr><td><b>Stochastic zone reversal</b></td><td>Stochastic %K crosses above %D while %D is in the oversold zone (&lt;= 30).</td><td>Stochastic %K crosses below %D while %D is in the overbought zone (&gt;= 70).</td></tr><tr><td><b>ADX trend-strength onset</b></td><td>ADX(14) crosses above 25 while +DI is above -DI (a measurable uptrend is starting).</td><td>ADX(14) crosses above 25 while -DI is above +DI (a measurable downtrend is starting).</td></tr><tr><td><b>Schaff Trend Cycle turn</b></td><td>STC crosses upward through 25 after a cycle washout.</td><td>STC crosses downward through 75 after a cycle peak.</td></tr><tr><td><b>Vortex trend cross</b></td><td>+VI(14) crosses above -VI(14).</td><td>-VI(14) crosses above +VI(14).</td></tr><tr><td><b>Fisher Transform reversal</b></td><td>Fisher crosses above its one-bar trigger while still below zero (turning up from the low side).</td><td>Fisher crosses below its one-bar trigger while still above zero (turning down from the high side).</td></tr><tr><td><b>KST momentum cross</b></td><td>KST crosses above its 9-bar signal average.</td><td>KST crosses below its 9-bar signal average.</td></tr><tr><td><b>Entropy-gated multiscale trend (TradeAtlas research rule)</b></td><td>Entropy-Weighted Trend crosses above +0.10 while 60-bar permutation entropy is &lt;= 0.80 (ordered, not noise-dominated).</td><td>Entropy-Weighted Trend crosses below -0.10 while 60-bar permutation entropy is &lt;= 0.80.</td></tr><tr><td><b>CCI extreme reversal</b></td><td>CCI(20) crosses back above -100 after an downside extreme.</td><td>CCI(20) crosses back below +100 after an upside extreme.</td></tr><tr><td><b>Williams %R reversal</b></td><td>Williams %R(14) crosses back above -80.</td><td>Williams %R(14) crosses back below -20.</td></tr><tr><td><b>Parabolic SAR flip</b></td><td>Parabolic SAR flips from above price to below price.</td><td>Parabolic SAR flips from below price to above price.</td></tr><tr><td><b>Ichimoku cloud state</b></td><td>Ichimoku score crosses above +1/3 (price/cloud/Tenkan-Kijun confluence turns positive).</td><td>Ichimoku score crosses below -1/3.</td></tr><tr><td><b>Kalman local-trend slope</b></td><td>Bounded Kalman log-price slope crosses above +0.15.</td><td>Bounded Kalman log-price slope crosses below -0.15.</td></tr><tr><td><b>Omni direct consensus (TradeAtlas v11)</b></td><td>Omni direct score crosses above +0.20.</td><td>Omni direct score crosses below -0.20.</td></tr><tr><td><b>Hull moving-average trend</b></td><td>ATR-normalized Hull trend score crosses above +0.20.</td><td>ATR-normalized Hull trend score crosses below -0.20.</td></tr><tr><td><b>Supertrend flip</b></td><td>Supertrend flips from above price to below price.</td><td>Supertrend flips from below price to above price.</td></tr><tr><td><b>Kaufman adaptive trend</b></td><td>ATR-normalized price-plus-KAMA-slope score crosses above +0.20.</td><td>ATR-normalized price-plus-KAMA-slope score crosses below -0.20.</td></tr><tr><td><b>Haar wavelet multiscale trend</b></td><td>Volatility-normalized Haar trend score crosses above +0.20.</td><td>Volatility-normalized Haar trend score crosses below -0.20.</td></tr><tr><td><b>Aroon oscillator trend</b></td><td>Aroon oscillator score crosses above +0.25.</td><td>Aroon oscillator score crosses below -0.25.</td></tr><tr><td><b>TSI signal momentum</b></td><td>Bounded TSI-minus-signal score crosses above +0.20.</td><td>Bounded TSI-minus-signal score crosses below -0.20.</td></tr><tr><td><b>TRIX zero-cross momentum</b></td><td>Bounded TRIX score crosses above zero.</td><td>Bounded TRIX score crosses below zero.</td></tr><tr><td><b>Chande Momentum trend</b></td><td>CMO score crosses above +0.25.</td><td>CMO score crosses below -0.25.</td></tr><tr><td><b>Ultimate Oscillator reversal</b></td><td>Ultimate Oscillator crosses back above 30 after an oversold reading.</td><td>Ultimate Oscillator crosses back below 70 after an overbought reading.</td></tr><tr><td><b>Relative Vigor trend</b></td><td>Bounded RVI-minus-signal score crosses above +0.20.</td><td>Bounded RVI-minus-signal score crosses below -0.20.</td></tr><tr><td><b>Log-regression trend fusion</b></td><td>Fused regression trend score crosses above +0.20.</td><td>Fused regression trend score crosses below -0.20.</td></tr><tr><td><b>Donchian channel state</b></td><td>Donchian state flips from negative to positive.</td><td>Donchian state flips from positive to negative.</td></tr><tr><td><b>OBV flow trend</b></td><td>Bounded OBV-flow score crosses above +0.20.</td><td>Bounded OBV-flow score crosses below -0.20.</td></tr><tr><td><b>Coppock cycle trend</b></td><td>Bounded Coppock score crosses above +0.20.</td><td>Bounded Coppock score crosses below -0.20.</td></tr><tr><td><b>Atlas Pressure Wave (TradeAtlas v13)</b></td><td>Atlas Pressure Wave crosses above +0.20.</td><td>Atlas Pressure Wave crosses below -0.20.</td></tr><tr><td><b>Atlas Regime Compass (TradeAtlas v13)</b></td><td>Atlas Regime Compass crosses above +0.20.</td><td>Atlas Regime Compass crosses below -0.20.</td></tr><tr><td><b>Atlas Phoenix Fusion (TradeAtlas v13)</b></td><td>Atlas Phoenix Fusion crosses above +0.20.</td><td>Atlas Phoenix Fusion crosses below -0.20.</td></tr><tr><td><b>Minute VWAP reversion (60-bar)</b></td><td>Bounded negative VWAP-deviation score crosses above +0.25 (price stretched below rolling VWAP).</td><td>Bounded negative VWAP-deviation score crosses below -0.25 (price stretched above rolling VWAP).</td></tr><tr><td><b>Minute EMA ribbon trend</b></td><td>EMA-ribbon score crosses above +0.25.</td><td>EMA-ribbon score crosses below -0.25.</td></tr><tr><td><b>Minute RSI-2 snapback</b></td><td>RSI(2) falls to 10 or below while close remains above SMA50.</td><td>RSI(2) rises to 90 or above while close remains below SMA50.</td></tr><tr><td><b>Minute opening-range breakout</b></td><td>Close breaks above the completed first-15-minute UTC range high.</td><td>Close breaks below the completed first-15-minute UTC range low.</td></tr><tr><td><b>Minute Bollinger squeeze release</b></td><td>Squeeze-release score crosses above +0.20.</td><td>Squeeze-release score crosses below -0.20.</td></tr><tr><td><b>Minute volume-surge pressure</b></td><td>Volume-surge pressure score crosses above +0.35.</td><td>Volume-surge pressure score crosses below -0.35.</td></tr><tr><td><b>Atlas Minute Pulse (TradeAtlas v14)</b></td><td>Atlas Minute Pulse crosses above +0.25.</td><td>Atlas Minute Pulse crosses below -0.25.</td></tr></table></div>
+<div class="card labwide"><h3>Results by timeframe</h3><div id="lab_summary"><p class="sub">Run the synthetic validation or supply market data. Accuracy alone is not an edge — read expectancy, average return, drawdown, sample count and costs beside it.</p></div><div style="overflow:auto"><table id="lab_table"></table></div><p id="lab_status" class="status"></p></div>
+</div></section>
+
+<section id="calcs" class="pane"><h2>Risk calculators <small class="sub">(arithmetic only — they size risk, they do not pick trades)</small></h2>
+<div class="grid">
+<div class="card"><h3>Position size</h3>
+<label>Account size</label><input id="ps_account" type="number" step="any" value="10000">
+<label>Risk per trade (%)</label><input id="ps_risk" type="number" step="any" value="1">
+<label>Entry price</label><input id="ps_entry" type="number" step="any" value="50">
+<label>Stop price</label><input id="ps_stop" type="number" step="any" value="47.5">
+<button class="go" onclick="calc('position',{account:'ps_account',risk_pct:'ps_risk',entry:'ps_entry',stop:'ps_stop'},'ps_out')">Calculate</button>
+<div class="out" id="ps_out">Result appears here.</div></div>
+<div class="card"><h3>Risk : Reward</h3>
+<label>Entry price</label><input id="rr_entry" type="number" step="any" value="50">
+<label>Stop price</label><input id="rr_stop" type="number" step="any" value="47.5">
+<label>Target price</label><input id="rr_target" type="number" step="any" value="57.5">
+<button class="go" onclick="calc('riskreward',{entry:'rr_entry',stop:'rr_stop',target:'rr_target'},'rr_out')">Calculate</button>
+<div class="out" id="rr_out">Result appears here.</div></div>
+<div class="card"><h3>Expectancy</h3>
+<label>Win rate (%)</label><input id="ex_win" type="number" step="any" value="45">
+<label>Average win (R)</label><input id="ex_aw" type="number" step="any" value="2">
+<label>Average loss (R)</label><input id="ex_al" type="number" step="any" value="1">
+<button class="go" onclick="calc('expectancy',{winrate_pct:'ex_win',avg_win_r:'ex_aw',avg_loss_r:'ex_al'},'ex_out')">Calculate</button>
+<div class="out" id="ex_out">Result appears here.</div></div>
+</div></section>
+
+<section id="risk" class="pane"><h2>Risk rules every textbook repeats</h2><div class="grid"><article class="card"><h3>Risk a tiny fixed fraction per trade</h3><p>Textbooks suggest risking about 0.5-2% of the account per idea, so a losing streak is survivable math, not ruin. Position size is derived FROM the stop distance — never the other way around.</p></article><article class="card"><h3>The stop is part of the idea</h3><p>Decide before entry where you are proven wrong. A stop that gets moved &#x27;just a bit further&#x27; is not risk management; it is hope with extra steps.</p></article><article class="card"><h3>Expectancy over win-rate</h3><p>A system can win 40% of the time and profit (big wins, small losses) or win 80% and lose (tiny wins, rare disasters). Track expectancy in R: (win% × avg win) − (loss% × avg loss).</p></article><article class="card"><h3>Costs are a strategy filter</h3><p>Spread + commission + slippage tax every trade. Hyperactive strategies must overcome a wall of friction before any edge shows.</p></article><article class="card"><h3>Leverage multiplies everything</h3><p>Leverage scales gains, losses, AND the speed of ruin. Liquidation math does not care about your analysis being eventually right.</p></article><article class="card"><h3>Correlation is hidden size</h3><p>Five positions that all move together are one big position. Cap total open risk, not just per-trade risk.</p></article><article class="card"><h3>Drawdowns are the real exam</h3><p>Every strategy in this atlas has losing stretches. If a -20% equity dip would make you abandon or revenge-trade, the size was already too big.</p></article><article class="card"><h3>Journal or it didn&#x27;t happen</h3><p>Memory edits history. A written journal (setup, size, exit reason, screenshot) is how &#x27;experience&#x27; becomes measurable instead of anecdotal.</p></article></div>
+<h2 style="margin-top:22px">Glossary</h2><div class="card"><table><tr><td><b>ATR</b></td><td>Average True Range — typical bar size over N periods; used to set volatility-aware stops and sizes.</td></tr><tr><td><b>Backtest</b></td><td>Applying fixed rules to historical data to see how they would have behaved — then distrusting the result appropriately.</td></tr><tr><td><b>Bid / Ask / Spread</b></td><td>What buyers offer / sellers ask / the gap between them — the first cost of every trade.</td></tr><tr><td><b>Drawdown</b></td><td>Peak-to-trough decline of an account or strategy; the pain metric that ends most trading careers.</td></tr><tr><td><b>Expectancy</b></td><td>Average profit per trade over many trades: (win% × avg win) − (loss% × avg loss). Positive or the rest is decoration.</td></tr><tr><td><b>Liquidity</b></td><td>How easily size trades without moving the price. Illiquid = wide spreads and exits that vanish in stress.</td></tr><tr><td><b>R (R-multiple)</b></td><td>Profit/loss measured in units of initial risk. A +2R win made twice what was risked.</td></tr><tr><td><b>Risk:Reward</b></td><td>Distance to stop vs distance to target. 1:2 means risking 1 to aim for 2 — before costs and reality.</td></tr><tr><td><b>Slippage</b></td><td>Difference between expected and actual fill price, worst in fast markets and around news.</td></tr><tr><td><b>Stop-loss</b></td><td>A predefined exit that limits loss when the idea is wrong. Gaps can jump through stops — they limit, not guarantee.</td></tr><tr><td><b>Support / Resistance</b></td><td>Zones where price previously paused or reversed and where resting orders cluster.</td></tr><tr><td><b>Volatility</b></td><td>How much price moves. High volatility = opportunity and danger in equal measure; position size must shrink as it rises.</td></tr></table></div></section>
+
+<p class="foot">TradeAtlas v17.0 · educational/research reference · no bundled licensed live feed · mechanical conditions only · no broker links ·
+data API: <code>/api/strategies</code> · Market Lab: <code>GET /api/lab/spec</code>, <code>GET /api/lab/demo</code>, <code>POST /api/lab/analyze</code>, <code>POST /api/lab/watchlist</code>, <code>POST /api/lab/forecast</code> · goals: <code>GET /api/goals</code> · minute race: <code>POST /api/lab/minute-forecast</code> · per timeframe: snapshot (+minute/VWAP/ORB state), latest condition, 100-signal validation, walk-forward split, 44-engine tournament, equity curve · demo e-wallet: <code>GET /api/paper/wallet</code>, <code>POST /api/paper/deposit-simulated</code>, <code>POST /api/paper/deposit-balance-simulated</code>, <code>POST /api/paper/convert-balance-simulated</code>, <code>POST /api/paper/withdraw-simulated</code>, <code>POST /api/paper/external-balance</code> (user-reported own-account mirror only), <code>POST /api/paper/transfer-bot-simulated</code>, <code>POST /api/paper/follow</code>, <code>POST /api/paper/stop</code>, <code>POST /api/paper/follow-step</code> (simulation only; no real deposit/withdrawal) · halal paper bot: <code>GET /api/bot</code>, <code>POST /api/halal/screen</code>, <code>POST /api/bot/register-stock</code>, <code>POST /api/bot/status</code>, <code>POST /api/bot/step</code>, <code>POST /api/bot/stop</code> · database: <code>GET /api/db/stats</code>, <code>POST /api/db/import-current</code>, <code>POST /api/db/research</code>, <code>GET /api/db/leaderboard</code>, <code>POST /api/db/halal-profile</code> · Forecast Lab: analog history + 100-attempt hidden-future evaluation vs naive baselines (history, never prophecy) · calculator API: <code>/api/calc?kind=position&amp;account=10000&amp;risk_pct=1&amp;entry=50&amp;stop=47.5</code><br>
+TradeAtlas is educational/research software only. It is NOT financial advice. Market Lab long/short (buy/sell-condition) labels are mechanical indicator states, not recommendations. TradeAtlas bundles no licensed live market data; real-market tracking uses only OHLCV data or a feed endpoint that you supply and have the right to use. Its wallet is a paper simulation only: never send money or cryptocurrency to TradeAtlas; it has no deposit address, custody, conversion, withdrawal or broker execution. Its halal-stock screen is transparent arithmetic on evidence you supply, not a fatwa or certification, and its bot is paper-only. It makes no profit promises. Most short-term traders lose money. Study the ideas, paper-trade first, risk only money you can afford to lose, and consult a licensed financial professional for personal decisions.</p>
+</div>
+<script>
+function tab(id,btn){document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('on'));
+document.getElementById(id).classList.add('on');btn.classList.add('on');}
+async function calc(kind,map,outId){const q=new URLSearchParams({kind});
+for(const k in map)q.set(k,document.getElementById(map[k]).value);
+const out=document.getElementById(outId);out.textContent='Calculating…';
+try{const r=await fetch('/api/calc?'+q.toString());const j=await r.json();
+if(j.error){out.textContent='Error: '+j.error;return;}
+out.textContent=Object.entries(j.result).map(([k,v])=>k+': '+v).join('\n');}
+catch(e){out.textContent='Request failed: '+e;}}
+</script><script>
+let liveTimer = null;
+let liveBars = new Map();
+let currentLabPayload = null;
+let botTimer = null;
+function labParams() {
+  return {
+    strategy: document.getElementById('lab_strategy').value,
+    max_signals: parseInt(document.getElementById('lab_max_signals').value || '100', 10),
+    horizon_bars: parseInt(document.getElementById('lab_horizon').value || '5', 10),
+    round_trip_cost_bps: parseFloat(document.getElementById('lab_cost').value || '10')
+  };
+}
+function fmtLab(v, suffix) {
+  if (v === null || v === undefined) return 'n/a';
+  return String(v) + (suffix || '');
+}
+function conditionLabel(sig) {
+  if (!sig) return 'No data';
+  if (sig.condition === 'long_condition') return 'LONG · buy-condition (mechanical)';
+  if (sig.condition === 'short_condition') return 'SHORT · sell-condition (mechanical)';
+  return 'No fresh trigger · ' + sig.bias.replaceAll('_', ' ');
+}
+function equitySpark(curve) {
+  if (!curve || curve.length < 2) return 'n/a';
+  const w = 120, h = 34;
+  const vals = curve.map(function(p) { return p.equity; });
+  const lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+  const span = (hi - lo) || 1;
+  const pts = curve.map(function(p, i) {
+    const x = (i / (curve.length - 1)) * w;
+    const y = 3 + (hi - p.equity) / span * (h - 6);
+    return x.toFixed(1) + ',' + y.toFixed(1);
+  }).join(' ');
+  const last = vals[vals.length - 1];
+  const color = last >= 1 ? '#22c55e' : '#ef4444';
+  return '<svg width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Backtest equity curve">' +
+    '<polyline fill="none" stroke="' + color + '" stroke-width="2" points="' + pts + '"/></svg><br><small>×' + last + '</small>';
+}
+function showLab(data) {
+  const summary = document.getElementById('lab_summary');
+  const table = document.getElementById('lab_table');
+  summary.textContent = '';
+  table.textContent = '';
+  if (data.error) { summary.textContent = 'Error: ' + data.error; return; }
+  const title = document.createElement('p');
+  title.textContent = 'Source: ' + data.source + ' · Strategy: ' + data.strategy_detail.name +
+    (data.source_is_synthetic ? ' · SYNTHETIC validation data — not a real market' : ' · user-supplied market data');
+  summary.appendChild(title);
+  const note = document.createElement('p');
+  note.className = 'warn';
+  note.textContent = 'Mechanical indicator states only — not financial advice. Accuracy is historical, after the selected cost, with next-bar entry and no overlapping test trades.';
+  summary.appendChild(note);
+  const header = document.createElement('tr');
+  ['Timeframe', 'Latest close', 'Mechanical condition', 'Tested', 'Accuracy', 'W / L', 'Avg net', 'Expectancy', 'Max DD', 'Walk-forward later expectancy', 'Tournament #1 here (historical fit)', 'Equity curve (test trades)'].forEach(function(txt) {
+    const th = document.createElement('th'); th.textContent = txt; header.appendChild(th);
+  });
+  table.appendChild(header);
+  (data.timeframes || []).forEach(function(frame) {
+    const tr = document.createElement('tr');
+    let cells;
+    if (frame.status !== 'ok') {
+      cells = [frame.timeframe, 'n/a', frame.reason || 'Insufficient data', '0', 'n/a', '0 / 0', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a', 'n/a'];
+      cells.forEach(function(txt) { const td = document.createElement('td'); td.textContent = txt; tr.appendChild(td); });
+    } else {
+      const v = frame.historical_validation;
+      const wf = frame.walk_forward || {};
+      const later = wf.later_slice || {};
+      const tour = (frame.strategy_tournament && frame.strategy_tournament.engines && frame.strategy_tournament.engines[0]) || {};
+      cells = [frame.timeframe + ' (' + frame.bars + ' bars)', fmtLab(frame.snapshot.close),
+        conditionLabel(frame.latest_signal), fmtLab(v.signals_tested), fmtLab(v.accuracy_pct, '%'),
+        v.wins + ' / ' + v.losses, fmtLab(v.average_net_return_pct, '%'),
+        fmtLab(v.expectancy_pct_per_trade, '%'), fmtLab(v.max_drawdown_pct, '%'),
+        fmtLab(later.expectancy_pct_per_trade, '%') + ' (' + fmtLab(later.trades) + ' trades · ' + (wf.robustness_verdict || 'n/a') + ')',
+        (tour.strategy_name || 'n/a') + ' · exp ' + fmtLab(tour.expectancy_pct_per_trade, '%') + ' · acc ' + fmtLab(tour.accuracy_pct, '%')];
+      cells.forEach(function(txt) { const td = document.createElement('td'); td.textContent = txt; tr.appendChild(td); });
+      const sparkTd = document.createElement('td'); sparkTd.innerHTML = equitySpark(v.equity_curve); tr.appendChild(sparkTd);
+    }
+    table.appendChild(tr);
+  });
+  const details = document.createElement('details');
+  const sm = document.createElement('summary'); sm.textContent = 'Full JSON result'; details.appendChild(sm);
+  const pre = document.createElement('pre'); pre.textContent = JSON.stringify(data, null, 2); details.appendChild(pre);
+  summary.appendChild(details);
+}
+async function postLab(payload) {
+  currentLabPayload = payload;
+  const status = document.getElementById('lab_status');
+  status.textContent = 'Analyzing all available timeframes and testing the requested historical signals…';
+  const response = await fetch('/api/lab/analyze', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(Object.assign({}, labParams(), payload))
+  });
+  const data = await response.json();
+  showLab(data);
+  status.textContent = response.ok ? 'Analysis complete.' : ('Analysis failed: ' + (data.error || response.status));
+  return data;
+}
+async function runLabDemo() {
+  const status = document.getElementById('lab_status');
+  status.textContent = 'Running deterministic synthetic validation. This verifies the software, not market profitability…';
+  try {
+    const q = new URLSearchParams(labParams());
+    const response = await fetch('/api/lab/demo?' + q.toString());
+    const data = await response.json();
+    showLab(data);
+    status.textContent = response.ok ? 'Synthetic validation complete.' : ('Validation failed: ' + (data.error || response.status));
+  } catch (e) { status.textContent = 'Validation failed: ' + e; }
+}
+function payloadFromText(text, sourceLabel) {
+  const clean = (text || '').trim();
+  if (!clean) throw new Error('No data supplied');
+  try {
+    const parsed = JSON.parse(clean);
+    const bars = Array.isArray(parsed) ? parsed : (parsed.bars || parsed.data || parsed.candles);
+    if (!Array.isArray(bars)) throw new Error('JSON must be an array or contain bars[]');
+    return {bars: bars, source_label: sourceLabel};
+  } catch (e) {
+    if (String(e).includes('JSON must')) throw e;
+    return {csv_text: clean, source_label: sourceLabel};
+  }
+}
+async function analyzeLabText() {
+  try { await postLab(payloadFromText(document.getElementById('lab_data').value, 'pasted user-supplied OHLCV data')); }
+  catch (e) { document.getElementById('lab_status').textContent = 'Data error: ' + e.message; }
+}
+async function analyzeCurrentLab() {
+  try {
+    if (currentLabPayload) { await postLab(currentLabPayload); return; }
+    await analyzeLabText();
+  } catch (e) { document.getElementById('lab_status').textContent = 'Current-data analysis error: ' + e.message; }
+}
+async function analyzeLabFile(input) {
+  if (!input.files || !input.files[0]) return;
+  try {
+    const text = await input.files[0].text();
+    await postLab(payloadFromText(text, 'uploaded file: ' + input.files[0].name));
+  } catch (e) { document.getElementById('lab_status').textContent = 'File error: ' + e.message; }
+}
+
+function feedSymbolValue() {
+  const el = document.getElementById('lab_feed_symbol');
+  return (el ? el.value : '').trim();
+}
+function barsFromBinance(rows) {
+  if (!Array.isArray(rows)) throw new Error('Binance response was not a kline array');
+  const now = Date.now();
+  return rows.filter(function(r) { return Array.isArray(r) && Number(r[6] || 0) <= now; }).map(function(r) {
+    return {t: Math.floor(Number(r[0]) / 1000), o: Number(r[1]), h: Number(r[2]), l: Number(r[3]), c: Number(r[4]), v: Number(r[5] || 0)};
+  });
+}
+function barsFromKraken(parsed) {
+  if (!parsed || parsed.error && parsed.error.length) throw new Error('Kraken error: ' + ((parsed && parsed.error || []).join('; ') || 'bad response'));
+  const result = parsed.result || {};
+  const pair = Object.keys(result).find(function(k) { return k !== 'last' && Array.isArray(result[k]); });
+  if (!pair) throw new Error('Kraken response had no OHLC pair array');
+  const rows = result[pair].slice(0, -1); // last candle is still forming
+  return {pair: pair, bars: rows.map(function(r) {
+    return {t: Number(r[0]), o: Number(r[1]), h: Number(r[2]), l: Number(r[3]), c: Number(r[4]), v: Number(r[6] || 0)};
+  })};
+}
+async function connectPublicFeed() {
+  const provider = document.getElementById('lab_feed_provider').value;
+  const symbol = feedSymbolValue();
+  const interval = document.getElementById('lab_feed_interval').value;
+  const limit = Math.max(100, Math.min(1000, parseInt(document.getElementById('lab_feed_limit').value || '1000', 10)));
+  const status = document.getElementById('lab_status');
+  if (provider === 'custom') { await pollLabFeed(); return; }
+  if (!symbol) { status.textContent = 'Enter a market symbol for the selected public adapter first.'; return; }
+  try {
+    status.textContent = 'Connecting your browser directly to the selected public market-data endpoint…';
+    if (provider === 'binance') {
+      const url = 'https://api.binance.com/api/v3/klines?symbol=' + encodeURIComponent(symbol.toUpperCase()) + '&interval=' + encodeURIComponent(interval) + '&limit=' + limit;
+      const response = await fetch(url, {cache: 'no-store'});
+      if (!response.ok) throw new Error('Binance returned HTTP ' + response.status);
+      const bars = barsFromBinance(await response.json());
+      if (bars.length < 60) throw new Error('Only ' + bars.length + ' completed bars returned');
+      document.getElementById('paper_symbol').value = symbol.toUpperCase();
+      await postLab({bars: bars, source_label: 'Binance public spot klines via browser (' + symbol.toUpperCase() + ' ' + interval + ', completed bars only)'});
+    } else if (provider === 'kraken') {
+      const minutes = {'1m': 1, '5m': 5, '15m': 15, '1h': 60, '4h': 240, '1d': 1440, '1w': 10080}[interval] || 60;
+      const url = 'https://api.kraken.com/0/public/OHLC?pair=' + encodeURIComponent(symbol.toUpperCase()) + '&interval=' + minutes;
+      const response = await fetch(url, {cache: 'no-store'});
+      if (!response.ok) throw new Error('Kraken returned HTTP ' + response.status);
+      const converted = barsFromKraken(await response.json());
+      if (converted.bars.length < 60) throw new Error('Only ' + converted.bars.length + ' completed bars returned');
+      document.getElementById('paper_symbol').value = converted.pair;
+      await postLab({bars: converted.bars, source_label: 'Kraken public OHLC via browser (' + converted.pair + ' ' + interval + ', completed bars only)'});
+    } else if (provider === 'stooq') {
+      const url = 'https://stooq.com/q/d/l/?s=' + encodeURIComponent(symbol.toLowerCase()) + '&i=d';
+      document.getElementById('lab_feed_url').value = url;
+      document.getElementById('paper_symbol').value = symbol.toUpperCase();
+      await pollLabFeed();
+    }
+    status.textContent = 'Real public market data updated in your browser at ' + new Date().toLocaleTimeString() + '. Verify symbol, adjustments, licensing and whether the venue is available in your region.';
+  } catch (e) {
+    status.textContent = 'Public feed error (CORS, symbol, regional availability or venue limit): ' + e.message;
+  }
+}
+async function pollSelectedFeed() {
+  const providerEl = document.getElementById('lab_feed_provider');
+  if (providerEl && providerEl.value !== 'custom') { await connectPublicFeed(); return; }
+  await pollLabFeed();
+}
+function feedProviderChanged() {
+  const provider = document.getElementById('lab_feed_provider').value;
+  const symbol = document.getElementById('lab_feed_symbol');
+  if (provider === 'binance') symbol.value = 'BTCUSDT';
+  else if (provider === 'kraken') symbol.value = 'XBTUSD';
+  else if (provider === 'stooq') symbol.value = 'aapl.us';
+  else symbol.value = '';
+}
+function applyMarketPreset() {
+  const key = document.getElementById('lab_market_preset').value;
+  const presets = {
+    crypto_binance: {provider: 'binance', symbol: 'BTCUSDT', interval: '1m', paper: 'BTCUSDT', db: 'BTCUSDT', asset: 'crypto', name: 'Bitcoin / USDT'},
+    crypto_kraken: {provider: 'kraken', symbol: 'XBTUSD', interval: '1m', paper: 'XBTUSD', db: 'XBTUSD', asset: 'crypto', name: 'Bitcoin / USD'},
+    stock_us: {provider: 'stooq', symbol: 'aapl.us', interval: '1d', paper: 'AAPL.US', db: 'AAPL.US', asset: 'stock', name: 'Apple Inc.'},
+    etf_us: {provider: 'stooq', symbol: 'spy.us', interval: '1d', paper: 'SPY.US', db: 'SPY.US', asset: 'etf', name: 'SPDR S&P 500 ETF'},
+    index_spx: {provider: 'stooq', symbol: '^spx', interval: '1d', paper: 'SPX', db: '^SPX', asset: 'index', name: 'S&P 500 index'},
+    fx_eurusd: {provider: 'stooq', symbol: 'eurusd', interval: '1d', paper: 'EURUSD', db: 'EURUSD', asset: 'currency', name: 'Euro / US dollar'},
+    stock_uk: {provider: 'stooq', symbol: 'vod.uk', interval: '1d', paper: 'VOD.UK', db: 'VOD.UK', asset: 'stock', name: 'UK-listed example (verify symbol)'},
+    stock_de: {provider: 'stooq', symbol: 'bmw.de', interval: '1d', paper: 'BMW.DE', db: 'BMW.DE', asset: 'stock', name: 'German-listed example (verify symbol)'}
+  };
+  const preset = presets[key];
+  if (!preset) return;
+  document.getElementById('lab_feed_provider').value = preset.provider;
+  document.getElementById('lab_feed_symbol').value = preset.symbol;
+  document.getElementById('lab_feed_interval').value = preset.interval;
+  document.getElementById('paper_symbol').value = preset.paper;
+  document.getElementById('bot_symbol').value = preset.paper;
+  document.getElementById('db_symbol').value = preset.db;
+  document.getElementById('db_asset_type').value = preset.asset;
+  document.getElementById('db_name').value = preset.name;
+  document.getElementById('db_timeframe').value = preset.interval;
+  if (preset.asset === 'crypto') document.getElementById('bot_timeframe').value = '1m';
+  document.getElementById('lab_status').textContent = 'Market preset loaded: ' + preset.name + ' via ' + preset.provider + '. This selects browser market DATA only; verify the symbol, adjustments, terms and regional availability. It does not open a broker/exchange account.';
+}
+function privateHeaders(extra) {
+  const headers = Object.assign({}, extra || {});
+  const token = localStorage.getItem('tradeatlas_access_token') || '';
+  if (token) headers['X-TradeAtlas-Token'] = token;
+  return headers;
+}
+function savePrivateToken(input) {
+  localStorage.setItem('tradeatlas_access_token', input.value.trim());
+  const status = document.getElementById('db_status');
+  if (status) status.textContent = input.value.trim() ? 'Private token saved in this browser only.' : 'Private token cleared in this browser.';
+}
+async function paperApi(path, payload) {
+  const init = payload === undefined ? {headers: privateHeaders()} : {method: 'POST', headers: privateHeaders({'Content-Type': 'application/json'}), body: JSON.stringify(payload)};
+  const response = await fetch(path, init);
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+  return data;
+}
+function showPaperWallet(data) {
+  const out = document.getElementById('paper_out');
+  const wallet = data.wallet || data;
+  out.textContent = '';
+  const summary = document.createElement('p');
+  summary.textContent = 'PAPER ONLY · cash ' + wallet.cash + ' · equity ' + wallet.equity +
+    ' · realized P/L ' + wallet.realized_pnl + ' · following ' + wallet.following + ' · halted ' + wallet.halted +
+    ' · demo crypto balances ' + ((wallet.paper_asset_balances || []).map(function(b) { return b.asset + ' × ' + b.quantity + ' (≈' + b.paper_usd_value + ' PAPER_USD)'; }).join(', ') || 'none') +
+    ' · YOUR external account mirror (not in paper equity) ' + ((((wallet.external_account_mirror || {}).balances || []).map(function(b) { return b.asset + ' × ' + b.quantity; }).join(', ')) || 'none') +
+    ' · positions ' + ((wallet.positions || []).map(function(p) { return p.symbol + ' × ' + p.quantity + ' @ avg ' + p.average_cost; }).join(', ') || 'none');
+  out.appendChild(summary);
+  const details = document.createElement('details');
+  const sm = document.createElement('summary'); sm.textContent = 'Paper wallet JSON'; details.appendChild(sm);
+  const pre = document.createElement('pre'); pre.textContent = JSON.stringify(data, null, 2); details.appendChild(pre);
+  out.appendChild(details);
+}
+async function loadPaperWallet() {
+  const status = document.getElementById('paper_status');
+  try { const data = await paperApi('/api/paper/wallet'); showPaperWallet(data); status.textContent = 'Paper wallet loaded. No real funds exist in TradeAtlas.'; }
+  catch (e) { status.textContent = 'Paper wallet error: ' + e.message; }
+}
+async function paperReset() {
+  const status = document.getElementById('paper_status');
+  try {
+    const data = await paperApi('/api/paper/reset', {starting_balance: parseFloat(document.getElementById('paper_start').value || '10000')});
+    showPaperWallet(data); status.textContent = 'Paper wallet reset.';
+  } catch (e) { status.textContent = 'Paper reset error: ' + e.message; }
+}
+async function paperConvert() {
+  const status = document.getElementById('paper_status');
+  try {
+    const data = await paperApi('/api/paper/deposit-simulated', {
+      asset: document.getElementById('paper_asset').value,
+      crypto_amount: parseFloat(document.getElementById('paper_crypto_amount').value || '0'),
+      usd_rate: parseFloat(document.getElementById('paper_usd_rate').value || '1')
+    });
+    showPaperWallet(data); status.textContent = 'Hypothetical conversion recorded. Nothing was sent, received or converted for real.';
+  } catch (e) { status.textContent = 'Simulated conversion error: ' + e.message; }
+}
+async function paperRecordExternalBalance() {
+  const status = document.getElementById('paper_status');
+  try {
+    const data = await paperApi('/api/paper/external-balance', {
+      venue_label: document.getElementById('external_venue').value,
+      asset: document.getElementById('external_asset').value,
+      quantity: parseFloat(document.getElementById('external_quantity').value || '0'),
+      usd_rate: parseFloat(document.getElementById('external_rate').value || '0')
+    });
+    showPaperWallet(data);
+    status.textContent = 'External-account mirror updated. Nothing was transferred to TradeAtlas, and the balance is not verified or included in paper equity.';
+  } catch (e) { status.textContent = 'External-account mirror error: ' + e.message; }
+}
+async function paperDepositBalance() {
+  const status = document.getElementById('paper_status');
+  try {
+    const data = await paperApi('/api/paper/deposit-balance-simulated', {
+      asset: document.getElementById('paper_asset').value,
+      crypto_amount: parseFloat(document.getElementById('paper_crypto_amount').value || '0'),
+      usd_rate: parseFloat(document.getElementById('paper_usd_rate').value || '1')
+    });
+    showPaperWallet(data); status.textContent = 'Imaginary demo balance credited. DO NOT send crypto anywhere — no deposit address exists and no blockchain transfer occurred.';
+  } catch (e) { status.textContent = 'Simulated balance deposit error: ' + e.message; }
+}
+async function paperConvertBalance() {
+  const status = document.getElementById('paper_status');
+  try {
+    const data = await paperApi('/api/paper/convert-balance-simulated', {
+      asset: document.getElementById('paper_asset').value,
+      crypto_amount: parseFloat(document.getElementById('paper_crypto_amount').value || '0'),
+      usd_rate: parseFloat(document.getElementById('paper_usd_rate').value || '1'),
+      fee_bps: parseFloat(document.getElementById('paper_fee').value || '10')
+    });
+    showPaperWallet(data); status.textContent = 'Imaginary balance converted to PAPER_USD inside the demo only. No real asset changed hands.';
+  } catch (e) { status.textContent = 'Simulated balance conversion error: ' + e.message; }
+}
+async function paperWithdrawSimulated() {
+  const status = document.getElementById('paper_status');
+  try {
+    const data = await paperApi('/api/paper/withdraw-simulated', {
+      asset: document.getElementById('paper_asset').value,
+      amount: parseFloat(document.getElementById('paper_crypto_amount').value || '0'),
+      usd_rate: parseFloat(document.getElementById('paper_usd_rate').value || '1')
+    });
+    showPaperWallet(data); status.textContent = 'Simulated withdrawal recorded by removing imaginary units. Nothing was sent to a wallet, bank or exchange.';
+  } catch (e) { status.textContent = 'Simulated withdrawal error: ' + e.message; }
+}
+async function paperTransferBot(direction) {
+  const status = document.getElementById('paper_status');
+  try {
+    const data = await paperApi('/api/paper/transfer-bot-simulated', {
+      direction: direction,
+      amount: parseFloat(document.getElementById('paper_transfer_amount').value || '0')
+    });
+    showPaperWallet(data); showBot(data);
+    status.textContent = 'Internal PAPER_USD transfer complete (' + direction + '). This moved imaginary numbers between two local simulations only.';
+  } catch (e) { status.textContent = 'Simulated internal transfer error: ' + e.message; }
+}
+async function paperSetFollow(on) {
+  const status = document.getElementById('paper_status');
+  try {
+    const data = await paperApi('/api/paper/follow', {following: !!on});
+    showPaperWallet(data); status.textContent = on ? 'Paper following is ON. Only simulated spot actions can occur on a follow-step.' : 'Paper following paused.';
+  } catch (e) { status.textContent = 'Paper follow error: ' + e.message; }
+}
+async function paperStop() {
+  const status = document.getElementById('paper_status');
+  try {
+    const data = await paperApi('/api/paper/stop', {close_all: false});
+    showPaperWallet(data); status.textContent = 'STOP: paper following is hard-halted. Existing paper positions remain until you simulate an exit.';
+  } catch (e) { status.textContent = 'Paper stop error: ' + e.message; }
+}
+async function paperFollowStep() {
+  const status = document.getElementById('paper_status');
+  try {
+    let payload = currentLabPayload;
+    if (!payload) payload = payloadFromText(document.getElementById('lab_data').value, 'pasted data for paper follow');
+    const body = Object.assign({}, payload, {
+      symbol: document.getElementById('paper_symbol').value.trim(),
+      timeframe: document.getElementById('paper_timeframe').value,
+      strategy: document.getElementById('lab_strategy').value,
+      allocation_pct: parseFloat(document.getElementById('paper_allocation').value || '10'),
+      fee_bps: parseFloat(document.getElementById('paper_fee').value || '10'),
+      drop_last_bar: document.getElementById('paper_drop_last').checked
+    });
+    if (!body.symbol) throw new Error('Enter the paper symbol first');
+    const data = await paperApi('/api/paper/follow-step', body);
+    showPaperWallet(data);
+    status.textContent = 'Paper follow step: ' + data.action + ' on ' + data.latest_bar_time + '. No real order was sent.';
+  } catch (e) { status.textContent = 'Paper follow-step error: ' + e.message; }
+}
+
+async function botApi(path, payload) {
+  const init = payload === undefined ? {headers: privateHeaders()} : {method: 'POST', headers: privateHeaders({'Content-Type': 'application/json'}), body: JSON.stringify(payload)};
+  const response = await fetch(path, init);
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+  return data;
+}
+function showBot(data) {
+  const out = document.getElementById('bot_out');
+  if (!out) return;
+  const bot = data.bot || data;
+  const wallet = bot.wallet || {};
+  out.textContent = '';
+  const summary = document.createElement('p');
+  summary.textContent = 'HALAL PAPER BOT · status ' + bot.status + ' · PAPER_USD equity ' + wallet.equity +
+    ' · registered ' + Object.keys(bot.registry || {}).length + ' asset(s) · open paper positions ' +
+    ((wallet.positions || []).length) + ' · drawdown ' + ((bot.risk || {}).drawdown_from_peak_pct ?? 'n/a') + '%' +
+    ' · profile ' + ((bot.settings || {}).mode_profile || 'n/a') + ' · ' + ((bot.settings || {}).strategy || '') + ' / ' +
+    ((bot.settings || {}).timeframe || '') + ' · entries today ' + (bot.entries_today ?? 0) +
+    ' · manual tickets ' + ((bot.manual_tickets || []).length) + ' · live execution ' + bot.live_execution_enabled;
+  out.appendChild(summary);
+  const details = document.createElement('details');
+  const sm = document.createElement('summary'); sm.textContent = 'Bot JSON (screen, positions, risk and decision log)'; details.appendChild(sm);
+  const pre = document.createElement('pre'); pre.textContent = JSON.stringify(data, null, 2); details.appendChild(pre);
+  out.appendChild(details);
+}
+async function loadBot() {
+  const status = document.getElementById('bot_status');
+  try { const data = await botApi('/api/bot'); showBot(data); status.textContent = 'Paper bot loaded. It can only open registered assets whose current halal evidence screen status is exactly pass.'; }
+  catch (e) { status.textContent = 'Bot load error: ' + e.message; }
+}
+function halalProfileFromForm() {
+  const numberOrNull = function(id) {
+    const raw = document.getElementById(id).value.trim();
+    return raw === '' ? null : Number(raw);
+  };
+  return {
+    symbol: document.getElementById('halal_symbol').value.trim(),
+    company_name: document.getElementById('halal_company').value.trim(),
+    sector: document.getElementById('halal_sector').value.trim(),
+    asset_type: document.getElementById('halal_asset_type').value,
+    user_standard_allows_asset: document.getElementById('halal_user_allows').checked,
+    spot_only: document.getElementById('halal_spot_only').checked,
+    leverage_used: document.getElementById('halal_leverage').checked,
+    interest_or_swap_involved: document.getElementById('halal_interest').checked,
+    short_selling_used: document.getElementById('halal_shorting').checked,
+    project_activity_reviewed: document.getElementById('halal_asset_specific_reviewed').checked,
+    settlement_reviewed: document.getElementById('halal_settlement_reviewed').checked,
+    spot_settlement_reviewed: document.getElementById('halal_settlement_reviewed').checked,
+    delivery_or_possession_reviewed: document.getElementById('halal_asset_specific_reviewed').checked,
+    swap_free: document.getElementById('halal_swap_free').checked,
+    staking_or_lending_involved: document.getElementById('halal_staking').checked,
+    gambling_activity_involved: document.getElementById('halal_gambling').checked,
+    fund_uses_leverage_or_interest: document.getElementById('halal_fund_bad').checked,
+    underlying_holdings_screen_status: document.getElementById('halal_underlying_status').value,
+    review_expires_at: document.getElementById('halal_expires').value.trim(),
+    core_business_prohibited: document.getElementById('halal_core_prohibited').checked,
+    activities_reviewed: document.getElementById('halal_activities_reviewed').checked,
+    prohibited_activities: document.getElementById('halal_activities').value.split(',').map(function(x) { return x.trim(); }).filter(Boolean),
+    interest_bearing_debt_pct_of_market_cap: numberOrNull('halal_debt'),
+    interest_bearing_cash_securities_pct_of_market_cap: numberOrNull('halal_cash_securities'),
+    receivables_pct_of_market_cap: numberOrNull('halal_receivables'),
+    non_compliant_income_pct_of_revenue: numberOrNull('halal_income'),
+    dividend_per_share: numberOrNull('halal_dividend'),
+    source_note: document.getElementById('halal_source').value.trim(),
+    financials_as_of: document.getElementById('halal_asof').value.trim()
+  };
+}
+async function screenHalalStock(register) {
+  const status = document.getElementById('bot_status');
+  try {
+    const profile = halalProfileFromForm();
+    const preset = document.getElementById('halal_preset').value;
+    const data = register
+      ? await botApi('/api/bot/register-stock', {profile: profile, preset: preset})
+      : await botApi('/api/halal/screen', {profile: profile, preset: preset});
+    if (register) showBot(data);
+    const result = data.registration || data;
+    status.textContent = 'Halal screen for ' + result.symbol + ': ' + result.status + '. This is not a fatwa/certification; missing data can never pass.';
+    if (!register) {
+      const out = document.getElementById('bot_out'); out.textContent = JSON.stringify(result, null, 2);
+    }
+  } catch (e) { status.textContent = 'Halal screen error: ' + e.message; }
+}
+async function botReset() {
+  const status = document.getElementById('bot_status');
+  try {
+    const data = await botApi('/api/bot/reset', {
+      starting_balance: Number(document.getElementById('bot_start_balance').value || 10000),
+      preset: document.getElementById('halal_preset').value,
+      settings: botSettingsFromForm()
+    });
+    showBot(data); status.textContent = 'Halal paper bot reset and stopped.';
+  } catch (e) { status.textContent = 'Bot reset error: ' + e.message; }
+}
+function botSettingsFromForm() {
+  return {
+    mode_profile: document.getElementById('bot_mode_profile').value,
+    strategy: document.getElementById('lab_strategy').value,
+    timeframe: document.getElementById('bot_timeframe').value,
+    allocation_pct: Number(document.getElementById('bot_allocation').value || 5),
+    max_positions: Number(document.getElementById('bot_max_positions').value || 3),
+    risk_per_trade_pct: Number(document.getElementById('bot_risk').value || 0.5),
+    atr_stop_multiple: Number(document.getElementById('bot_atr_stop').value || 1.5),
+    take_profit_r_multiple: Number(document.getElementById('bot_take_r').value || 1.5),
+    trailing_stop_atr_multiple: Number(document.getElementById('bot_trail').value || 1.5),
+    fee_bps: Number(document.getElementById('bot_fee').value || 10),
+    slippage_bps: Number(document.getElementById('bot_slippage').value || 5),
+    max_daily_loss_pct: Number(document.getElementById('bot_daily_loss').value || 2),
+    max_equity_drawdown_pct: Number(document.getElementById('bot_drawdown').value || 6),
+    max_trades_per_day: Number(document.getElementById('bot_max_trades_day').value || 20),
+    max_holding_bars: Number(document.getElementById('bot_max_holding').value || 30),
+    cooldown_bars: Number(document.getElementById('bot_cooldown').value || 3),
+    min_atr_pct: Number(document.getElementById('bot_min_atr').value || 0.02),
+    manual_confirmation_required: true,
+    live_execution_enabled: false,
+    allow_short: false
+  };
+}
+async function botSetStatus(action) {
+  const status = document.getElementById('bot_status');
+  try {
+    if (action === 'stop' && botTimer) toggleBotAuto();
+    const data = action === 'stop'
+      ? await botApi('/api/bot/stop', {close_all: false})
+      : await botApi('/api/bot/status', {action: action, settings: botSettingsFromForm()});
+    showBot(data);
+    status.textContent = action === 'stop' ? 'STOP: paper bot is hard-stopped. Open paper positions are not magically sold unless a later priced close-all is requested.' : ('Bot status: ' + (data.bot || data).status + '.');
+  } catch (e) { status.textContent = 'Bot status error: ' + e.message; }
+}
+async function botStep() {
+  const status = document.getElementById('bot_status');
+  try {
+    let payload = currentLabPayload;
+    if (!payload) payload = payloadFromText(document.getElementById('lab_data').value, 'pasted stock data for halal paper bot');
+    const symbol = (document.getElementById('bot_symbol').value || document.getElementById('halal_symbol').value).trim().toUpperCase();
+    if (!symbol) throw new Error('Enter the registered stock symbol first');
+    const symbols = {}; symbols[symbol] = payload;
+    const data = await botApi('/api/bot/step', {
+      symbols: symbols, settings: botSettingsFromForm(),
+      drop_last_bar: document.getElementById('bot_drop_last').checked
+    });
+    showBot(data);
+    const decision = (data.decisions || [])[0] || {};
+    status.textContent = 'Paper bot cycle ' + data.cycle + ': ' + (decision.action || 'no decision') + '. No real order was sent.';
+    return data;
+  } catch (e) { status.textContent = 'Bot cycle error: ' + e.message; }
+}
+function toggleBotAuto() {
+  const button = document.getElementById('bot_auto_btn');
+  const status = document.getElementById('bot_status');
+  if (botTimer) {
+    clearInterval(botTimer); botTimer = null; button.textContent = '▶ Auto paper cycles';
+    status.textContent = 'Automatic paper cycles stopped in this browser tab.';
+    return;
+  }
+  const seconds = Math.max(60, Number(document.getElementById('bot_poll_seconds').value || 60));
+  const run = async function() { await pollSelectedFeed(); await botStep(); };
+  run();
+  botTimer = setInterval(run, seconds * 1000);
+  button.textContent = '⏹ Stop auto paper cycles';
+  status.textContent = 'Automatic PAPER cycles every ' + seconds + 's while this page stays open, aligned to completed minute bars. Start the bot first; a stopped/risk-halted bot will not enter, and no real order can be sent.';
+}
+
+async function dbApi(path, payload) {
+  const init = payload === undefined ? {headers: privateHeaders()} : {method: 'POST', headers: privateHeaders({'Content-Type': 'application/json'}), body: JSON.stringify(payload)};
+  const response = await fetch(path, init);
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+  return data;
+}
+function showDb(data) {
+  const out = document.getElementById('db_out'); if (!out) return;
+  out.textContent = '';
+  const summary = document.createElement('p');
+  if (data.counts) summary.textContent = 'SQLite database · ' + data.counts.bars + ' bars · ' + data.counts.instruments + ' instruments · ' + data.counts.halal_profiles + ' halal profiles · ' + data.counts.research_runs + ' research runs';
+  else if (data.leaderboard) summary.textContent = 'Pooled research run ' + data.run_id + ' complete. Read attempts beside every accuracy; no leaderboard is a future guarantee.';
+  else summary.textContent = 'Database operation complete.';
+  out.appendChild(summary);
+  const details = document.createElement('details');
+  const sm = document.createElement('summary'); sm.textContent = 'Database JSON'; details.appendChild(sm);
+  const pre = document.createElement('pre'); pre.textContent = JSON.stringify(data, null, 2); details.appendChild(pre);
+  out.appendChild(details);
+}
+async function loadDb() {
+  const status = document.getElementById('db_status');
+  try { const data = await dbApi('/api/db/stats'); showDb(data); status.textContent = 'Local market database loaded.'; }
+  catch (e) { status.textContent = 'Database error: ' + e.message; }
+}
+async function seedDb() {
+  const status = document.getElementById('db_status');
+  try { const data = await dbApi('/api/db/seed', {}); showDb(data.stats || data); status.textContent = 'Bundled real historical samples imported into SQLite.'; }
+  catch (e) { status.textContent = 'Seed error: ' + e.message; }
+}
+async function importCurrentToDb() {
+  const status = document.getElementById('db_status');
+  try {
+    let payload = currentLabPayload;
+    if (!payload) payload = payloadFromText(document.getElementById('lab_data').value, 'pasted bars for database');
+    const symbol = document.getElementById('db_symbol').value.trim().toUpperCase();
+    if (!symbol) throw new Error('Enter the database symbol first');
+    const body = Object.assign({}, payload, {
+      symbol: symbol,
+      timeframe: document.getElementById('db_timeframe').value,
+      source: document.getElementById('db_source').value.trim(),
+      instrument: {
+        symbol: symbol, name: document.getElementById('db_name').value.trim(),
+        asset_type: document.getElementById('db_asset_type').value,
+        exchange: document.getElementById('db_exchange').value.trim(),
+        currency: document.getElementById('db_currency').value.trim(),
+        country: document.getElementById('db_country').value.trim(),
+        sector: document.getElementById('halal_sector').value.trim()
+      }
+    });
+    const data = await dbApi('/api/db/import-current', body);
+    showDb(data); status.textContent = 'Stored ' + data.bars_imported_or_updated + ' bars for ' + data.symbol + ' ' + data.timeframe + '.';
+  } catch (e) { status.textContent = 'Database import error: ' + e.message; }
+}
+async function runDbResearch() {
+  const status = document.getElementById('db_status');
+  try {
+    status.textContent = 'Running hidden-future research on every stored series…';
+    const data = await dbApi('/api/db/research', {attempts: Number(document.getElementById('db_attempts').value || 100)});
+    showDb(data); status.textContent = 'Research stored. A pooled score is still historical and can be survivor/correlated-sample biased.';
+  } catch (e) { status.textContent = 'Database research error: ' + e.message; }
+}
+async function saveHalalToDb() {
+  const status = document.getElementById('db_status');
+  try {
+    const data = await dbApi('/api/db/halal-profile', {profile: halalProfileFromForm(), preset: document.getElementById('halal_preset').value, register_bot: true});
+    showDb(data); showBot(data.bot_registration || data);
+    status.textContent = 'Halal evidence saved. Status: ' + (data.registration || data).status + '. Not a fatwa/certification.';
+  } catch (e) { status.textContent = 'Halal database error: ' + e.message; }
+}
+async function syncDbHalalToBot() {
+  const status = document.getElementById('db_status');
+  try { const data = await botApi('/api/bot/sync-halal-db', {}); showBot(data); status.textContent = 'Database halal profiles re-screened and synced to the paper bot registry.'; }
+  catch (e) { status.textContent = 'Sync error: ' + e.message; }
+}
+function extractFeedBars(parsed) {
+  if (Array.isArray(parsed)) return parsed;
+  if (parsed && Array.isArray(parsed.bars)) return parsed.bars;
+  if (parsed && Array.isArray(parsed.data)) return parsed.data;
+  if (parsed && Array.isArray(parsed.candles)) return parsed.candles;
+  return null;
+}
+async function pollLabFeed() {
+  const url = document.getElementById('lab_feed_url').value.trim();
+  const status = document.getElementById('lab_status');
+  if (!url) { status.textContent = 'Enter your CORS-enabled JSON/CSV feed URL first.'; return; }
+  try {
+    const response = await fetch(url, {cache: 'no-store'});
+    if (!response.ok) throw new Error('Feed returned HTTP ' + response.status);
+    const text = await response.text();
+    let payload;
+    try {
+      const parsed = JSON.parse(text);
+      const incoming = extractFeedBars(parsed);
+      if (!incoming) throw new Error('Feed JSON has no bars[] array');
+      incoming.forEach(function(bar) {
+        const key = bar.t || bar.time || bar.timestamp || bar.date || JSON.stringify(bar);
+        liveBars.set(String(key), bar);
+      });
+      const merged = Array.from(liveBars.values()).slice(-20000);
+      payload = {bars: merged, source_label: 'browser-polled user feed (' + merged.length + ' bars retained)'};
+    } catch (jsonError) {
+      payload = {csv_text: text, source_label: 'browser-polled user CSV feed'};
+    }
+    await postLab(payload);
+    status.textContent = 'Live feed updated from your browser at ' + new Date().toLocaleTimeString() + '. Data rights/quality are yours to verify.';
+  } catch (e) {
+    status.textContent = 'Live feed error (often CORS or a paid/key-gated endpoint): ' + e.message;
+  }
+}
+function toggleLabLive() {
+  const btn = document.getElementById('lab_live_btn');
+  if (liveTimer) {
+    clearInterval(liveTimer); liveTimer = null; btn.textContent = '▶ Start browser live polling';
+    document.getElementById('lab_status').textContent = 'Live polling stopped.'; return;
+  }
+  const seconds = Math.max(5, parseInt(document.getElementById('lab_poll_seconds').value || '30', 10));
+  pollSelectedFeed();
+  liveTimer = setInterval(pollSelectedFeed, seconds * 1000);
+  btn.textContent = '⏹ Stop live polling';
+}
+async function analyzeWatchlist(input) {
+  const status = document.getElementById('watch_status');
+  const out = document.getElementById('watch_out');
+  if (!input.files || !input.files.length) return;
+  try {
+    const symbols = {};
+    for (const file of Array.from(input.files).slice(0, 12)) {
+      const text = await file.text();
+      const name = file.name.replace(/\.[^.]+$/, '').toUpperCase();
+      try {
+        const parsed = JSON.parse(text);
+        symbols[name] = Array.isArray(parsed) ? parsed : (parsed.bars || parsed.data || parsed.candles || parsed);
+      } catch (e) { symbols[name] = {csv: text}; }
+    }
+    status.textContent = 'Scanning ' + Object.keys(symbols).length + ' symbol file(s) across every honest timeframe…';
+    const response = await fetch('/api/lab/watchlist', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({symbols: symbols, strategy: document.getElementById('lab_strategy').value})
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    out.textContent = '';
+    const table = document.createElement('table');
+    const header = document.createElement('tr');
+    ['Symbol', '1m', '5m', '15m', '1h', '4h', '1d', '1w'].forEach(function(txt) {
+      const th = document.createElement('th'); th.textContent = txt; header.appendChild(th);
+    });
+    table.appendChild(header);
+    (data.symbols || []).forEach(function(row) {
+      const tr = document.createElement('tr');
+      const nameTd = document.createElement('td'); nameTd.textContent = row.symbol; tr.appendChild(nameTd);
+      (row.timeframes || []).forEach(function(cell) {
+        const td = document.createElement('td');
+        if (cell.status !== 'ok') { td.textContent = '—'; td.title = cell.status; }
+        else {
+          td.textContent = (cell.condition === 'long_condition' ? 'LONG' : cell.condition === 'short_condition' ? 'SHORT' : 'bias ' + cell.bias_score) + ' · ' + cell.close;
+          td.style.background = cell.condition === 'long_condition' ? '#14532d' : cell.condition === 'short_condition' ? '#7f1d1d' : cell.bias_score >= 2 ? '#164e2a' : cell.bias_score <= -2 ? '#5f1d1d' : '#0b1220';
+          td.title = cell.bars + ' bars · window change ' + cell.change_over_window_pct + '%';
+        }
+        tr.appendChild(td);
+      });
+      table.appendChild(tr);
+    });
+    out.appendChild(table);
+    (data.errors || []).forEach(function(err) {
+      const p = document.createElement('p'); p.className = 'warn';
+      p.textContent = err.symbol + ': ' + err.error; out.appendChild(p);
+    });
+    status.textContent = 'Watchlist scan complete. Heatmap only — run Market Lab per symbol for the 100-signal validation. Not financial advice.';
+  } catch (e) { status.textContent = 'Watchlist error: ' + e.message; }
+}
+async function loadGoals() {
+  const out = document.getElementById('goals_out');
+  if (!out) return;
+  out.textContent = 'Loading project goals…';
+  try {
+    const response = await fetch('/api/goals');
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    out.textContent = '';
+    const list = document.createElement('ul');
+    (data.goals || []).forEach(function(goal) {
+      const li = document.createElement('li');
+      li.textContent = goal.title + ' — ' + goal.status;
+      list.appendChild(li);
+    });
+    out.appendChild(list);
+    const details = document.createElement('details');
+    const sm = document.createElement('summary'); sm.textContent = 'Project goals JSON'; details.appendChild(sm);
+    const pre = document.createElement('pre'); pre.textContent = JSON.stringify(data, null, 2); details.appendChild(pre);
+    out.appendChild(details);
+  } catch (e) { out.textContent = 'Goals error: ' + e.message; }
+}
+async function runMinuteForecast() {
+  const status = document.getElementById('minute_status');
+  const out = document.getElementById('minute_out');
+  const verdict = document.getElementById('minute_verdict');
+  try {
+    const base = currentLabPayload || payloadFromText(
+      document.getElementById('lab_data').value, 'pasted minute bars');
+    const horizons = document.getElementById('minute_horizons').value
+      .split(',').map(function(x) { return parseInt(x.trim(), 10); })
+      .filter(function(x) { return Number.isFinite(x) && x > 0; }).slice(0, 10);
+    if (!horizons.length) throw new Error('Enter at least one horizon');
+    const payload = Object.assign({}, base, {
+      attempts: parseInt(document.getElementById('minute_attempts').value || '1000', 10),
+      horizons: horizons
+    });
+    status.textContent = 'Running the causal hidden-future minute race. This can take a while on large files…';
+    const response = await fetch('/api/lab/minute-forecast', {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    out.textContent = '';
+    const table = document.createElement('table');
+    const header = document.createElement('tr');
+    ['Horizon', 'Atlas Minute Pulse', 'Pulse selective ≥0.45', 'EMA ribbon', '1-bar momentum'].forEach(function(txt) {
+      const th = document.createElement('th'); th.textContent = txt; header.appendChild(th);
+    });
+    table.appendChild(header);
+    (data.horizons || []).forEach(function(row) {
+      const tr = document.createElement('tr');
+      const methods = row.methods || {};
+      const cell = function(m) {
+        if (!m || !m.attempts_made) return 'n/a';
+        return m.direction_accuracy_pct + '% · n=' + m.attempts_made + ' · coverage ' + m.coverage_pct +
+          '% · 10bps ' + m.mean_net_pct_per_trade_10bps + '%/trade · CI [' + m.wilson_95_ci_pct.join(', ') + ']';
+      };
+      [('+' + row.horizon_bars + ' bars'), cell(methods.atlas_minute_pulse),
+       cell(methods.atlas_minute_pulse_selective), cell(methods.minute_ema_ribbon),
+       cell(methods.momentum_1bar)].forEach(function(txt) {
+        const td = document.createElement('td'); td.textContent = txt; tr.appendChild(td);
+      });
+      table.appendChild(tr);
+    });
+    out.appendChild(table);
+    const goal = data.goal_80_assessment || {};
+    verdict.textContent = '80% goal assessment: ' + goal.status + ' · goal_established=' + goal.goal_established +
+      '. A candidate on one series is not proof; external multi-symbol/day validation is still required.';
+    const details = document.createElement('details');
+    const sm = document.createElement('summary'); sm.textContent = 'Full minute-race JSON'; details.appendChild(sm);
+    const pre = document.createElement('pre'); pre.textContent = JSON.stringify(data, null, 2); details.appendChild(pre);
+    out.appendChild(details);
+    status.textContent = 'Minute race done on ' + data.bars + ' supplied bars. Historical measurement only — not a live accuracy promise.';
+  } catch (e) { status.textContent = 'Minute race error: ' + e.message; }
+}
+const SC_CAUSE_SEVERITY = {blocker: 'BLOCKER', warning: 'warning', goal_gap: 'goal gap'};
+function scCell(text) { const td = document.createElement('td'); td.textContent = text; return td; }
+function scTable(rows) {
+  const table = document.createElement('table');
+  rows.forEach(function(cells, index) {
+    const tr = document.createElement('tr');
+    cells.forEach(function(text) {
+      if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+      else { tr.appendChild(scCell(text)); }
+    });
+    table.appendChild(tr);
+  });
+  return table;
+}
+function scShowResult(data) {
+  const out = document.getElementById('sc_out');
+  out.textContent = '';
+  (data.rounds || []).forEach(function(round) {
+    const h = document.createElement('h4');
+    h.textContent = 'Round ' + round.round + ' — ' + round.name +
+      ' · candidates ' + (round.candidates || []).length +
+      ' · retired ' + (round.retired || []).length;
+    out.appendChild(h);
+    const rows = [['Candidate', 'Accuracy', 'n / coverage', 'Mean net', 'Status', 'Causes']];
+    (round.candidates || []).forEach(function(row) {
+      const acc = row.direction_accuracy_pct == null ? '—' : row.direction_accuracy_pct + '%';
+      const net = row.mean_net_pct == null ? '—' : row.mean_net_pct + '%';
+      rows.push([row.method + ' @' + row.horizon_bars,
+                 acc,
+                 (row.attempts_made ?? '—') + ' / ' + (row.coverage_pct ?? '—') + '%',
+                 net, row.status,
+                 (row.blockers || []).join(', ') || (row.causes || []).map(function(c) { return c.id; }).join(', ') || '—']);
+    });
+    out.appendChild(scTable(rows));
+    if ((round.lessons || []).length) {
+      const ul = document.createElement('ul');
+      (round.lessons || []).forEach(function(lesson) {
+        const li = document.createElement('li');
+        li.textContent = '[' + (SC_CAUSE_SEVERITY[lesson.severity] || lesson.severity) + '] ' +
+          lesson.method + ' @' + lesson.horizon_bars + ' — ' + lesson.title +
+          ' · ' + lesson.evidence + ' · avoid: ' + lesson.avoid +
+          (lesson.status ? ' · lesson ' + lesson.status : '');
+        ul.appendChild(li);
+      });
+      out.appendChild(ul);
+    }
+  });
+  if ((data.retired_candidates || []).length) {
+    const details = document.createElement('details');
+    const sm = document.createElement('summary');
+    sm.textContent = 'Retired candidates and why (' + data.retired_candidates.length + ')';
+    details.appendChild(sm);
+    const ul = document.createElement('ul');
+    data.retired_candidates.forEach(function(item) {
+      const li = document.createElement('li');
+      li.textContent = item.method + ' @' + item.horizon_bars + ' — ' + item.cause + ': ' + item.reason;
+      ul.appendChild(li);
+    });
+    details.appendChild(ul);
+    out.appendChild(details);
+  }
+  if ((data.resolved_lessons || []).length) {
+    const details = document.createElement('details');
+    const sm = document.createElement('summary');
+    sm.textContent = 'Lessons whose remedy worked (' + data.resolved_lessons.length + ')';
+    details.appendChild(sm);
+    const ul = document.createElement('ul');
+    data.resolved_lessons.forEach(function(item) {
+      const li = document.createElement('li');
+      li.textContent = item.method + ' @' + item.horizon_bars + ' — ' + item.cause +
+        ' fixed in round ' + item.resolved_in_round + ' (' + item.remedy + ')';
+      ul.appendChild(li);
+    });
+    details.appendChild(ul);
+    out.appendChild(details);
+  }
+  if ((data.next_actions || []).length) {
+    const p = document.createElement('p');
+    p.className = 'warn';
+    p.textContent = 'Next actions: ' + data.next_actions.join(' ');
+    out.appendChild(p);
+  }
+  const details = document.createElement('details');
+  const sm = document.createElement('summary'); sm.textContent = 'Full self-correction JSON'; details.appendChild(sm);
+  const pre = document.createElement('pre'); pre.textContent = JSON.stringify(data, null, 2); details.appendChild(pre);
+  out.appendChild(details);
+}
+async function runSelfCorrection() {
+  const status = document.getElementById('sc_status');
+  const verdict = document.getElementById('sc_verdict');
+  try {
+    const base = currentLabPayload || payloadFromText(
+      document.getElementById('lab_data').value, 'pasted bars (self-correction)');
+    const horizons = document.getElementById('sc_horizons').value.split(',')
+      .map(function(x) { return parseInt(x.trim(), 10); })
+      .filter(function(x) { return Number.isFinite(x) && x > 0; });
+    if (!horizons.length) throw new Error('Enter at least one horizon');
+    const payload = Object.assign({}, base, {
+      attempts: parseInt(document.getElementById('sc_attempts').value || '120', 10),
+      horizons: horizons,
+      cost_bps: parseFloat(document.getElementById('sc_cost').value || '10'),
+      remember: document.getElementById('sc_remember').checked,
+      use_saved_lessons: document.getElementById('sc_use_saved').checked
+    });
+    const second = document.getElementById('sc_second_file');
+    if (second && second.files && second.files.length) {
+      const file = second.files[0];
+      const text = await file.text();
+      try {
+        const parsed = JSON.parse(text);
+        payload.second_bars = Array.isArray(parsed) ? parsed : (parsed.bars || parsed.data || parsed.candles || parsed);
+      } catch (e) { payload.second_csv_text = text; }
+      payload.second_symbol = 'browser file: ' + file.name;
+    }
+    status.textContent = 'Screening, diagnosing and re-testing with the remedies applied…';
+    const response = await fetch('/api/lab/self-correct', {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    scShowResult(data);
+    verdict.textContent = 'Verdict: ' + data.verdict + ' · 80% goal established: ' +
+      (data.goal_80 || {}).goal_established + ' · lessons: ' + (data.lessons || []).length +
+      ' · retired: ' + (data.retired_candidates || []).length;
+    status.textContent = 'Loop complete on ' + (data.sources || []).length + ' series. ' +
+      ((data.memory || {}).lessons_saved ? 'Saved ' + data.memory.lessons_saved + ' lessons to SQLite.' : 'Lesson ledger not saved.');
+  } catch (e) { status.textContent = 'Self-correction error: ' + e.message; }
+}
+async function runSelfCorrectionDemo() {
+  const status = document.getElementById('sc_status');
+  const verdict = document.getElementById('sc_verdict');
+  try {
+    status.textContent = 'Running the deterministic synthetic software check…';
+    const response = await fetch('/api/lab/self-correct', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({demo: true, remember: false})});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    scShowResult(data);
+    verdict.textContent = 'Synthetic demo (software check only, never market evidence) · verdict: ' + data.verdict;
+    status.textContent = 'Synthetic demo complete. These prices are invented with a fixed seed.';
+  } catch (e) { status.textContent = 'Demo error: ' + e.message; }
+}
+async function loadLessons() {
+  const status = document.getElementById('sc_status');
+  const out = document.getElementById('sc_out');
+  try {
+    status.textContent = 'Loading the persisted failure memory…';
+    const response = await fetch('/api/lessons?limit=200');
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    out.textContent = '';
+    const head = document.createElement('p');
+    head.className = 'sub';
+    head.textContent = data.count + ' stored lesson(s). Every lesson keeps the failure reason, ' +
+      'the avoid-rule for the next test and its status (observed / resolved / recurred / retired).';
+    out.appendChild(head);
+    const rows = [['Cause', 'Lessons', 'Resolved', 'Recurred', 'Retired']];
+    (data.tally || []).forEach(function(item) {
+      rows.push([item.cause + ' (' + item.severity + ')', item.lessons, item.resolved, item.recurred, item.retired]);
+    });
+    if (rows.length > 1) out.appendChild(scTable(rows));
+    const detailRows = [['Candidate', 'Cause', 'Status', 'Avoid rule for the next test']];
+    (data.lessons || []).slice(0, 60).forEach(function(lesson) {
+      detailRows.push([lesson.method + ' @' + lesson.horizon_bars, lesson.cause,
+                       lesson.status, lesson.avoid]);
+    });
+    if (detailRows.length > 1) out.appendChild(scTable(detailRows));
+    const details = document.createElement('details');
+    const sm = document.createElement('summary'); sm.textContent = 'Cause library + full ledger JSON'; details.appendChild(sm);
+    const pre = document.createElement('pre'); pre.textContent = JSON.stringify(data, null, 2); details.appendChild(pre);
+    out.appendChild(details);
+    status.textContent = 'Failure memory loaded.';
+  } catch (e) { status.textContent = 'Lesson ledger error: ' + e.message; }
+}
+function todayUtc(seconds) {
+  if (!seconds) return '—';
+  return new Date(seconds * 1000).toISOString().replace('.000Z', 'Z');
+}
+function todayIntervalMinutes(interval) {
+  return {'1m': 1, '5m': 5, '15m': 15, '1h': 60, '4h': 240, '1d': 1440, '1w': 10080}[interval] || 60;
+}
+async function fetchBinanceToday(symbol, interval, limit) {
+  const hosts = ['https://data-api.binance.vision', 'https://api.binance.com'];
+  let lastError = null;
+  for (const host of hosts) {
+    try {
+      const url = host + '/api/v3/klines?symbol=' + encodeURIComponent(symbol.toUpperCase()) +
+        '&interval=' + encodeURIComponent(interval) + '&limit=' + Math.max(200, Math.min(1000, limit));
+      const response = await fetch(url, {cache: 'no-store'});
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const rows = await response.json();
+      // barsFromBinance keeps only rows whose closeTime is already past (completed bars)
+      const bars = barsFromBinance(rows);
+      if (bars.length < 200) throw new Error('only ' + bars.length + ' completed bars');
+      return {bars: bars, host: host, url: url, venue: 'Binance spot public klines'};
+    } catch (e) { lastError = e; }
+  }
+  throw lastError || new Error('Binance fetch failed');
+}
+async function fetchKrakenToday(symbol, interval, limit) {
+  const minutes = todayIntervalMinutes(interval);
+  const url = 'https://api.kraken.com/0/public/OHLC?pair=' + encodeURIComponent(symbol.toUpperCase()) +
+    '&interval=' + minutes;
+  const response = await fetch(url, {cache: 'no-store'});
+  if (!response.ok) throw new Error('Kraken returned HTTP ' + response.status);
+  const converted = barsFromKraken(await response.json());
+  const bars = converted.bars.slice(-Math.max(200, Math.min(720, limit)));
+  if (bars.length < 200) throw new Error('only ' + bars.length + ' completed bars');
+  return {bars: bars, host: 'api.kraken.com', url: url, venue: 'Kraken public OHLC',
+          symbol: converted.pair};
+}
+function showTodayProvenance(provenance) {
+  const box = document.getElementById('today_provenance');
+  box.style.display = 'block';
+  box.textContent = '';
+  const rows = [['Field', 'Value'],
+    ['Venue', provenance.venue],
+    ['Primary symbol', provenance.primary_symbol],
+    ['Validation symbol', provenance.validation_symbol || 'not supplied'],
+    ['Interval', provenance.interval],
+    ['Completed bars (primary / validation)', provenance.primary_bars + ' / ' + (provenance.validation_bars ?? '—')],
+    ['First bar (UTC)', provenance.first_bar_utc],
+    ['Last completed bar (UTC)', provenance.last_bar_utc],
+    ['Fetched at (UTC)', provenance.fetched_at_utc],
+    ['Forming candle dropped', String(provenance.forming_candle_dropped)],
+    ['Primary endpoint', provenance.primary_url]];
+  rows.forEach(function(cells, index) {
+    const tr = document.createElement('tr');
+    cells.forEach(function(text) {
+      if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+      else { const td = document.createElement('td'); td.textContent = String(text); tr.appendChild(td); }
+    });
+    box.appendChild(tr);
+  });
+}
+async function runTodayMarketTest() {
+  const status = document.getElementById('today_status');
+  const verdict = document.getElementById('sc_verdict');
+  const out = document.getElementById('sc_out');
+  const venue = document.getElementById('today_venue').value;
+  const symbol = (document.getElementById('today_symbol').value || '').trim();
+  const symbol2 = (document.getElementById('today_symbol2').value || '').trim();
+  const interval = document.getElementById('today_interval').value;
+  const limit = Math.max(405, Math.min(1000, parseInt(document.getElementById('today_limit').value || '1000', 10)));
+  const costBps = parseFloat(document.getElementById('today_cost').value || '12');
+  if (!symbol) { status.textContent = 'Enter a primary symbol first.'; return; }
+  const fetchedAt = new Date().toISOString();
+  try {
+    status.textContent = 'Fetching completed ' + interval + ' bars directly from ' + venue + ' in your browser…';
+    const fetcher = venue === 'kraken' ? fetchKrakenToday : fetchBinanceToday;
+    const primary = await fetcher(symbol, interval, limit);
+    let secondary = null;
+    let secondaryError = '';
+    if (symbol2) {
+      try {
+        secondary = await fetcher(symbol2, interval, limit);
+      } catch (e) { secondaryError = e.message; }
+    }
+    if (primary.bars.length < 405) throw new Error('primary returned only ' + primary.bars.length + ' completed bars; ask for more or use a coarser interval');
+    const lastBar = primary.bars[primary.bars.length - 1].t;
+    const firstBar = primary.bars[0].t;
+    const provenance = {
+      venue: primary.venue,
+      primary_symbol: primary.symbol || symbol.toUpperCase(),
+      validation_symbol: secondary ? (secondary.symbol || symbol2.toUpperCase()) : null,
+      interval: interval,
+      primary_bars: primary.bars.length,
+      validation_bars: secondary ? secondary.bars.length : null,
+      first_bar_utc: todayUtc(firstBar),
+      last_bar_utc: todayUtc(lastBar),
+      fetched_at_utc: fetchedAt,
+      forming_candle_dropped: true,
+      primary_url: primary.url,
+      validation_url: secondary ? secondary.url : null,
+      validation_error: secondaryError || null,
+      requested_bars: limit
+    };
+    showTodayProvenance(provenance);
+    const series = [{
+      symbol: (venue === 'kraken' ? 'KRAKEN-' : 'BINANCE-') + (primary.symbol || symbol.toUpperCase()) + '@' + interval,
+      bars: primary.bars
+    }];
+    if (secondary) {
+      series.push({
+        symbol: (venue === 'kraken' ? 'KRAKEN-' : 'BINANCE-') + (secondary.symbol || symbol2.toUpperCase()) + '@' + interval,
+        bars: secondary.bars
+      });
+    }
+    status.textContent = 'Fetched ' + primary.bars.length + (secondary ? ' + ' + secondary.bars.length : '') +
+      ' completed bars. Running the diagnosis / remedy / validation loop with ' + costBps + ' bps costs…';
+    const payload = {
+      bars: primary.bars,
+      symbol: series[0].symbol,
+      second_bars: secondary ? secondary.bars : null,
+      second_symbol: secondary ? series[1].symbol : null,
+      horizons: [3, 5, 15],
+      attempts: 150,
+      cost_bps: costBps,
+      remember: true,
+      use_saved_lessons: true,
+      provenance: provenance,
+      source_label: provenance.venue + ' via browser — ' + provenance.primary_symbol +
+        (provenance.validation_symbol ? ' + ' + provenance.validation_symbol : '') +
+        ' ' + interval + ' completed bars, fetched ' + fetchedAt
+    };
+    const response = await fetch('/api/lab/self-correct', {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    scShowResult(data);
+    const sources = (data.sources || []).length;
+    verdict.textContent = 'TODAY · ' + provenance.venue + ' · ' + provenance.primary_symbol +
+      (provenance.validation_symbol ? ' + ' + provenance.validation_symbol : '') + ' · ' + interval +
+      ' · last completed bar ' + provenance.last_bar_utc + ' · verdict: ' + data.verdict +
+      ' · 80% goal established: ' + ((data.goal_80 || {}).goal_established) +
+      ' · lessons ' + (data.lessons || []).length + ' · retired ' + (data.retired_candidates || []).length +
+      ' · series ' + sources;
+    status.textContent = 'Done. ' + ((data.memory || {}).lessons_saved ? 'Saved ' + data.memory.lessons_saved +
+      ' lessons to the local failure memory.' : 'Lesson ledger not saved.') +
+      ' Historical measurement on completed bars only — not a prediction and not advice.';
+  } catch (e) {
+    status.textContent = 'Today-market test error (' + (venue === 'kraken' ? 'Kraken' : 'Binance') +
+      ' may be blocked by your region, browser extension or CORS): ' + e.message +
+      ' — you can still paste/upload a CSV of today\'s bars in the Market Lab and run card 5C on it.';
+  }
+}
+function pipelinePlanValues() {
+  const symbols = (document.getElementById('pl_symbols').value || '')
+    .split(',').map(function(x) { return x.trim(); }).filter(Boolean);
+  return {
+    venue: document.getElementById('pl_venue').value,
+    symbols: symbols,
+    interval: document.getElementById('pl_interval').value,
+    target_bars: parseInt(document.getElementById('pl_target').value || '3000', 10),
+    cost_bps: parseFloat(document.getElementById('pl_cost').value || '12')
+  };
+}
+function plStatus(text) { const el = document.getElementById('pl_status'); if (el) el.textContent = text; }
+function plRenderProgress(data) {
+  const box = document.getElementById('pl_progress');
+  if (!box) return;
+  box.textContent = '';
+  const best = data.best_pooled_candidate || {};
+  const accuracy = typeof best.accuracy_pct === 'number' ? best.accuracy_pct : 0;
+  const wrap = document.createElement('div');
+  wrap.style.background = '#0b1220';
+  wrap.style.border = '1px solid #334155';
+  wrap.style.borderRadius = '10px';
+  wrap.style.padding = '10px';
+  const label = document.createElement('p');
+  label.className = 'sub';
+  label.textContent = 'Best pooled candidate: ' +
+    (best.method ? best.method + ' @' + best.horizon_bars + ' bars' : 'none yet') +
+    ' · accuracy ' + (best.accuracy_pct ?? '—') + '% · Wilson ' +
+    (best.wilson_95_ci_pct ? '[' + best.wilson_95_ci_pct.join(', ') + ']' : '—') +
+    ' · attempts ' + (best.attempts ?? 0) +
+    ' · distance to 80%: ' + (data.distance_to_target_points ?? '—') + ' points';
+  wrap.appendChild(label);
+  const track = document.createElement('div');
+  track.style.height = '14px'; track.style.background = '#1e293b';
+  track.style.borderRadius = '999px'; track.style.overflow = 'hidden';
+  const fill = document.createElement('div');
+  fill.style.height = '100%';
+  fill.style.width = Math.max(2, Math.min(100, accuracy)) + '%';
+  fill.style.background = accuracy >= 80 ? '#22c55e' : accuracy >= 60 ? '#f59e0b' : '#ef4444';
+  track.appendChild(fill); wrap.appendChild(track);
+  const gates = document.createElement('p');
+  gates.className = 'warn';
+  gates.textContent = 'Gates passed: ' + data.gates_passed + '/' + data.gates_total +
+    ' · status ' + data.status + ' · goal established: ' + data.goal_established;
+  wrap.appendChild(gates);
+  const rows = [['Gate', 'Requirement', 'Measured', 'Passed']];
+  (data.checks || []).forEach(function(check) {
+    rows.push([check.gate, check.requirement, String(check.value), check.passed ? 'yes' : 'no']);
+  });
+  const table = document.createElement('table');
+  rows.forEach(function(cells, index) {
+    const tr = document.createElement('tr');
+    cells.forEach(function(text) {
+      if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+      else { const td = document.createElement('td'); td.textContent = text; tr.appendChild(td); }
+    });
+    table.appendChild(tr);
+  });
+  wrap.appendChild(table);
+  box.appendChild(wrap);
+}
+async function loadGoalProgress() {
+  try {
+    plStatus('Measuring pooled evidence across every stored series (tuning slices only)…');
+    const response = await fetch('/api/goal-progress?cost_bps=' +
+      encodeURIComponent(document.getElementById('pl_cost').value || '12'));
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    plRenderProgress(data);
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const details = document.createElement('details');
+    const sm = document.createElement('summary'); sm.textContent = 'Full goal-progress JSON'; details.appendChild(sm);
+    const pre = document.createElement('pre'); pre.textContent = JSON.stringify(data, null, 2); details.appendChild(pre);
+    out.appendChild(details);
+    plStatus('Evidence: ' + data.evidence.series_used + ' series · ' +
+      data.evidence.symbols.length + ' symbols · ' + data.evidence.distinct_days +
+      ' distinct days · holdout evaluations ' + data.evidence.holdout_evaluations + '.');
+  } catch (e) { plStatus('Goal progress error: ' + e.message); }
+}
+async function pipelineCollectServer() {
+  try {
+    const plan = pipelinePlanValues();
+    plStatus('Server is fetching ' + plan.symbols.join(', ') + ' from ' + plan.venue +
+      ' — it only contacts the allowlisted public hosts…');
+    const response = await fetch('/api/pipeline/collect', {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(plan)});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const rows = [['Stored symbol', 'New bars', 'Total bars', 'First bar', 'Last bar', 'Errors']];
+    (data.series || []).forEach(function(item) {
+      rows.push([item.symbol, item.inserted, item.stored_total, item.first_bar || '—',
+                 item.last_bar || '—', (item.errors || []).join('; ') || 'none']);
+    });
+    const table = document.createElement('table');
+    rows.forEach(function(cells, index) {
+      const tr = document.createElement('tr');
+      cells.forEach(function(text) {
+        if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+        else { const td = document.createElement('td'); td.textContent = String(text); tr.appendChild(td); }
+      });
+      table.appendChild(tr);
+    });
+    out.appendChild(table);
+    plStatus('Collected ' + data.inserted_total + ' new bars. ' +
+      (data.inserted_total ? 'Now grade them, then refresh goal progress.' :
+       'No new bars: your server may have no outbound network — use the browser collector.'));
+  } catch (e) { plStatus('Server collection error: ' + e.message); }
+}
+async function pipelineCollectBrowser() {
+  try {
+    const plan = pipelinePlanValues();
+    if (!plan.symbols.length) throw new Error('Add at least one symbol');
+    const fetcher = plan.venue === 'kraken' ? fetchKrakenToday : fetchBinanceToday;
+    const series = [];
+    for (const symbol of plan.symbols) {
+      plStatus('Fetching ' + symbol + ' ' + plan.interval + ' in your browser…');
+      try {
+        const page = await fetcher(symbol, plan.interval, 1000);
+        series.push({symbol: symbol.toUpperCase(), interval: plan.interval,
+                     bars: page.bars, endpoint: page.url,
+                     source_label: page.venue + ' via browser (allowlisted venue)'});
+      } catch (e) { plStatus('Skipped ' + symbol + ': ' + e.message); }
+    }
+    if (!series.length) throw new Error('No series could be fetched — venue blocked, or symbol unknown');
+    plStatus('Posting ' + series.length + ' fetched series to be stored in SQLite…');
+    const response = await fetch('/api/pipeline/import', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({venue: plan.venue, series: series,
+                            provenance: {venue: plan.venue, interval: plan.interval,
+                                         fetched_at_utc: new Date().toISOString(),
+                                         forming_candle_dropped: true,
+                                         symbols: series.map(function(x) { return x.symbol; })}})});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const rows = [['Stored symbol', 'Bars', 'First bar', 'Last bar']];
+    (data.series || []).forEach(function(item) {
+      rows.push([item.symbol, item.stored_total, item.first_bar || '—', item.last_bar || '—']);
+    });
+    const table = document.createElement('table');
+    rows.forEach(function(cells, index) {
+      const tr = document.createElement('tr');
+      cells.forEach(function(text) {
+        if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+        else { const td = document.createElement('td'); td.textContent = String(text); tr.appendChild(td); }
+      });
+      table.appendChild(tr);
+    });
+    out.appendChild(table);
+    plStatus('Stored ' + data.series.length + ' series. Now grade everything stored.');
+  } catch (e) { plStatus('Browser collection error: ' + e.message); }
+}
+async function runAutoResearch() {
+  try {
+    plStatus('Grading every stored series on its tuning slice (holdout untouched)…');
+    const plan = pipelinePlanValues();
+    const response = await fetch('/api/lab/auto-research', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({horizons: [3, 5, 15], attempts: 150, cost_bps: plan.cost_bps})});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    plRenderProgress(data);
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const rows = [['Method', 'Horizon', 'Attempts', 'Accuracy', 'Wilson low', 'Net @cost', 'Symbols']];
+    (data.pooled || []).forEach(function(row) {
+      rows.push([row.method, row.horizon_bars, row.attempts, row.accuracy_pct,
+                 (row.wilson_95_ci_pct || [])[0], row.mean_net_pct, row.series_count]);
+    });
+    if (rows.length > 1) {
+      const table = document.createElement('table');
+      rows.forEach(function(cells, index) {
+        const tr = document.createElement('tr');
+        cells.forEach(function(text) {
+          if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+          else { const td = document.createElement('td'); td.textContent = String(text); tr.appendChild(td); }
+        });
+        table.appendChild(tr);
+      });
+      out.appendChild(table);
+    }
+    plStatus('Graded ' + data.evidence.series_used + ' series. Top row is the selection maximum — read the Wilson interval, not the point estimate.');
+  } catch (e) { plStatus('Auto-research error: ' + e.message); }
+}
+async function runHoldout() {
+  try {
+    const symbol = (document.getElementById('pl_holdout_symbol').value || '').trim();
+    if (!symbol) throw new Error('Enter a stored symbol');
+    plStatus('Reading the reserved holdout for ' + symbol + ' (this read is recorded)…');
+    const response = await fetch('/api/lab/holdout', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({symbol: symbol, horizons: [3, 5, 15],
+                            cost_bps: parseFloat(document.getElementById('pl_cost').value || '12')})});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    const out = document.getElementById('pl_out');
+    out.textContent = '';
+    const rows = [['Method', 'Horizon', 'Attempts', 'Accuracy', 'Wilson low', 'Net']];
+    (data.rows || []).forEach(function(row) {
+      rows.push([row.method, row.horizon_bars, row.attempts_made, row.direction_accuracy_pct,
+                 (row.wilson_95_ci_pct || [])[0], row.mean_net_pct]);
+    });
+    const table = document.createElement('table');
+    rows.forEach(function(cells, index) {
+      const tr = document.createElement('tr');
+      cells.forEach(function(text) {
+        if (index === 0) { const th = document.createElement('th'); th.textContent = text; tr.appendChild(th); }
+        else { const td = document.createElement('td'); td.textContent = String(text); tr.appendChild(td); }
+      });
+      table.appendChild(tr);
+    });
+    out.appendChild(table);
+    plStatus('Holdout: ' + data.holdout_bars + ' reserved bars (' + data.holdout_first_bar +
+      ' → ' + data.holdout_last_bar + '). Reads so far: ' + data.holdout_uses_total +
+      '. Repeating this turns the holdout into tuning data.');
+  } catch (e) { plStatus('Holdout error: ' + e.message); }
+}
+async function clearLessons() {
+  const status = document.getElementById('sc_status');
+  if (!confirm('Delete every stored lesson? They record measured failures, not signals. Clear only with genuinely new data or methods.')) return;
+  try {
+    const response = await fetch('/api/lessons/clear', {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({})});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    status.textContent = 'Cleared ' + data.cleared + ' stored lesson(s).';
+  } catch (e) { status.textContent = 'Clear error: ' + e.message; }
+}
+async function analyzeForecast(input) {
+  const status = document.getElementById('fc_status');
+  const out = document.getElementById('fc_out');
+  const verdictEl = document.getElementById('fc_verdict');
+  try {
+    let payload;
+    if (input && input.files && input.files.length) {
+      const file = input.files[0];
+      const text = await file.text();
+      payload = {source_label: 'browser file upload (Forecast Lab): ' + file.name,
+        attempts: parseInt(document.getElementById('fc_attempts').value || '100', 10),
+        horizon: parseInt(document.getElementById('fc_horizon').value || '5', 10)};
+      try {
+        const parsed = JSON.parse(text);
+        payload.bars = Array.isArray(parsed) ? parsed : (parsed.bars || parsed.data || parsed.candles || parsed);
+      } catch (e) { payload.csv_text = text; }
+    } else {
+      const basePayload = currentLabPayload || payloadFromText(
+        document.getElementById('lab_data').value, 'pasted data (Forecast Lab)');
+      payload = Object.assign({}, basePayload, {
+        attempts: parseInt(document.getElementById('fc_attempts').value || '100', 10),
+        horizon: parseInt(document.getElementById('fc_horizon').value || '5', 10)});
+      if (!payload.source_label) payload.source_label = 'currently analyzed data (Forecast Lab)';
+    }
+    status.textContent = 'Hiding the future and testing the requested analog forecasts out-of-sample…';
+    const response = await fetch('/api/lab/forecast', {
+      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || ('HTTP ' + response.status));
+    out.textContent = '';
+    const rows = ((data.analog_now || {}).horizons || []).map(function(h) {
+      return ['+' + h.horizon_bars + ' bars', String(h.n), (h.median_pct ?? '—') + '%',
+              (h.p25_pct ?? '—') + '%', (h.p75_pct ?? '—') + '%', (h.share_up_pct ?? '—') + '%'];
+    });
+    const table = document.createElement('table');
+    const header = document.createElement('tr');
+    ['Horizon', 'Analogs', 'Median then', '25th pct then', '75th pct then', 'Were up then'].forEach(function(txt) {
+      const th = document.createElement('th'); th.textContent = txt; header.appendChild(th);
+    });
+    table.appendChild(header);
+    rows.forEach(function(cols) {
+      const tr = document.createElement('tr');
+      cols.forEach(function(v) { const td = document.createElement('td'); td.textContent = v; tr.appendChild(td); });
+      table.appendChild(tr);
+    });
+    out.appendChild(table);
+    const ev = data.rolling_eval || {};
+    if (ev.error) { verdictEl.textContent = 'Rolling evaluation: ' + ev.error; }
+    else {
+      let txt = 'Out-of-sample test (' + ev.attempts_made + ' hidden-future attempts, horizon ' +
+        ev.horizon_bars + ' bars): analog direction ' + ev.analog_direction_accuracy_pct + '% vs always-up ' +
+        ev.baseline_always_up_pct + '%, naive momentum ' + ev.baseline_momentum_5bar_pct + '%, mean-reversion ' +
+        ev.baseline_mean_reversion_5bar_pct + '% · Brier skill ' + ev.brier_skill_vs_climatology +
+        ' → verdict: ' + ev.verdict + '. A forecaster that cannot beat these baselines on your own data is a coin with paperwork — believe the verdict, not the medians above.';
+      const mh = (data.multi_horizon_eval || []).filter(function(r) { return !r.error; });
+      if (mh.length) {
+        txt += ' Multi-horizon analog accuracy: ' + mh.map(function(r) {
+          return '+' + r.horizon_bars + ' bars ' + r.analog_direction_accuracy_pct + '% (always-up ' + r.baseline_always_up_pct + '%)';
+        }).join(' · ') + '.';
+      }
+      const rg = ev.regimes || {};
+      const rgParts = Object.keys(rg).map(function(k) {
+        return k + ' ' + rg[k].analog_accuracy_pct + '% vs always-up ' + rg[k].always_up_pct + '% (n=' + rg[k].attempts + ')';
+      });
+      if (rgParts.length) txt += ' By regime: ' + rgParts.join(' · ') + '.';
+      const ens = data.ensemble_eval || {};
+      if (!ens.error && ens.direction_accuracy_pct) {
+        const acc = ens.direction_accuracy_pct;
+        txt += ' Ensemble race (same blind test): ' + Object.keys(acc).filter(function(k) { return acc[k] !== null; }).map(function(k) {
+          return k + ' ' + acc[k] + '%';
+        }).join(' · ') + ' — agreement filter covers only ' + ens.agreement_coverage_pct + '% of attempts, and the best of several variants on one sample is a hypothesis, not an edge.';
+        const c10 = (ens.cost_analysis || [])[0];
+        if (c10 && c10.majority_vote && c10.always_up_long) {
+          txt += ' After ' + c10.round_trip_cost_bps + ' bps costs: majority vote nets ' + c10.majority_vote.mean_net_pct_per_trade + '%/trade (win ' + c10.majority_vote.win_rate_after_cost_pct + '%) vs always-long ' + c10.always_up_long.mean_net_pct_per_trade + '%/trade.';
+        }
+        if (c10 && c10.majority_vote_v3) {
+          txt += ' v8 majority_vote_v3 nets ' + c10.majority_vote_v3.mean_net_pct_per_trade + '%/trade after the same costs';
+          if (c10.consensus_3plus) txt += '; consensus_3plus nets ' + c10.consensus_3plus.mean_net_pct_per_trade + '%/trade but covers only ' + ens.consensus_3plus_coverage_pct + '% of attempts';
+          txt += '.';
+        }
+        if (c10 && c10.multiscale_trend) {
+          txt += ' v10 multiscale_trend nets ' + c10.multiscale_trend.mean_net_pct_per_trade + '%/trade after the same costs';
+          if (c10.cycle_flow_analog_median) txt += ' (cycle/flow median ' + c10.cycle_flow_analog_median.mean_net_pct_per_trade + '%/trade; majority_vote_v5 ' + c10.majority_vote_v5.mean_net_pct_per_trade + '%/trade)';
+          const mt = ((data.multiscale_trend_eval || {}).horizons || []).filter(function(r) { return !r.error; });
+          if (mt.length) txt += '; multiscale by horizon: ' + mt.map(function(r) { return '+' + r.horizon_bars + ' bars ' + r.multiscale_direction_accuracy_pct + '% vs momentum ' + r.baseline_momentum_5bar_pct + '%'; }).join(' · ');
+          const conf = (((ens.multiscale_confidence_coverage || {}).thresholds || []).find(function(r) { return r.absolute_score_at_least === 0.5; }) || {});
+          if (conf.attempts) txt += '; |score|≥0.5 selective row: ' + conf.direction_accuracy_pct + '% on ' + conf.attempts + ' attempts (' + conf.coverage_pct + '% coverage — diagnostic only, never the headline)';
+          txt += '.';
+        }
+        if (c10 && c10.kalman_trend) {
+          txt += ' v11 Kalman nets ' + c10.kalman_trend.mean_net_pct_per_trade + '%/trade and Omni direct consensus nets ' + c10.omni_direct_consensus.mean_net_pct_per_trade + '%/trade after the same costs';
+          if (c10.rank_fusion_analog_median) txt += ' (rank-fusion median ' + c10.rank_fusion_analog_median.mean_net_pct_per_trade + '%/trade; majority_vote_v6 ' + c10.majority_vote_v6.mean_net_pct_per_trade + '%/trade)';
+          const direct = ((data.direct_method_eval || {}).horizons || []).filter(function(r) { return !r.error; });
+          if (direct.length) txt += '; v11 direct by horizon: ' + direct.map(function(r) {
+            return '+' + r.horizon_bars + ' Kalman ' + r.methods.kalman_trend.direction_accuracy_pct + '% / Omni ' + r.methods.omni_direct_consensus.direction_accuracy_pct + '%';
+          }).join(' · ');
+          txt += '. More correlated methods do not create a guaranteed lift.';
+        }
+        if (c10 && c10.hull_trend) {
+          txt += ' v12 Hull nets ' + c10.hull_trend.mean_net_pct_per_trade + '%/trade, Markov regime ' + c10.markov_regime.mean_net_pct_per_trade + '%/trade and Atlas Fusion ' + c10.atlas_fusion_v12.mean_net_pct_per_trade + '%/trade after the same costs. A larger method zoo also creates more chances to overfit; no 80% universal rate is claimed.';
+        }
+        if (c10 && c10.ultimate_trend && c10.atlas_pressure_wave && c10.atlas_phoenix_fusion) {
+          txt += ' v13 after the same costs: Ultimate ' + c10.ultimate_trend.mean_net_pct_per_trade + '%/trade, Atlas Pressure Wave ' + c10.atlas_pressure_wave.mean_net_pct_per_trade + '%/trade, Regime Compass ' + c10.atlas_regime_compass.mean_net_pct_per_trade + '%/trade, Phoenix ' + c10.atlas_phoenix_fusion.mean_net_pct_per_trade + '%/trade, Meta Hedge ' + c10.atlas_meta_hedge.mean_net_pct_per_trade + '%/trade, Online Logistic ' + c10.atlas_online_logistic.mean_net_pct_per_trade + '%/trade. Delayed-label learning is causal, but correlated features and one-sample fitting still do not create an 80% guarantee.';
+        }
+        if (c10 && c10.adaptive_selector) {
+          txt += ' v9 adaptive_selector nets ' + c10.adaptive_selector.mean_net_pct_per_trade + '%/trade after the same costs';
+          if (c10.path_analog_median) txt += ' (path-geometry median ' + c10.path_analog_median.mean_net_pct_per_trade + '%/trade; majority_vote_v4 ' + c10.majority_vote_v4.mean_net_pct_per_trade + '%/trade)';
+          if (ens.adaptive_selector) txt += '; selector used its fallback on ' + ens.adaptive_selector.fallback_attempts + ' early attempts and learned only from fully revealed windows';
+          txt += '.';
+        }
+      }
+      const sim = data.path_simulation || {};
+      if (!sim.error && sim.terminal_return_pct) {
+        const t = sim.terminal_return_pct, dd = sim.max_drawdown_pct || {};
+        txt += ' Analog path simulation (' + sim.simulated_paths + ' bootstrapped real look-alike paths over ' +
+          sim.horizon_bars + ' bars): terminal p5 ' + t.p5 + '%, median ' + t.p50_median + '%, p95 ' + t.p95 +
+          '%; median worst dip ' + dd.p50_median + '%, p95 dip ' + dd.p95 + '%. That is historical dispersion, not a price promise.';
+      }
+      verdictEl.textContent = txt;
+    }
+    const details = document.createElement('details');
+    const sm = document.createElement('summary'); sm.textContent = 'Full Forecast Lab JSON'; details.appendChild(sm);
+    const pre = document.createElement('pre'); pre.textContent = JSON.stringify(data, null, 2); details.appendChild(pre);
+    out.appendChild(details);
+    status.textContent = 'Done — ' + data.bars + ' bars. History, not prophecy: past analog outcomes never guarantee future prices.';
+  } catch (e) { status.textContent = 'Forecast Lab error: ' + e.message; }
+}
+loadGoals();
+loadPaperWallet();
+loadBot();
+loadDb();
+if (new URLSearchParams(location.search).get('today') === '1') {
+  // explicit opt-in: https://<preview>/?today=1 fetches today's public bars in
+  // the browser and runs the failure loop immediately.
+  setTimeout(function() { if (document.getElementById('today_status')) runTodayMarketTest(); }, 900);
+}
+</script></body></html>

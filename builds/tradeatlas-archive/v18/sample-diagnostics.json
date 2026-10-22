@@ -1,0 +1,96 @@
+{
+ "mode": "diagnostics_sample",
+ "explanation": {
+  "cause": "baseline_not_beaten",
+  "title_ar": "خط الأساس فاز",
+  "explanation_ar": "خط الأساس الساذج جيد على الأقل. إذا فازت العملة الثابتة/الزخم، الطريقة لا تضيف شيئاً هنا.",
+  "explanation_en": "Naive baseline matched or won.",
+  "evidence": "55% vs momentum 58% - 3 pts margin",
+  "remedy_confidence": 0.05,
+  "is_fixable": false,
+  "is_fatal": true,
+  "next_test_avoid_rule": "تقاعد؛ خط الأساس هو المرجع.",
+  "estimated_fix_success_pct": 5.0
+ },
+ "batch": {
+  "total_evaluations": 1,
+  "total_causes": 3,
+  "unique_causes": 3,
+  "most_common": [
+   {
+    "cause": "single_symbol_only",
+    "count": 1,
+    "explanation": {
+     "cause": "single_symbol_only",
+     "title_ar": "رمز واحد فقط",
+     "explanation_ar": "رمز واحد فقط تم توفيره - دراسة حالة، ليست قانوناً للسوق.",
+     "explanation_en": "Only one symbol supplied.",
+     "evidence": "",
+     "remedy_confidence": 0.8,
+     "is_fixable": true,
+     "is_fatal": false,
+     "next_test_avoid_rule": "رمز ثانٍ مطلوب.",
+     "estimated_fix_success_pct": 80.0
+    }
+   },
+   {
+    "cause": "sample_contamination",
+    "count": 1,
+    "explanation": {
+     "cause": "sample_contamination",
+     "title_ar": "تلوث العينة",
+     "explanation_ar": "تلوث العينة - نوافذ متداخلة تسرب المستقبل إلى الماضي.",
+     "explanation_en": "Overlapping windows leak future.",
+     "evidence": "",
+     "remedy_confidence": 0.7,
+     "is_fixable": true,
+     "is_fatal": false,
+     "next_test_avoid_rule": "زيادة الفصل بين النوافذ.",
+     "estimated_fix_success_pct": 70.0
+    }
+   },
+   {
+    "cause": "below_accuracy_target",
+    "count": 1,
+    "explanation": {
+     "cause": "below_accuracy_target",
+     "title_ar": "تحت هدف 80%",
+     "explanation_ar": "تحت هدف 80% للمشروع. المسافة صادقة وليست مقبضاً لضبطه.",
+     "explanation_en": "Below 80% target; honest gap, not a knob to tune.",
+     "evidence": "",
+     "remedy_confidence": 0.0,
+     "is_fixable": false,
+     "is_fatal": true,
+     "next_test_avoid_rule": "حافظ على الفجوة مرئية - الهدف ليس مقبضاً.",
+     "estimated_fix_success_pct": 0.0
+    }
+   }
+  ],
+  "cause_distribution": {
+   "single_symbol_only": 1,
+   "sample_contamination": 1,
+   "below_accuracy_target": 1
+  },
+  "primary_failure_mode": "single_symbol_only",
+  "is_systematic": false,
+  "recommendation": "النمط السائد هو single_symbol_only - طبّق العلاج الموثق له قبل الجولة التالية."
+ },
+ "spec": {
+  "name": "Atlas Deep Diagnostics",
+  "version": "17.0",
+  "capabilities": [
+   "explain_failure_ar_en",
+   "quantitative_context",
+   "remedy_confidence_scoring",
+   "batch_diagnosis",
+   "remedy_verification",
+   "arabic_first_explanations"
+  ],
+  "languages": [
+   "ar",
+   "en"
+  ],
+  "honesty": "Diagnostics explain process failures, not market predictions. Confidence scores are about remedy applicability, not future profits."
+ },
+ "explanations_count": 35
+}

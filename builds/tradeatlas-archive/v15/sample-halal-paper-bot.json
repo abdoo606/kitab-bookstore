@@ -1,0 +1,1028 @@
+{
+ "mode": "halal_paper_bot_only",
+ "source": "deterministic SYNTHETIC bars and an INVENTED company profile — software arithmetic only",
+ "registration": {
+  "registration": {
+   "symbol": "TEST",
+   "status": "pass",
+   "can_bot_open_paper_position": true,
+   "preset": "strict",
+   "thresholds": {
+    "interest_bearing_debt_max_pct": 30.0,
+    "interest_bearing_cash_securities_max_pct": 30.0,
+    "receivables_max_pct": 30.0,
+    "non_compliant_income_max_pct": 5.0
+   },
+   "ratios": {
+    "interest_bearing_debt_pct_of_market_cap": 10.0,
+    "interest_bearing_cash_securities_pct_of_market_cap": 5.0,
+    "receivables_pct_of_market_cap": 20.0,
+    "non_compliant_income_pct_of_revenue": 1.0
+   },
+   "failures": [],
+   "needs_review_reasons": [],
+   "estimated_dividend_purification_per_share": null,
+   "purification_note": "Simple dividend × non-compliant-income-ratio estimate only; purification rules differ by standard.",
+   "profile": {
+    "symbol": "TEST",
+    "company_name": "SYNTHETIC test company (not real)",
+    "asset_type": "stock",
+    "sector": "synthetic",
+    "core_business_prohibited": false,
+    "activities_reviewed": true,
+    "prohibited_activities": [],
+    "interest_bearing_debt_pct_of_market_cap": 10.0,
+    "interest_bearing_cash_securities_pct_of_market_cap": 5.0,
+    "receivables_pct_of_market_cap": 20.0,
+    "non_compliant_income_pct_of_revenue": 1.0,
+    "dividend_per_share": null,
+    "source_note": "INVENTED unit-test figures — not a real company and not a screen of any listed stock",
+    "financials_as_of": "synthetic",
+    "review_expires_at": ""
+   },
+   "certification": false,
+   "warning": "Software screen on user-supplied figures, not a fatwa or halal certification."
+  },
+  "bot": {
+   "mode": "halal_paper_bot_only",
+   "status": "stopped",
+   "halal_only": true,
+   "allowed_asset_types": [
+    "stock",
+    "crypto",
+    "currency",
+    "commodity",
+    "etf",
+    "fund"
+   ],
+   "screen_preset": "strict",
+   "settings": {
+    "mode_profile": "minute_scalping_paper",
+    "strategy": "atlas_minute_pulse",
+    "timeframe": "1m",
+    "allocation_pct": 5.0,
+    "max_positions": 3,
+    "risk_per_trade_pct": 0.5,
+    "atr_stop_multiple": 1.5,
+    "take_profit_r_multiple": 1.5,
+    "trailing_stop_atr_multiple": 1.5,
+    "fee_bps": 10.0,
+    "slippage_bps": 5.0,
+    "max_daily_loss_pct": 2.0,
+    "max_equity_drawdown_pct": 6.0,
+    "max_trades_per_day": 20,
+    "max_holding_bars": 30,
+    "cooldown_bars": 3,
+    "min_atr_pct": 0.02,
+    "manual_confirmation_required": true,
+    "live_execution_enabled": false,
+    "allow_short": false
+   },
+   "wallet": {
+    "mode": "paper_simulation_only",
+    "currency": "PAPER_USD",
+    "cash": 10000.0,
+    "positions": [],
+    "paper_asset_balances": [],
+    "paper_asset_balances_value": 0.0,
+    "external_account_mirror": {
+     "venue_label": "",
+     "balances": [],
+     "reported_total_usd_value": 0.0,
+     "custody": "user_own_external_account",
+     "tradeatlas_can_access": false,
+     "verified_by_tradeatlas": false,
+     "included_in_paper_equity": false,
+     "deposit_address": null,
+     "funding_instruction": "If you choose to fund an account, use only the official deposit screen inside your own licensed exchange/broker account. TradeAtlas does not provide or verify a deposit address."
+    },
+    "positions_market_value": 0.0,
+    "equity": 10000.0,
+    "realized_pnl": 0.0,
+    "unrealized_pnl": 0.0,
+    "total_fees": 0.0,
+    "simulated_conversion_total_paper_usd": 0.0,
+    "simulated_withdrawal_total_paper_usd_equivalent": 0.0,
+    "following": false,
+    "halted": true,
+    "settings": {
+     "allocation_pct": 10.0,
+     "max_allocation_pct": 25.0,
+     "fee_bps": 10.0,
+     "spot_long_only": true,
+     "leverage": "none"
+    },
+    "ledger": [
+     {
+      "seq": 1,
+      "kind": "initial_paper_capital",
+      "amount": 10000.0,
+      "note": "Imaginary teaching balance; no deposit occurred."
+     }
+    ],
+    "follow_log": [],
+    "real_money": false,
+    "accepts_real_crypto": false,
+    "deposit_address": null,
+    "broker_or_exchange_execution": false,
+    "warning": "Never send cryptocurrency or money to TradeAtlas. It has no deposit address and cannot convert or trade real assets."
+   },
+   "registry": {
+    "TEST": {
+     "profile": {
+      "symbol": "TEST",
+      "company_name": "SYNTHETIC test company (not real)",
+      "asset_type": "stock",
+      "sector": "synthetic",
+      "core_business_prohibited": false,
+      "activities_reviewed": true,
+      "prohibited_activities": [],
+      "interest_bearing_debt_pct_of_market_cap": 10.0,
+      "interest_bearing_cash_securities_pct_of_market_cap": 5.0,
+      "receivables_pct_of_market_cap": 20.0,
+      "non_compliant_income_pct_of_revenue": 1.0,
+      "dividend_per_share": null,
+      "source_note": "INVENTED unit-test figures — not a real company and not a screen of any listed stock",
+      "financials_as_of": "synthetic",
+      "review_expires_at": ""
+     },
+     "screen": {
+      "symbol": "TEST",
+      "status": "pass",
+      "can_bot_open_paper_position": true,
+      "preset": "strict",
+      "thresholds": {
+       "interest_bearing_debt_max_pct": 30.0,
+       "interest_bearing_cash_securities_max_pct": 30.0,
+       "receivables_max_pct": 30.0,
+       "non_compliant_income_max_pct": 5.0
+      },
+      "ratios": {
+       "interest_bearing_debt_pct_of_market_cap": 10.0,
+       "interest_bearing_cash_securities_pct_of_market_cap": 5.0,
+       "receivables_pct_of_market_cap": 20.0,
+       "non_compliant_income_pct_of_revenue": 1.0
+      },
+      "failures": [],
+      "needs_review_reasons": [],
+      "estimated_dividend_purification_per_share": null,
+      "purification_note": "Simple dividend × non-compliant-income-ratio estimate only; purification rules differ by standard.",
+      "profile": {
+       "symbol": "TEST",
+       "company_name": "SYNTHETIC test company (not real)",
+       "asset_type": "stock",
+       "sector": "synthetic",
+       "core_business_prohibited": false,
+       "activities_reviewed": true,
+       "prohibited_activities": [],
+       "interest_bearing_debt_pct_of_market_cap": 10.0,
+       "interest_bearing_cash_securities_pct_of_market_cap": 5.0,
+       "receivables_pct_of_market_cap": 20.0,
+       "non_compliant_income_pct_of_revenue": 1.0,
+       "dividend_per_share": null,
+       "source_note": "INVENTED unit-test figures — not a real company and not a screen of any listed stock",
+       "financials_as_of": "synthetic",
+       "review_expires_at": ""
+      },
+      "certification": false,
+      "warning": "Software screen on user-supplied figures, not a fatwa or halal certification."
+     }
+    }
+   },
+   "position_meta": [],
+   "decision_log": [],
+   "manual_tickets": [],
+   "execution_mode": "paper_plus_manual_external_tickets",
+   "live_execution_enabled": false,
+   "entries_today": 0,
+   "cooldown_until": {},
+   "cycle_count": 0,
+   "goal_status": {
+    "minute_focus": "v14_default_profile",
+    "accuracy_target_pct": 80.0,
+    "accuracy_goal_established": false
+   },
+   "risk": {
+    "equity": 10000.0,
+    "equity_peak": 10000.0,
+    "drawdown_from_peak_pct": 0.0,
+    "day_start_equity": 10000.0,
+    "day_change_pct": 0.0,
+    "day_key": null
+   },
+   "real_money": false,
+   "accepts_real_money_or_crypto": false,
+   "deposit_address": null,
+   "broker_or_exchange_execution": false,
+   "warning": "Paper bot only. A screen pass is not a fatwa/certification, and no real order can be sent."
+  }
+ },
+ "step": {
+  "mode": "halal_paper_bot_only",
+  "cycle": 1,
+  "status": "running",
+  "decisions": [
+   {
+    "symbol": "TEST",
+    "timeframe": "1m",
+    "strategy": "atlas_minute_pulse",
+    "latest_bar_time": "2026-01-01T00:00:00Z",
+    "latest_close": 110.126982,
+    "halal_screen_status": "pass",
+    "asset_type": "stock",
+    "latest_signal": {
+     "condition": "long_condition",
+     "fresh": true,
+     "bias": "bullish_bias",
+     "bias_score": 2,
+     "last_event": {
+      "index": 2497,
+      "timestamp": 1767225480,
+      "time_utc": "2025-12-31T23:58:00Z",
+      "direction": 1,
+      "condition": "long_condition",
+      "close": 109.961725,
+      "reason": "Atlas Minute Pulse (TradeAtlas v14) crossed above +0.25"
+     },
+     "bars_since_last_event": 2,
+     "message": "A mechanical long_condition fired 2 bar(s) ago: Atlas Minute Pulse (TradeAtlas v14) crossed above +0.25."
+    },
+    "snapshot_atr14": 0.135329,
+    "mode_profile": "minute_scalping_paper",
+    "slippage_bps": 5.0,
+    "entries_today_before_decision": 0,
+    "action": "simulated_buy",
+    "real_order_sent": false,
+    "atr_pct_of_price": 0.122885,
+    "order": {
+     "seq": 2,
+     "kind": "simulated_spot_order",
+     "symbol": "TEST",
+     "side": "buy",
+     "quantity": 4.5379444334,
+     "price": 110.182045491,
+     "gross": 500.0,
+     "fee": 0.5,
+     "fee_bps": 10.0,
+     "realized_pnl": 0.0,
+     "timestamp": 1767225600,
+     "execution": "paper_only_no_broker"
+    },
+    "simulated_execution_price": 110.18204549,
+    "manual_execution_ticket": {
+     "ticket_type": "manual_external_execution_checklist",
+     "status": "not_sent_requires_user_manual_confirmation_in_own_account",
+     "venue": "YOUR_OWN_LICENSED_EXCHANGE_OR_BROKER_ONLY",
+     "funding_assets_supported_by_workflow": [
+      "USDT",
+      "BTC",
+      "USD"
+     ],
+     "funding_location": "user's own external account; never TradeAtlas",
+     "symbol": "TEST",
+     "side": "buy_spot_long_only",
+     "quantity": 4.5379444334,
+     "reference_price": 110.18204549,
+     "reference_notional_usd": 500.0,
+     "timeframe": "1m",
+     "strategy": "atlas_minute_pulse",
+     "stop_loss_reference": 109.97905199,
+     "take_profit_reference": 110.48653574,
+     "reason_from_paper_bot": "Atlas Minute Pulse (TradeAtlas v14) crossed above +0.25",
+     "checks_before_any_manual_action": [
+      "Confirm the exact symbol, spot form, network/venue and current halal evidence yourself.",
+      "Check live spread, fees, minimum order, liquidity and whether the reference price is still available.",
+      "Confirm USDT/BTC is already in your own licensed account; do not send anything to TradeAtlas.",
+      "Decide independently; this checklist is not financial advice.",
+      "Place any order manually only in your own account, then record the actual fill and fees outside the paper result."
+     ],
+     "real_order_sent": false,
+     "api_key_accepted": false,
+     "deposit_address": null,
+     "broker_or_exchange_execution": false
+    },
+    "position_meta": {
+     "entry_price": 110.18204549,
+     "reference_close": 110.126982,
+     "entry_time": "2026-01-01T00:00:00Z",
+     "entry_timestamp": 1767225600,
+     "quantity_at_entry": 4.5379444334,
+     "stop_loss": 109.97905199,
+     "take_profit": 110.48653574,
+     "trailing_high": 110.132091,
+     "atr_at_entry": 0.135329,
+     "halal_screen_status_at_entry": "pass"
+    }
+   }
+  ],
+  "errors": {},
+  "bot": {
+   "mode": "halal_paper_bot_only",
+   "status": "running",
+   "halal_only": true,
+   "allowed_asset_types": [
+    "stock",
+    "crypto",
+    "currency",
+    "commodity",
+    "etf",
+    "fund"
+   ],
+   "screen_preset": "strict",
+   "settings": {
+    "mode_profile": "minute_scalping_paper",
+    "strategy": "atlas_minute_pulse",
+    "timeframe": "1m",
+    "allocation_pct": 5.0,
+    "max_positions": 3,
+    "risk_per_trade_pct": 0.5,
+    "atr_stop_multiple": 1.5,
+    "take_profit_r_multiple": 1.5,
+    "trailing_stop_atr_multiple": 1.5,
+    "fee_bps": 10.0,
+    "slippage_bps": 5.0,
+    "max_daily_loss_pct": 2.0,
+    "max_equity_drawdown_pct": 6.0,
+    "max_trades_per_day": 20,
+    "max_holding_bars": 30,
+    "cooldown_bars": 3,
+    "min_atr_pct": 0.02,
+    "manual_confirmation_required": true,
+    "live_execution_enabled": false,
+    "allow_short": false
+   },
+   "wallet": {
+    "mode": "paper_simulation_only",
+    "currency": "PAPER_USD",
+    "cash": 9499.5,
+    "positions": [
+     {
+      "symbol": "TEST",
+      "quantity": 4.5379444334,
+      "average_cost": 110.29222754,
+      "cost_basis": 500.5,
+      "mark_price": 110.126982,
+      "market_value": 499.7501,
+      "unrealized_pnl": -0.7499,
+      "price_is_supplied_mark": true
+     }
+    ],
+    "paper_asset_balances": [],
+    "paper_asset_balances_value": 0.0,
+    "external_account_mirror": {
+     "venue_label": "",
+     "balances": [],
+     "reported_total_usd_value": 0.0,
+     "custody": "user_own_external_account",
+     "tradeatlas_can_access": false,
+     "verified_by_tradeatlas": false,
+     "included_in_paper_equity": false,
+     "deposit_address": null,
+     "funding_instruction": "If you choose to fund an account, use only the official deposit screen inside your own licensed exchange/broker account. TradeAtlas does not provide or verify a deposit address."
+    },
+    "positions_market_value": 499.7501,
+    "equity": 9999.2501,
+    "realized_pnl": 0.0,
+    "unrealized_pnl": -0.7499,
+    "total_fees": 0.5,
+    "simulated_conversion_total_paper_usd": 0.0,
+    "simulated_withdrawal_total_paper_usd_equivalent": 0.0,
+    "following": true,
+    "halted": false,
+    "settings": {
+     "allocation_pct": 10.0,
+     "max_allocation_pct": 25.0,
+     "fee_bps": 10.0,
+     "spot_long_only": true,
+     "leverage": "none"
+    },
+    "ledger": [
+     {
+      "seq": 1,
+      "kind": "initial_paper_capital",
+      "amount": 10000.0,
+      "note": "Imaginary teaching balance; no deposit occurred."
+     },
+     {
+      "seq": 2,
+      "kind": "simulated_spot_order",
+      "symbol": "TEST",
+      "side": "buy",
+      "quantity": 4.5379444334,
+      "price": 110.182045491,
+      "gross": 500.0,
+      "fee": 0.5,
+      "fee_bps": 10.0,
+      "realized_pnl": 0.0,
+      "timestamp": 1767225600,
+      "execution": "paper_only_no_broker"
+     }
+    ],
+    "follow_log": [],
+    "real_money": false,
+    "accepts_real_crypto": false,
+    "deposit_address": null,
+    "broker_or_exchange_execution": false,
+    "warning": "Never send cryptocurrency or money to TradeAtlas. It has no deposit address and cannot convert or trade real assets."
+   },
+   "registry": {
+    "TEST": {
+     "profile": {
+      "symbol": "TEST",
+      "company_name": "SYNTHETIC test company (not real)",
+      "asset_type": "stock",
+      "sector": "synthetic",
+      "core_business_prohibited": false,
+      "activities_reviewed": true,
+      "prohibited_activities": [],
+      "interest_bearing_debt_pct_of_market_cap": 10.0,
+      "interest_bearing_cash_securities_pct_of_market_cap": 5.0,
+      "receivables_pct_of_market_cap": 20.0,
+      "non_compliant_income_pct_of_revenue": 1.0,
+      "dividend_per_share": null,
+      "source_note": "INVENTED unit-test figures — not a real company and not a screen of any listed stock",
+      "financials_as_of": "synthetic",
+      "review_expires_at": ""
+     },
+     "screen": {
+      "symbol": "TEST",
+      "status": "pass",
+      "can_bot_open_paper_position": true,
+      "preset": "strict",
+      "thresholds": {
+       "interest_bearing_debt_max_pct": 30.0,
+       "interest_bearing_cash_securities_max_pct": 30.0,
+       "receivables_max_pct": 30.0,
+       "non_compliant_income_max_pct": 5.0
+      },
+      "ratios": {
+       "interest_bearing_debt_pct_of_market_cap": 10.0,
+       "interest_bearing_cash_securities_pct_of_market_cap": 5.0,
+       "receivables_pct_of_market_cap": 20.0,
+       "non_compliant_income_pct_of_revenue": 1.0
+      },
+      "failures": [],
+      "needs_review_reasons": [],
+      "estimated_dividend_purification_per_share": null,
+      "purification_note": "Simple dividend × non-compliant-income-ratio estimate only; purification rules differ by standard.",
+      "profile": {
+       "symbol": "TEST",
+       "company_name": "SYNTHETIC test company (not real)",
+       "asset_type": "stock",
+       "sector": "synthetic",
+       "core_business_prohibited": false,
+       "activities_reviewed": true,
+       "prohibited_activities": [],
+       "interest_bearing_debt_pct_of_market_cap": 10.0,
+       "interest_bearing_cash_securities_pct_of_market_cap": 5.0,
+       "receivables_pct_of_market_cap": 20.0,
+       "non_compliant_income_pct_of_revenue": 1.0,
+       "dividend_per_share": null,
+       "source_note": "INVENTED unit-test figures — not a real company and not a screen of any listed stock",
+       "financials_as_of": "synthetic",
+       "review_expires_at": ""
+      },
+      "certification": false,
+      "warning": "Software screen on user-supplied figures, not a fatwa or halal certification."
+     }
+    }
+   },
+   "position_meta": [
+    {
+     "symbol": "TEST",
+     "entry_price": 110.18204549,
+     "reference_close": 110.126982,
+     "entry_time": "2026-01-01T00:00:00Z",
+     "entry_timestamp": 1767225600,
+     "quantity_at_entry": 4.5379444334,
+     "stop_loss": 109.97905199,
+     "take_profit": 110.48653574,
+     "trailing_high": 110.132091,
+     "atr_at_entry": 0.135329,
+     "halal_screen_status_at_entry": "pass",
+     "wallet_position": {
+      "symbol": "TEST",
+      "quantity": 4.5379444334,
+      "average_cost": 110.29222754,
+      "cost_basis": 500.5,
+      "mark_price": 110.126982,
+      "market_value": 499.7501,
+      "unrealized_pnl": -0.7499,
+      "price_is_supplied_mark": true
+     }
+    }
+   ],
+   "decision_log": [
+    {
+     "seq": 1,
+     "kind": "status",
+     "action": "start",
+     "status": "running",
+     "real_order_sent": false
+    },
+    {
+     "seq": 2,
+     "kind": "decision",
+     "symbol": "TEST",
+     "timeframe": "1m",
+     "strategy": "atlas_minute_pulse",
+     "latest_bar_time": "2026-01-01T00:00:00Z",
+     "latest_close": 110.126982,
+     "halal_screen_status": "pass",
+     "asset_type": "stock",
+     "latest_signal": {
+      "condition": "long_condition",
+      "fresh": true,
+      "bias": "bullish_bias",
+      "bias_score": 2,
+      "last_event": {
+       "index": 2497,
+       "timestamp": 1767225480,
+       "time_utc": "2025-12-31T23:58:00Z",
+       "direction": 1,
+       "condition": "long_condition",
+       "close": 109.961725,
+       "reason": "Atlas Minute Pulse (TradeAtlas v14) crossed above +0.25"
+      },
+      "bars_since_last_event": 2,
+      "message": "A mechanical long_condition fired 2 bar(s) ago: Atlas Minute Pulse (TradeAtlas v14) crossed above +0.25."
+     },
+     "snapshot_atr14": 0.135329,
+     "mode_profile": "minute_scalping_paper",
+     "slippage_bps": 5.0,
+     "entries_today_before_decision": 0,
+     "action": "simulated_buy",
+     "real_order_sent": false,
+     "atr_pct_of_price": 0.122885,
+     "order": {
+      "seq": 2,
+      "kind": "simulated_spot_order",
+      "symbol": "TEST",
+      "side": "buy",
+      "quantity": 4.5379444334,
+      "price": 110.182045491,
+      "gross": 500.0,
+      "fee": 0.5,
+      "fee_bps": 10.0,
+      "realized_pnl": 0.0,
+      "timestamp": 1767225600,
+      "execution": "paper_only_no_broker"
+     },
+     "simulated_execution_price": 110.18204549,
+     "manual_execution_ticket": {
+      "ticket_type": "manual_external_execution_checklist",
+      "status": "not_sent_requires_user_manual_confirmation_in_own_account",
+      "venue": "YOUR_OWN_LICENSED_EXCHANGE_OR_BROKER_ONLY",
+      "funding_assets_supported_by_workflow": [
+       "USDT",
+       "BTC",
+       "USD"
+      ],
+      "funding_location": "user's own external account; never TradeAtlas",
+      "symbol": "TEST",
+      "side": "buy_spot_long_only",
+      "quantity": 4.5379444334,
+      "reference_price": 110.18204549,
+      "reference_notional_usd": 500.0,
+      "timeframe": "1m",
+      "strategy": "atlas_minute_pulse",
+      "stop_loss_reference": 109.97905199,
+      "take_profit_reference": 110.48653574,
+      "reason_from_paper_bot": "Atlas Minute Pulse (TradeAtlas v14) crossed above +0.25",
+      "checks_before_any_manual_action": [
+       "Confirm the exact symbol, spot form, network/venue and current halal evidence yourself.",
+       "Check live spread, fees, minimum order, liquidity and whether the reference price is still available.",
+       "Confirm USDT/BTC is already in your own licensed account; do not send anything to TradeAtlas.",
+       "Decide independently; this checklist is not financial advice.",
+       "Place any order manually only in your own account, then record the actual fill and fees outside the paper result."
+      ],
+      "real_order_sent": false,
+      "api_key_accepted": false,
+      "deposit_address": null,
+      "broker_or_exchange_execution": false
+     },
+     "position_meta": {
+      "entry_price": 110.18204549,
+      "reference_close": 110.126982,
+      "entry_time": "2026-01-01T00:00:00Z",
+      "entry_timestamp": 1767225600,
+      "quantity_at_entry": 4.5379444334,
+      "stop_loss": 109.97905199,
+      "take_profit": 110.48653574,
+      "trailing_high": 110.132091,
+      "atr_at_entry": 0.135329,
+      "halal_screen_status_at_entry": "pass"
+     }
+    }
+   ],
+   "manual_tickets": [
+    {
+     "ticket_type": "manual_external_execution_checklist",
+     "status": "not_sent_requires_user_manual_confirmation_in_own_account",
+     "venue": "YOUR_OWN_LICENSED_EXCHANGE_OR_BROKER_ONLY",
+     "funding_assets_supported_by_workflow": [
+      "USDT",
+      "BTC",
+      "USD"
+     ],
+     "funding_location": "user's own external account; never TradeAtlas",
+     "symbol": "TEST",
+     "side": "buy_spot_long_only",
+     "quantity": 4.5379444334,
+     "reference_price": 110.18204549,
+     "reference_notional_usd": 500.0,
+     "timeframe": "1m",
+     "strategy": "atlas_minute_pulse",
+     "stop_loss_reference": 109.97905199,
+     "take_profit_reference": 110.48653574,
+     "reason_from_paper_bot": "Atlas Minute Pulse (TradeAtlas v14) crossed above +0.25",
+     "checks_before_any_manual_action": [
+      "Confirm the exact symbol, spot form, network/venue and current halal evidence yourself.",
+      "Check live spread, fees, minimum order, liquidity and whether the reference price is still available.",
+      "Confirm USDT/BTC is already in your own licensed account; do not send anything to TradeAtlas.",
+      "Decide independently; this checklist is not financial advice.",
+      "Place any order manually only in your own account, then record the actual fill and fees outside the paper result."
+     ],
+     "real_order_sent": false,
+     "api_key_accepted": false,
+     "deposit_address": null,
+     "broker_or_exchange_execution": false
+    }
+   ],
+   "execution_mode": "paper_plus_manual_external_tickets",
+   "live_execution_enabled": false,
+   "entries_today": 1,
+   "cooldown_until": {},
+   "cycle_count": 1,
+   "goal_status": {
+    "minute_focus": "v14_default_profile",
+    "accuracy_target_pct": 80.0,
+    "accuracy_goal_established": false
+   },
+   "risk": {
+    "equity": 9999.2501,
+    "equity_peak": 10000.0,
+    "drawdown_from_peak_pct": 0.0075,
+    "day_start_equity": 10000.0,
+    "day_change_pct": -0.0075,
+    "day_key": "2026-01-01"
+   },
+   "real_money": false,
+   "accepts_real_money_or_crypto": false,
+   "deposit_address": null,
+   "broker_or_exchange_execution": false,
+   "warning": "Paper bot only. A screen pass is not a fatwa/certification, and no real order can be sent."
+  },
+  "real_order_sent": false
+ },
+ "bot_after_stop_close_all": {
+  "mode": "halal_paper_bot_only",
+  "status": "stopped",
+  "halal_only": true,
+  "allowed_asset_types": [
+   "stock",
+   "crypto",
+   "currency",
+   "commodity",
+   "etf",
+   "fund"
+  ],
+  "screen_preset": "strict",
+  "settings": {
+   "mode_profile": "minute_scalping_paper",
+   "strategy": "atlas_minute_pulse",
+   "timeframe": "1m",
+   "allocation_pct": 5.0,
+   "max_positions": 3,
+   "risk_per_trade_pct": 0.5,
+   "atr_stop_multiple": 1.5,
+   "take_profit_r_multiple": 1.5,
+   "trailing_stop_atr_multiple": 1.5,
+   "fee_bps": 10.0,
+   "slippage_bps": 5.0,
+   "max_daily_loss_pct": 2.0,
+   "max_equity_drawdown_pct": 6.0,
+   "max_trades_per_day": 20,
+   "max_holding_bars": 30,
+   "cooldown_bars": 3,
+   "min_atr_pct": 0.02,
+   "manual_confirmation_required": true,
+   "live_execution_enabled": false,
+   "allow_short": false
+  },
+  "wallet": {
+   "mode": "paper_simulation_only",
+   "currency": "PAPER_USD",
+   "cash": 9998.7504,
+   "positions": [],
+   "paper_asset_balances": [],
+   "paper_asset_balances_value": 0.0,
+   "external_account_mirror": {
+    "venue_label": "",
+    "balances": [],
+    "reported_total_usd_value": 0.0,
+    "custody": "user_own_external_account",
+    "tradeatlas_can_access": false,
+    "verified_by_tradeatlas": false,
+    "included_in_paper_equity": false,
+    "deposit_address": null,
+    "funding_instruction": "If you choose to fund an account, use only the official deposit screen inside your own licensed exchange/broker account. TradeAtlas does not provide or verify a deposit address."
+   },
+   "positions_market_value": 0.0,
+   "equity": 9998.7504,
+   "realized_pnl": -1.2496,
+   "unrealized_pnl": 0.0,
+   "total_fees": 0.9998,
+   "simulated_conversion_total_paper_usd": 0.0,
+   "simulated_withdrawal_total_paper_usd_equivalent": 0.0,
+   "following": false,
+   "halted": true,
+   "settings": {
+    "allocation_pct": 10.0,
+    "max_allocation_pct": 25.0,
+    "fee_bps": 10.0,
+    "spot_long_only": true,
+    "leverage": "none"
+   },
+   "ledger": [
+    {
+     "seq": 1,
+     "kind": "initial_paper_capital",
+     "amount": 10000.0,
+     "note": "Imaginary teaching balance; no deposit occurred."
+    },
+    {
+     "seq": 2,
+     "kind": "simulated_spot_order",
+     "symbol": "TEST",
+     "side": "buy",
+     "quantity": 4.5379444334,
+     "price": 110.182045491,
+     "gross": 500.0,
+     "fee": 0.5,
+     "fee_bps": 10.0,
+     "realized_pnl": 0.0,
+     "timestamp": 1767225600,
+     "execution": "paper_only_no_broker"
+    },
+    {
+     "seq": 3,
+     "kind": "paper_trading_stopped",
+     "close_all": true,
+     "note": "Hard halt for the simulation. No real orders exist to cancel."
+    },
+    {
+     "seq": 4,
+     "kind": "simulated_spot_order",
+     "symbol": "TEST",
+     "side": "sell",
+     "quantity": 4.5379444334,
+     "price": 110.126982,
+     "gross": 499.7501,
+     "fee": 0.4998,
+     "fee_bps": 10.0,
+     "realized_pnl": -1.2496,
+     "timestamp": null,
+     "execution": "paper_only_no_broker"
+    }
+   ],
+   "follow_log": [],
+   "real_money": false,
+   "accepts_real_crypto": false,
+   "deposit_address": null,
+   "broker_or_exchange_execution": false,
+   "warning": "Never send cryptocurrency or money to TradeAtlas. It has no deposit address and cannot convert or trade real assets."
+  },
+  "registry": {
+   "TEST": {
+    "profile": {
+     "symbol": "TEST",
+     "company_name": "SYNTHETIC test company (not real)",
+     "asset_type": "stock",
+     "sector": "synthetic",
+     "core_business_prohibited": false,
+     "activities_reviewed": true,
+     "prohibited_activities": [],
+     "interest_bearing_debt_pct_of_market_cap": 10.0,
+     "interest_bearing_cash_securities_pct_of_market_cap": 5.0,
+     "receivables_pct_of_market_cap": 20.0,
+     "non_compliant_income_pct_of_revenue": 1.0,
+     "dividend_per_share": null,
+     "source_note": "INVENTED unit-test figures — not a real company and not a screen of any listed stock",
+     "financials_as_of": "synthetic",
+     "review_expires_at": ""
+    },
+    "screen": {
+     "symbol": "TEST",
+     "status": "pass",
+     "can_bot_open_paper_position": true,
+     "preset": "strict",
+     "thresholds": {
+      "interest_bearing_debt_max_pct": 30.0,
+      "interest_bearing_cash_securities_max_pct": 30.0,
+      "receivables_max_pct": 30.0,
+      "non_compliant_income_max_pct": 5.0
+     },
+     "ratios": {
+      "interest_bearing_debt_pct_of_market_cap": 10.0,
+      "interest_bearing_cash_securities_pct_of_market_cap": 5.0,
+      "receivables_pct_of_market_cap": 20.0,
+      "non_compliant_income_pct_of_revenue": 1.0
+     },
+     "failures": [],
+     "needs_review_reasons": [],
+     "estimated_dividend_purification_per_share": null,
+     "purification_note": "Simple dividend × non-compliant-income-ratio estimate only; purification rules differ by standard.",
+     "profile": {
+      "symbol": "TEST",
+      "company_name": "SYNTHETIC test company (not real)",
+      "asset_type": "stock",
+      "sector": "synthetic",
+      "core_business_prohibited": false,
+      "activities_reviewed": true,
+      "prohibited_activities": [],
+      "interest_bearing_debt_pct_of_market_cap": 10.0,
+      "interest_bearing_cash_securities_pct_of_market_cap": 5.0,
+      "receivables_pct_of_market_cap": 20.0,
+      "non_compliant_income_pct_of_revenue": 1.0,
+      "dividend_per_share": null,
+      "source_note": "INVENTED unit-test figures — not a real company and not a screen of any listed stock",
+      "financials_as_of": "synthetic",
+      "review_expires_at": ""
+     },
+     "certification": false,
+     "warning": "Software screen on user-supplied figures, not a fatwa or halal certification."
+    }
+   }
+  },
+  "position_meta": [],
+  "decision_log": [
+   {
+    "seq": 1,
+    "kind": "status",
+    "action": "start",
+    "status": "running",
+    "real_order_sent": false
+   },
+   {
+    "seq": 2,
+    "kind": "decision",
+    "symbol": "TEST",
+    "timeframe": "1m",
+    "strategy": "atlas_minute_pulse",
+    "latest_bar_time": "2026-01-01T00:00:00Z",
+    "latest_close": 110.126982,
+    "halal_screen_status": "pass",
+    "asset_type": "stock",
+    "latest_signal": {
+     "condition": "long_condition",
+     "fresh": true,
+     "bias": "bullish_bias",
+     "bias_score": 2,
+     "last_event": {
+      "index": 2497,
+      "timestamp": 1767225480,
+      "time_utc": "2025-12-31T23:58:00Z",
+      "direction": 1,
+      "condition": "long_condition",
+      "close": 109.961725,
+      "reason": "Atlas Minute Pulse (TradeAtlas v14) crossed above +0.25"
+     },
+     "bars_since_last_event": 2,
+     "message": "A mechanical long_condition fired 2 bar(s) ago: Atlas Minute Pulse (TradeAtlas v14) crossed above +0.25."
+    },
+    "snapshot_atr14": 0.135329,
+    "mode_profile": "minute_scalping_paper",
+    "slippage_bps": 5.0,
+    "entries_today_before_decision": 0,
+    "action": "simulated_buy",
+    "real_order_sent": false,
+    "atr_pct_of_price": 0.122885,
+    "order": {
+     "seq": 2,
+     "kind": "simulated_spot_order",
+     "symbol": "TEST",
+     "side": "buy",
+     "quantity": 4.5379444334,
+     "price": 110.182045491,
+     "gross": 500.0,
+     "fee": 0.5,
+     "fee_bps": 10.0,
+     "realized_pnl": 0.0,
+     "timestamp": 1767225600,
+     "execution": "paper_only_no_broker"
+    },
+    "simulated_execution_price": 110.18204549,
+    "manual_execution_ticket": {
+     "ticket_type": "manual_external_execution_checklist",
+     "status": "not_sent_requires_user_manual_confirmation_in_own_account",
+     "venue": "YOUR_OWN_LICENSED_EXCHANGE_OR_BROKER_ONLY",
+     "funding_assets_supported_by_workflow": [
+      "USDT",
+      "BTC",
+      "USD"
+     ],
+     "funding_location": "user's own external account; never TradeAtlas",
+     "symbol": "TEST",
+     "side": "buy_spot_long_only",
+     "quantity": 4.5379444334,
+     "reference_price": 110.18204549,
+     "reference_notional_usd": 500.0,
+     "timeframe": "1m",
+     "strategy": "atlas_minute_pulse",
+     "stop_loss_reference": 109.97905199,
+     "take_profit_reference": 110.48653574,
+     "reason_from_paper_bot": "Atlas Minute Pulse (TradeAtlas v14) crossed above +0.25",
+     "checks_before_any_manual_action": [
+      "Confirm the exact symbol, spot form, network/venue and current halal evidence yourself.",
+      "Check live spread, fees, minimum order, liquidity and whether the reference price is still available.",
+      "Confirm USDT/BTC is already in your own licensed account; do not send anything to TradeAtlas.",
+      "Decide independently; this checklist is not financial advice.",
+      "Place any order manually only in your own account, then record the actual fill and fees outside the paper result."
+     ],
+     "real_order_sent": false,
+     "api_key_accepted": false,
+     "deposit_address": null,
+     "broker_or_exchange_execution": false
+    },
+    "position_meta": {
+     "entry_price": 110.18204549,
+     "reference_close": 110.126982,
+     "entry_time": "2026-01-01T00:00:00Z",
+     "entry_timestamp": 1767225600,
+     "quantity_at_entry": 4.5379444334,
+     "stop_loss": 109.97905199,
+     "take_profit": 110.48653574,
+     "trailing_high": 110.132091,
+     "atr_at_entry": 0.135329,
+     "halal_screen_status_at_entry": "pass"
+    }
+   },
+   {
+    "seq": 3,
+    "kind": "stop",
+    "close_all": true,
+    "real_order_sent": false
+   }
+  ],
+  "manual_tickets": [
+   {
+    "ticket_type": "manual_external_execution_checklist",
+    "status": "not_sent_requires_user_manual_confirmation_in_own_account",
+    "venue": "YOUR_OWN_LICENSED_EXCHANGE_OR_BROKER_ONLY",
+    "funding_assets_supported_by_workflow": [
+     "USDT",
+     "BTC",
+     "USD"
+    ],
+    "funding_location": "user's own external account; never TradeAtlas",
+    "symbol": "TEST",
+    "side": "buy_spot_long_only",
+    "quantity": 4.5379444334,
+    "reference_price": 110.18204549,
+    "reference_notional_usd": 500.0,
+    "timeframe": "1m",
+    "strategy": "atlas_minute_pulse",
+    "stop_loss_reference": 109.97905199,
+    "take_profit_reference": 110.48653574,
+    "reason_from_paper_bot": "Atlas Minute Pulse (TradeAtlas v14) crossed above +0.25",
+    "checks_before_any_manual_action": [
+     "Confirm the exact symbol, spot form, network/venue and current halal evidence yourself.",
+     "Check live spread, fees, minimum order, liquidity and whether the reference price is still available.",
+     "Confirm USDT/BTC is already in your own licensed account; do not send anything to TradeAtlas.",
+     "Decide independently; this checklist is not financial advice.",
+     "Place any order manually only in your own account, then record the actual fill and fees outside the paper result."
+    ],
+    "real_order_sent": false,
+    "api_key_accepted": false,
+    "deposit_address": null,
+    "broker_or_exchange_execution": false
+   }
+  ],
+  "execution_mode": "paper_plus_manual_external_tickets",
+  "live_execution_enabled": false,
+  "entries_today": 1,
+  "cooldown_until": {},
+  "cycle_count": 1,
+  "goal_status": {
+   "minute_focus": "v14_default_profile",
+   "accuracy_target_pct": 80.0,
+   "accuracy_goal_established": false
+  },
+  "risk": {
+   "equity": 9998.7504,
+   "equity_peak": 10000.0,
+   "drawdown_from_peak_pct": 0.0125,
+   "day_start_equity": 10000.0,
+   "day_change_pct": -0.0125,
+   "day_key": "2026-01-01"
+  },
+  "real_money": false,
+  "accepts_real_money_or_crypto": false,
+  "deposit_address": null,
+  "broker_or_exchange_execution": false,
+  "warning": "Paper bot only. A screen pass is not a fatwa/certification, and no real order can be sent."
+ },
+ "warning": "No real company was screened and no real order occurred. A screen pass is not a fatwa/certification.",
+ "disclaimer": "TradeAtlas is educational/research software only. It is NOT financial advice. Market Lab long/short (buy/sell-condition) labels are mechanical indicator states, not recommendations. TradeAtlas bundles no licensed live market data; real-market tracking uses only OHLCV data or a feed endpoint that you supply and have the right to use. Its wallet is a paper simulation only: never send money or cryptocurrency to TradeAtlas; it has no deposit address, custody, conversion, withdrawal or broker execution. Its halal-stock screen is transparent arithmetic on evidence you supply, not a fatwa or certification, and its bot is paper-only. It makes no profit promises. Most short-term traders lose money. Study the ideas, paper-trade first, risk only money you can afford to lose, and consult a licensed financial professional for personal decisions."
+}

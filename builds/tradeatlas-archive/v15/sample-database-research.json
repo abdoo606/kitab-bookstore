@@ -1,0 +1,822 @@
+{
+ "mode": "sqlite_market_database_demo",
+ "source": "bundled REAL historical samples only; in-memory demo database, not the user's private tradeatlas.db",
+ "seed": {
+  "seeded": [
+   {
+    "import_id": 1,
+    "symbol": "AAPL",
+    "timeframe": "1d",
+    "bars_imported_or_updated": 506,
+    "first_bar_time": "2015-02-17T00:00:00Z",
+    "last_bar_time": "2017-02-16T00:00:00Z",
+    "source": "Public Plotly datasets sample; see REAL-DATA-NOTICE.md"
+   },
+   {
+    "import_id": 2,
+    "symbol": "MSFT",
+    "timeframe": "1mo",
+    "bars_imported_or_updated": 123,
+    "first_bar_time": "2000-01-01T00:00:00Z",
+    "last_bar_time": "2010-03-01T00:00:00Z",
+    "source": "Public Vega datasets monthly close-only sample; see REAL-DATA-NOTICE.md"
+   },
+   {
+    "import_id": 3,
+    "symbol": "AAPL",
+    "timeframe": "1mo",
+    "bars_imported_or_updated": 123,
+    "first_bar_time": "2000-01-01T00:00:00Z",
+    "last_bar_time": "2010-03-01T00:00:00Z",
+    "source": "Public Vega datasets monthly close-only sample; see REAL-DATA-NOTICE.md"
+   },
+   {
+    "import_id": 4,
+    "symbol": "AMZN",
+    "timeframe": "1mo",
+    "bars_imported_or_updated": 123,
+    "first_bar_time": "2000-01-01T00:00:00Z",
+    "last_bar_time": "2010-03-01T00:00:00Z",
+    "source": "Public Vega datasets monthly close-only sample; see REAL-DATA-NOTICE.md"
+   },
+   {
+    "import_id": 5,
+    "symbol": "GOOG",
+    "timeframe": "1mo",
+    "bars_imported_or_updated": 68,
+    "first_bar_time": "2004-08-01T00:00:00Z",
+    "last_bar_time": "2010-03-01T00:00:00Z",
+    "source": "Public Vega datasets monthly close-only sample; see REAL-DATA-NOTICE.md"
+   },
+   {
+    "import_id": 6,
+    "symbol": "IBM",
+    "timeframe": "1mo",
+    "bars_imported_or_updated": 123,
+    "first_bar_time": "2000-01-01T00:00:00Z",
+    "last_bar_time": "2010-03-01T00:00:00Z",
+    "source": "Public Vega datasets monthly close-only sample; see REAL-DATA-NOTICE.md"
+   }
+  ],
+  "stats": {
+   "database": "SQLite (local file)",
+   "db_version": 1,
+   "path": ":memory:",
+   "file_bytes": 0,
+   "logical_bytes": 315392,
+   "counts": {
+    "instruments": 5,
+    "bars": 1066,
+    "data_imports": 6,
+    "halal_profiles": 0,
+    "halal_screen_history": 0,
+    "research_runs": 0,
+    "method_scores": 0,
+    "bot_events": 0
+   },
+   "by_asset_type": [
+    {
+     "asset_type": "stock",
+     "instruments": 5
+    }
+   ],
+   "by_timeframe": [
+    {
+     "timeframe": "1d",
+     "bars": 506,
+     "symbols": 1
+    },
+    {
+     "timeframe": "1mo",
+     "bars": 560,
+     "symbols": 5
+    }
+   ],
+   "halal_by_status": [],
+   "series": [
+    {
+     "symbol": "AAPL",
+     "timeframe": "1d",
+     "bars": 506,
+     "name": "Apple Inc. (bundled monthly sample)",
+     "asset_type": "stock",
+     "exchange": "NASDAQ",
+     "currency": "USD",
+     "country": "United States",
+     "sector": "",
+     "source": "Public Vega datasets monthly close-only sample; see REAL-DATA-NOTICE.md",
+     "first_bar_time": "2015-02-17T00:00:00Z",
+     "last_bar_time": "2017-02-16T00:00:00Z"
+    },
+    {
+     "symbol": "AAPL",
+     "timeframe": "1mo",
+     "bars": 123,
+     "name": "Apple Inc. (bundled monthly sample)",
+     "asset_type": "stock",
+     "exchange": "NASDAQ",
+     "currency": "USD",
+     "country": "United States",
+     "sector": "",
+     "source": "Public Vega datasets monthly close-only sample; see REAL-DATA-NOTICE.md",
+     "first_bar_time": "2000-01-01T00:00:00Z",
+     "last_bar_time": "2010-03-01T00:00:00Z"
+    },
+    {
+     "symbol": "AMZN",
+     "timeframe": "1mo",
+     "bars": 123,
+     "name": "Amazon (bundled monthly sample)",
+     "asset_type": "stock",
+     "exchange": "NASDAQ",
+     "currency": "USD",
+     "country": "United States",
+     "sector": "",
+     "source": "Public Vega datasets monthly close-only sample; see REAL-DATA-NOTICE.md",
+     "first_bar_time": "2000-01-01T00:00:00Z",
+     "last_bar_time": "2010-03-01T00:00:00Z"
+    },
+    {
+     "symbol": "GOOG",
+     "timeframe": "1mo",
+     "bars": 68,
+     "name": "Google/Alphabet (bundled monthly sample)",
+     "asset_type": "stock",
+     "exchange": "NASDAQ",
+     "currency": "USD",
+     "country": "United States",
+     "sector": "",
+     "source": "Public Vega datasets monthly close-only sample; see REAL-DATA-NOTICE.md",
+     "first_bar_time": "2004-08-01T00:00:00Z",
+     "last_bar_time": "2010-03-01T00:00:00Z"
+    },
+    {
+     "symbol": "IBM",
+     "timeframe": "1mo",
+     "bars": 123,
+     "name": "IBM (bundled monthly sample)",
+     "asset_type": "stock",
+     "exchange": "NYSE",
+     "currency": "USD",
+     "country": "United States",
+     "sector": "",
+     "source": "Public Vega datasets monthly close-only sample; see REAL-DATA-NOTICE.md",
+     "first_bar_time": "2000-01-01T00:00:00Z",
+     "last_bar_time": "2010-03-01T00:00:00Z"
+    },
+    {
+     "symbol": "MSFT",
+     "timeframe": "1mo",
+     "bars": 123,
+     "name": "Microsoft (bundled monthly sample)",
+     "asset_type": "stock",
+     "exchange": "NASDAQ",
+     "currency": "USD",
+     "country": "United States",
+     "sector": "",
+     "source": "Public Vega datasets monthly close-only sample; see REAL-DATA-NOTICE.md",
+     "first_bar_time": "2000-01-01T00:00:00Z",
+     "last_bar_time": "2010-03-01T00:00:00Z"
+    }
+   ],
+   "contains_broker_credentials": false,
+   "contains_payment_instruments": false,
+   "warning": "Stored accuracy is historical research on imported samples, not future performance."
+  }
+ },
+ "research": {
+  "run_id": 1,
+  "created_at": "2026-10-21T16:20:39.084316Z",
+  "params": {
+   "tradeatlas_version": "14.0",
+   "attempts_requested": 100,
+   "top_n": 30,
+   "rule": "hidden-future ensemble per stored series; monthly series use horizon 3/min_history 60 and at most 40 attempts; 1m/5m/15m series use min_history 240 and also store v14 minute-method rows at horizon 5",
+   "accuracy_target_pct": 80.0,
+   "accuracy_goal_established": false
+  },
+  "series": [
+   {
+    "symbol": "AAPL",
+    "timeframe": "1d",
+    "bars": 506,
+    "attempts_made": 100,
+    "horizon_bars": 5,
+    "best_method_on_this_sample": "ultimate_trend",
+    "selected_accuracy_pct": {
+     "analog_median": 44.0,
+     "momentum_5bar": 58.0,
+     "multiscale_trend": 60.0,
+     "kalman_trend": 62.0,
+     "omni_direct_consensus": 64.0,
+     "hull_trend": 67.0,
+     "atlas_fusion_v12": 64.0,
+     "ultimate_trend": 68.0,
+     "atlas_pressure_wave": 64.0,
+     "atlas_regime_compass": 62.0,
+     "atlas_phoenix_fusion": 62.0,
+     "majority_vote_v8": 61.0,
+     "atlas_meta_hedge": 61.0,
+     "atlas_online_logistic": 61.0,
+     "adaptive_selector": 63.0
+    },
+    "minute_research": null
+   },
+   {
+    "symbol": "AAPL",
+    "timeframe": "1mo",
+    "bars": 123,
+    "attempts_made": 40,
+    "horizon_bars": 3,
+    "best_method_on_this_sample": "analog_median",
+    "selected_accuracy_pct": {
+     "analog_median": 70.0,
+     "momentum_5bar": 65.0,
+     "multiscale_trend": 70.0,
+     "kalman_trend": 62.5,
+     "omni_direct_consensus": 62.5,
+     "hull_trend": 70.0,
+     "atlas_fusion_v12": 65.0,
+     "ultimate_trend": 70.0,
+     "atlas_pressure_wave": 65.0,
+     "atlas_regime_compass": 62.5,
+     "atlas_phoenix_fusion": 65.0,
+     "majority_vote_v8": 67.5,
+     "atlas_meta_hedge": 65.0,
+     "atlas_online_logistic": 37.5,
+     "adaptive_selector": 65.0
+    },
+    "minute_research": null
+   },
+   {
+    "symbol": "AMZN",
+    "timeframe": "1mo",
+    "bars": 123,
+    "attempts_made": 40,
+    "horizon_bars": 3,
+    "best_method_on_this_sample": "analog_weighted",
+    "selected_accuracy_pct": {
+     "analog_median": 62.5,
+     "momentum_5bar": 52.5,
+     "multiscale_trend": 52.5,
+     "kalman_trend": 62.5,
+     "omni_direct_consensus": 62.5,
+     "hull_trend": 57.5,
+     "atlas_fusion_v12": 62.5,
+     "ultimate_trend": 52.5,
+     "atlas_pressure_wave": 57.5,
+     "atlas_regime_compass": 60.0,
+     "atlas_phoenix_fusion": 50.0,
+     "majority_vote_v8": 52.5,
+     "atlas_meta_hedge": 60.0,
+     "atlas_online_logistic": 32.5,
+     "adaptive_selector": 50.0
+    },
+    "minute_research": null
+   },
+   {
+    "symbol": "GOOG",
+    "timeframe": "1mo",
+    "error": "needs at least 100 bars",
+    "bars": 68
+   },
+   {
+    "symbol": "IBM",
+    "timeframe": "1mo",
+    "bars": 123,
+    "attempts_made": 40,
+    "horizon_bars": 3,
+    "best_method_on_this_sample": "indicator_analog_median",
+    "selected_accuracy_pct": {
+     "analog_median": 45.0,
+     "momentum_5bar": 57.5,
+     "multiscale_trend": 62.5,
+     "kalman_trend": 60.0,
+     "omni_direct_consensus": 57.5,
+     "hull_trend": 52.5,
+     "atlas_fusion_v12": 60.0,
+     "ultimate_trend": 60.0,
+     "atlas_pressure_wave": 67.5,
+     "atlas_regime_compass": 55.0,
+     "atlas_phoenix_fusion": 57.5,
+     "majority_vote_v8": 57.5,
+     "atlas_meta_hedge": 60.0,
+     "atlas_online_logistic": 52.5,
+     "adaptive_selector": 57.5
+    },
+    "minute_research": null
+   },
+   {
+    "symbol": "MSFT",
+    "timeframe": "1mo",
+    "bars": 123,
+    "attempts_made": 40,
+    "horizon_bars": 3,
+    "best_method_on_this_sample": "kalman_trend",
+    "selected_accuracy_pct": {
+     "analog_median": 45.0,
+     "momentum_5bar": 55.0,
+     "multiscale_trend": 57.5,
+     "kalman_trend": 60.0,
+     "omni_direct_consensus": 57.5,
+     "hull_trend": 52.5,
+     "atlas_fusion_v12": 60.0,
+     "ultimate_trend": 55.0,
+     "atlas_pressure_wave": 60.0,
+     "atlas_regime_compass": 55.0,
+     "atlas_phoenix_fusion": 55.0,
+     "majority_vote_v8": 50.0,
+     "atlas_meta_hedge": 55.0,
+     "atlas_online_logistic": 30.0,
+     "adaptive_selector": 45.0
+    },
+    "minute_research": null
+   }
+  ],
+  "leaderboard": [
+   {
+    "method": "consensus_3plus",
+    "attempts": 83,
+    "weighted_accuracy_pct": 64.109,
+    "weighted_mean_net_10bps": 3.196,
+    "weighted_mean_net_25bps": 3.046,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "atlas_pressure_wave",
+    "attempts": 260,
+    "weighted_accuracy_pct": 63.077,
+    "weighted_mean_net_10bps": 3.188,
+    "weighted_mean_net_25bps": 3.038,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "atlas_fusion_v12",
+    "attempts": 260,
+    "weighted_accuracy_pct": 62.692,
+    "weighted_mean_net_10bps": 2.712,
+    "weighted_mean_net_25bps": 2.562,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "ultimate_trend",
+    "attempts": 260,
+    "weighted_accuracy_pct": 62.692,
+    "weighted_mean_net_10bps": 1.567,
+    "weighted_mean_net_25bps": 1.417,
+    "series_wins": 1,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "markov_regime",
+    "attempts": 260,
+    "weighted_accuracy_pct": 61.538,
+    "weighted_mean_net_10bps": 2.49,
+    "weighted_mean_net_25bps": 2.34,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "kalman_trend",
+    "attempts": 260,
+    "weighted_accuracy_pct": 61.538,
+    "weighted_mean_net_10bps": 2.374,
+    "weighted_mean_net_25bps": 2.224,
+    "series_wins": 1,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "hull_trend",
+    "attempts": 260,
+    "weighted_accuracy_pct": 61.538,
+    "weighted_mean_net_10bps": 2.337,
+    "weighted_mean_net_25bps": 2.187,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "omni_direct_consensus",
+    "attempts": 260,
+    "weighted_accuracy_pct": 61.538,
+    "weighted_mean_net_10bps": 2.114,
+    "weighted_mean_net_25bps": 1.964,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "agreement_only",
+    "attempts": 126,
+    "weighted_accuracy_pct": 61.165,
+    "weighted_mean_net_10bps": 4.623,
+    "weighted_mean_net_25bps": 4.473,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "majority_vote_v7",
+    "attempts": 260,
+    "weighted_accuracy_pct": 60.769,
+    "weighted_mean_net_10bps": 2.086,
+    "weighted_mean_net_25bps": 1.936,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "atlas_meta_hedge",
+    "attempts": 260,
+    "weighted_accuracy_pct": 60.385,
+    "weighted_mean_net_10bps": 2.4,
+    "weighted_mean_net_25bps": 2.25,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "multiscale_trend",
+    "attempts": 260,
+    "weighted_accuracy_pct": 60.385,
+    "weighted_mean_net_10bps": 2.366,
+    "weighted_mean_net_25bps": 2.216,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "atlas_regime_compass",
+    "attempts": 260,
+    "weighted_accuracy_pct": 59.615,
+    "weighted_mean_net_10bps": 1.559,
+    "weighted_mean_net_25bps": 1.409,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "kaufman_trend",
+    "attempts": 260,
+    "weighted_accuracy_pct": 59.615,
+    "weighted_mean_net_10bps": 0.969,
+    "weighted_mean_net_25bps": 0.819,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "tsi_momentum",
+    "attempts": 260,
+    "weighted_accuracy_pct": 59.231,
+    "weighted_mean_net_10bps": 1.405,
+    "weighted_mean_net_25bps": 1.255,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "majority_vote_v5",
+    "attempts": 260,
+    "weighted_accuracy_pct": 58.846,
+    "weighted_mean_net_10bps": 2.918,
+    "weighted_mean_net_25bps": 2.768,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "majority_vote_v6",
+    "attempts": 260,
+    "weighted_accuracy_pct": 58.846,
+    "weighted_mean_net_10bps": 2.076,
+    "weighted_mean_net_25bps": 1.926,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "atlas_phoenix_fusion",
+    "attempts": 260,
+    "weighted_accuracy_pct": 58.846,
+    "weighted_mean_net_10bps": 0.865,
+    "weighted_mean_net_25bps": 0.715,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "majority_vote_v8",
+    "attempts": 260,
+    "weighted_accuracy_pct": 58.462,
+    "weighted_mean_net_10bps": 1.196,
+    "weighted_mean_net_25bps": 1.046,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "supertrend_trend",
+    "attempts": 260,
+    "weighted_accuracy_pct": 57.692,
+    "weighted_mean_net_10bps": 1.38,
+    "weighted_mean_net_25bps": 1.23,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "momentum_5bar",
+    "attempts": 260,
+    "weighted_accuracy_pct": 57.692,
+    "weighted_mean_net_10bps": 1.332,
+    "weighted_mean_net_25bps": 1.182,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "adaptive_selector",
+    "attempts": 260,
+    "weighted_accuracy_pct": 57.692,
+    "weighted_mean_net_10bps": 0.682,
+    "weighted_mean_net_25bps": 0.532,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "obv_flow_trend",
+    "attempts": 100,
+    "weighted_accuracy_pct": 57.0,
+    "weighted_mean_net_10bps": 0.231,
+    "weighted_mean_net_25bps": 0.081,
+    "series_wins": 0,
+    "series_count": 1,
+    "run_id": 1
+   },
+   {
+    "method": "majority_vote_v2",
+    "attempts": 100,
+    "weighted_accuracy_pct": 57.0,
+    "weighted_mean_net_10bps": 0.158,
+    "weighted_mean_net_25bps": 0.008,
+    "series_wins": 0,
+    "series_count": 1,
+    "run_id": 1
+   },
+   {
+    "method": "majority_vote",
+    "attempts": 260,
+    "weighted_accuracy_pct": 56.923,
+    "weighted_mean_net_10bps": 1.846,
+    "weighted_mean_net_25bps": 1.696,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "donchian_trend",
+    "attempts": 260,
+    "weighted_accuracy_pct": 56.538,
+    "weighted_mean_net_10bps": 0.118,
+    "weighted_mean_net_25bps": -0.032,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "indicator_analog_median",
+    "attempts": 260,
+    "weighted_accuracy_pct": 56.154,
+    "weighted_mean_net_10bps": 2.37,
+    "weighted_mean_net_25bps": 2.22,
+    "series_wins": 1,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "majority_vote_v3",
+    "attempts": 260,
+    "weighted_accuracy_pct": 55.769,
+    "weighted_mean_net_10bps": 3.441,
+    "weighted_mean_net_25bps": 3.291,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "haar_wavelet_trend",
+    "attempts": 260,
+    "weighted_accuracy_pct": 55.769,
+    "weighted_mean_net_10bps": 1.67,
+    "weighted_mean_net_25bps": 1.52,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "cycle_flow_analog_median",
+    "attempts": 212,
+    "weighted_accuracy_pct": 55.183,
+    "weighted_mean_net_10bps": 1.206,
+    "weighted_mean_net_25bps": 1.056,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "majority_vote_v4",
+    "attempts": 212,
+    "weighted_accuracy_pct": 54.249,
+    "weighted_mean_net_10bps": 1.482,
+    "weighted_mean_net_25bps": 1.332,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "cmo_momentum",
+    "attempts": 260,
+    "weighted_accuracy_pct": 53.846,
+    "weighted_mean_net_10bps": -0.938,
+    "weighted_mean_net_25bps": -1.088,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "trix_momentum",
+    "attempts": 260,
+    "weighted_accuracy_pct": 53.462,
+    "weighted_mean_net_10bps": 0.772,
+    "weighted_mean_net_25bps": 0.622,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "analog_weighted",
+    "attempts": 260,
+    "weighted_accuracy_pct": 53.077,
+    "weighted_mean_net_10bps": 3.045,
+    "weighted_mean_net_25bps": 2.895,
+    "series_wins": 1,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "rank_fusion_analog_median",
+    "attempts": 212,
+    "weighted_accuracy_pct": 52.825,
+    "weighted_mean_net_10bps": 1.251,
+    "weighted_mean_net_25bps": 1.101,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "indicator_analog_weighted",
+    "attempts": 260,
+    "weighted_accuracy_pct": 52.692,
+    "weighted_mean_net_10bps": 1.334,
+    "weighted_mean_net_25bps": 1.184,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "regression_trend",
+    "attempts": 260,
+    "weighted_accuracy_pct": 52.692,
+    "weighted_mean_net_10bps": -0.342,
+    "weighted_mean_net_25bps": -0.492,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "path_analog_median",
+    "attempts": 212,
+    "weighted_accuracy_pct": 52.362,
+    "weighted_mean_net_10bps": 1.183,
+    "weighted_mean_net_25bps": 1.033,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "analog_median",
+    "attempts": 260,
+    "weighted_accuracy_pct": 51.154,
+    "weighted_mean_net_10bps": 2.828,
+    "weighted_mean_net_25bps": 2.678,
+    "series_wins": 1,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "rank_fusion_analog_weighted",
+    "attempts": 212,
+    "weighted_accuracy_pct": 50.483,
+    "weighted_mean_net_10bps": 0.901,
+    "weighted_mean_net_25bps": 0.751,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "cycle_flow_analog_weighted",
+    "attempts": 212,
+    "weighted_accuracy_pct": 50.474,
+    "weighted_mean_net_10bps": -0.456,
+    "weighted_mean_net_25bps": -0.606,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "candle_analog_median",
+    "attempts": 100,
+    "weighted_accuracy_pct": 50.0,
+    "weighted_mean_net_10bps": -0.326,
+    "weighted_mean_net_25bps": -0.476,
+    "series_wins": 0,
+    "series_count": 1,
+    "run_id": 1
+   },
+   {
+    "method": "path_analog_weighted",
+    "attempts": 212,
+    "weighted_accuracy_pct": 49.998,
+    "weighted_mean_net_10bps": 0.576,
+    "weighted_mean_net_25bps": 0.426,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "candle_analog_weighted",
+    "attempts": 100,
+    "weighted_accuracy_pct": 49.0,
+    "weighted_mean_net_10bps": -0.157,
+    "weighted_mean_net_25bps": -0.307,
+    "series_wins": 0,
+    "series_count": 1,
+    "run_id": 1
+   },
+   {
+    "method": "coppock_trend",
+    "attempts": 260,
+    "weighted_accuracy_pct": 48.077,
+    "weighted_mean_net_10bps": -2.7,
+    "weighted_mean_net_25bps": -2.85,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "aroon_trend",
+    "attempts": 260,
+    "weighted_accuracy_pct": 47.692,
+    "weighted_mean_net_10bps": -1.529,
+    "weighted_mean_net_25bps": -1.679,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "atlas_online_logistic",
+    "attempts": 260,
+    "weighted_accuracy_pct": 46.923,
+    "weighted_mean_net_10bps": -3.319,
+    "weighted_mean_net_25bps": -3.469,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   },
+   {
+    "method": "rvi_trend",
+    "attempts": 260,
+    "weighted_accuracy_pct": 45.0,
+    "weighted_mean_net_10bps": -4.52,
+    "weighted_mean_net_25bps": -4.67,
+    "series_wins": 0,
+    "series_count": 5,
+    "run_id": 1
+   }
+  ],
+  "warning": "Pooled historical samples are correlated and can be survivor-biased. The leaderboard is not a forecast of future accuracy and cannot manufacture an 80% universal rate. Minute rows additionally omit live spread/order-book/latency effects."
+ },
+ "warning": "Pooled old samples are correlated/survivor-biased. This is not an 80% forecast claim.",
+ "disclaimer": "TradeAtlas is educational/research software only. It is NOT financial advice. Market Lab long/short (buy/sell-condition) labels are mechanical indicator states, not recommendations. TradeAtlas bundles no licensed live market data; real-market tracking uses only OHLCV data or a feed endpoint that you supply and have the right to use. Its wallet is a paper simulation only: never send money or cryptocurrency to TradeAtlas; it has no deposit address, custody, conversion, withdrawal or broker execution. Its halal-stock screen is transparent arithmetic on evidence you supply, not a fatwa or certification, and its bot is paper-only. It makes no profit promises. Most short-term traders lose money. Study the ideas, paper-trade first, risk only money you can afford to lose, and consult a licensed financial professional for personal decisions."
+}
