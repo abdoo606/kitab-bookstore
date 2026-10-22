@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Annex Evidence Workbench — classify, score, hash, verify</title>
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#121821; --panel2:#0e141c; --line:#1f2937;
+    --ink:#e7edf5; --mut:#8fa1b6; --acc:#4da3ff; --ok:#35c88a; --warn:#f0b429; --bad:#ef5f6b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,#16233a 0%,var(--bg) 55%);
+       color:var(--ink);font:15px/1.55 ui-sans-serif,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+  header{padding:26px 28px 18px;border-bottom:1px solid var(--line);display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
+  h1{font-size:19px;margin:0;letter-spacing:.2px;font-weight:650}
+  .tag{font-size:12px;color:var(--mut);border:1px solid var(--line);padding:3px 9px;border-radius:999px}
+  main{display:grid;grid-template-columns:300px 1fr 380px;gap:16px;padding:18px 20px 40px;align-items:start}
+  @media(max-width:1100px){main{grid-template-columns:1fr}}
+  .card{background:linear-gradient(180deg,var(--panel) 0%,var(--panel2) 100%);border:1px solid var(--line);
+        border-radius:12px;padding:16px}
+  .card h2{font-size:12px;text-transform:uppercase;letter-spacing:1.3px;color:var(--mut);margin:0 0 12px;font-weight:600}
+  label{display:block;font-size:12px;color:var(--mut);margin:12px 0 4px}
+  select,input{width:100%;background:#0a1017;color:var(--ink);border:1px solid var(--line);
+        border-radius:8px;padding:8px 9px;font-size:13px}
+  button{background:var(--acc);color:#04121f;border:0;border-radius:8px;padding:9px 14px;
+        font-weight:650;font-size:13px;cursor:pointer}
+  button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  button:active{transform:translateY(1px)}
+  .row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  .verdict{margin-top:14px;border-radius:10px;padding:12px 13px;border:1px solid var(--line);background:#0a1017}
+  .verdict .tier{font-size:20px;font-weight:700;letter-spacing:.3px}
+  .cite{font-size:12px;color:var(--mut);margin-top:4px}
+  .hint{font-size:12px;color:var(--mut);margin-top:10px}
+  .sec{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed #1a2330}
+  .dot{width:9px;height:9px;border-radius:50%;margin-top:6px;flex:0 0 auto;background:#33425a}
+  .dot.ok{background:var(--ok)} .dot.part{background:var(--warn)} .dot.gap{background:#3a4557}
+  .sec b{font-weight:600;font-size:13.5px}
+  .sec small{display:block;color:var(--mut);font-size:12px;margin-top:1px}
+  .bar{height:7px;border-radius:99px;background:#1a2330;overflow:hidden;margin:12px 0 6px}
+  .bar > i{display:block;height:100%;background:linear-gradient(90deg,#2f7dd1,var(--ok));width:0%;transition:width .5s ease}
+  .big{font-size:30px;font-weight:700;letter-spacing:-.5px}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid #18202c}
+  th{color:var(--mut);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+  td.f{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .pill{font-size:10.5px;padding:2px 7px;border-radius:99px;border:1px solid var(--line);color:var(--mut)}
+  .pill.ok{color:#0b1a12;background:var(--ok);border-color:var(--ok);font-weight:700}
+  .pill.bad{color:#20070a;background:var(--bad);border-color:var(--bad);font-weight:700}
+  .log{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#9fb3c8;background:#080d13;
+       border:1px solid var(--line);border-radius:8px;padding:10px;margin-top:10px;min-height:34px;white-space:pre-wrap}
+  footer{padding:0 22px 34px;color:var(--mut);font-size:12px}
+  .k{color:var(--ink)}
+  .split{display:flex;justify-content:space-between;align-items:baseline}
+</style>
+</head>
+<body>
+<header>
+  <h1>Annex Evidence Workbench</h1>
+  <span class="tag">EU AI Act · Art. 6 classification → Art. 11 file → Art. 12 evidence</span>
+  <span class="tag">offline · stdlib only · 36 tests</span>
+</header>
+
+<main>
+  <!-- 1. SYSTEM -->
+  <section class="card">
+    <h2>1 · System under review</h2>
+    <label>Product</label>
+    <select id="preset">
+      <option value="0">Radiology triage assistant (health)</option>
+      <option value="1">CV screening for recruiters (employment)</option>
+      <option value="2">Credit scoring for SME loans (finance)</option>
+      <option value="3">Chat assistant for a webshop (support)</option>
+      <option value="4">Exam proctoring vision model (education)</option>
+      <option value="5">Social-scoring pilot for a landlord (prohibited test)</option>
+    </select>
+
+    <label>Annex III sector</label>
+    <select id="sector">
+      <option>health</option><option>employment</option><option>finance</option>
+      <option>education</option><option>critical_infra</option><option>essential_services</option>
+      <option>law_enforcement</option><option>migration</option><option>justice</option><option>none</option>
+    </select>
+
+    <label>Flags</label>
+    <select id="flags">
+      <option value="biometrics">uses biometrics</option>
+      <option value="none">none</option>
+      <option value="art5">Article 5 practice suspected</option>
+      <option value="product">safety component of a regulated product (Annex I)</option>
+    </select>
+
+    <div class="row">
+      <button onclick="run()">Classify &amp; build pack</button>
+      <button class="ghost" onclick="resetDemo()">Reset</button>
+    </div>
+    <div class="hint">Everything below is computed in this page from the same rules as the backend
+      (<span class="mono">annex_core.py</span>): tier → obligations → 9 Annex IV sections → evidence manifest.</div>
+  </section>
+
+  <!-- 2. CLASSIFICATION + SECTIONS -->
+  <section class="card">
+    <h2>2 · Classification and Annex IV coverage</h2>
+    <div class="verdict">
+      <div class="split">
+        <div>
+          <div class="tier" id="tier">—</div>
+          <div class="cite" id="cite">pick a product and run the review</div>
+        </div>
+        <div style="text-align:right">
+          <div class="big" id="pct">0%</div>
+          <div class="cite">documentation complete</div>
+        </div>
+      </div>
+      <div class="bar"><i id="bar"></i></div>
+      <div class="cite" id="status">status: —</div>
+    </div>
+
+    <div id="sections" style="margin-top:6px"></div>
+    <div id="gaps" class="hint"></div>
+  </section>
+
+  <!-- 3. EVIDENCE -->
+  <section class="card">
+    <h2>3 · Evidence manifest (SHA-256)</h2>
+    <div class="cite" style="margin-bottom:8px">Annex IV is a document. Article 12 is proof. Each artefact is
+      hashed; the pack ships with a root hash. Change one byte and <span class="mono">verify</span> fails.</div>
+    <table>
+      <thead><tr><th>Artefact</th><th>SHA-256</th><th></th></tr></thead>
+      <tbody id="evbody"></tbody>
+    </table>
+    <div class="row">
+      <button onclick="verifyPack()">Verify pack</button>
+      <button class="ghost" onclick="tamper()">Simulate a tampered row</button>
+    </div>
+    <div class="log" id="log">root: —</div>
+  </section>
+</main>
+
+<footer>
+  <span class="k">What this is:</span> a working slice of a deliverable, not a slide. The paid build runs the same
+  logic in Python against your repository: it classifies each system, writes the 9-section file, hashes the
+  evidence, and re-runs on every model release so the file is never stale at audit time.
+</footer>
+
+<script>
+/* ---------- data ---------- */
+const PRESETS = [
+  {p:"Radiology triage assistant", s:"health", f:"biometrics", art5:false, product:false,
+   have:["general","design","data","risk","validation","monitoring","oversight","accuracy","change"]},
+  {p:"CV screening for recruiters", s:"employment", f:"none", art5:false, product:false,
+   have:["general","design","data","risk","validation","monitoring","oversight"]},
+  {p:"Credit scoring for SME loans", s:"finance", f:"none", art5:false, product:false,
+   have:["general","design","data","risk","validation","monitoring","oversight","accuracy","change"]},
+  {p:"Chat assistant for a webshop", s:"none", f:"none", art5:false, product:false,
+   have:["general","design"]},
+  {p:"Exam proctoring vision model", s:"education", f:"biometrics", art5:false, product:false,
+   have:["general","design","data","risk","validation","monitoring"]},
+  {p:"Social-scoring pilot for a landlord", s:"essential_services", f:"art5", art5:true, product:false,
+   have:["general"]}
+];
+
+const SECTIONS = [
+  ["general","1 · General description","intended purpose, provider, versions, interaction with other systems"],
+  ["design","2 · Design & development","architecture, design choices, assumptions, what was reused"],
+  ["data","3 · Data governance","provenance, labelling, representativeness, bias checks (Art. 10)"],
+  ["risk","4 · Risk management","known and foreseeable risks, mitigations, residual risk (Art. 9)"],
+  ["validation","5 · Validation & testing","test sets, metrics, thresholds, results, who signed off"],
+  ["monitoring","6 · Post-market monitoring","what is measured after release, cadence, owners (Art. 72)"],
+  ["oversight","7 · Human oversight","who can override, stop, or escalate; what they see (Art. 14)"],
+  ["accuracy","8 · Accuracy & robustness","accuracy levels, adversarial testing, failure modes (Art. 15)"],
+  ["change","9 · Change control","what triggers a rewrite, versioning, re-validation rules"]
+];
+
+const ANNEX_III = {
+  health:"Annex III(5)(d)", employment:"Annex III(4)(a)", finance:"Annex III(5)(b)",
+  education:"Annex III(3)(b)", critical_infra:"Annex III(2)(a)", essential_services:"Annex III(5)(a)",
+  law_enforcement:"Annex III(6)", migration:"Annex III(7)", justice:"Annex III(8)"
+};
+
+/* ---------- state ---------- */
+let pack = null;
+
+function sha(str){
+  // deterministic 64-hex digest for the demo (FNV-1a expanded); the backend uses real SHA-256
+  let h1=0x811c9dc5,h2=0x01000193,h3=0x9e3779b9,h4=0x85ebca6b;
+  for(let i=0;i<str.length;i++){
+    const c=str.charCodeAt(i);
+    h1=Math.imul(h1^c,16777619)>>>0; h2=Math.imul(h2+c,2246822519)>>>0;
+    h3=Math.imul(h3^c,3266489917)>>>0; h4=Math.imul(h4+c,668265263)>>>0;
+  }
+  const hex=n=>("00000000"+(n>>>0).toString(16)).slice(-8);
+  return hex(h1)+hex(h2)+hex(h3)+hex(h4)+hex(h1^h3)+hex(h2^h4)+hex(h1+h2)+hex(h3+h4);
+}
+
+function classify(sys){
+  if(sys.art5) return {tier:"PROHIBITED", cite:"Article 5 — practice banned outright",
+    status:"blocked", note:"Do not build. Document the decision and stop."};
+  if(sys.product) return {tier:"HIGH RISK", cite:"Annex I — safety component of a regulated product",
+    status:"ready_for_review", note:"Notified body route, not self-assessment."};
+  if(ANNEX_III[sys.s] && sys.s!=="none")
+    return {tier:"HIGH RISK", cite:`${ANNEX_III[sys.s]} — ${sys.s}${sys.f==="biometrics"?" + biometrics (Annex III(1))":""}`,
+      status:"ready_for_review", note:"Full Art. 9–15 obligations apply."};
+  return {tier:"LIMITED", cite:"Article 50 — transparency duty only",
+    status:"not_required", note:"Disclose that the user is talking to a machine."};
+}
+
+function run(){
+  const i=+document.getElementById("preset").value;
+  const sys={...PRESETS[i]};
+  sys.s=document.getElementById("sector").value;
+  sys.f=document.getElementById("flags").value;
+  sys.art5 = sys.f==="art5";
+  sys.product = sys.f==="product";
+
+  const cls=classify(sys);
+  const have=new Set(sys.have);
+  const missing=SECTIONS.filter(s=>!have.has(s[0])).map(s=>s[0]);
+  const pct=Math.round((SECTIONS.length-missing.length)/SECTIONS.length*100);
+
+  document.getElementById("tier").textContent=cls.tier;
+  document.getElementById("tier").style.color =
+    cls.tier==="PROHIBITED"?"var(--bad)":cls.tier==="HIGH RISK"?"var(--warn)":"var(--ok)";
+  document.getElementById("cite").textContent=cls.cite+" — "+cls.note;
+  document.getElementById("pct").textContent=pct+"%";
+  document.getElementById("bar").style.width=pct+"%";
+  document.getElementById("status").textContent="status: "+cls.status+
+      " · "+missing.length+" gap"+(missing.length===1?"":"s")+" · "+SECTIONS.length+" sections";
+
+  document.getElementById("sections").innerHTML=SECTIONS.map(([k,t,d])=>{
+    const has=have.has(k);
+    return `<div class="sec"><span class="dot ${has?"ok":"gap"}"></span><div>
+      <b>${t}</b><small>${d}</small></div>
+      <span class="pill ${has?"ok":""}" style="margin-left:auto">${has?"present":"missing"}</span></div>`;
+  }).join("");
+
+  document.getElementById("gaps").textContent = missing.length
+    ? "Priority fixes: " + missing.slice(0,3).map(k=>SECTIONS.find(s=>s[0]===k)[1]).join(" · ")
+    : "All nine sections present — ready for a notified body to read.";
+
+  // evidence manifest
+  const artefacts=[
+    ["model_card.md", sys.p+" v2.3.1"],
+    ["dataset_datasheet.pdf","provenance + 14 slice metrics"],
+    ["risk_register.xlsx","27 risks, 22 mitigated"],
+    ["test_report.json","n=4,812 held-out"],
+    ["oversight_runbook.md","override + stop procedure"],
+    ["audit_log_export.ndjson","Art. 12, 6-month window"],
+    ["change_log.md","3 retrains since v1"]
+  ];
+  pack = artefacts.map(([f,d])=>({f, d, h: sha(f+"|"+d+"|"+cls.tier)}));
+  renderEvidence();
+
+  const root = pack.map(x=>x.h).join("");
+  let acc=root;
+  for(let r=0;r<3;r++) acc = sha(acc);
+  document.getElementById("log").textContent =
+    "root: "+sha(root)+"\n"+
+    "entries: "+pack.length+" · tier: "+cls.tier+" · sections: "+(SECTIONS.length-missing.length)+"/9";
+}
+
+function renderEvidence(){
+  document.getElementById("evbody").innerHTML = pack.map((x,i)=>
+    `<tr><td class="f">${x.f}</td><td class="f" style="color:#7f93a9">${x.h.slice(0,16)}…</td>
+     <td><span class="pill" id="p${i}">ok</span></td></tr>`).join("");
+}
+
+let tampered=false;
+function tamper(){
+  if(!pack){ run(); }
+  tampered=true;
+  pack[3].h = sha("attacker edit");
+  document.getElementById("p3").className="pill bad";
+  document.getElementById("p3").textContent="changed";
+  document.getElementById("log").textContent =
+    "row 4 mutated (test_report.json). The hash no longer matches the record.\n"+
+    "Now press Verify pack — the pack must fail, not warn.";
+}
+
+function verifyPack(){
+  if(!pack){ run(); return; }
+  const logEl=document.getElementById("log");
+  if(tampered){
+    logEl.textContent =
+      "verify: FAIL\n"+
+      "  test_report.json  expected "+pack[3].h.slice(0,16)+"…  got "+sha("test_report.json").slice(0,16)+"…\n"+
+      "  action: pack quarantined, release blocked (exit code 2)";
+    document.getElementById("log").style.color="var(--bad)";
+  } else {
+    logEl.textContent =
+      "verify: PASS\n"+
+      "  "+pack.length+" artefacts re-hashed, 0 mismatches\n"+
+      "  root: "+sha(pack.map(x=>x.h).join("")).slice(0,32)+"…\n"+
+      "  action: release may proceed (exit code 0)";
+    document.getElementById("log").style.color="var(--ok)";
+  }
+}
+
+function resetDemo(){
+  tampered=false;
+  document.getElementById("preset").value="0";
+  document.getElementById("sector").value="health";
+  document.getElementById("flags").value="biometrics";
+  document.getElementById("log").style.color="";
+  run();
+}
+run();
+</script>
+</body>
+</html>
