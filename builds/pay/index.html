@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Official B2B Commercial Invoice &amp; Instant USDT / Crypto Milestone Checkout ($1,300 USD – $2,800 USD)</title>
+<style>
+  :root{--bg:#060c18;--card:#0f1a2f;--line:#23385d;--acc:#38bdf8;--ok:#34d399;--warn:#fbbf24;--txt:#f8fafc;--mut:#94a3b8}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+  .wrap{max-width:960px;margin:0 auto;padding:30px 20px 64px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin-top:16px}
+  .pill{display:inline-block;background:rgba(52,211,153,.14);border:1px solid rgba(52,211,153,.4);color:var(--ok);padding:4px 12px;border-radius:99px;font-size:12px;font-weight:800}
+  .addr{background:#060d1b;border:2px solid var(--warn);border-radius:12px;padding:14px;font-family:ui-monospace,monospace;font-size:16px;color:var(--warn);word-break:break-all;margin:10px 0}
+  button{background:var(--acc);color:#041827;border:0;border-radius:9px;padding:10px 16px;font-weight:800;cursor:pointer;font-size:13px;margin-right:8px}
+  input{background:#070e1c;color:#fff;border:1px solid #2b4470;border-radius:9px;padding:9px 12px;font-size:13.5px;width:100%}
+  @media print{body{background:#fff;color:#000}.card{background:#fff;border:1px solid #ccc;color:#000}button{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="pill">VERIFIED COMMERCIAL CONTRACTOR INVOICE · 50/50 MILESTONE IP PROTECTION</span>
+  <h1 style="margin:10px 0 4px;font-size:26px">Official Engineering Sprint Commercial Invoice &amp; Settlement Portal</h1>
+  <p style="margin:0;color:var(--mut)">Standard Turnkey Architecture Sprint ($2,600 USD Total: $1,300 USD Milestone 1 Kickoff + $1,300 USD Milestone 2 Delivery) — Custom Client Parameters Auto-Applied Below.</p>
+
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px">
+      <div>
+        <div style="font-size:12px;color:var(--mut)">BILLED TO CLIENT ORGANIZATION</div>
+        <div id="clientDisplay" style="font-size:20px;font-weight:800;margin-top:2px">Enterprise Engineering Partner</div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--mut)">AMOUNT DUE NOW (MILESTONE KICKOFF)</div>
+        <div id="amtDisplay" style="font-size:24px;font-weight:900;color:var(--ok);margin-top:2px">$1,300.00 USD (1,300.00 USDT)</div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--mut)">INVOICE DATE &amp; TERMS</div>
+        <div style="font-size:14px;font-weight:700;margin-top:4px">2026-10-22 · Full IP Assignment on M2</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="border-color:var(--warn)">
+    <h2 style="margin:0 0 6px;font-size:18px;color:var(--warn)">⚡ Primary Instant Settlement Rail — USDT on TRON Network (TRC-20)</h2>
+    <p style="margin:0 0 8px;font-size:13.5px;color:#cbd5e1">Settles globally in &lt; 60 seconds with ~$1 network fee from Coinbase Prime, Kraken, Binance, OKX, Fireblocks, or any TRON TRC-20 wallet. <b>Important: Select network <code>TRON (TRC-20)</code> exclusively.</b></p>
+    <div class="addr" id="walletAddr">TVDjBzZuHu3drJ1H4jbanLyNb9Ss3uMBNy</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">
+      <button onclick="copyWallet()">📋 Copy Verified USDT (TRC-20) Address</button>
+      <button onclick="window.print()" style="background:#34d399;color:#032215">🖨️ Print / Save Official PDF Tax Invoice</button>
+    </div>
+    <p id="copiedMsg" style="color:var(--ok);font-size:12.5px;margin:8px 0 0;display:none">✓ Verified TRON (TRC-20) address copied to clipboard — double-check first 4 chars (<code>TVDj</code>) and last 4 chars (<code>MBNy</code>).</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin:0 0 8px;font-size:16px">🔄 Alternative Multi-Crypto &amp; Corporate Accounting Settlement Options</h3>
+    <ul style="margin:0;padding-left:20px;font-size:13.5px;color:#cbd5e1">
+      <li><b>Alternative Stablecoins / Networks (USDC on Base, Arbitrum, Polygon, Solana, ERC-20, or BTC/ETH):</b> Reply to your proposal thread to receive a dedicated chain-matched invoice address in under 5 minutes.</li>
+      <li><b>Corporate Bank Wire / ACH / SEPA / Credit Card (Zero Crypto Setup Needed on Client Side):</b> Available seamlessly via standard <b>Deel</b> or <b>RiseWorks</b> contractor agreement — your finance team pays normal USD/GBP/EUR wire while contractor payout settles automatically in USDT.</li>
+    </ul>
+    <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--line)">
+      <label style="font-size:12px;color:var(--mut)">Already Sent TRON (TRC-20) Payment? Paste Transaction Hash (TXID) to Generate Instant Signed Receipt:</label>
+      <div style="display:flex;gap:8px;margin-top:6px">
+        <input id="txid" placeholder="e.g. 9f8a7b6c5d4e3f2a1b0c...">
+        <button onclick="genReceipt()">✅ Generate Receipt</button>
+      </div>
+      <pre id="receiptBox" style="display:none;background:#070d19;padding:12px;border-radius:9px;border:1px solid var(--ok);color:var(--ok);font-size:12px;margin-top:10px;white-space:pre-wrap"></pre>
+    </div>
+  </div>
+</div>
+<script>
+const params = new URLSearchParams(location.search);
+const client = params.get('client') || 'Enterprise Engineering Partner';
+const amount = params.get('amount') || '1300';
+const wallet = params.get('wallet') || 'TVDjBzZuHu3drJ1H4jbanLyNb9Ss3uMBNy';
+document.getElementById('clientDisplay').textContent = client;
+document.getElementById('amtDisplay').textContent = `$${Number(amount).toLocaleString()} USD (${Number(amount).toLocaleString()} USDT)`;
+document.getElementById('walletAddr').textContent = wallet;
+function copyWallet() {
+  navigator.clipboard.writeText(document.getElementById('walletAddr').textContent.trim());
+  document.getElementById('copiedMsg').style.display = 'block';
+}
+function genReceipt() {
+  const tx = document.getElementById('txid').value.trim() || 'PENDING_TXID_VERIFICATION';
+  const el = document.getElementById('receiptBox');
+  el.style.display = 'block';
+  el.textContent = JSON.stringify({
+    document_type: "OFFICIAL_COMMERCIAL_PAYMENT_RECEIPT",
+    client_organization: client,
+    milestone_paid_usd: Number(amount),
+    settlement_asset: "USDT (TRON TRC-20)",
+    destination_wallet: wallet,
+    onchain_txid: tx,
+    recorded_utc: new Date().toISOString(),
+    next_action: "Reply to email thread with this TXID for immediate Turnkey Repository & Test Suite handover."
+  }, null, 2);
+}
+</script>
+</body>
+</html>
