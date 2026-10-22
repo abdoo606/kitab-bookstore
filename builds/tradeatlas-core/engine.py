@@ -32,6 +32,7 @@ class Bar:
     price: float
     dividend: float
     cpi: float
+    vix: float | None = None   # month-end VIX close, when the series is loaded
 
     @property
     def monthly_dividend(self) -> float:
@@ -47,7 +48,23 @@ class Bar:
         return (self.price + self.monthly_dividend - prev.price) / prev.price
 
 
-def load_bars(path: str = DEFAULT_DATA) -> list[Bar]:
+def load_vix(path: str) -> dict[str, float]:
+    """Month-end VIX close, keyed by YYYY-MM. Daily file, last observation in each month."""
+    out: dict[str, float] = {}
+    with open(path, newline="", encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            day = (row.get("DATE") or "").strip()
+            if len(day) < 7:
+                continue
+            try:
+                close = float(row["CLOSE"])
+            except (KeyError, ValueError):
+                continue
+            out[day[:7]] = close      # later rows overwrite earlier ones: last day wins
+    return out
+
+
+def load_bars(path: str = DEFAULT_DATA, vix_path: str | None = None) -> list[Bar]:
     bars: list[Bar] = []
     with open(path, newline="", encoding="utf-8") as fh:
         for row in csv.DictReader(fh):
@@ -65,6 +82,9 @@ def load_bars(path: str = DEFAULT_DATA) -> list[Bar]:
             ))
     if len(bars) < 24:
         raise ValueError(f"not enough usable rows in {path}")
+    if vix_path:
+        vix = load_vix(vix_path)
+        bars = [Bar(b.month, b.price, b.dividend, b.cpi, vix.get(b.month[:7])) for b in bars]
     return bars
 
 
@@ -89,6 +109,27 @@ def trend_signal(window: int = 10) -> Callable[[Sequence[Bar]], bool]:
             return False
         ma = sum(b.price for b in history[-window:]) / window
         return history[-1].price > ma
+
+    return signal
+
+
+def trend_vix(window: int = 10, vix_cap: float = 30.0) -> Callable[[Sequence[Bar]], bool]:
+    """Trend filter with a fear filter: hold only when VIX is at or below `vix_cap`.
+
+    A month without a VIX observation is treated as *not* holdable, which is the
+    conservative direction: it can only reduce exposure.
+    """
+    if window < 2:
+        raise ValueError("window must be >= 2")
+    if vix_cap <= 0:
+        raise ValueError("vix_cap must be positive")
+    trend = trend_signal(window)
+
+    def signal(history: Sequence[Bar]) -> bool:
+        last = history[-1]
+        if last.vix is None or last.vix > vix_cap:
+            return False
+        return trend(history)
 
     return signal
 

@@ -8,6 +8,7 @@ import sys
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
+import analysis
 import engine
 
 WINDOWS = {
@@ -21,12 +22,16 @@ STRATEGIES = {
     "buyhold": engine.always_in,
     "trend10": engine.trend_signal(10),
     "trend12": engine.trend_signal(12),
+    "trend10vix": engine.trend_vix(10, 30.0),
     "cash": engine.always_out,
 }
 
+VIX_ERA = ("1990-02", "2023-06")
+
 
 def window_bars(name: str):
-    bars = engine.load_bars()
+    bars = engine.load_bars(vix_path=os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                                  "data", "vix_daily.csv"))
     if name not in WINDOWS:
         raise ValueError(f"unknown window {name!r}; choose from {sorted(WINDOWS)}")
     start, end = WINDOWS[name]
@@ -68,6 +73,58 @@ def cmd_truncation(_args) -> int:
     return 0
 
 
+def research_payload() -> dict:
+    bars, _ = window_bars("full")
+    seg = analysis.slice_window(bars, *VIX_ERA)
+    out = {"window": {"start": VIX_ERA[0], "end": VIX_ERA[1]}, "walk_forward": [], "sweep": [],
+           "bootstrap": {}, "headline": []}
+
+    for name in ("buyhold", "trend10", "trend10vix"):
+        r = engine.backtest(seg, STRATEGIES[name])
+        out["headline"].append(engine.summary(r, name))
+
+    for name, factory in (("trend10", lambda: engine.trend_signal(10)),
+                          ("trend10vix", lambda: engine.trend_vix(10, 30.0))):
+        splits = analysis.walk_forward(
+            bars, factory,
+            [("IS", "1990-02-01", "2006-12-31"), ("OOS", "2007-01-01", "2023-06-01")])
+        out["walk_forward"].append({"strategy": name, "splits": [sp.as_dict() for sp in splits]})
+
+    out["sweep"] = analysis.parameter_sweep(seg, windows=range(6, 15), vix_caps=(None, 30.0))
+    out["sweep_stability"] = {
+        "plain": analysis.sweep_stability([r for r in out["sweep"] if r["vix_cap"] is None]),
+        "vix30": analysis.sweep_stability([r for r in out["sweep"] if r["vix_cap"] == 30.0]),
+    }
+
+    res = engine.backtest(seg, STRATEGIES["trend10vix"])
+    out["bootstrap"] = analysis.block_bootstrap(analysis.monthly_returns(res), n_paths=2000, block=12)
+    return out
+
+
+def cmd_research(_args) -> int:
+    d = research_payload()
+    print(f"VIX era {d['window']['start']} → {d['window']['end']}\n")
+    print(f"{'strategy':12s} {'final':>10s} {'CAGR':>7s} {'Sharpe':>7s} {'MDD':>8s} {'in mkt':>7s}")
+    for r in d["headline"]:
+        print(f"{r['label']:12s} ${r['final_equity']:>9,.0f} {r['cagr_pct']:>6.2f}% "
+              f"{r['sharpe']:>7.2f} {r['max_drawdown_pct']:>7.2f}% {r['time_in_market_pct']:>6.1f}%")
+    print("\nwalk-forward")
+    for blk in d["walk_forward"]:
+        for sp in blk["splits"]:
+            print(f"  {blk['strategy']:11s} {sp['label']:4s} {sp['segment']}  CAGR {sp['cagr_pct']:>5.2f}%  "
+                  f"Sharpe {sp['sharpe']:>4.2f}  MDD {sp['max_drawdown_pct']:>7.2f}%")
+    print("\nparameter stability (MA 6..14)")
+    for k, st in d["sweep_stability"].items():
+        print(f"  {k:5s} CAGR min {st['min']:.2f} median {st['median']:.2f} max {st['max']:.2f} "
+              f"(spread {st['spread']:.2f} pts)")
+    b = d["bootstrap"]
+    print(f"\nblock bootstrap · {b['paths']} paths · {b['block_months']}-month blocks")
+    print(f"  final equity p05 ${b['final_p05']:,.0f} · p50 ${b['final_p50']:,.0f} · p95 ${b['final_p95']:,.0f}")
+    print(f"  max drawdown p05 {b['dd_p05']:.2f}% · p50 {b['dd_p50']:.2f}% · p95 {b['dd_p95']:.2f}%")
+    print(f"  P(final < capital) = {b['probability_of_loss']:.2%}")
+    return 0
+
+
 def cmd_backtest(args) -> int:
     print(json.dumps(run_one(args.window, args.strategy, args.capital, args.fee_bps), indent=2))
     return 0
@@ -105,6 +162,18 @@ def make_server(host: str = "0.0.0.0", port: int = 8820) -> ThreadingHTTPServer:
                                 f"<td class=n>{r['sharpe']:.2f}</td>"
                                 f"<td class=n>{r['max_drawdown_pct']:.2f}%</td>"
                                 f"<td class=n>{r['time_in_market_pct']:.1f}%</td></tr>")
+                    vix_rows = []
+                    _, allbars = window_bars("full")
+                    seg = analysis.slice_window(allbars, "1990-02", "2023-06")
+                    for st in ("buyhold", "trend10", "trend10vix"):
+                        r = engine.backtest(seg, STRATEGIES[st])
+                        vix_rows.append(
+                            f"<tr><td>{st}</td><td class=n>${r.final_equity:,.0f}</td>"
+                            f"<td class=n>{r.cagr * 100:.2f}%</td><td class=n>{r.sharpe:.2f}</td>"
+                            f"<td class=n>{r.max_drawdown * 100:.2f}%</td>"
+                            f"<td class=n>{r.time_in_market * 100:.1f}%</td></tr>")
+                    boot = analysis.block_bootstrap(analysis.monthly_returns(
+                        engine.backtest(seg, STRATEGIES["trend10vix"])), n_paths=800, block=12)
                     proofer = engine.truncation_test(window_bars("full")[1], STRATEGIES["trend10"])
                     html = f"""<!doctype html><meta charset=utf-8>
 <title>TradeAtlas Core</title>
@@ -123,6 +192,12 @@ td.n{{font-family:ui-monospace,Menlo,monospace;text-align:right}}
 <span class=tag>cash earns 0%</span><span class=tag>Shiller monthly, 1871&ndash;2026</span></p>
 <table><tr><th>window</th><th>strategy</th><th>final equity</th><th>CAGR</th><th>Sharpe</th>
 <th>max DD</th><th>in market</th></tr>{''.join(rows)}</table>
+<h2 style="font-size:15px;margin:26px 0 8px">VIX era, 1990-02 → 2023-06</h2>
+<table><tr><th>strategy</th><th>final equity</th><th>CAGR</th><th>Sharpe</th><th>max DD</th><th>in market</th></tr>
+{''.join(vix_rows)}</table>
+<p class=foot>Block bootstrap, 800 paths, 12-month blocks: final equity p05
+${boot['final_p05']:,.0f} · p50 ${boot['final_p50']:,.0f} · p95 ${boot['final_p95']:,.0f};
+max drawdown p50 {boot['dd_p50']:.2f}%.</p>
 <p class=foot>No-lookahead proof: {proofer['checked']} truncation cutoffs,
 mismatches <b class=ok>{len(proofer['mismatches'])}</b>,
 largest equity difference <b class=ok>{proofer['max_equity_delta']:.6f}</b>.
@@ -145,6 +220,8 @@ API: <code>/api/backtest?window=1993&amp;strategy=trend10</code></p>"""
                     _, bt = window_bars(q.get("window", "full"))
                     self._json(200, engine.truncation_test(bt, STRATEGIES.get(q.get("strategy", "trend10"),
                                                                              engine.trend_signal(10))))
+                elif u.path == "/api/research":
+                    self._json(200, research_payload())
                 elif u.path == "/api/windows":
                     self._json(200, {k: {"start": v[0], "end": v[1]} for k, v in WINDOWS.items()})
                 else:
@@ -174,6 +251,7 @@ def main(argv=None) -> int:
 
     sub.add_parser("demo", help="print the four windows x two strategies").set_defaults(fn=cmd_demo)
     sub.add_parser("truncation", help="prove no lookahead").set_defaults(fn=cmd_truncation)
+    sub.add_parser("research", help="walk-forward, parameter stability, bootstrap").set_defaults(fn=cmd_research)
 
     b = sub.add_parser("backtest", help="one backtest as json")
     b.add_argument("--window", default="1993", choices=sorted(WINDOWS))
