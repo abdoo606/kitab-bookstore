@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EUDR Evidence Vault — plot risk, DDS payload, 5-year ledger</title>
+<style>
+  :root{
+    --bg:#0a1013; --panel:#111a1e; --panel2:#0d1519; --line:#1e2c31;
+    --ink:#e6f0f2; --mut:#8aa3aa; --acc:#33c48d; --ok:#33c48d; --warn:#f0b429; --bad:#ef5f6b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1100px 560px at 10% -10%,#12302a 0%,var(--bg) 58%);
+       color:var(--ink);font:15px/1.55 ui-sans-serif,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+  header{padding:24px 26px 16px;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+  h1{font-size:19px;margin:0;font-weight:650}
+  .tag{font-size:12px;color:var(--mut);border:1px solid var(--line);padding:3px 9px;border-radius:999px}
+  main{display:grid;grid-template-columns:330px 1fr 400px;gap:16px;padding:18px 20px 40px;align-items:start}
+  @media(max-width:1150px){main{grid-template-columns:1fr}}
+  .card{background:linear-gradient(180deg,var(--panel) 0%,var(--panel2) 100%);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .card h2{font-size:12px;text-transform:uppercase;letter-spacing:1.3px;color:var(--mut);margin:0 0 12px;font-weight:600}
+  label{display:block;font-size:12px;color:var(--mut);margin:11px 0 4px}
+  select,input{width:100%;background:#08100f;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 9px;font-size:13px}
+  button{background:var(--acc);color:#04150f;border:0;border-radius:8px;padding:9px 14px;font-weight:700;font-size:13px;cursor:pointer}
+  button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:600}
+  .row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid #172327}
+  th{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+  .mono,td.f{font-family:ui-monospace,Menlo,monospace}
+  td.f{font-size:11.5px}
+  .pill{font-size:10.5px;padding:2px 7px;border-radius:99px;border:1px solid var(--line);color:var(--mut)}
+  .pill.ok{background:var(--ok);color:#06170f;border-color:var(--ok);font-weight:700}
+  .pill.bad{background:var(--bad);color:#1d0609;border-color:var(--bad);font-weight:700}
+  .pill.warn{background:var(--warn);color:#1c1403;border-color:var(--warn);font-weight:700}
+  .verdict{border:1px solid var(--line);border-radius:10px;padding:12px;background:#08100f;margin-bottom:12px}
+  .big{font-size:27px;font-weight:750;letter-spacing:-.4px}
+  .cite{font-size:12px;color:var(--mut)}
+  .log{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#9dbcc2;background:#060c0e;border:1px solid var(--line);
+       border-radius:8px;padding:10px;margin-top:10px;white-space:pre-wrap;min-height:42px;max-height:210px;overflow:auto}
+  .split{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .bar{height:6px;border-radius:99px;background:#152024;overflow:hidden;margin-top:10px}
+  .bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#1f7d5f,var(--acc));transition:width .45s}
+  footer{padding:0 22px 34px;color:var(--mut);font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <h1>EUDR Evidence Vault</h1>
+  <span class="tag">Reg. (EU) 2023/1115 · operators from 30 Dec 2026</span>
+  <span class="tag">plot-level risk · DDS payload · 5-year retention</span>
+</header>
+
+<main>
+  <section class="card">
+    <h2>1 · Shipment</h2>
+    <label>Commodity</label>
+    <select id="commodity">
+      <option>coffee</option><option>cocoa</option><option>wood</option><option>rubber</option><option>soya</option>
+    </select>
+
+    <label>Country of production</label>
+    <select id="country">
+      <option value="BR">Brazil</option><option value="ID">Indonesia</option>
+      <option value="VN">Vietnam</option><option value="CI">Côte d’Ivoire</option>
+      <option value="CO">Colombia</option><option value="RO">Romania</option>
+    </select>
+
+    <label>Plots in this lot</label>
+    <select id="plots">
+      <option value="clean">6 plots, polygons supplied</option>
+      <option value="centroid">6 plots, 2 only as a centroid point</option>
+      <option value="gap">6 plots, 1 polygon 11% larger than declared area</option>
+      <option value="forest">6 plots, forest loss detected in 2023 on 0.8 ha</option>
+      <option value="nogeo">6 plots, 2 with no geolocation at all</option>
+    </select>
+
+    <div class="row">
+      <button onclick="assess()">Assess lot</button>
+      <button class="ghost" onclick="reset()">Reset</button>
+    </div>
+    <div class="cite" style="margin-top:12px">Scoring is the same additive rule set as the backend
+      (<span class="mono">eudr_core.py</span>): each signal adds risk, and the band decides whether the
+      statement can be filed as negligible risk.</div>
+  </section>
+
+  <section class="card">
+    <h2>2 · Plot-level risk</h2>
+    <div class="verdict">
+      <div class="split">
+        <div><div class="big" id="band">—</div><div class="cite" id="score">run the assessment</div></div>
+        <div style="text-align:right"><div class="cite">filing decision</div>
+          <div class="big" id="decision" style="font-size:20px">—</div></div>
+      </div>
+      <div class="bar"><i id="bar"></i></div>
+    </div>
+    <table>
+      <thead><tr><th>Plot</th><th>ha</th><th>signal</th><th>risk</th></tr></thead>
+      <tbody id="plotbody"></tbody>
+    </table>
+    <div class="cite" id="summary" style="margin-top:10px"></div>
+  </section>
+
+  <section class="card">
+    <h2>3 · DDS payload + evidence ledger</h2>
+    <div class="log" id="dds">assess a lot to build the statement</div>
+    <div class="row">
+      <button onclick="seal()">Seal evidence pack</button>
+      <button class="ghost" onclick="check()">Verify ledger</button>
+    </div>
+    <div class="log" id="ledger">ledger: empty</div>
+  </section>
+</main>
+
+<footer>
+  The delivered build takes a supplier spreadsheet and a folder of KML/GeoJSON, produces this table for every
+  lot, writes the DDS payload for TRACES, and keeps a hash-chained record for the five-year retention window.
+  No satellite API keys are needed for the scoring path; the forest-loss signal is an input you can source
+  from the free JRC/GFC layers.
+</footer>
+
+<script>
+const LOSS_2023 = {BR:0.008, ID:0.004, VN:0.002, CI:0.006, CO:0.001, RO:0.0005};
+const BASELINE = {BR:55, ID:45, VN:35, CI:50, CO:20, RO:10};
+
+const PLOTS = {
+  clean:   [6,0,0,0,0],   // n, centroid, areaGap, forestLossHa, noGeo
+  centroid:[6,2,0,0,0],
+  gap:     [6,0,1,0,0],
+  forest:  [6,0,0,0.8,0],
+  nogeo:   [6,0,0,0,2]
+};
+
+function sha(s){
+  let h=[0x811c9dc5,0x01000193,0x9e3779b9,0x85ebca6b];
+  for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);
+    h[0]=Math.imul(h[0]^c,16777619)>>>0;h[1]=Math.imul(h[1]+c,2246822519)>>>0;
+    h[2]=Math.imul(h[2]^c,3266489917)>>>0;h[3]=Math.imul(h[3]+c,668265263)>>>0;}
+  const x=n=>("00000000"+(n>>>0).toString(16)).slice(-8);
+  return x(h[0])+x(h[1])+x(h[2])+x(h[3])+x(h[0]^h[2])+x(h[1]^h[3])+x(h[0]+h[1])+x(h[2]+h[3]);
+}
+
+let state=null;
+
+function assess(){
+  const c=document.getElementById("commodity").value;
+  const k=document.getElementById("country").value;
+  const p=document.getElementById("plots").value;
+  const [n,centroid,gap,loss,noGeo]=PLOTS[p];
+
+  const rows=[];
+  let total=0, worst=0, worstit="";
+  for(let i=1;i<=n;i++){
+    const ha=+(1.0+((i*37)%23)/10).toFixed(2);
+    let risk=0, signals=[];
+    if(i<=noGeo){ risk+=40; signals.push("no geolocation"); }
+    else if(i<=noGeo+centroid){ risk+=12; signals.push("centroid only"); }
+    if(gap&&i===3){ risk+=15; signals.push("area mismatch 11%"); }
+    if(loss&&i===2){ risk+=Math.round(loss*55/Math.max(loss,0.8)*10)/10; signals.push("forest loss 2023"); }
+    risk += BASELINE[k]*0.12;                       // country baseline contribution
+    risk = Math.round(risk*10)/10;
+    total+=risk*ha; if(risk>worst){worst=risk;worstit="plot "+i;}
+    rows.push({i,ha,risk,sig:signals.join(", ")||"clean"});
+  }
+  const avg=+(total/Math.max(1,rows.reduce((a,r)=>a+r.ha,0))).toFixed(1);
+  const band = avg>=85?"CRITICAL":avg>=60?"HIGH":avg>=30?"STANDARD":"NEGLIGIBLE";
+  const decision = avg>=85?"do not file":avg>=60?"mitigate first":avg>=30?"file + mitigation note":"file as negligible";
+
+  state={c,k,p,rows,avg,band,decision,loss};
+  render();
+}
+
+function render(){
+  const {rows,avg,band,decision,loss,c,k,p}=state;
+  document.getElementById("band").textContent=band;
+  document.getElementById("band").style.color = band==="CRITICAL"?"var(--bad)":band==="HIGH"?"var(--warn)":"var(--ok)";
+  document.getElementById("score").textContent="weighted risk "+avg+" / 100 · worst plot "+Math.max(...rows.map(r=>r.risk));
+  document.getElementById("decision").textContent=decision;
+  document.getElementById("bar").style.width=Math.min(100,avg)+"%";
+
+  document.getElementById("plotbody").innerHTML=rows.map(r=>{
+    const cls=r.risk>=40?"bad":r.risk>=20?"warn":"ok";
+    return `<tr><td class="f">P-${String(r.i).padStart(3,"0")}</td><td>${r.ha}</td>
+      <td style="color:#96b0b6">${r.sig}</td><td><span class="pill ${cls}">${r.risk}</span></td></tr>`;
+  }).join("");
+
+  const flagged=rows.filter(r=>r.risk>=20).length;
+  document.getElementById("summary").textContent =
+    `${rows.length} plots · ${flagged} flagged · forest-loss input: ${loss?loss+" ha":"none"} · `+
+    `country baseline ${BASELINE[k]}/100`;
+
+  const dds={
+    operator:{eori:"NL8XXXXXXXXX01", name:"(your client)"},
+    commodity:c, country_of_production:k,
+    plots:rows.map(r=>({id:`P-${String(r.i).padStart(3,"0")}`, area_ha:r.ha, risk:r.risk})),
+    due_diligence:{performed:true, risk_band:band, negligible_risk:band==="NEGLIGIBLE"},
+    quantities:{net_kg: 18000}
+  };
+  document.getElementById("dds").textContent=
+    "POST /tracesnt/ws/EUDRDueDiligenceStatementServiceV3\n"+JSON.stringify(dds,null,1);
+}
+
+function seal(){
+  if(!state){assess();}
+  const body=document.getElementById("dds").textContent;
+  const h=sha(body);
+  state.seal=h;
+  const t=new Date().toISOString().slice(0,19).replace("T"," ");
+  document.getElementById("ledger").textContent=
+    `sealed ${t}\n  record #1  ${h.slice(0,32)}…\n  retention until ${(+t.slice(0,4)+5)}-${t.slice(5,10)} (5 years, Art. 12)\n  chain: 1 record, root ${h.slice(0,24)}…`;
+}
+
+function check(){
+  if(!state||!state.seal){document.getElementById("ledger").textContent="ledger: empty — seal first";return;}
+  const now=sha(document.getElementById("dds").textContent);
+  const ok = now===state.seal;
+  document.getElementById("ledger").textContent=
+    (ok?"verify: PASS\n":"verify: FAIL\n")+
+    "  records: 1 · re-hashed: 1 · mismatches: "+(ok?0:1)+"\n"+
+    (ok?"  pack intact for the retention window":"  payload changed after sealing — investigate before filing");
+  document.getElementById("ledger").style.color = ok?"var(--ok)":"var(--bad)";
+}
+
+function reset(){
+  document.getElementById("commodity").value="coffee";
+  document.getElementById("country").value="BR";
+  document.getElementById("plots").value="clean";
+  document.getElementById("dds").textContent="assess a lot to build the statement";
+  document.getElementById("ledger").textContent="ledger: empty";
+  document.getElementById("ledger").style.color="";
+  document.getElementById("bar").style.width="0%";
+  document.getElementById("band").textContent="—";
+  document.getElementById("score").textContent="run the assessment";
+  document.getElementById("decision").textContent="—";
+  document.getElementById("plotbody").innerHTML="";
+  document.getElementById("summary").textContent="";
+  state=null;
+}
+reset();
+</script>
+</body>
+</html>
