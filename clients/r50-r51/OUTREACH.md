@@ -46,13 +46,15 @@ M1 plot risk + DDS payload · M2 manifest, ledger, verify · M3 supplier ingesti
 | 87 | info@global-traceability.com | Global Traceability | they promise EUDR "simple and cost-effective" — evidence work is what breaks that promise |
 | 88 | compliance@sustalium.com | Sustalium | their point that a DDS mismatching the declared product is denied entry |
 | 89 | info@impactbuying.com | ImpactBuying (NL/DE) | mid-sized importers: too much volume to do by hand, too small for a platform |
-| 90 | info@gaston-schul.com | Gaston Schul (NL) | customs desk compares statement to declaration at the border |
+| 90 | ~~info@gaston-schul.com~~ → andrea.kuncova@wood-paper.cz | Gaston Schul bounced **550 5.4.1** (Exchange blocks the address); replaced with Wood & Paper a.s. (CZ) | customs desk compares statement to declaration at the border → supplier-file volume at a mid-size operator |
 | 91 | contact@4-pack.com | 4Pack (UK) | EUDR sits underneath PPWR for wood-fibre packaging |
-| | | Sent 2026-10-22, ids 1a164340–1a164344 | |
+| | | Sent 2026-10-22, ids 1a164340–1a164344 and 1a16434b (replacement) | |
 
 **Dates used (verified Oct 2026, not the 2025 schedule):** large and medium operators **30 Dec 2026**,
 micro and small **30 Jun 2027**. The earlier 30 Dec 2025 date was postponed twice — using the current
 date is itself a credibility signal.
+
+**Bounces:** 1 of 10 — `info@gaston-schul.com` rejected by Microsoft Exchange with `550 5.4.1 Recipient address rejected: Access denied`. The address exists on their site but the mailbox refuses external mail. Replaced same round with a named recipient at Wood & Paper (CZ); no repeat attempts to gaston-schul.com.
 
 ## Dedupe
 
