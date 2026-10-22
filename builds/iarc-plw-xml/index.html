@@ -188,7 +188,9 @@ ${contribXml}
   </front>
   <body>
 ${bodySecs.map((s, idx) => `    <sec id="sec${idx + 1}"><title>${escXml(s.heading)}</title><p>${formatInlineXml(s.body)}</p></sec>`).join("\n")}
-  </body>
+  
+<div style="max-width:1140px;margin:20px auto;padding:16px 20px;background:#0f1f38;border:1px solid #fbbf24;border-radius:12px;color:#f8fafc;font-family:Inter,system-ui,sans-serif;font-size:13.5px"><strong style="color:#fbbf24">💰 Transparent USD Engagement &amp; Milestone Pricing:</strong> <b>Option A (7-Day Turnkey Production Sprint): $1,800 USD Total</b> (<b>$900 USD Milestone 1 Kickoff</b> + <b>$900 USD Milestone 2 Final Delivery</b>) &nbsp;|&nbsp; <b>Option B (Dedicated Senior Engineering Role): $140,000 USD/yr</b>.</div>
+</body>
   <back>
     <ref-list>
 ${refXml}
@@ -223,5 +225,7 @@ ${refXml}
     document.getElementById("manuscriptInput").value = SAMPLE;
     runPipeline();
   </script>
+
+<div style="max-width:1140px;margin:20px auto;padding:16px 20px;background:#0f1f38;border:1px solid #fbbf24;border-radius:12px;color:#f8fafc;font-family:Inter,system-ui,sans-serif;font-size:13.5px"><strong style="color:#fbbf24">💰 Transparent USD Engagement &amp; Milestone Pricing:</strong> <b>Option A (7-Day Turnkey Production Sprint): $1,800 USD Total</b> (<b>$900 USD Milestone 1 Kickoff</b> + <b>$900 USD Milestone 2 Final Delivery</b>) &nbsp;|&nbsp; <b>Option B (Dedicated Senior Engineering Role): $140,000 USD/yr</b>.</div>
 </body>
 </html>

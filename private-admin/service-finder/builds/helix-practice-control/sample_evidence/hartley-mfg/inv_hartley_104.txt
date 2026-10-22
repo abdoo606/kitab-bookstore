@@ -1,0 +1,5 @@
+TAX INVOICE #HC-2026-104
+Supplier: Hartley Precision Engineering Ltd (VRN 418920374)
+Customer: Severn Aerospace Ltd
+Supply Date: 2026-09-14
+Net: GBP 1,250.00 | UK Std VAT 20%: GBP 250.00 | Gross: GBP 1,500.00

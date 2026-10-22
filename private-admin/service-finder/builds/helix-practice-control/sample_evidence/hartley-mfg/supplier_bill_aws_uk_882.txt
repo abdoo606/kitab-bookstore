@@ -1,0 +1,3 @@
+SUPPLIER VAT INVOICE #AWS-UK-882
+Supplier: Amazon Web Services UK Ltd
+Net: GBP 83.33 | UK Std VAT 20% (ROUND_HALF_UP): GBP 16.67 | Gross: GBP 100.00

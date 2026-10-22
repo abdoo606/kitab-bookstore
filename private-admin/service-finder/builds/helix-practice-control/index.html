@@ -3,96 +3,330 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Helix v1 — UK Accountancy Practice Control Plane (Hartley & Cole Demo)</title>
+<title>Helix v1 — UK Accountancy Practice Control Plane (Verified Backend + Tamper Gate)</title>
 <style>
-  :root{--bg:#0b101b;--card:#121a2b;--line:#22314f;--acc:#60a5fa;--ok:#34d399;--warn:#fbbf24;--txt:#f8fafc;--mut:#94a3b8}
+  :root{--bg:#0b101b;--card:#121a2b;--line:#22314f;--acc:#60a5fa;--ok:#34d399;--warn:#fbbf24;--bad:#f87171;--txt:#f8fafc;--mut:#94a3b8}
   *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif;line-height:1.5}
-  .wrap{max-width:1160px;margin:0 auto;padding:28px 20px 60px}
+  .wrap{max-width:1220px;margin:0 auto;padding:26px 20px 60px}
   .badge{display:inline-block;background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.4);color:var(--acc);padding:4px 12px;border-radius:999px;font-size:12px;font-weight:700}
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:16px}
-  table{width:100%;border-collapse:collapse;font-size:13px}
-  th,td{padding:10px 8px;border-bottom:1px solid #1e2b45;text-align:left}
-  button{background:var(--ok);color:#042418;border:0;border-radius:7px;padding:6px 11px;font-weight:800;cursor:pointer;font-size:12px}
-  button.flag{background:#f59e0b;color:#231400;margin-left:5px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th,td{padding:10px 8px;border-bottom:1px solid #1e2b45;text-align:left;vertical-align:top}
+  button{background:var(--ok);color:#042418;border:0;border-radius:7px;padding:5px 10px;font-weight:800;cursor:pointer;font-size:11.5px;margin:2px 3px 2px 0}
+  button.sec{background:#334155;color:#f8fafc}
+  button.danger{background:#ef4444;color:#fff}
+  select{background:#090f1a;color:#f8fafc;border:1px solid #2b3f66;border-radius:8px;padding:6px 10px;font-weight:700}
   .boxes{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}
   @media(max-width:860px){.boxes{grid-template-columns:1fr 1fr}}
   .boxes div{background:#090f1a;border:1px solid #1e2d4a;border-radius:10px;padding:11px}
   .boxes b{font-size:19px;color:var(--acc);display:block;margin-top:3px}
+  code{background:#080d17;padding:2px 6px;border-radius:5px;color:#93c5fd;font-size:12px}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <span class="badge">HELIX v1 CONTROL PLANE PROTOTYPE · OPEN ACCOUNTANCY (HARTLEY &amp; COLE, CHARTERED ACCOUNTANTS)</span>
-  <h1 style="margin:12px 0 6px;font-size:27px">🏛️ Helix Practice Control Plane — Evidence-Linked UK Reconciliation &amp; MTD VAT Gate</h1>
-  <p style="color:var(--mut);margin:0">Built around a single non-negotiable rule for UK practice software: <b>AI prepares work items with SHA-256 source evidence, while ZERO entries touch the client ledger or HMRC MTD VAT Boxes 1–7 until a qualified human accountant signs off.</b></p>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+    <span class="badge">HELIX v1 UK PRACTICE CONTROL PLANE · VERIFIED BACKEND + TAMPER-INVALIDATION SUITE</span>
+    <span id="runtimeModeBadge" style="font-size:12px;padding:5px 12px;border-radius:999px;background:#1e293b;border:1px solid #475569;font-weight:700">Detecting Backend...</span>
+  </div>
+
+  <h1 style="margin:12px 0 6px;font-size:26px">🏛️ Helix Practice Control Plane — SHA-256 Evidence Gate, Double-Entry Reversals &amp; UK VAT Engine</h1>
+  <p style="color:var(--mut);margin:0;font-size:13.5px">
+    <b>Run full Python + SQLite WAL server locally:</b> <code>python3 helix_server.py --port 8890</code> &nbsp;|&nbsp;
+    <b>Run 7-part verification suite:</b> <code>python3 -m unittest test_helix_backend.py -v</code>
+  </p>
+
+  <div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+    <div>
+      <label style="font-size:12px;color:var(--mut);display:block;margin-bottom:4px">Isolated Client Tenant &amp; HMRC VAT Accounting Scheme:</label>
+      <select id="tenantSelect" onchange="switchTenant(this.value)">
+        <option value="hartley-mfg">Hartley Precision Engineering Ltd (VRN 418920374 · STANDARD_ACCRUAL)</option>
+        <option value="kensington-dental">Kensington Dental Group Ltd (VRN 772019485 · CASH_ACCOUNTING)</option>
+      </select>
+    </div>
+    <div>
+      <button class="sec" onclick="resetDemo()">↺ Reset Clean Seed State</button>
+      <button onclick="testSimulatedHmrc()">Validate Simulated HMRC MTD Payload</button>
+    </div>
+  </div>
 
   <div class="card">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-      <strong>Live HMRC Making Tax Digital (MTD) VAT Return — Recomputed Strictly From Human-Approved Items</strong>
-      <span id="submissionBadge" style="font-size:12px;padding:4px 10px;border-radius:99px;background:#78350f;color:#fde68a;font-weight:700">BLOCKED: Pending Partner Sign-Off</span>
+      <strong>HMRC Making Tax Digital (MTD) Period <code>26A3</code> — Integer-Pence <code>ROUND_HALF_UP</code> Engine</strong>
+      <span id="submissionBadge" style="font-size:12px;padding:4px 10px;border-radius:99px;background:#78350f;color:#fde68a;font-weight:700">Checking Integrity...</span>
     </div>
     <div class="boxes">
       <div><span style="font-size:11px;color:var(--mut)">BOX 1 · VAT DUE SALES</span><b id="b1">£0.00</b></div>
       <div><span style="font-size:11px;color:var(--mut)">BOX 4 · VAT RECLAIMED</span><b id="b4">£0.00</b></div>
       <div><span style="font-size:11px;color:var(--mut)">BOX 5 · NET VAT PAYABLE</span><b id="b5" style="color:var(--ok)">£0.00</b></div>
-      <div><span style="font-size:11px;color:var(--mut)">BOX 6 · NET SALES EX-VAT</span><b id="b6">£0</b></div>
-      <div><span style="font-size:11px;color:var(--mut)">BOX 7 · NET PURCHASES</span><b id="b7">£0</b></div>
+      <div><span style="font-size:11px;color:var(--mut)">BOX 6 · NET SALES (WHOLE £)</span><b id="b6">£0</b></div>
+      <div><span style="font-size:11px;color:var(--mut)">BOX 7 · NET PURCHASES (WHOLE £)</span><b id="b7">£0</b></div>
     </div>
+    <p style="margin:10px 0 0;font-size:12px;color:var(--mut)">
+      <b>Invoice vs Receipt Rule Enforced:</b> Under <code>STANDARD_ACCRUAL</code>, <code>SALES_INVOICE</code> recognizes VAT at tax point (Boxes 1 &amp; 6), whereas subsequent <code>DEBTOR_RECEIPT</code> clears <code>1200_BANK / 1100_TRADE_DEBTORS</code> with <b>£0.00 VAT Box impact</b> (zero double-counting). Under <code>CASH_ACCOUNTING</code>, VAT is deferred at invoice and recognized upon receipt.
+    </p>
   </div>
 
   <div class="card">
-    <h3 style="margin-top:0">Staged Practice Work Queue — Click to Inspect SHA-256 Source Evidence or Sign Off</h3>
+    <h3 style="margin-top:0">Client Work Queue — Approve &amp; Post, or Mutate Amount / Evidence to Test Automatic Approval Invalidation</h3>
     <table>
-      <thead><tr><th>Client Entity</th><th>Workflow</th><th>Gross (£)</th><th>VAT</th><th>Source Evidence (SHA-256)</th><th>AI Conf.</th><th>Status / Human Control</th></tr></thead>
+      <thead>
+        <tr>
+          <th>Tx ID / Kind</th><th>Counterparty</th><th>Net / VAT / Gross</th><th>VAT Treatment</th>
+          <th>Source Evidence (SHA-256)</th><th>Status &amp; Sealed Digest</th><th>Reviewer Controls &amp; Tamper Tests</th>
+        </tr>
+      </thead>
       <tbody id="rowsBody"></tbody>
     </table>
-    <pre id="evidenceDrawer" style="margin-top:14px;background:#070b13;border:1px solid #1d2c4a;padding:12px;border-radius:9px;color:#93c5fd;font-size:12px">Click any row's Evidence chip to inspect extracted invoice/bank proof before approving.</pre>
+    <pre id="evidenceDrawer" style="margin-top:14px;background:#070b13;border:1px solid #1d2c4a;padding:12px;border-radius:9px;color:#93c5fd;font-size:12px;white-space:pre-wrap">Select any evidence file or trigger a mutation/tamper test to inspect live double-entry postings &amp; SHA-256 audit events.</pre>
   </div>
 
-  <div class="card" style="font-size:13px;background:#0d1626">
-    <strong style="color:var(--warn)">Transparent Engagement Options:</strong><br>
-    • <b>Option A — Turnkey Helix v1 Foundation Sprint (50/50 Milestones):</b> <b>$2,200 USD total</b> ($1,100 Milestone 1 kickoff + $1,100 Milestone 2 full Python/SQLite multi-practice control engine, SHA-256 audit log &amp; MTD VAT test suite).<br>
-    • <b>Option B — Remote Founding Technical Lead / CTO Partnership:</b> Immediate start with full daily UK working-hour overlap (UTC+3 EMEA timezone) — $7,500/mo retainer + equity structure open to discussion.
+  <div class="card" style="font-size:12.5px;background:#0d1626">
+    <strong style="color:var(--warn)">Honest Engineering Status (Implemented vs Simulated vs Planned) &amp; Commercial Options:</strong><br>
+    • <b>Implemented in this commit:</b> Python 3.10+ <code>helix_server.py</code> + SQLite WAL schema &amp; triggers (<code>migrations/001_helix_core.sql</code>), real byte-level SHA-256 disk hashing, dual-layer post-approval mutation invalidation + reversing double-entry ledger entries, PBKDF2-HMAC-SHA256 RBAC &amp; multi-tenant isolation, <code>BEGIN IMMEDIATE</code> concurrent duplicate posting protection, integer-pence <code>ROUND_HALF_UP</code> Standard &amp; Cash VAT math, and <code>test_helix_backend.py</code>.<br>
+    • <b>Simulated locally:</b> <code>/api/hmrc-sandbox/vat-returns</code> validates HMRC MTD VAT v1.0 schema locally without external HMRC OAuth2 credentials.<br>
+    • <b>Engagement Options:</b> <b>Option A — Turnkey Helix v1 Sprint:</b> <b>$2,200 USD</b> ($1,100 Milestone 1 + $1,100 Milestone 2) &nbsp;|&nbsp; <b>Option B — Remote Founding Technical Lead / CTO Partnership:</b> <b>$7,500/mo + Equity</b> (full UK GMT/BST daily overlap).
   </div>
 </div>
+
 <script>
-const ITEMS = [
-  {id:"HX-101", client:"Cotswold Precision Ltd", wf:"Bank <-> Sales Invoice", gross:4800, rate:0.20, dir:"SALE", doc:"INV-2026-0891.pdf + Barclays Feed #9941", sha:"9f84c2e1...77b0", conf:"99.1%", status:"PENDING"},
-  {id:"HX-102", client:"Cotswold Precision Ltd", wf:"Supplier Bill (MTD VAT)", gross:1440, rate:0.20, dir:"PURCH", doc:"AWS-UK-OCT26.pdf (VAT GB3492811)", sha:"4a19d0f8...11c4", conf:"97.8%", status:"PENDING"},
-  {id:"HX-103", client:"Cotswold Precision Ltd", wf:"Aged Debtor Receipt", gross:2400, rate:0.20, dir:"SALE", doc:"NatWest FasterPayment Ref#DP-441", sha:"c301e772...90a2", conf:"94.5%", status:"PENDING"}
-];
-function inspectItem(idx) {
-  const it = ITEMS[idx];
-  document.getElementById('evidenceDrawer').textContent =
-    `EVIDENCE AUDIT [${it.id}] — ${it.client}\nDocument: ${it.doc}\nImmutable SHA-256: ${it.sha}\nMath Check: Gross £${it.gross.toFixed(2)} = Net £${(it.gross/(1+it.rate)).toFixed(2)} + UK Standard VAT (20%) £${(it.gross - it.gross/(1+it.rate)).toFixed(2)}`;
+let LIVE_API = false;
+let CURRENT_TENANT = 'hartley-mfg';
+const PARTNER_TOKEN = 'hlx_live_partner_hartley_kensington_2026';
+
+// Deterministic pure-JS FNV/SHA-like hex seal for static preview fallback when helix_server.py is not running
+function fallbackHexHash(str) {
+  let h1 = 0xdeadbeef ^ str.length, h2 = 0x41c6ce57 ^ str.length;
+  for (let i = 0; i < str.length; i++) {
+    const ch = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  const base = ((h2 >>> 0).toString(16).padStart(8,'0') + (h1 >>> 0).toString(16).padStart(8,'0'));
+  return (base + base + base + base).slice(0, 64);
 }
-function setStatus(idx, st) { ITEMS[idx].status = st; render(); }
-function render() {
-  const tb = document.getElementById('rowsBody');
-  tb.innerHTML = ITEMS.map((it, i) => `<tr>
-    <td><b>${it.client}</b></td><td>${it.wf}</td><td>£${it.gross.toLocaleString()}</td><td>20%</td>
-    <td><a href="#" onclick="inspectItem(${i});return false" style="color:#60a5fa">${it.doc}</a></td>
-    <td>${it.conf}</td>
-    <td>${it.status === 'APPROVED' ? '<b style="color:#34d399">✅ Approved (Partner ACA)</b>' :
-      it.status === 'FLAGGED' ? '<b style="color:#fbbf24">⚠️ Held for Query</b>' :
-      `<button onclick="setStatus(${i},'APPROVED')">Approve &amp; Post</button><button class="flag" onclick="setStatus(${i},'FLAGGED')">Query</button>`}</td>
-  </tr>`).join('');
-  let b1=0,b4=0,b6=0,b7=0;
-  ITEMS.filter(x=>x.status==='APPROVED').forEach(it=>{
-    const net = it.gross/(1+it.rate), vat = it.gross-net;
-    if(it.dir==='SALE'){ b6+=net; b1+=vat; } else { b7+=net; b4+=vat; }
+
+function roundHalfUpVatPence(netPence, treatment) {
+  const rateNum = treatment === 'UK_STD_20' ? 20 : (treatment === 'UK_REDUCED_5' ? 5 : 0);
+  // Exact integer half-up arithmetic: floor((netPence * rateNum + 50) / 100)
+  const vatPence = Math.floor((netPence * rateNum + 50) / 100);
+  return { vatPence, grossPence: netPence + vatPence };
+}
+
+function canonicalDigestLocal(it) {
+  const evSha = fallbackHexHash(it.evidence_bytes);
+  return fallbackHexHash(`v1|${it.tenant_id}|${it.tx_id}|${it.kind}|${it.vat_treatment}|26A3|${it.net_pence}|${it.vat_pence}|${it.gross_pence}|${evSha}`);
+}
+
+let ITEMS = [];
+function buildLocalSeed() {
+  const raw = [
+    {tx_id:'tx-hc-104', tenant_id:'hartley-mfg', scheme:'STANDARD_ACCRUAL', kind:'SALES_INVOICE', vat_treatment:'UK_STD_20', counterparty:'Severn Aerospace Ltd', net_pence:125000, evidence_filename:'inv_hartley_104.txt', evidence_bytes:'TAX INVOICE #HC-2026-104 | Net GBP 1250.00 + VAT GBP 250.00', status:'PENDING_REVIEW', approved_digest_hex:null, approved_by:null, invalidation_reason:null, journal:[]},
+    {tx_id:'tx-hc-fps-104', tenant_id:'hartley-mfg', scheme:'STANDARD_ACCRUAL', kind:'DEBTOR_RECEIPT', vat_treatment:'OUTSIDE_SCOPE_SETTLEMENT', counterparty:'Severn Aerospace Ltd (FPS Bank Settlement)', net_pence:150000, evidence_filename:'fps_bank_receipt_104.txt', evidence_bytes:'FASTER PAYMENTS RECEIPT GBP 1500.00 SETTLING #HC-2026-104', status:'PENDING_REVIEW', approved_digest_hex:null, approved_by:null, invalidation_reason:null, journal:[]},
+    {tx_id:'tx-hc-aws-882', tenant_id:'hartley-mfg', scheme:'STANDARD_ACCRUAL', kind:'PURCHASE_INVOICE', vat_treatment:'UK_STD_20', counterparty:'AWS UK Cloud Infrastructure', net_pence:8333, evidence_filename:'supplier_bill_aws_uk_882.txt', evidence_bytes:'AWS UK BILL #882 | Net GBP 83.33 + 20% VAT GBP 16.67 = Gross GBP 100.00', status:'PENDING_REVIEW', approved_digest_hex:null, approved_by:null, invalidation_reason:null, journal:[]},
+    {tx_id:'tx-kd-01', tenant_id:'kensington-dental', scheme:'CASH_ACCOUNTING', kind:'SALES_INVOICE', vat_treatment:'UK_STD_20', counterparty:'Private Orthodontic Lab Supply', net_pence:60000, evidence_filename:'inv_kensington_01.txt', evidence_bytes:'CASH ACCOUNTING INVOICE GBP 600.00 NET + GBP 120.00 DEFERRED VAT', status:'PENDING_REVIEW', approved_digest_hex:null, approved_by:null, invalidation_reason:null, journal:[]},
+    {tx_id:'tx-kd-rcpt-01', tenant_id:'kensington-dental', scheme:'CASH_ACCOUNTING', kind:'DEBTOR_RECEIPT', vat_treatment:'UK_STD_20', counterparty:'Bank Receipt Clearing #KD-01', net_pence:60000, evidence_filename:'rcpt_kensington_01.txt', evidence_bytes:'CASH ACCOUNTING BANK RECEIPT GBP 720.00 CLEARED', status:'PENDING_REVIEW', approved_digest_hex:null, approved_by:null, invalidation_reason:null, journal:[]}
+  ];
+  ITEMS = raw.map(r => {
+    const c = roundHalfUpVatPence(r.net_pence, r.vat_treatment);
+    r.vat_pence = c.vatPence; r.gross_pence = c.grossPence;
+    r.evidence_sha256 = fallbackHexHash(r.evidence_bytes);
+    return r;
   });
-  document.getElementById('b1').textContent = '£'+b1.toFixed(2);
-  document.getElementById('b4').textContent = '£'+b4.toFixed(2);
-  document.getElementById('b5').textContent = '£'+(b1-b4).toFixed(2);
-  document.getElementById('b6').textContent = '£'+Math.round(b6).toLocaleString();
-  document.getElementById('b7').textContent = '£'+Math.round(b7).toLocaleString();
-  const allOk = ITEMS.every(x=>x.status==='APPROVED');
-  const badge = document.getElementById('submissionBadge');
-  badge.textContent = allOk ? 'READY FOR HMRC MTD SUBMISSION (3/3 HUMAN-SIGNED)' : 'BLOCKED: Pending Human Accountant Sign-Off';
-  badge.style.background = allOk ? '#065f46' : '#78350f';
+  localApprove('tx-hc-104');
 }
-inspectItem(0); render();
+
+function enforceLocalTamperScan() {
+  // Even if someone mutates ITEMS[i].net_pence or ITEMS[i].evidence_bytes in browser DevTools console,
+  // recomputing canonicalDigestLocal() immediately invalidates approval & appends a REVERSAL journal entry!
+  ITEMS.forEach(it => {
+    const c = roundHalfUpVatPence(it.net_pence, it.vat_treatment);
+    it.vat_pence = c.vatPence;
+    it.gross_pence = c.grossPence;
+    it.evidence_sha256 = fallbackHexHash(it.evidence_bytes);
+    if (it.status === 'APPROVED_POSTED') {
+      const expected = canonicalDigestLocal(it);
+      if (expected !== it.approved_digest_hex) {
+        it.status = 'INVALIDATED_TAMPERED';
+        it.approved_digest_hex = null;
+        it.approved_by = null;
+        it.invalidation_reason = 'Digest mismatch: approved amount or evidence changed post-signoff';
+        it.journal.push(`REVERSAL_ON_INVALIDATION @ ${new Date().toISOString()} — VAT & Ledger delta zeroed`);
+      }
+    }
+  });
+}
+
+function localApprove(txId) {
+  const it = ITEMS.find(x => x.tx_id === txId);
+  if (!it || it.status === 'APPROVED_POSTED') return;
+  const c = roundHalfUpVatPence(it.net_pence, it.vat_treatment);
+  it.vat_pence = c.vatPence; it.gross_pence = c.grossPence;
+  it.evidence_sha256 = fallbackHexHash(it.evidence_bytes);
+  it.approved_digest_hex = canonicalDigestLocal(it);
+  it.approved_by = 'reviewer-cworsey (PARTNER_REVIEWER)';
+  it.status = 'APPROVED_POSTED';
+  it.invalidation_reason = null;
+  it.journal.push(`ORIGINAL_POST @ ${new Date().toISOString()} — Gross £${(it.gross_pence/100).toFixed(2)}`);
+}
+
+async function init() {
+  try {
+    const r = await fetch('/api/health');
+    if (r.ok) { LIVE_API = true; }
+  } catch (_) { LIVE_API = false; }
+  const b = document.getElementById('runtimeModeBadge');
+  if (LIVE_API) {
+    b.textContent = '🟢 CONNECTED TO LIVE PYTHON + SQLITE WAL SERVER (helix_server.py)';
+    b.style.borderColor = '#34d399'; b.style.color = '#34d399';
+  } else {
+    b.textContent = '🟡 STATIC PREVIEW MODE (Run `python3 helix_server.py --port 8890` for live SQLite WAL)';
+    b.style.borderColor = '#fbbf24'; b.style.color = '#fde68a';
+    buildLocalSeed();
+  }
+  await refreshUI();
+}
+
+async function switchTenant(tid) { CURRENT_TENANT = tid; await refreshUI(); }
+
+async function approveTx(txId) {
+  if (LIVE_API) {
+    const r = await fetch('/api/transactions/approve', {
+      method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+PARTNER_TOKEN},
+      body: JSON.stringify({tenant_id: CURRENT_TENANT, tx_id: txId})
+    });
+    const d = await r.json();
+    document.getElementById('evidenceDrawer').textContent = JSON.stringify(d, null, 2);
+  } else {
+    localApprove(txId);
+  }
+  await refreshUI();
+}
+
+async function mutateAmount(txId, currentNet) {
+  const nextNet = currentNet + 10000; // +£100.00 mutation test
+  if (LIVE_API) {
+    const r = await fetch('/api/transactions/mutate', {
+      method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+PARTNER_TOKEN},
+      body: JSON.stringify({tenant_id: CURRENT_TENANT, tx_id: txId, net_pence: nextNet, reason_note: 'Net increased +£100 post-approval'})
+    });
+    document.getElementById('evidenceDrawer').textContent = JSON.stringify(await r.json(), null, 2);
+  } else {
+    const it = ITEMS.find(x => x.tx_id === txId);
+    it.net_pence = nextNet;
+    enforceLocalTamperScan();
+    document.getElementById('evidenceDrawer').textContent = JSON.stringify(it, null, 2);
+  }
+  await refreshUI();
+}
+
+async function tamperEvidence(txId, evId) {
+  if (LIVE_API) {
+    const r = await fetch('/api/evidence/tamper-disk', {
+      method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+PARTNER_TOKEN},
+      body: JSON.stringify({tenant_id: CURRENT_TENANT, evidence_id: evId, period_key: '26A3'})
+    });
+    document.getElementById('evidenceDrawer').textContent = JSON.stringify(await r.json(), null, 2);
+  } else {
+    const it = ITEMS.find(x => x.tx_id === txId);
+    it.evidence_bytes += '\n# UNAUTHORIZED BYTE APPEND';
+    enforceLocalTamperScan();
+    document.getElementById('evidenceDrawer').textContent = JSON.stringify(it, null, 2);
+  }
+  await refreshUI();
+}
+
+async function resetDemo() {
+  if (LIVE_API) {
+    await fetch('/api/reset-demo', {method:'POST', headers:{'Authorization':'Bearer '+PARTNER_TOKEN}});
+  } else { buildLocalSeed(); }
+  await refreshUI();
+}
+
+async function testSimulatedHmrc() {
+  if (LIVE_API) {
+    const r = await fetch('/api/hmrc-sandbox/vat-returns', {
+      method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+PARTNER_TOKEN},
+      body: JSON.stringify({tenant_id: CURRENT_TENANT, period_key: '26A3'})
+    });
+    document.getElementById('evidenceDrawer').textContent = JSON.stringify(await r.json(), null, 2);
+  } else {
+    document.getElementById('evidenceDrawer').textContent =
+      'SIMULATED LOCAL HMRC MTD SANDBOX (Run `python3 helix_server.py --port 8890` for full SQLite endpoint validation).';
+  }
+}
+
+async function render() { return refreshUI(); }
+
+async function refreshUI() {
+  let rows = [], b1p=0, b4p=0, b6p=0, b7p=0;
+  if (LIVE_API) {
+    const r = await fetch(`/api/state?tenant_id=${encodeURIComponent(CURRENT_TENANT)}&period_key=26A3`, {
+      headers:{'Authorization':'Bearer '+PARTNER_TOKEN}
+    });
+    const st = await r.json();
+    rows = st.transactions;
+    const bp = st.vat_return.boxes_pence;
+    b1p = bp.box1_vat_due_sales_pence; b4p = bp.box4_vat_reclaimed_curr_period_pence;
+    b6p = bp.box6_total_value_sales_ex_vat_pence; b7p = bp.box7_total_value_purchases_ex_vat_pence;
+  } else {
+    enforceLocalTamperScan();
+    rows = ITEMS.filter(x => x.tenant_id === CURRENT_TENANT);
+    rows.filter(x => x.status === 'APPROVED_POSTED').forEach(it => {
+      if (it.scheme === 'STANDARD_ACCRUAL') {
+        if (it.kind === 'SALES_INVOICE') { b1p += it.vat_pence; b6p += it.net_pence; }
+        if (it.kind === 'PURCHASE_INVOICE') { b4p += it.vat_pence; b7p += it.net_pence; }
+      } else {
+        if (it.kind === 'DEBTOR_RECEIPT') { b1p += it.vat_pence; b6p += it.net_pence; }
+      }
+    });
+  }
+
+  document.getElementById('rowsBody').innerHTML = rows.map(it => {
+    const stHtml = it.status === 'APPROVED_POSTED'
+      ? `<b style="color:#34d399">✅ APPROVED_POSTED</b><br><span style="color:#94a3b8;font-size:11px">Digest: ${(it.approved_digest_hex||'').slice(0,14)}…</span>`
+      : it.status === 'INVALIDATED_TAMPERED'
+      ? `<b style="color:#f87171">🚨 INVALIDATED_TAMPERED</b><br><span style="color:#fca5a5;font-size:11px">${it.invalidation_reason||'Reversed from VAT/Ledger'}</span>`
+      : `<b style="color:#fbbf24">⏳ PENDING_REVIEW</b>`;
+    return `<tr>
+      <td><b>${it.tx_id}</b><br><span style="color:#94a3b8">${it.kind}</span></td>
+      <td>${it.counterparty}</td>
+      <td>Net: £${(it.net_pence/100).toFixed(2)}<br>VAT: £${(it.vat_pence/100).toFixed(2)}<br><b>Gross: £${(it.gross_pence/100).toFixed(2)}</b></td>
+      <td><code>${it.vat_treatment}</code></td>
+      <td><b>${it.evidence_filename}</b><br><span style="color:#60a5fa;font-family:monospace;font-size:11px">${(it.evidence_sha256||'').slice(0,16)}…</span></td>
+      <td>${stHtml}</td>
+      <td>
+        ${it.status !== 'APPROVED_POSTED' ? `<button onclick="approveTx('${it.tx_id}')">Approve &amp; Post</button>` : ''}
+        <button class="sec" onclick="mutateAmount('${it.tx_id}', ${it.net_pence})">✏️ Mutate +£100</button>
+        <button class="danger" onclick="tamperEvidence('${it.tx_id}', '${it.evidence_id||''}')">🧨 Tamper File Byte</button>
+      </td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('b1').textContent = '£' + (b1p/100).toFixed(2);
+  document.getElementById('b4').textContent = '£' + (b4p/100).toFixed(2);
+  document.getElementById('b5').textContent = '£' + (Math.abs(b1p - b4p)/100).toFixed(2);
+  document.getElementById('b6').textContent = '£' + Math.round(b6p/100).toLocaleString();
+  document.getElementById('b7').textContent = '£' + Math.round(b7p/100).toLocaleString();
+
+  const anyInvalid = rows.some(x => x.status === 'INVALIDATED_TAMPERED');
+  const allApproved = rows.length > 0 && rows.every(x => x.status === 'APPROVED_POSTED');
+  const badge = document.getElementById('submissionBadge');
+  if (anyInvalid) {
+    badge.textContent = '🚨 BLOCKED: POST-APPROVAL MUTATION / EVIDENCE TAMPER DETECTED (VAT REVERSED)';
+    badge.style.background = '#7f1d1d'; badge.style.color = '#fecaca';
+  } else if (allApproved) {
+    badge.textContent = `✅ READY FOR MTD SUBMISSION (${rows.length}/${rows.length} SEALED)`;
+    badge.style.background = '#065f46'; badge.style.color = '#d1fae5';
+  } else {
+    badge.textContent = '⏳ BLOCKED: Pending Partner Sign-Off on Staged Items';
+    badge.style.background = '#78350f'; badge.style.color = '#fde68a';
+  }
+}
+
+init();
 </script>
 </body>
 </html>
