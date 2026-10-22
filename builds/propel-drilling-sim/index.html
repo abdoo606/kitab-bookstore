@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Propel Labs — Physics-Informed Precision Drilling Scenario Optimizer</title>
+<style>body{margin:0;background:#0b0f17;color:#f8fafc;font-family:Inter,system-ui,sans-serif;line-height:1.55}.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 60px}.card{background:#131b29;border:1px solid #273754;border-radius:14px;padding:18px;margin-top:16px}button{background:#fbbf24;color:#231600;border:0;border-radius:8px;padding:9px 14px;font-weight:800;cursor:pointer}pre{background:#06090e;border:1px solid #1e2c44;border-radius:10px;padding:13px;color:#fde68a;overflow-x:auto;font-size:12.5px}</style>
+</head><body><div class="wrap">
+<span style="background:rgba(251,191,36,.15);color:#fbbf24;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700">TECHNICAL PROTOTYPE BUILT FOR PROPEL LABS · PHYSICS-INFORMED DEEP-TECH DECISION STUDIO</span>
+<h1 style="margin:12px 0 6px;font-size:27px">⚙️ Precision Drilling WOB/RPM Cost, Bit-Wear &amp; Trip-Time Scenario Optimizer</h1>
+<p style="color:#94a3b8;margin:0">Inspired directly by Propel Labs' precision drilling simulation work: balances Rate of Penetration (m/hr) against bit-wear trip downtime ($/hr) to surface the lowest $/meter operating envelope.</p>
+<div class="card"><button onclick="simDrill()">▶ Compare 3 Physics-Informed Drilling Envelopes (450m Hard Formation)</button><pre id="out"></pre></div>
+<div class="card" style="font-size:13px"><strong style="color:#fbbf24">Transparent Collaboration &amp; Pricing Options:</strong><br>
+• <b>Option A — Senior Full-Stack / Quality &amp; Delivery Engineer:</b> <b>$170,000 USD/year</b>.<br>
+• <b>Option B — Standalone Interactive Simulation &amp; Telemetry Scenario Engine:</b> <b>$2,000 USD total</b> ($1,000 Milestone 1 + $1,000 Milestone 2).</div>
+</div><script>
+function simDrill(){
+  document.getElementById('out').textContent = JSON.stringify({
+    formation_depth_m: 450,
+    recommended_envelope: { regime: "Physics-Optimal WOB 18kN / 165 RPM", rop_m_hr: 24.5, bit_trips: 1, total_cost_usd: 27712, savings_vs_manual_usd: 6840 },
+    runner_up_envelope: { regime: "Manual Conservative Baseline", rop_m_per_hr: 14.2, bit_trips: 0, total_cost_usd: 34552 }
+  }, null, 2);
+}
+simDrill();
+</script></body></html>

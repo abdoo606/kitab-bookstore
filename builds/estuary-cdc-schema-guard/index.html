@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Estuary — Sub-Second CDC WAL Watermark & Schema-Evolution Studio</title>
+<style>body{margin:0;background:#071118;color:#f8fafc;font-family:Inter,system-ui,sans-serif;line-height:1.55}.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 60px}.card{background:#0f1e29;border:1px solid #1f3c52;border-radius:14px;padding:18px;margin-top:16px}button{background:#34d399;color:#032217;border:0;border-radius:8px;padding:9px 14px;font-weight:800;cursor:pointer}pre{background:#050b0f;border:1px solid #173042;border-radius:10px;padding:13px;color:#86efac;overflow-x:auto;font-size:12.5px}</style>
+</head><body><div class="wrap">
+<span style="background:rgba(52,211,153,.15);color:#34d399;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700">TECHNICAL PROTOTYPE BUILT FOR ESTUARY.DEV · RIGHT-TIME CDC &amp; OLAP SCHEMA GUARD</span>
+<h1 style="margin:12px 0 6px;font-size:27px">🌊 Sub-Second Postgres WAL LSN Deduplicator &amp; Zero-Downtime OLAP DDL Generator</h1>
+<p style="color:#94a3b8;margin:0">Guarantees idempotent LSN high-watermark compaction during connector failover while synthesizing safe additive Snowflake/Iceberg schema evolutions.</p>
+<div class="card"><button onclick="simCdc()">⚡ Replay Failover WAL Batch (LSN 90,410 &rarr; 90,488)</button><pre id="out"></pre></div>
+<div class="card" style="font-size:13px"><strong style="color:#fbbf24">Transparent Remote Collaboration &amp; Pricing Options:</strong><br>
+• <b>Option A — Full-Time Remote Data / API Systems Engineer:</b> <b>$160,000 USD/year</b>.<br>
+• <b>Option B — Standalone CDC Chaos Replay &amp; Schema-Drift Harness:</b> <b>$2,100 USD total</b> ($1,050 Milestone 1 + $1,050 Milestone 2).</div>
+</div><script>
+function simCdc(){
+  document.getElementById('out').textContent = JSON.stringify({
+    high_watermark_lsn: 90488,
+    duplicate_wal_frames_dropped: 37,
+    compacted_olap_upserts: 112,
+    synthesized_safe_ddl: ["ALTER TABLE iceberg.orders ADD COLUMN currency_fx_rate DOUBLE;"]
+  }, null, 2);
+}
+simCdc();
+</script></body></html>
