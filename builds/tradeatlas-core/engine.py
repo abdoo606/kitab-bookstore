@@ -153,6 +153,7 @@ class Result:
     positions: list[int]         # exposure held during that month (0 or 1)
     trades: int
     fees_paid: float
+    slippage_paid: float = 0.0
 
     # metrics, filled by `metrics()`
     total_return: float = 0.0
@@ -170,38 +171,49 @@ def backtest(
     capital: float = 1000.0,
     fee_bps: float = FEE_BPS_DEFAULT,
     start_index: int = 10,
+    slippage_bps: float = 0.0,
 ) -> Result:
-    """Run the strategy. Position for month t+1 is decided from data up to month t."""
+    """Run the strategy. Position for month t+1 is decided from data up to month t.
+
+    Costs are charged at the moment of the trade, never by rewriting a past month:
+    `fee_bps` is the commission, `slippage_bps` is execution shortfall (spread +
+    impact). Both are charged on the traded fraction, so the default run
+    (slippage 0) reproduces the v41 numbers exactly.
+    """
     if start_index < 1:
         raise ValueError("start_index must be >= 1")
     if capital <= 0:
         raise ValueError("capital must be positive")
+    if fee_bps < 0 or slippage_bps < 0:
+        raise ValueError("costs cannot be negative")
     fee = fee_bps / 10_000.0
+    slip = slippage_bps / 10_000.0
 
     equity = [capital]
     months = [bars[start_index].month]
     positions: list[int] = []
     trades = 0
     fees_paid = 0.0
+    slippage_paid = 0.0
 
     position = 0
     for t in range(start_index, len(bars) - 1):
         # decision uses only bars[0..t]
         want = 1 if signal(bars[:t + 1]) else 0
         turnover = abs(want - position)
-        cost = equity[-1] * turnover * fee      # charged at the moment of the trade,
-        fees_paid += cost                        # never by rewriting a past month
-        if turnover:
+        fees_paid += equity[-1] * turnover * fee          # charged at the moment
+        slippage_paid += equity[-1] * turnover * slip     # of the trade, never by
+        if turnover:                                      # rewriting a past month
             trades += 1
 
         ret = bars[t + 1].equity_return_prev(bars[t])
-        equity.append(equity[-1] * (1.0 - turnover * fee) * (1.0 + want * ret))
+        equity.append(equity[-1] * (1.0 - turnover * (fee + slip)) * (1.0 + want * ret))
         positions.append(want)
         months.append(bars[t + 1].month)
         position = want
 
     res = Result(months=months, equity=equity, positions=positions,
-                 trades=trades, fees_paid=fees_paid)
+                 trades=trades, fees_paid=fees_paid, slippage_paid=slippage_paid)
     metrics(res)
     return res
 
@@ -242,6 +254,7 @@ def truncation_test(
     fee_bps: float = FEE_BPS_DEFAULT,
     start_index: int = 10,
     cutoffs: Iterable[int] | None = None,
+    slippage_bps: float = 0.0,
 ) -> dict:
     """Re-run the engine on truncated history and compare with the full run.
 
@@ -249,7 +262,8 @@ def truncation_test(
     same positions and the same equity as the full run does at index c-1.
     Any dependence on future bars shows up as a mismatch here.
     """
-    full = backtest(bars, signal, capital=capital, fee_bps=fee_bps, start_index=start_index)
+    full = backtest(bars, signal, capital=capital, fee_bps=fee_bps,
+                    start_index=start_index, slippage_bps=slippage_bps)
     n = len(bars)
     if cutoffs is None:
         step = max(1, (n - start_index - 1) // 120)
@@ -262,7 +276,7 @@ def truncation_test(
         if c <= start_index + 1 or c > n:
             continue
         part = backtest(bars[:c], signal, capital=capital, fee_bps=fee_bps,
-                        start_index=start_index)
+                        start_index=start_index, slippage_bps=slippage_bps)
         i_full = c - 1 - start_index      # index of the last month in the partial run
         if i_full >= len(full.equity):
             continue
@@ -298,4 +312,6 @@ def summary(res: Result, label: str = "") -> dict:
         "time_in_market_pct": round(res.time_in_market * 100, 1),
         "trades": res.trades,
         "fees_paid_usd": round(res.fees_paid, 2),
+        "slippage_paid_usd": round(res.slippage_paid, 2),
+        "total_cost_usd": round(res.fees_paid + res.slippage_paid, 2),
     }

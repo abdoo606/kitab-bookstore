@@ -232,6 +232,13 @@ class TestHttp(unittest.TestCase):
         self.assertEqual(code, 200)
         self.assertEqual(body["mismatches"], [])
 
+    def test_signal_endpoint_matches_the_function(self):
+        import app as appmod
+        code, body = self.get("/api/signal")
+        self.assertEqual(code, 200)
+        self.assertEqual(body["position"], appmod.live_signal()["position"])
+        self.assertEqual(body["as_of"], appmod.live_signal()["as_of"])
+
     def test_unknown_path_is_404(self):
         with self.assertRaises(urllib.error.HTTPError) as ctx:
             self.get("/nope")
@@ -241,6 +248,70 @@ class TestHttp(unittest.TestCase):
         with self.assertRaises(urllib.error.HTTPError) as ctx:
             self.get("/api/backtest?window=nope")
         self.assertEqual(ctx.exception.code, 400)
+
+
+class TestSlippage(unittest.TestCase):
+    """Execution cost is a separate line from commission, and never rewrites history."""
+
+    def setUp(self):
+        self.bars = ramp(120, 100.0, 1.0)
+
+    def test_zero_slippage_reproduces_the_default_run(self):
+        a = engine.backtest(self.bars, engine.trend_signal(10))
+        b = engine.backtest(self.bars, engine.trend_signal(10), slippage_bps=0.0)
+        self.assertEqual(a.equity[-1], b.equity[-1])
+        self.assertEqual(b.slippage_paid, 0.0)
+
+    def test_slippage_reduces_equity_and_is_counted(self):
+        base = engine.backtest(self.bars, engine.trend_signal(10))
+        worse = engine.backtest(self.bars, engine.trend_signal(10), slippage_bps=25.0)
+        self.assertLess(worse.equity[-1], base.equity[-1])
+        self.assertGreater(worse.slippage_paid, 0.0)
+        self.assertEqual(worse.trades, base.trades)      # same rule, same decisions
+
+    def test_slippage_is_charged_once_on_the_entry(self):
+        res = engine.backtest(self.bars, engine.always_in, slippage_bps=50.0)
+        self.assertEqual(res.trades, 1)
+        self.assertAlmostEqual(res.slippage_paid, 1000.0 * 0.005, places=6)
+
+    def test_negative_cost_is_rejected(self):
+        with self.assertRaises(ValueError):
+            engine.backtest(self.bars, engine.always_in, slippage_bps=-1.0)
+
+    def test_truncation_is_clean_with_slippage(self):
+        t = engine.truncation_test(self.bars, engine.trend_signal(10), slippage_bps=25.0)
+        self.assertEqual(t["mismatches"], [])
+        self.assertEqual(t["max_equity_delta"], 0.0)
+
+
+class TestLiveSignal(unittest.TestCase):
+    """The published signal must be the engine's own rule, not a second implementation."""
+
+    @classmethod
+    def setUpClass(cls):
+        import app
+        cls.app = app
+        cls.sig = app.live_signal()
+
+    def test_position_is_in_or_out(self):
+        self.assertIn(self.sig["position"], ("IN", "OUT"))
+
+    def test_decision_month_follows_the_data_month(self):
+        as_of = self.sig["as_of"]
+        year, month = int(as_of[:4]), int(as_of[5:7])
+        expect = f"{year + 1}-01" if month == 12 else f"{year}-{month + 1:02d}"
+        self.assertEqual(self.sig["decision_for"], expect)
+
+    def test_position_equals_the_rule(self):
+        expect = "IN" if (self.sig["trend_ok"] and self.sig["vix_ok"]) else "OUT"
+        self.assertEqual(self.sig["position"], expect)
+
+    def test_signal_uses_the_last_bar_only(self):
+        bars = engine.load_bars(vix_path=self.app.DATA_VIX)
+        ma = sum(b.price for b in bars[-10:]) / 10
+        self.assertAlmostEqual(self.sig["ma10"], round(ma, 2), places=2)
+        self.assertEqual(self.sig["as_of"], bars[-1].month[:7])
+
 
 
 if __name__ == "__main__":
