@@ -3,15 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Document Library, Staff &amp; Public Engagement — CSKT DEWR Concept</title>
+  <title>Document Library, Staff, Careers &amp; Technical Notes — CSKT DEWR Concept</title>
+  <meta name="description" content="Searchable public document library with in-PDF text search, staff directory, CSKT Personnel job links, and Addendum #1 technical notes.">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
+  <div class="addendum-strip">
+    <div class="container">
+      <strong>Addendum #1:</strong> migration of <strong>33 published pages + 3 private pages + 359 media files</strong> (199 images · 133 documents · 27 other) · PDF full-text search in the base scope · WCAG 2.1 AA minimum, 2.2 AA targeted.
+    </div>
+  </div>
+
   <div class="demo-disclaimer" role="note">
     <div class="container">
-      <strong>Unofficial RFP Working Concept:</strong> Searchable document library, staff directory, careers board, and static demo public-comment form (transmits zero data).
+      <strong>Unofficial RFP Working Concept:</strong> every document, staff entry, and job posting here is a labelled <code>[Sample]</code> record. No real CSKT document, employee contact, or application is reproduced.
     </div>
   </div>
 
@@ -27,66 +34,132 @@
       <nav aria-label="Primary navigation">
         <ul class="nav-list">
           <li><a href="index.html">Home &amp; Programs</a></li>
-          <li><a href="projects-gis.html">Projects, GIS &amp; StoryMaps</a></li>
-          <li><a href="documents.html" aria-current="page">Documents, Staff &amp; Outreach</a></li>
+          <li><a href="projects-gis.html">Maps &amp; Data</a></li>
+          <li><a href="documents.html" aria-current="page">Documents &amp; Staff</a></li>
+          <li><a href="branding.html">Branding Concepts</a></li>
+          <li><a href="get-involved.html">Get Involved</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main id="main-content">
-    <div class="container breadcrumb"><a href="index.html">Home</a> / Document Library, Staff Directory, Careers &amp; Public Comments</div>
+    <div class="container breadcrumb"><a href="index.html">Home</a> / Document Library, Staff Directory, Careers &amp; Technical Notes</div>
 
-    <section class="section" aria-labelledby="docs-heading">
+    <section class="section" id="site-search" aria-labelledby="search-heading">
       <div class="container">
         <div class="section-head">
-          <h1 id="docs-heading">Searchable Public Document &amp; Resource Library (RFP Section 5.8)</h1>
-          <p>Instant keyword search, category taxonomy, year filter, version tracking, and file-size transparency so residents, irrigators, and partner agencies find technical PDFs and forms quickly.</p>
+          <h1 id="search-heading">Search Pages, Metadata &amp; the Text Inside PDFs</h1>
+          <p class="lede">
+            Addendum #1 Q18 puts searchable PDF text in the base proposal — not a paid extra. The demo below returns the
+            matching PDF <em>page number</em> so a visitor lands on the right page instead of re-reading a 23-page report.
+          </p>
+        </div>
+
+        <div class="search-panel">
+          <form id="site-search-form" role="search" aria-label="Document and page search">
+            <div class="search-field">
+              <div>
+                <label for="site-search-input"><strong>Search term</strong></label>
+                <input id="site-search-input" type="search" placeholder="Try: staff plate, seepage, Indian Preference, instream flow, rating curve…" aria-describedby="site-search-status">
+              </div>
+              <div style="flex:0 1 220px;">
+                <label for="site-search-scope">Search scope</label>
+                <select id="site-search-scope">
+                  <option value="ALL">Pages + PDF text</option>
+                  <option value="PAGES">Web pages only</option>
+                  <option value="PDFS">PDF documents only</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+          </form>
+          <p class="search-status" id="site-search-status" role="status" aria-live="polite">Type at least two characters. PDF matches show the page number.</p>
+          <ul class="result-list" id="site-search-results" aria-label="Search results"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="doc-library" aria-labelledby="docs-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="docs-heading">Public Document &amp; Resource Library</h2>
+          <p>Keyword search, category taxonomy, year filter, version tracking, and file-size transparency — the pattern that will hold all 133 migrated documents.</p>
         </div>
 
         <div class="filter-bar">
           <div>
-            <label for="doc-search">Keyword Search</label>
-            <input id="doc-search" type="search" placeholder="Search hydrology, headgate, compact, specs...">
+            <label for="doc-search">Keyword search</label>
+            <input id="doc-search" type="search" placeholder="Search hydrology, headgate, compact, specs…">
           </div>
           <div>
-            <label for="doc-category">Document Category</label>
+            <label for="doc-category">Document category</label>
             <select id="doc-category">
-              <option value="ALL">All Categories</option>
+              <option value="ALL">All categories</option>
               <option value="Technical Reports">Technical Reports</option>
-              <option value="Forms & Water Users">Forms &amp; Water Users</option>
+              <option value="Forms &amp; Water Users">Forms &amp; Water Users</option>
               <option value="Public Notices">Public Notices</option>
-              <option value="Procurement & Engineering">Procurement &amp; Engineering</option>
+              <option value="Procurement &amp; Engineering">Procurement &amp; Engineering</option>
               <option value="Educational Materials">Educational Materials</option>
             </select>
           </div>
           <div>
-            <label for="doc-year">Publication Year</label>
+            <label for="doc-year">Year</label>
             <select id="doc-year">
-              <option value="ALL">All Years</option>
+              <option value="ALL">All years</option>
               <option value="2026">2026</option>
               <option value="2025">2025</option>
             </select>
           </div>
         </div>
+        <p class="doc-meta" id="doc-count" role="status" aria-live="polite"></p>
+        <ul id="doc-list" style="list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:0.8rem;"></ul>
+      </div>
+    </section>
 
-        <p id="doc-count" class="doc-meta" aria-live="polite"></p>
-        <div id="doc-results"></div>
+    <section class="section" id="careers" aria-labelledby="jobs-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="jobs-heading">Careers at DEWR — Applications Through CSKT Personnel</h2>
+          <p>Addendum #1 Q33: the website summarises each opening and links out to the official CSKT Personnel Office posting. Applications, résumés, and Indian Preference documentation are never collected here.</p>
+        </div>
+
+        <div class="table-wrap">
+          <table class="data">
+            <caption>Sample DEWR openings (placeholders — not real vacancies)</caption>
+            <thead>
+              <tr><th scope="col">Position</th><th scope="col">Program</th><th scope="col">Location</th><th scope="col">Type</th><th scope="col">Reference</th><th scope="col">Closes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>[Sample] Water Resources Civil Engineer (PE / EIT)</td><td>Engineering &amp; Infrastructure</td><td>Ronan, MT</td><td>Full-time</td><td><code>CSKT-PER-0000-SAMPLE</code></td><td>Nov 6, 2026</td></tr>
+              <tr><td>[Sample] Hydrologic Technician — Field Gaging &amp; Telemetry</td><td>Hydrology &amp; Water Measurement</td><td>Ronan, MT</td><td>Full-time / seasonal</td><td><code>CSKT-PER-0001-SAMPLE</code></td><td>Oct 30, 2026</td></tr>
+              <tr><td>[Sample] GIS &amp; Environmental Restoration Specialist</td><td>Stream Restoration &amp; GIS</td><td>Ronan, MT</td><td>Full-time</td><td><code>CSKT-PER-0002-SAMPLE</code></td><td>Oct 24, 2026</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="gate-box is-pine">
+          <h3>How the integration works in production</h3>
+          <ul>
+            <li>Each opening is a CMS record: title, program, location, type, reference number, posting date, closing date, and the official CSKT Personnel URL.</li>
+            <li>A scheduled check flags postings whose closing date has passed so expired jobs leave the public list automatically instead of misleading applicants.</li>
+            <li>The outbound link carries a clear label and opens in a new tab with a warning, so nobody loses their place on the DEWR site.</li>
+            <li>No applicant data is stored in the DEWR WordPress database — the Tribe's Personnel system remains the system of record.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
     <section class="section section-alt" id="staff" aria-labelledby="staff-heading">
       <div class="container">
         <div class="section-head">
-          <h2 id="staff-heading">DEWR Staff Directory &amp; Career Opportunities (RFP Section 5.14)</h2>
-          <p>Program-filterable staff contacts alongside current engineering, hydrology, and GIS career openings.</p>
+          <h2 id="staff-heading">Staff Directory</h2>
+          <p>Program-area filtering for a non-technical editor. In production, personal details are published only with each employee's written consent, and a role-based contact is offered where a named person is not appropriate.</p>
         </div>
-
         <div class="filter-bar">
           <div>
-            <label for="staff-area-filter">Filter Staff by Program Area</label>
+            <label for="staff-area-filter">Program area</label>
             <select id="staff-area-filter">
-              <option value="ALL">All Program Areas</option>
+              <option value="ALL">All program areas</option>
               <option value="Administration & Compact Coordination">Administration &amp; Compact Coordination</option>
               <option value="Public Outreach & Education">Public Outreach &amp; Education</option>
               <option value="Engineering & Infrastructure">Engineering &amp; Infrastructure</option>
@@ -94,52 +167,100 @@
             </select>
           </div>
         </div>
-
-        <div class="grid-2" id="staff-grid"></div>
-
-        <div class="section-head" id="careers" style="margin-top:2.2rem;">
-          <h2>Employment &amp; Career Opportunities</h2>
-          <p>Dedicated CMS section allowing authorized staff to publish DEWR openings or link directly to official CSKT Personnel announcements.</p>
-        </div>
-        <div class="grid-3" id="career-list"></div>
+        <div id="staff-list" class="grid-2 mt-lg"></div>
       </div>
     </section>
 
-    <section class="section" id="public-comment" aria-labelledby="comment-heading">
+    <section class="section" id="tech-notes" aria-labelledby="tech-heading">
       <div class="container">
         <div class="section-head">
-          <h2 id="comment-heading">Public Comment, Meeting RSVP &amp; Inquiry Form (RFP Section 5.9)</h2>
-          <p>Accessible form layout demonstrating public comment intake, topic routing, and newsletter opt-in. Static concept only — nothing is transmitted.</p>
+          <h2 id="tech-heading">Technical Notes Mapped to Addendum #1</h2>
+          <p>What the RFP now requires, and exactly how this build answers it.</p>
         </div>
-        <form class="card" id="public-comment-form" style="max-width:740px;">
-          <div class="grid-2">
+
+        <div class="grid-2">
+          <article class="card">
             <div>
-              <label for="comment-name">Full Name</label>
-              <input id="comment-name" type="text" required placeholder="Jane Doe">
+              <span class="badge">Q1 · Q19 · Q20 · Q21</span>
+              <h3>WordPress on CSKT's Managed WP Engine</h3>
+              <p>
+                The production build targets the CSKT-controlled WP Engine account at <strong>$0 hosting cost in the base proposal</strong>.
+                Elementor is not required and is not used. I coordinate with CSKT IT <strong>five business days before launch</strong> for
+                GoDaddy DNS and SSL issuance, whether the site stays on <code>csktwatercompact.com</code> or moves to a new domain.
+                All plugins are GPL-compatible; the custom theme is licensed GPLv2 or later.
+              </p>
             </div>
+          </article>
+          <article class="card">
             <div>
-              <label for="comment-email">Email Address (for confirmation &amp; updates)</label>
-              <input id="comment-email" type="email" required placeholder="name@example.org">
+              <span class="badge">Q13 · Q17 · Q35</span>
+              <h3>Migration Counts &amp; Zero Stock / Zero AI Imagery</h3>
+              <p>
+                <strong>33 published pages, 3 private pages, 359 media files</strong> (199 images, 133 documents, 27 other) with a
+                target of 90%+ migrated plus new program and project archive pages. Legacy PDF tagging/remediation is quoted separately
+                at <strong>$12 per PDF</strong>. No stock photography and no AI-generated landscapes appear anywhere — only original
+                vector diagrams, and DEWR-supplied photographs with documented rights.
+              </p>
             </div>
-          </div>
-          <div>
-            <label for="comment-topic">Program / Public Notice Topic</label>
-            <select id="comment-topic">
-              <option value="Fall Watershed Open House RSVP">Fall Watershed Open House RSVP</option>
-              <option value="Stream & Fishery Restoration Comment">Stream &amp; Fishery Restoration Comment</option>
-              <option value="Irrigation Modernization & Measurement Inquiry">Irrigation Modernization &amp; Measurement Inquiry</option>
-              <option value="General DEWR Question / Newsletter Sign-Up">General DEWR Question / Newsletter Sign-Up</option>
-            </select>
-          </div>
-          <div>
-            <label for="comment-body">Public Comment or Question</label>
-            <textarea id="comment-body" rows="4" required placeholder="Enter comment or question (demo mode — stays locally in browser)..."></textarea>
-          </div>
-          <div>
-            <button type="submit" class="btn btn-river">Preview Submission Workflow</button>
-          </div>
-          <div id="comment-status" class="status-note" role="status" aria-live="polite" hidden></div>
-        </form>
+          </article>
+          <article class="card">
+            <div>
+              <span class="badge">Q16 · Q17</span>
+              <h3>WCAG 2.1 AA Minimum, 2.2 AA Targeted</h3>
+              <p>
+                Visible focus rings, skip links, 44px minimum target sizes, semantic headings, ARIA live regions on every dynamic
+                result, full keyboard operation of the slider, map pins, timeline, and comment form, plus contrast checked at 4.5:1 or
+                better for body text. Honest caveat: full conformance is verified with automated tooling <em>and</em> manual
+                screen-reader testing during Phase 3 — this prototype demonstrates the pattern, not a certification.
+              </p>
+            </div>
+          </article>
+          <article class="card">
+            <div>
+              <span class="badge">Q18</span>
+              <h3>Search That Reaches Inside PDFs</h3>
+              <p>
+                The base proposal indexes page titles, body copy, document metadata (category, program, year, version), and the
+                extracted text layer of each PDF, returning the matched page. Scanned PDFs need OCR and are counted separately; that
+                cost is shown openly rather than hidden in a change order.
+              </p>
+            </div>
+          </article>
+          <article class="card">
+            <div>
+              <span class="badge">Q28 · Q29 · Q35</span>
+              <h3>Cultural Review &amp; Language Support</h3>
+              <p>
+                Every concept, colour, motif, photograph, and Salish/Ksanka string goes to DEWR first, and DEWR routes it to the CSKT
+                Culture Committees. Nothing is published before written approval. Salish and Ksanka render as real Unicode with
+                combining marks, tagged with the correct language attribute for screen readers.
+              </p>
+            </div>
+            <a href="branding.html">Branding, Seal &amp; language page &rarr;</a>
+          </article>
+          <article class="card">
+            <div>
+              <span class="badge">Q11 · Q9 · Q55</span>
+              <h3>Contracting, Insurance &amp; Eligibility</h3>
+              <p>
+                General liability insurance is arranged <strong>after selection and before work begins</strong>, not with the proposal.
+                The Tribe pays the <strong>3% CSKT contracting fee</strong>. I am an independent solo proposer, remote, non-IPO, and
+                filing <strong>IRS Form W-8BEN</strong>; Addendum #1 Q55 confirms international firms and firms with no minimum size,
+                tenure, or revenue threshold are eligible.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="gate-box">
+          <h3>Honest limitations, stated up front</h3>
+          <ul>
+            <li>This is a static prototype with sample data. It is <strong>not</strong> a WordPress installation, and it is not connected to any DEWR system.</li>
+            <li>No accessibility certification is claimed. WCAG conformance is proven by audit during the project, and the audit results are handed to DEWR.</li>
+            <li>No real ArcGIS layers, hydrology feeds, or Tribal records are embedded; every map and metric is an invented placeholder.</li>
+            <li>No prior paid Tribal government contracts, no three-agency reference list, and no Indian Preference certification are claimed.</li>
+          </ul>
+        </div>
       </div>
     </section>
   </main>
@@ -147,12 +268,26 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
-        <strong>CSKT DEWR Working Concept</strong>
-        <p>Full administrative credentials, domain control, source code, and digital style guide belong 100% to CSKT upon delivery (RFP Section 5.13).</p>
+        <strong>CSKT Division of Engineering &amp; Water Resources (Concept)</strong>
+        <p>Flathead Indian Reservation · Ronan, Montana<br>WCAG 2.2 AA &amp; Section 508 oriented · Zero third-party tracking scripts.</p>
+      </div>
+      <div>
+        <strong>Prototype Pages</strong>
+        <p>
+          <a href="index.html">Home, Search &amp; Before/After</a><br>
+          <a href="projects-gis.html">Maps &amp; Data Hub + Compact Timeline</a><br>
+          <a href="documents.html">Document Library, Staff &amp; Careers</a><br>
+          <a href="branding.html">Branding Concepts &amp; Style Guide</a><br>
+          <a href="get-involved.html">Meetings, Comments, Newsletter &amp; Seth Bot</a>
+        </p>
       </div>
       <div>
         <strong>Prepared By</strong>
-        <p>Abdulrhman — <a href="mailto:abdulrhmant948@gmail.com">abdulrhmant948@gmail.com</a> · <a href="https://github.com/abdoo606">github.com/abdoo606</a></p>
+        <p>Abdulrhman — Independent Web Developer<br><a href="mailto:abdulrhmant948@gmail.com">abdulrhmant948@gmail.com</a> · <a href="https://github.com/abdoo606">github.com/abdoo606</a></p>
+        <div class="seal-zone" style="margin-top:1rem;padding:1rem;">
+          <div class="seal-frame" style="width:88px;height:88px;font-size:0.6rem;">Reserved<br>Official CSKT<br>Seal zone</div>
+          <p style="font-size:0.72rem;">Official artwork supplied by DEWR only.</p>
+        </div>
       </div>
     </div>
   </footer>

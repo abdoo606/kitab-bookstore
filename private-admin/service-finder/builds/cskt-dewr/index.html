@@ -3,28 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CSKT Division of Engineering &amp; Water Resources — Working Concept</title>
-  <meta name="description" content="Unofficial accessible website prototype prepared for the CSKT Division of Engineering &amp; Water Resources (DEWR) October 2026 RFP.">
+  <title>CSKT Division of Engineering &amp; Water Resources — Working Concept (Addendum #1)</title>
+  <meta name="description" content="Unofficial accessible website prototype prepared for the CSKT Division of Engineering &amp; Water Resources (DEWR) October 2026 RFP and Questions &amp; Answers Addendum #1.">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
+  <div class="addendum-strip">
+    <div class="container">
+      <strong>Updated for Addendum #1 (Oct 22, 2026):</strong> WordPress on CSKT-managed WP Engine · 3 branding concepts · Maps &amp; Data hub · in-PDF full-text search · deadline-locked public comment form · Seth Bot Q&amp;A · zero stock/AI imagery.
+    </div>
+  </div>
+
   <div class="demo-disclaimer" role="note">
     <div class="container">
-      <strong>Unofficial RFP Working Concept:</strong> Prepared proactively by Abdulrhman (<code>github.com/abdoo606</code>) for CSKT DEWR review. Uses labelled sample placeholders only — collects no data and does not represent an official CSKT publication.
+      <strong>Unofficial RFP Working Concept:</strong> Prepared proactively by Abdulrhman (<code>github.com/abdoo606</code>) for CSKT DEWR review. Uses labelled <code>[Sample]</code> placeholders only — collects no data, sets no cookies, and does not represent an official CSKT publication.
     </div>
   </div>
 
   <div class="notice-banner" id="public-banner" role="region" aria-label="Public notice banner">
     <div class="container notice-row">
       <div>
-        <strong>Public Meeting Notice (Sample):</strong> Flathead Basin Fall Water Management &amp; Restoration Open House — Materials &amp; Public Comment Window Open.
-        <a href="documents.html#public-comment">View packet &amp; comment form</a>
+        <strong>Public Meeting Notice (Sample):</strong> Flathead Basin Fall Water Management &amp; Restoration Open House — materials and public comment window are open.
+        <a href="get-involved.html#public-comment">View packet &amp; comment form</a>
       </div>
       <button type="button" class="btn-ghost-light" id="dismiss-banner" aria-label="Dismiss public notice banner">Dismiss</button>
     </div>
   </div>
+  <p id="banner-status" class="visually-hidden" role="status" aria-live="polite"></p>
 
   <header class="site-header">
     <div class="container header-inner">
@@ -38,8 +45,10 @@
       <nav aria-label="Primary navigation">
         <ul class="nav-list">
           <li><a href="index.html" aria-current="page">Home &amp; Programs</a></li>
-          <li><a href="projects-gis.html">Projects, GIS &amp; StoryMaps</a></li>
-          <li><a href="documents.html">Documents, Staff &amp; Outreach</a></li>
+          <li><a href="projects-gis.html">Maps &amp; Data</a></li>
+          <li><a href="documents.html">Documents &amp; Staff</a></li>
+          <li><a href="branding.html">Branding Concepts</a></li>
+          <li><a href="get-involved.html">Get Involved</a></li>
         </ul>
       </nav>
     </div>
@@ -54,13 +63,47 @@
           Supporting implementation of the CSKT–Montana Water Compact, stream and fishery restoration, irrigation modernization, dam safety, hydrologic measurement, and accessible public information across northwestern Montana.
         </p>
         <div class="btn-row">
-          <a class="btn btn-primary" href="projects-gis.html">Explore Interactive Basin GIS &amp; Projects</a>
-          <a class="btn btn-outline" href="documents.html">Search Public Document Library</a>
+          <a class="btn btn-primary" href="projects-gis.html">Open the Maps &amp; Data Hub</a>
+          <a class="btn btn-outline" href="documents.html#site-search">Search pages &amp; PDF text</a>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="audiences-heading">
+    <section class="section" aria-labelledby="search-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="search-heading">Search Everything, Including the Words Inside the PDFs</h2>
+          <p>
+            Addendum #1 (Q18) requires base-proposal search to cover page content, metadata, <em>and</em> searchable text inside PDFs.
+            This demo index is small, but the mechanism is the production mechanism: query the extracted text of each page and return the page number that matched.
+          </p>
+        </div>
+
+        <div class="search-panel">
+          <form id="site-search-form" role="search" aria-label="Site-wide search">
+            <div class="search-field">
+              <div>
+                <label for="site-search-input"><strong>Search the site and document library</strong></label>
+                <input id="site-search-input" type="search" placeholder="Try: headgate, staff plate, seepage, Indian Preference, instream flow…" aria-describedby="site-search-status">
+              </div>
+              <div style="flex:0 1 220px;">
+                <label for="site-search-scope">Search scope</label>
+                <select id="site-search-scope">
+                  <option value="ALL">Pages + PDF text</option>
+                  <option value="PAGES">Web pages only</option>
+                  <option value="PDFS">PDF documents only</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+          </form>
+          <p class="search-status" id="site-search-status" role="status" aria-live="polite">Type at least two characters to search pages, document metadata, and the text inside PDFs.</p>
+          <ul class="result-list" id="site-search-results" aria-label="Search results"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="audiences-heading">
       <div class="container">
         <div class="section-head">
           <h2 id="audiences-heading">Find Resources by Audience</h2>
@@ -81,13 +124,13 @@
           </a>
           <a class="audience-pill" href="documents.html#careers">
             <strong>Agencies, Contractors &amp; Careers</strong>
-            <span>Engineering specs, bid notices, staff directory, and DEWR career openings.</span>
+            <span>Engineering specs, bid notices, staff directory, and DEWR openings via CSKT Personnel.</span>
           </a>
         </div>
       </div>
     </section>
 
-    <section class="section section-alt" aria-labelledby="programs-heading">
+    <section class="section" aria-labelledby="programs-heading">
       <div class="container">
         <div class="section-head">
           <h2 id="programs-heading">DEWR Core Programs &amp; Responsibilities</h2>
@@ -108,7 +151,7 @@
               <h3>Stream, Wetland &amp; Fishery Restoration</h3>
               <p>Reconnecting floodplains, screening diversions, and restoring cold-water habitat for native bull trout and westslope cutthroat trout.</p>
             </div>
-            <a href="#restoration-slider">Try before/after slider below &rarr;</a>
+            <a href="#restoration-slider">Try the before/after slider &rarr;</a>
           </article>
           <article class="card">
             <div>
@@ -116,13 +159,13 @@
               <h3>Irrigation Modernization &amp; Measurement</h3>
               <p>Upgrading canals, pipelines, headgates, and automated measurement structures to reduce seepage and support water users.</p>
             </div>
-            <a href="projects-gis.html">View sample basin projects &rarr;</a>
+            <a href="projects-gis.html#project-maps">View sample project maps &rarr;</a>
           </article>
           <article class="card">
             <div>
               <span class="badge">Engineering</span>
               <h3>Dam Safety &amp; Civil Infrastructure</h3>
-              <p>Managing multimillion-dollar rehabilitation, outlet works inspections, instrumentation, and construction quality assurance.</p>
+              <p>Managing rehabilitation, outlet works inspections, instrumentation, and construction quality assurance.</p>
             </div>
             <a href="documents.html">Engineering specs &amp; notices &rarr;</a>
           </article>
@@ -132,42 +175,45 @@
               <h3>Hydrology, Stream Gaging &amp; ArcGIS</h3>
               <p>Operating Reservation-wide gaging networks and publishing interactive ArcGIS Online maps and watershed StoryMaps.</p>
             </div>
-            <a href="projects-gis.html">Open GIS &amp; StoryMap hub &rarr;</a>
+            <a href="projects-gis.html#interactive-maps">Open the Maps &amp; Data hub &rarr;</a>
           </article>
           <article class="card">
             <div>
               <span class="badge badge-ochre">Outreach</span>
               <h3>Public Education, Notices &amp; Careers</h3>
-              <p>Sharing community meeting notices, classroom materials, public comment windows, and engineering/hydrology job openings.</p>
+              <p>Sharing community meeting notices, classroom materials, public comment windows, and engineering/hydrology openings.</p>
             </div>
-            <a href="documents.html#staff">Staff directory &amp; careers &rarr;</a>
+            <a href="get-involved.html">Meetings, comments &amp; newsletter &rarr;</a>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="restoration-slider" aria-labelledby="slider-heading">
+    <section class="section section-alt" id="restoration-slider" aria-labelledby="slider-heading">
       <div class="container">
         <div class="section-head">
-          <h2 id="slider-heading">Interactive Before &amp; After Restoration Showcase (RFP Section 4.6 &amp; 5.7)</h2>
-          <p>Accessible comparison block designed for DEWR project pages — works smoothly with mouse, touch, or keyboard arrow keys with zero external plugin bloat.</p>
+          <h2 id="slider-heading">Interactive Before &amp; After Restoration Showcase</h2>
+          <p>
+            RFP Sections 4.6 &amp; 5.7 — and, per Addendum #1 Q35, built from <strong>original vector diagrams only</strong>.
+            No stock photography, no AI-generated landscapes. Photographic pairs will be supplied by DEWR with documented rights and Tribal approval.
+          </p>
         </div>
 
         <div class="compare-box">
           <div class="compare-stage">
             <div class="compare-layer compare-before">
-              <svg viewBox="0 0 960 420" role="img" aria-label="Before restoration diagrammatic illustration: incised straight channel, eroded banks, unscreened diversion">
+              <svg viewBox="0 0 960 420" role="img" aria-label="Before restoration diagram: incised straight channel, eroded banks, unscreened diversion">
                 <rect width="960" height="420" fill="#cbb994"/>
                 <rect y="0" width="960" height="125" fill="#d9e4ea"/>
                 <polygon points="0,125 180,55 360,115 560,40 760,110 960,65 960,125" fill="#8fa3b0"/>
                 <path d="M 0 250 L 960 225 L 960 285 L 0 315 Z" fill="#6b5b3e"/>
                 <path d="M 0 264 L 960 240 L 960 272 L 0 296 Z" fill="#4f7c92"/>
                 <line x1="520" y1="250" x2="720" y2="395" stroke="#5a4a30" stroke-width="26"/>
-                <text x="40" y="385" fill="#2c2418" font-size="20" font-weight="700">Pre-Project: Incised Straightened Channel · Bank Erosion · Unscreened Turnout</text>
+                <text x="40" y="385" fill="#2c2418" font-size="19" font-weight="700">Pre-project: incised straightened channel · bank erosion · unscreened turnout</text>
               </svg>
             </div>
             <div class="compare-layer compare-after" id="compare-after">
-              <svg viewBox="0 0 960 420" role="img" aria-label="After restoration diagrammatic illustration: sinuous reconnected floodplain, native riparian cover, screened automated headgate">
+              <svg viewBox="0 0 960 420" role="img" aria-label="After restoration diagram: sinuous reconnected floodplain, native riparian cover, screened automated headgate">
                 <rect width="960" height="420" fill="#8cb88a"/>
                 <rect y="0" width="960" height="125" fill="#d3ecf7"/>
                 <polygon points="0,125 180,55 360,115 560,40 760,110 960,65 960,125" fill="#5e879c"/>
@@ -176,18 +222,101 @@
                 <circle cx="150" cy="215" r="18" fill="#1d5c42"/><circle cx="310" cy="240" r="22" fill="#1d5c42"/>
                 <circle cx="610" cy="265" r="20" fill="#1d5c42"/><circle cx="790" cy="210" r="24" fill="#1d5c42"/>
                 <rect x="495" y="255" width="44" height="30" rx="5" fill="#0f2430" stroke="#ffffff" stroke-width="3"/>
-                <text x="40" y="385" fill="#0f2430" font-size="20" font-weight="700">Post-Restoration: Reconnected Sinuous Floodplain · Native Riparian Shade · Fish-Screened Automated Turnout</text>
+                <text x="40" y="385" fill="#0f2430" font-size="19" font-weight="700">Post-restoration: reconnected sinuous floodplain · native riparian shade · fish-screened turnout</text>
               </svg>
             </div>
             <div class="compare-divider" id="compare-divider" aria-hidden="true"></div>
-            <span class="compare-tag before">Before Restoration</span>
-            <span class="compare-tag after">After Restoration</span>
+            <span class="compare-tag before">Before</span>
+            <span class="compare-tag after">After</span>
           </div>
           <div class="compare-controls">
             <label for="restore-range" style="margin:0;">Slide to compare channel conditions:</label>
             <input id="restore-range" type="range" min="5" max="95" value="50" aria-describedby="restore-readout">
             <span id="restore-readout" class="doc-meta" aria-live="polite"></span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="whatsnew-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="whatsnew-heading">What Addendum #1 Changed — And What This Prototype Now Demonstrates</h2>
+          <p>Every answer that changed the scope of the RFP is reflected in the working prototype, not just in the written proposal.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div>
+              <span class="badge">Q1, Q19–Q21</span>
+              <h3>WordPress on CSKT's Own WP Engine</h3>
+              <p>No new hosting line item. The build targets CSKT-managed WP Engine, keeps Elementor out of the critical path, and coordinates GoDaddy DNS/SSL with CSKT IT five business days before launch.</p>
+            </div>
+            <a href="documents.html#tech-notes">Read the technical notes &rarr;</a>
+          </article>
+          <article class="card">
+            <div>
+              <span class="badge">Q27–Q29</span>
+              <h3>Three Branding Concepts + Seal Zone</h3>
+              <p>Unified NRD identity, coordinated three-division system, and a watershed/Compact system — each with a reserved official Seal placement and a Culture Committee approval gate.</p>
+            </div>
+            <a href="branding.html">Compare the concepts &rarr;</a>
+          </article>
+          <article class="card">
+            <div>
+              <span class="badge">Q24–Q26</span>
+              <h3>Dedicated Maps and Data Hub</h3>
+              <p>Four explicit categories — Interactive Maps, Water Resources and Data, Project Maps, ArcGIS StoryMaps — with all ArcGIS publishing routed through DEWR's own GIS Analyst.</p>
+            </div>
+            <a href="projects-gis.html#maps-data">Open the hub &rarr;</a>
+          </article>
+          <article class="card">
+            <div>
+              <span class="badge">Q31, Q32</span>
+              <h3>Comment Form With a Real Cutoff</h3>
+              <p>The form locks itself when the published deadline passes, validates attachments, issues a reference number, and gives staff a one-click CSV export.</p>
+            </div>
+            <a href="get-involved.html#public-comment">Test the cutoff &rarr;</a>
+          </article>
+          <article class="card">
+            <div>
+              <span class="badge">Q30, Q33</span>
+              <h3>Newsletter + CSKT Personnel Jobs</h3>
+              <p>Double opt-in newsletter signup and job summaries that always hand off applications to the official CSKT Personnel Office — no résumés collected here.</p>
+            </div>
+            <a href="get-involved.html#newsletter">See the signup &rarr;</a>
+          </article>
+          <article class="card">
+            <div>
+              <span class="badge">Q48</span>
+              <h3>Source-Cited "Seth Bot"</h3>
+              <p>A Water Compact Q&amp;A demo that answers only from DEWR-approved sources, prints the citation and page, and refuses to guess. Priced separately as an optional item.</p>
+            </div>
+            <a href="get-involved.html#seth-bot">Try the Q&amp;A &rarr;</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="newsletter-home-heading">
+      <div class="container">
+        <div class="newsletter-box">
+          <h2 id="newsletter-home-heading">Get DEWR Notices by Email</h2>
+          <p>Meeting notices, construction and restoration updates, seasonal water outlook, and job openings — separate topic groups, double opt-in, one-click unsubscribe.</p>
+          <form class="newsletter-form" id="newsletter-form" novalidate>
+            <div style="flex:1 1 320px;">
+              <label for="nl-email" style="color:#fff;font-weight:700;">Email address</label>
+              <input id="nl-email" type="email" name="email" autocomplete="email" placeholder="you@example.org" required>
+            </div>
+            <button class="btn btn-primary" type="submit" style="margin-top:1.6rem;">Sign up</button>
+          </form>
+          <div class="topic-row">
+            <label><input type="checkbox" name="nl-topic" value="notices" checked> Meeting notices</label>
+            <label><input type="checkbox" name="nl-topic" value="projects"> Project updates</label>
+            <label><input type="checkbox" name="nl-topic" value="water"> Water &amp; seasonal outlook</label>
+            <label><input type="checkbox" name="nl-topic" value="jobs"> Job openings</label>
+          </div>
+          <p id="nl-status" role="status" aria-live="polite" hidden></p>
+          <p style="font-size:0.8rem;color:#c9e3ec;margin-bottom:0;">Privacy: the live form stores an email address, the topic groups you chose, and the consent timestamp — nothing else. It is never sold or shared, and unsubscribe is honoured immediately.</p>
         </div>
       </div>
     </section>
@@ -198,18 +327,25 @@
       <div>
         <strong>CSKT Division of Engineering &amp; Water Resources (Concept)</strong>
         <p>Flathead Indian Reservation · Ronan, Montana<br>WCAG 2.2 AA &amp; Section 508 oriented · Zero third-party tracking scripts.</p>
+        <div class="seal-zone" style="margin-top:1rem;padding:1.1rem;">
+          <div class="seal-frame" style="width:96px;height:96px;font-size:0.62rem;">Reserved<br>Official CSKT<br>Seal zone</div>
+          <p style="font-size:0.74rem;">Official artwork supplied by DEWR only — never redrawn.</p>
+        </div>
       </div>
       <div>
         <strong>Prototype Pages</strong>
         <p>
-          <a href="index.html">Home &amp; Before/After Slider</a><br>
-          <a href="projects-gis.html">Interactive GIS &amp; Compact Timeline</a><br>
-          <a href="documents.html">Document Library, Staff &amp; Public Comments</a>
+          <a href="index.html">Home, Search &amp; Before/After</a><br>
+          <a href="projects-gis.html">Maps &amp; Data Hub + Compact Timeline</a><br>
+          <a href="documents.html">Document Library, Staff &amp; Careers</a><br>
+          <a href="branding.html">Branding Concepts &amp; Style Guide</a><br>
+          <a href="get-involved.html">Meetings, Comments, Newsletter &amp; Seth Bot</a>
         </p>
       </div>
       <div>
         <strong>Prepared By</strong>
         <p>Abdulrhman — Independent Web Developer<br><a href="mailto:abdulrhmant948@gmail.com">abdulrhmant948@gmail.com</a> · <a href="https://github.com/abdoo606">github.com/abdoo606</a></p>
+        <p style="font-size:0.8rem;">Non-IPO proposer · 0 of 10 optional Indian Preference points claimed · IRS Form W-8BEN available.</p>
       </div>
     </div>
   </footer>

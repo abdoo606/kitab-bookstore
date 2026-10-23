@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Get Involved — Meetings, Public Comment, Newsletter &amp; Seth Bot — CSKT DEWR Concept</title>
+  <meta name="description" content="Meetings and open houses calendar, public comment form with automatic deadline cutoff and CSV staff export, newsletter signup, and the source-cited Seth Bot demonstration.">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="addendum-strip">
+    <div class="container">
+      <strong>Addendum #1 Q30–Q33, Q48:</strong> newsletter · public comment form with deadline cutoff + attachment + auto-notification + CSV export · meetings calendar · CSKT Personnel jobs · source-cited Seth Bot.
+    </div>
+  </div>
+
+  <div class="demo-disclaimer" role="note">
+    <div class="container">
+      <strong>Unofficial RFP Working Concept — demo forms:</strong> nothing typed below leaves this browser tab. There is no server, no email, no cookie, and no analytics. Real submissions will be stored in the CSKT-hosted CMS.
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">DEWR</span>
+        <span>
+          <span class="brand-kicker">Confederated Salish &amp; Kootenai Tribes · Natural Resources</span>
+          <span class="brand-title">Division of Engineering &amp; Water Resources</span>
+        </span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="index.html">Home &amp; Programs</a></li>
+          <li><a href="projects-gis.html">Maps &amp; Data</a></li>
+          <li><a href="documents.html">Documents &amp; Staff</a></li>
+          <li><a href="branding.html">Branding Concepts</a></li>
+          <li><a href="get-involved.html" aria-current="page">Get Involved</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container breadcrumb"><a href="index.html">Home</a> / Meetings, Public Comment, Newsletter &amp; Seth Bot</div>
+
+    <section class="section" aria-labelledby="meetings-heading">
+      <div class="container">
+        <div class="section-head">
+          <h1 id="meetings-heading">Meetings &amp; Open Houses</h1>
+          <p class="lede">
+            Addendum #1 Q32 asks for a simple, clear calendar rather than a complex event platform. Each entry shows the date, time,
+            location, type, and — where relevant — the exact public-comment window and whether it is still open.
+          </p>
+        </div>
+
+        <div class="filter-bar">
+          <div>
+            <label for="meeting-filter">Show</label>
+            <select id="meeting-filter">
+              <option value="UPCOMING">Upcoming only</option>
+              <option value="PAST">Past only</option>
+              <option value="ALL">All meetings</option>
+            </select>
+          </div>
+        </div>
+
+        <ul class="meeting-list" id="meeting-list" aria-label="Meetings and open houses"></ul>
+
+        <div class="gate-box is-river">
+          <h3>What stays simple on purpose</h3>
+          <ul>
+            <li>No ticketing, no seat booking, no attendee accounts, and no third-party calendar embed that drops a tracking cookie.</li>
+            <li>Each meeting can optionally carry a downloadable agenda PDF and a link straight to its comment form.</li>
+            <li>Past meetings stay published with their materials — the public record is not deleted when a date passes.</li>
+            <li>Staff publish a meeting in one CMS screen; the calendar and the homepage notice banner update from the same record.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="public-comment" aria-labelledby="comment-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="comment-heading">Submit a Public Comment</h2>
+          <p class="lede">
+            Addendum #1 Q31. The form locks itself at the published deadline, accepts a PDF/DOCX attachment, issues a reference
+            number, notifies the assigned DEWR staff member, and gives staff a one-click CSV export of every submission.
+          </p>
+          <p><span class="cutoff-badge" id="cutoff-badge">Checking comment window…</span></p>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <div class="form-alert is-error" id="cutoff-notice" hidden></div>
+            <form id="public-comment-form" novalidate>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="c-name">Full name <span class="req" aria-hidden="true">*</span></label>
+                  <input id="c-name" name="name" type="text" autocomplete="name" required>
+                </div>
+                <div class="form-field">
+                  <label for="c-email">Email address <span class="req" aria-hidden="true">*</span></label>
+                  <input id="c-email" name="email" type="email" autocomplete="email" required aria-describedby="c-email-hint">
+                  <span class="hint" id="c-email-hint">Used only to confirm receipt and to contact you about this comment.</span>
+                </div>
+                <div class="form-field is-wide">
+                  <label for="c-topic">Topic</label>
+                  <select id="c-topic" name="topic">
+                    <option>Water Compact administration</option>
+                    <option>Stream &amp; fishery restoration</option>
+                    <option>Irrigation modernization &amp; measurement</option>
+                    <option>Dam safety &amp; infrastructure</option>
+                    <option>Hydrology, gaging &amp; data</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-field is-wide">
+                  <label for="c-body">Your comment <span class="req" aria-hidden="true">*</span></label>
+                  <textarea id="c-body" name="comment" required aria-describedby="c-body-hint" placeholder="Describe your question, concern, or support for the proposal…"></textarea>
+                  <span class="hint" id="c-body-hint">Minimum 20 characters. Plain text only — no HTML.</span>
+                </div>
+                <div class="form-field is-wide">
+                  <label for="c-file">Attach a document (optional)</label>
+                  <div class="file-drop">
+                    <input id="c-file" name="attachment" type="file" accept=".pdf,.doc,.docx" aria-describedby="c-file-hint">
+                    <span class="hint" id="c-file-hint">PDF, DOC, or DOCX · up to 25 MB. Nothing else is accepted, and the file is scanned before it is stored.</span>
+                  </div>
+                </div>
+                <div class="form-field is-wide">
+                  <label style="font-weight:600;display:flex;gap:0.5rem;align-items:flex-start;">
+                    <input type="checkbox" id="c-consent" name="consent" style="width:auto;margin-top:0.35rem;" required>
+                    <span>I understand that my name, comment, and any attachment become part of the <strong>public record</strong>, may be published in meeting materials, and may be retained under the Tribes' records-retention rules. <span class="req" aria-hidden="true">*</span></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="btn-row" style="margin-top:1.1rem;">
+                <button type="submit" class="btn btn-primary" id="comment-submit">Submit public comment</button>
+                <a class="btn btn-outline" href="#seth-bot">Ask Seth Bot a question first</a>
+              </div>
+              <div class="form-alert is-error" id="comment-error" role="alert" hidden></div>
+              <div class="form-alert is-ok" id="comment-success" role="status" hidden></div>
+            </form>
+          </div>
+
+          <div>
+            <div class="gate-box">
+              <h3>How the deadline cutoff actually works</h3>
+              <ul>
+                <li>Each notice stores a closing date and time in Mountain Time. The form compares against that stored value, not a decorative label.</li>
+                <li>When the moment passes, the submit button disables itself, the fields are explained as closed, and the reason is announced to screen readers.</li>
+                <li>Late comments are refused rather than silently accepted, so the public record stays honest about what arrived on time.</li>
+                <li>DEWR staff can reopen a window, extend it, or publish a new notice — every change is logged with who changed it and when.</li>
+              </ul>
+            </div>
+
+            <h3 style="font-size:1.05rem;">Staff export (one click)</h3>
+            <p class="doc-meta" id="export-count">No demo submissions yet — submit the form to test the staff export.</p>
+            <button type="button" class="btn btn-outline" id="export-csv" disabled aria-describedby="export-count">Export submissions as CSV</button>
+            <p id="export-live" role="status" aria-live="polite" class="doc-meta"></p>
+
+            <div class="gate-box is-pine" style="margin-top:1.2rem;">
+              <h3>Privacy &amp; records notice</h3>
+              <ul>
+                <li>Collected: name, email, topic, comment, optional attachment, and the submission timestamp. Nothing else.</li>
+                <li>Email is used for the acknowledgement and follow-up on that specific comment.</li>
+                <li>Comments are public records. Do not include confidential personal information, medical details, or financial account numbers.</li>
+                <li>Retention follows the Tribes' records schedule; staff can export and archive without losing the audit trail.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="newsletter" aria-labelledby="newsletter-heading">
+      <div class="container">
+        <div class="newsletter-box">
+          <h2 id="newsletter-heading">DEWR Email Notices</h2>
+          <p>Choose only the topics you want. Double opt-in, one-click unsubscribe in every message, and no list ever sold or shared.</p>
+          <form class="newsletter-form" id="newsletter-form" novalidate>
+            <div style="flex:1 1 320px;">
+              <label for="nl-email" style="color:#fff;font-weight:700;">Email address</label>
+              <input id="nl-email" type="email" name="email" autocomplete="email" placeholder="you@example.org" required>
+            </div>
+            <button class="btn btn-primary" type="submit" style="margin-top:1.6rem;">Sign up</button>
+          </form>
+          <div class="topic-row">
+            <label><input type="checkbox" name="nl-topic" value="notices" checked> Meeting notices</label>
+            <label><input type="checkbox" name="nl-topic" value="projects"> Project updates</label>
+            <label><input type="checkbox" name="nl-topic" value="water"> Water &amp; seasonal outlook</label>
+            <label><input type="checkbox" name="nl-topic" value="jobs"> Job openings</label>
+          </div>
+          <p id="nl-status" role="status" aria-live="polite" hidden></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="seth-bot" aria-labelledby="bot-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="bot-heading">"Seth Bot" — Water Compact Q&amp;A Demonstration</h2>
+          <p class="lede">
+            Addendum #1 Q48. An optional, separately priced assistant that answers only from DEWR-approved sources, prints the
+            citation and page for every answer, and refuses to guess when no approved passage exists.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="bot-shell">
+            <div class="bot-head">
+              <h3>Seth Bot (demonstration)</h3>
+              <p>Approved sources only · citations shown · no legal advice</p>
+            </div>
+            <div class="bot-log" id="bot-log" role="log" aria-live="polite" aria-label="Conversation with Seth Bot">
+              <div class="bot-msg is-bot">
+                <p>Hello. I answer questions about the CSKT–Montana Water Compact and DEWR processes using only DEWR-approved documents, and I show the source and page for each answer.</p>
+                <p>I am a demonstration, not an official DEWR spokesperson, and nothing I say is legal advice or a water-rights determination.</p>
+                <div class="bot-cites"><strong>Try one of these:</strong> “What is the Compact?” · “Do I have to measure my diversion?” · “How long do I have to submit a comment?”</div>
+              </div>
+            </div>
+            <form class="bot-form" id="bot-form">
+              <label for="bot-input" class="visually-hidden">Ask Seth Bot a question</label>
+              <input id="bot-input" type="text" placeholder="Ask about the Compact, measurement, comments, data, jobs…" autocomplete="off">
+              <button class="btn btn-primary" type="submit">Ask</button>
+            </form>
+            <div class="bot-suggestions">
+              <button type="button" class="bot-chip" data-bot-q="What is the CSKT–Montana Water Compact?">What is the Compact?</button>
+              <button type="button" class="bot-chip" data-bot-q="Do I have to measure my diversion as an irrigator?">Do I have to measure my diversion?</button>
+              <button type="button" class="bot-chip" data-bot-q="How long do I have to submit a public comment?">Comment deadline?</button>
+              <button type="button" class="bot-chip" data-bot-q="Can I download the streamflow data behind the maps?">Can I download the data?</button>
+            </div>
+          </div>
+
+          <div>
+            <div class="gate-box">
+              <h3>Guardrails — why this is not a chatbot that invents things</h3>
+              <ul>
+                <li><strong>Approved corpus only.</strong> Answers come from DEWR-approved pages, FAQs, and public documents. If no approved passage matches, the bot says so and routes the person to staff.</li>
+                <li><strong>Every answer is cited.</strong> Document title plus page or section, linked to the public file.</li>
+                <li><strong>No legal advice, no determinations.</strong> A permanent notice states this, and the bot never answers "what is my water right?" type questions.</li>
+                <li><strong>No personal data.</strong> Visitors are discouraged from entering names, addresses, or account details; the live version logs questions without identifiers.</li>
+                <li><strong>Human escalation.</strong> A visible "talk to a person" path appears with every answer, and unanswered questions are queued for DEWR staff.</li>
+                <li><strong>Content owner is DEWR.</strong> Adding or removing an approved source is a staff action in the CMS, not a developer release.</li>
+              </ul>
+            </div>
+
+            <div class="gate-box is-pine">
+              <h3>Why it is priced separately</h3>
+              <p>
+                A safe assistant needs curated sources, a review workflow, and ongoing content maintenance — real work that should be
+                visible in the price rather than buried in a base bid. It is therefore offered as an optional itemised add-on
+                (<strong>$950 USD</strong>) that DEWR can decline without affecting the core website.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="timeline-cta">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="timeline-cta">What Happens After You Submit</h2>
+          <p>Stated plainly, because a public form should never be a black box.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div>
+              <span class="badge">Step 1</span>
+              <h3>Acknowledgement</h3>
+              <p>An email confirms receipt and shows the reference number, so the submitter has a record even if the browser closes.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div>
+              <span class="badge">Step 2</span>
+              <h3>Staff notification</h3>
+              <p>The assigned DEWR staff member is notified with the topic, the comment, and any attachment — routed by topic, not to a shared inbox nobody watches.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div>
+              <span class="badge">Step 3</span>
+              <h3>Public record</h3>
+              <p>Comments are compiled for the meeting packet and retained per the Tribes' schedule; staff can export the full set as CSV at any time.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>CSKT Division of Engineering &amp; Water Resources (Concept)</strong>
+        <p>Flathead Indian Reservation · Ronan, Montana<br>WCAG 2.2 AA &amp; Section 508 oriented · Zero third-party tracking scripts.</p>
+        <div class="seal-zone" style="margin-top:1rem;padding:1.1rem;">
+          <div class="seal-frame" style="width:96px;height:96px;font-size:0.62rem;">Reserved<br>Official CSKT<br>Seal zone</div>
+          <p style="font-size:0.74rem;">Official artwork supplied by DEWR only — never redrawn.</p>
+        </div>
+      </div>
+      <div>
+        <strong>Prototype Pages</strong>
+        <p>
+          <a href="index.html">Home, Search &amp; Before/After</a><br>
+          <a href="projects-gis.html">Maps &amp; Data Hub + Compact Timeline</a><br>
+          <a href="documents.html">Document Library, Staff &amp; Careers</a><br>
+          <a href="branding.html">Branding Concepts &amp; Style Guide</a><br>
+          <a href="get-involved.html">Meetings, Comments, Newsletter &amp; Seth Bot</a>
+        </p>
+      </div>
+      <div>
+        <strong>Prepared By</strong>
+        <p>Abdulrhman — Independent Web Developer<br><a href="mailto:abdulrhmant948@gmail.com">abdulrhmant948@gmail.com</a> · <a href="https://github.com/abdoo606">github.com/abdoo606</a></p>
+        <p style="font-size:0.8rem;">Seth Bot is a demonstration prototype, not a legal or official advisory service.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/dewr-data.js"></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>

@@ -3,15 +3,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projects, GIS &amp; StoryMaps — CSKT DEWR Concept</title>
+  <title>Maps and Data Hub, Projects &amp; Compact Timeline — CSKT DEWR Concept</title>
+  <meta name="description" content="Dedicated Maps and Data hub with four categories, project explorer, and CSKT–Montana Water Compact timeline.">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
+  <div class="addendum-strip">
+    <div class="container">
+      <strong>Addendum #1 Q24–Q26:</strong> four explicit Maps and Data categories · ArcGIS publishing only through DEWR's GIS Analyst · no contractor access to DEWR's ArcGIS Online organisation.
+    </div>
+  </div>
+
   <div class="demo-disclaimer" role="note">
     <div class="container">
-      <strong>Unofficial RFP Working Concept:</strong> Interactive GIS basin filter, ArcGIS StoryMap CMS embed pattern, and Compact timeline built with placeholder sample data.
+      <strong>Unofficial RFP Working Concept:</strong> all maps, projects, and coordinates below are labelled <code>[Sample]</code> placeholders. No real project locations, boundaries, or telemetry are depicted.
     </div>
   </div>
 
@@ -27,67 +34,171 @@
       <nav aria-label="Primary navigation">
         <ul class="nav-list">
           <li><a href="index.html">Home &amp; Programs</a></li>
-          <li><a href="projects-gis.html" aria-current="page">Projects, GIS &amp; StoryMaps</a></li>
-          <li><a href="documents.html">Documents, Staff &amp; Outreach</a></li>
+          <li><a href="projects-gis.html" aria-current="page">Maps &amp; Data</a></li>
+          <li><a href="documents.html">Documents &amp; Staff</a></li>
+          <li><a href="branding.html">Branding Concepts</a></li>
+          <li><a href="get-involved.html">Get Involved</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main id="main-content">
-    <div class="container breadcrumb"><a href="index.html">Home</a> / Projects, Interactive GIS &amp; StoryMaps</div>
+    <div class="container breadcrumb"><a href="index.html">Home</a> / Maps and Data, Projects &amp; Compact Timeline</div>
 
-    <section class="section" aria-labelledby="gis-heading">
+    <section class="section" id="maps-data" aria-labelledby="hub-heading">
       <div class="container">
         <div class="section-head">
-          <h1 id="gis-heading">Interactive Watershed Projects, ArcGIS Online &amp; StoryMaps Hub</h1>
-          <p>Demonstrates RFP Sections 4.6, 5.7 &amp; 5.11: filter engineering, fishery restoration, irrigation modernization, and hydrology projects or click any keyboard-accessible map pin to inspect its ArcGIS Online / StoryMap integration slot.</p>
+          <h1 id="hub-heading">Maps and Data</h1>
+          <p class="lede">
+            A dedicated hub with the four categories named in Addendum #1 (Q24): <strong>Interactive Maps</strong>,
+            <strong>Water Resources and Data</strong>, <strong>Project Maps</strong>, and <strong>ArcGIS StoryMaps</strong>.
+            Visitors never have to guess whether a link opens a live map, a downloadable table, or a printed figure.
+          </p>
         </div>
 
-        <div class="filter-bar">
-          <div>
-            <label for="project-category-filter">Filter by DEWR Program Category</label>
-            <select id="project-category-filter">
-              <option value="ALL">All DEWR Program Categories (4)</option>
-              <option value="Stream & Fishery Restoration">Stream &amp; Fishery Restoration</option>
-              <option value="Irrigation Modernization">Irrigation Modernization</option>
-              <option value="Engineering & Infrastructure">Engineering &amp; Infrastructure</option>
-              <option value="Hydrology & Water Compact">Hydrology &amp; Water Compact</option>
-            </select>
-          </div>
+        <div class="hub-grid" id="hub-grid">
+          <!-- Populated by the hub template below; kept static for no-JS resilience -->
+          <article class="hub-card">
+            <span class="hub-num">1</span>
+            <h3>Interactive Maps</h3>
+            <p>Embedded ArcGIS Online web maps and dashboards for watershed, project, and gaging views.</p>
+            <ul class="hub-items">
+              <li>[Sample] Reservation-Wide Project Explorer <span class="item-type">Web App</span></li>
+              <li>[Sample] Stream Gage &amp; Diversion Dashboard <span class="item-type">Dashboard</span></li>
+              <li>[Sample] Restoration Corridor Viewer <span class="item-type">Web Map</span></li>
+            </ul>
+          </article>
+          <article class="hub-card">
+            <span class="hub-num">2</span>
+            <h3>Water Resources and Data</h3>
+            <p>Downloadable hydrology datasets, annual summaries, and measurement guidance with explicit units and caveats.</p>
+            <ul class="hub-items">
+              <li>[Sample] Annual Streamflow Summary Tables <span class="item-type">CSV + PDF</span></li>
+              <li>[Sample] Diversion Measurement Field Protocol <span class="item-type">PDF</span></li>
+              <li>[Sample] Snowpack &amp; Runoff Outlook Notes <span class="item-type">PDF</span></li>
+            </ul>
+          </article>
+          <article class="hub-card">
+            <span class="hub-num">3</span>
+            <h3>Project Maps</h3>
+            <p>Static, print-safe maps and figure sets for field packets, construction phasing, and public meetings.</p>
+            <ul class="hub-items">
+              <li>[Sample] Mission Valley Piping Phasing Map <span class="item-type">PDF figure</span></li>
+              <li>[Sample] Jocko Floodplain Reconnection Plan Set <span class="item-type">PDF figure</span></li>
+              <li>[Sample] Dam Safety Reference Figure <span class="item-type">PDF figure</span></li>
+            </ul>
+          </article>
+          <article class="hub-card">
+            <span class="hub-num">4</span>
+            <h3>ArcGIS StoryMaps</h3>
+            <p>Narrative, scroll-based stories for public education and project storytelling, authored inside DEWR's organisation.</p>
+            <ul class="hub-items">
+              <li>[Sample] Following the Water: A Flathead Watershed Story <span class="item-type">StoryMap</span></li>
+              <li>[Sample] Restoring the Jocko: Before &amp; After <span class="item-type">StoryMap</span></li>
+              <li>[Sample] How the Compact Works <span class="item-type">StoryMap</span></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="gate-box is-river">
+          <h3>Access model (Addendum #1 Q25) — no contractor access to DEWR's ArcGIS Online organisation</h3>
+          <p>
+            DEWR's GIS Analyst publishes each Web App, Dashboard, or StoryMap from DEWR's own ArcGIS Online organisation and shares a public URL.
+            I embed that URL in a responsive, accessible block with a keyboard-reachable title and a plain link fallback. I never request an
+            org-account login, API key, editing seat, or administrative role. Any change to a map is requested through the GIS Analyst and
+            tracked on the change log; maps never break the page if a service is briefly unavailable.
+          </p>
+        </div>
+
+        <div class="embed-slot mt-lg" id="embed-demo">
+          <strong>ArcGIS embed slot — demonstration frame</strong>
+          On the production site this frame loads one DEWR-published Web App, Dashboard, or StoryMap URL. Until DEWR supplies the real
+          URL the frame stays a labelled placeholder. It is set to a fixed aspect ratio so nothing shifts while the map loads, and it
+          carries a visible caption plus a “Open full screen in a new tab” link for keyboard and screen-reader users.
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="project-explorer" aria-labelledby="explorer-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="explorer-heading">Project Explorer</h2>
+          <p>Filter by program area, then open a project to read its summary. Pins and cards stay in sync and are fully keyboard operable.</p>
         </div>
 
         <div class="gis-shell">
           <div class="map-panel">
-            <svg viewBox="0 0 540 310" role="img" aria-label="Schematic Flathead Indian Reservation watershed map with selectable project pins">
-              <rect width="540" height="310" fill="#dceaf0"/>
-              <polygon points="55,30 470,30 495,275 80,285" fill="#eef6f2" stroke="#164e3a" stroke-width="2.5" stroke-dasharray="6,4"/>
-              <ellipse cx="235" cy="68" rx="68" ry="26" fill="#7fc0dc"/>
-              <path d="M 195 92 Q 160 155 155 215 T 230 278" fill="none" stroke="#2f85ad" stroke-width="7"/>
-              <path d="M 275 95 Q 290 165 345 238" fill="none" stroke="#459bc2" stroke-width="4.5"/>
-              <text x="195" y="72" fill="#0f2430" font-size="12" font-weight="700">Flathead Lake</text>
-              <text x="68" y="52" fill="#164e3a" font-size="11" font-weight="700">Schematic Watershed Locator (Sample Pins)</text>
+            <div style="display:flex;gap:0.6rem;flex-wrap:wrap;align-items:flex-end;margin-bottom:0.8rem;">
+              <div style="flex:1 1 240px;">
+                <label for="project-category-filter"><strong>Filter by program area</strong></label>
+                <select id="project-category-filter">
+                  <option value="ALL">All program areas</option>
+                  <option value="Stream & Fishery Restoration">Stream &amp; Fishery Restoration</option>
+                  <option value="Irrigation Modernization">Irrigation Modernization</option>
+                  <option value="Engineering & Infrastructure">Engineering &amp; Infrastructure</option>
+                  <option value="Hydrology & Water Compact">Hydrology &amp; Water Compact</option>
+                </select>
+              </div>
+            </div>
+
+            <svg viewBox="0 0 480 320" role="group" aria-label="Sample basin project map with keyboard-selectable project pins" style="width:100%;height:auto;background:#dcebf2;border-radius:8px;border:1px solid #9db4c0;">
+              <rect width="480" height="320" fill="#dcebf2"/>
+              <path d="M0 210 Q 90 150 190 205 T 480 175 L480 320 L0 320 Z" fill="#b8d7c4"/>
+              <path d="M0 60 Q 120 30 250 75 T 480 55 L480 0 L0 0 Z" fill="#cfe0e8"/>
+              <path d="M 20 300 Q 140 205 250 255 T 470 205" fill="none" stroke="#4f8fb0" stroke-width="9" opacity="0.85"/>
+              <path d="M 60 120 Q 150 90 240 130 T 430 110" fill="none" stroke="#7fb0c6" stroke-width="5" stroke-dasharray="7 6" opacity="0.8"/>
+              <text x="14" y="24" font-size="12" fill="#2c4a57" font-weight="700">SAMPLE BASIN SCHEMATIC — NOT A REAL BOUNDARY</text>
               <g id="map-pins"></g>
             </svg>
+            <p class="doc-meta">Diagrammatic only. Real geography arrives as a DEWR-published ArcGIS web map; this SVG is an original vector placeholder, never a traced boundary.</p>
+            <div id="active-project-detail" aria-live="polite" class="mt-lg"></div>
           </div>
 
-          <div class="card" id="active-project-detail" aria-live="polite">
-            <p>Select a basin pin or project card to view details and its ArcGIS Online / StoryMap embed slot.</p>
-          </div>
+          <div id="project-cards" class="grid-2"></div>
         </div>
-
-        <div class="grid-2" id="project-cards" style="margin-top:1.4rem;"></div>
       </div>
     </section>
 
-    <section class="section section-alt" id="compact-timeline" aria-labelledby="timeline-heading">
+    <section class="section" id="compact-timeline" aria-labelledby="timeline-heading">
       <div class="container">
         <div class="section-head">
-          <h2 id="timeline-heading">Educational Timeline: CSKT–Montana Water Compact &amp; Stewardship</h2>
-          <p>Demonstrates interactive educational storytelling (RFP Section 5.7) with tab-accessible milestones editable by staff in the CMS.</p>
+          <h2 id="timeline-heading">CSKT–Montana Water Compact Timeline</h2>
+          <p>A four-step plain-language explainer, controllable by keyboard, with the text announced on change.</p>
         </div>
-        <div class="timeline-steps" id="timeline-steps" role="tablist" aria-label="Water Compact milestones"></div>
-        <div class="card" id="timeline-panel" role="tabpanel" aria-live="polite"></div>
+        <div class="timeline-steps" id="timeline-buttons" role="group" aria-label="Compact timeline steps"></div>
+        <div id="timeline-detail" class="gate-box is-river" aria-live="polite" style="margin-top:1rem;"></div>
+        <p class="doc-meta">
+          Educational summary only — not a legal interpretation of the Compact, any decree, or any water right. Authoritative text and
+          DEWR's own guidance should always be consulted, and the timeline wording is reviewed by DEWR before publication.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="project-maps" aria-labelledby="project-maps-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="project-maps-heading">Project Maps &amp; Downloadable Data</h2>
+          <p>Category 2 and 3 of the hub, shown as the staff would maintain them: each row states the file type, the program, the vintage, and the caveat.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="data">
+            <caption>Sample Maps and Data inventory (four categories, Addendum Q24)</caption>
+            <thead>
+              <tr><th scope="col">Category</th><th scope="col">Item</th><th scope="col">Format</th><th scope="col">Program</th><th scope="col">Vintage</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1 · Interactive Maps</td><td>[Sample] Reservation-Wide Project Explorer</td><td>ArcGIS Web App</td><td>All programs</td><td>Live</td></tr>
+              <tr><td>1 · Interactive Maps</td><td>[Sample] Stream Gage &amp; Diversion Dashboard</td><td>ArcGIS Dashboard</td><td>Hydrology</td><td>Live</td></tr>
+              <tr><td>2 · Water Resources and Data</td><td>[Sample] Annual Streamflow Summary Tables</td><td>CSV + PDF</td><td>Hydrology</td><td>Water year 2026</td></tr>
+              <tr><td>2 · Water Resources and Data</td><td>[Sample] Diversion Measurement Field Protocol</td><td>PDF</td><td>Irrigation</td><td>2026 · v1.4</td></tr>
+              <tr><td>3 · Project Maps</td><td>[Sample] Mission Valley Piping Phasing Map</td><td>PDF figure</td><td>Irrigation</td><td>2026 · Phase II</td></tr>
+              <tr><td>3 · Project Maps</td><td>[Sample] Jocko Floodplain Reconnection Plan Set</td><td>PDF figure</td><td>Restoration</td><td>2025</td></tr>
+              <tr><td>4 · ArcGIS StoryMaps</td><td>[Sample] Following the Water</td><td>StoryMap embed</td><td>Outreach</td><td>2026</td></tr>
+              <tr><td>4 · ArcGIS StoryMaps</td><td>[Sample] How the Compact Works</td><td>StoryMap embed</td><td>Compact</td><td>2026</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   </main>
@@ -95,12 +206,26 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
-        <strong>CSKT DEWR Working Concept</strong>
-        <p>ArcGIS Online &amp; StoryMaps embeds load over HTTPS with responsive aspect ratios, title attributes for screen readers, and direct external full-screen links.</p>
+        <strong>CSKT Division of Engineering &amp; Water Resources (Concept)</strong>
+        <p>Flathead Indian Reservation · Ronan, Montana<br>WCAG 2.2 AA &amp; Section 508 oriented · Zero third-party tracking scripts.</p>
       </div>
       <div>
-        <strong>Navigation</strong>
-        <p><a href="index.html">Home &amp; Programs</a> · <a href="documents.html">Document Library, Staff &amp; Careers</a></p>
+        <strong>Prototype Pages</strong>
+        <p>
+          <a href="index.html">Home, Search &amp; Before/After</a><br>
+          <a href="projects-gis.html">Maps &amp; Data Hub + Compact Timeline</a><br>
+          <a href="documents.html">Document Library, Staff &amp; Careers</a><br>
+          <a href="branding.html">Branding Concepts &amp; Style Guide</a><br>
+          <a href="get-involved.html">Meetings, Comments, Newsletter &amp; Seth Bot</a>
+        </p>
+      </div>
+      <div>
+        <strong>Prepared By</strong>
+        <p>Abdulrhman — Independent Web Developer<br><a href="mailto:abdulrhmant948@gmail.com">abdulrhmant948@gmail.com</a> · <a href="https://github.com/abdoo606">github.com/abdoo606</a></p>
+        <div class="seal-zone" style="margin-top:1rem;padding:1rem;">
+          <div class="seal-frame" style="width:88px;height:88px;font-size:0.6rem;">Reserved<br>Official CSKT<br>Seal zone</div>
+          <p style="font-size:0.72rem;">Official artwork supplied by DEWR only.</p>
+        </div>
       </div>
     </div>
   </footer>
