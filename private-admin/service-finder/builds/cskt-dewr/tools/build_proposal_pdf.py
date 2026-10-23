@@ -171,7 +171,7 @@ def build():
         ["Designated contact", "Elizabeth Dempsey, Information &amp; Education Program Manager<br/>Elizabeth.Dempsey@cskt.org · 406-304-1079"],
         ["Proposer", "Abdulrhman — Independent Web Designer &amp; Full-Stack Developer (solo, remote)"],
         ["Contact", "abdulrhmant948@gmail.com · github.com/abdoo606"],
-        ["Live working prototype", "Five-page accessible concept built specifically for DEWR (see Section 2)"],
+        ["Live working prototype", "Five-page accessible concept built specifically for DEWR — inspect all source at <font color='#0D4F6B'>github.com/abdoo606/kitab-bookstore/tree/arena/20e2fbb7-kitab-bookstore/builds/cskt-dewr</font> (see Section 2)"],
         ["Indian Preference", "Non-IPO proposer — <b>0 of 10</b> optional Indian Preference points claimed"],
         ["Tax status", "<b>IRS Form W-8BEN</b> — non-U.S. individual contractor"],
         ["Base fixed price", "<b>$5,400 USD</b> (unchanged) · hosting <b>$0</b> on CSKT WP Engine"],
@@ -280,7 +280,15 @@ def build():
     ]
     S.append(table(rows2, [1.15 * inch, 4.1 * inch, 1.65 * inch]))
 
-    S.append(Paragraph("2.1 Search: the requirement most bidders will under-scope", H2))
+    S.append(Paragraph("2.1 Where to inspect it", H2))
+    S.append(Paragraph(
+        "Every file is public and readable without an account, and every link below returns HTTP 200: "
+        "<font face=\'Courier\' size=\'7.6\' color=\'#0D4F6B\'>github.com/abdoo606/kitab-bookstore/tree/arena/20e2fbb7-kitab-bookstore/builds/cskt-dewr</font> "
+        "— five pages, the sample data file, the JavaScript, the stylesheet, the style guide, and the source script that "
+        "generates this PDF. Download the folder and open <code>index.html</code> in any browser; there is no build step "
+        "and no dependency to install.", BODY))
+
+    S.append(Paragraph("2.2 Search: the requirement most bidders will under-scope", H2))
     S.append(Paragraph(
         "Q18 makes searchable text inside PDFs a base requirement. That is not a plugin toggle: it needs a text "
         "extraction pipeline, an index that stores page numbers, and a results interface that tells the visitor which "
@@ -289,7 +297,7 @@ def build():
         "at page 4. Scanned image-only PDFs need OCR, which I count and quote separately rather than bury in a change "
         "order.", BODY))
 
-    S.append(Paragraph("2.2 Public comments: a deadline that actually closes", H2))
+    S.append(Paragraph("2.3 Public comments: a deadline that actually closes", H2))
     S.append(Paragraph(
         "The comment form stores a closing date and time in Mountain Time, compares the current time against it, and "
         "disables submission when it passes — with a screen-reader announcement explaining why. Late comments are "
@@ -297,7 +305,7 @@ def build():
         "reference number, the assigned staff member is notified, and staff can export every submission to CSV in one "
         "click. A public-record consent checkbox is mandatory before submission.", BODY))
 
-    S.append(Paragraph("2.3 Maps and Data: four categories, one access rule", H2))
+    S.append(Paragraph("2.4 Maps and Data: four categories, one access rule", H2))
     S.append(Paragraph(
         "The hub separates <b>Interactive Maps</b>, <b>Water Resources and Data</b>, <b>Project Maps</b>, and "
         "<b>ArcGIS StoryMaps</b> so a visitor knows whether a link opens a live map, a CSV, or a printed figure. "
@@ -305,7 +313,7 @@ def build():
         "public URL and hold no login, API key, or editing seat. If a service is unavailable the embed degrades to a "
         "titled link, and the page never breaks.", BODY))
 
-    S.append(Paragraph("2.4 Seth Bot: useful only because it refuses to guess", H2))
+    S.append(Paragraph("2.5 Seth Bot: useful only because it refuses to guess", H2))
     S.append(Paragraph(
         "The demonstration answers six common questions, prints the source document and page or question reference for "
         "each answer, and returns a written refusal plus a staff escalation path when no approved passage matches. It "
